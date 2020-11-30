@@ -164,7 +164,7 @@ function getRatingTable() {
         ["Gimme×Gimme feat. 初音ミク・鏡音リン", "NORMAL 2", 0.0, "HARD 8", 0.0, "EXPERT 12", 12.0, "INFERNO 0", 0.0],
         ["39みゅーじっく！", "NORMAL 2", 0.0, "HARD 7", 0.0, "EXPERT 10+", 0.0, "INFERNO 0", 0.0],
         ["ブリキノダンス", "NORMAL 3", 0.0, "HARD 7+", 0.0, "EXPERT 12", 12.3, "INFERNO 0", 0.0],
-        ["チュルリラ・チュルリラ・ダッダッダ！", "NORMAL 4", 0.0, "HARD 8", 0.0, "EXPERT 12", 12.2, "INFERNO 0", 0.0],
+        ["チュルリラ・チュルリラ・ダッダッダ！", "NORMAL 4", 0.0, "HARD 8", 0.0, "EXPERT 12", 12.3, "INFERNO 0", 0.0],
         ["おばけのウケねらい", "NORMAL 3", 0.0, "HARD 8", 0.0, "EXPERT 11+", 0.0, "INFERNO 0", 0.0],
         ["ベノム", "NORMAL 3", 0.0, "HARD 7", 0.0, "EXPERT 12", 12.1, "INFERNO 0", 0.0],
         ["リアル初音ミクの消失", "NORMAL 6", 0.0, "HARD 10", 0.0, "EXPERT 13+", 13.7, "INFERNO 0", 0.0],
