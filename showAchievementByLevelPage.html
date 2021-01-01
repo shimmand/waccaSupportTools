@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>WACCA 達成状況ビューアー</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script>
+        function omakeCopyToClipboard() {
+            var copyTarget = document.getElementById("copyTarget");
+            copyTarget.select();
+            document.execCommand("Copy");
+            alert("コピーしました");
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid m-2">
+        <h2>WACCA 達成状況ビューアー</h2>
+        <h5 class="p-2">準備</h5>
+        <p>1. 以下のボタンをクリックし、ブックマークレットのコードをコピーします。</p>
+        <p>2. このページをブックマークします。（名前の変更は任意）</p>
+        <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
+        <h5 class="p-2">使い方</h5>
+        <p>WACCAのマイページで、[ プレイデータ ＞ 楽曲スコア ]と進み、ブックマークレットを実行します。</p>
+        <p>ブックマークレットの実行方法は以下の通りです。</p>
+        <p>iPhoneまたはPCの場合: ブックマーク一覧を表示し、[準備] で作成したブックマークをタップします。</p>
+        <p>Android系OSの場合: アドレスバーに [準備] で作成したブックマークの名前を入力し、表示された候補から「javascript〜」というものを選びタップします。名前の入力中にも候補が表示されるため、名前を完全に入力する必要はありません。</p>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevel.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="omakeCopyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
+        </div>
+    </div>
+</body>
+</html>
