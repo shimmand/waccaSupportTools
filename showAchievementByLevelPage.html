@@ -5,7 +5,7 @@
     <title>WACCA 達成状況ビューアー</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script>
-        function omakeCopyToClipboard() {
+        function copyToClipboard() {
             var copyTarget = document.getElementById("copyTarget");
             copyTarget.select();
             document.execCommand("Copy");
@@ -25,14 +25,24 @@
         <p>ブックマークレットの実行方法は以下の通りです。</p>
         <p>iPhoneまたはPCの場合: ブックマーク一覧を表示し、[準備] で作成したブックマークをタップします。</p>
         <p>Android系OSの場合: アドレスバーに [準備] で作成したブックマークの名前を入力し、表示された候補から「javascript〜」というものを選びタップします。名前の入力中にも候補が表示されるため、名前を完全に入力する必要はありません。</p>
+        <div class="alert alert-primary">
+            Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
+        </div>
+        <h5 class="p-2">通常版</h5>
+            <p>集計する項目は Clear MissLess FullCombo AllMarvelous S SS SSS です。</p>
         <div class="form-group row m-2">
             <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevel.js'; import(path).then((obj) => obj.main())})();" readonly>
-            <button type="button" class="btn btn-primary col" onclick="omakeCopyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
                 ブックマークレットをコピー
             </button>
         </div>
-        <div class="alert alert-primary">
-            Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
+        <h5 class="p-2">上位スコア帯対応版</h5>
+            <p>集計する項目は通常版のものに加え、990k 995k が含まれます。</p>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevelWithHigherScoreRange.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
         </div>
     </div>
 </body>
