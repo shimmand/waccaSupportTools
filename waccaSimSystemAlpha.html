@@ -1,44 +1,48 @@
 <head>
     <html>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>CHIE-NO-WA: WACCA SIM (beta)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <style>
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        svg {
+            top: 64px;
+            width: 100%;
+            position: absolute;
+        }
+        
+        .combo {
+            text-anchor: middle;
+            dominant-baseline: central;
+            background-color: #aaa;
+            font-feature-settings: palt;
+            font-variant-numeric: oldstyle-nums;
+            -moz-font-feature-settings: onum;
+            -webkit-font-feature-settings: onum;
+            font-feature-settings: onum
+        }
+        
+        .score {
+            font-family: Avenir Next;
+            dominant-baseline: central;
+            background-color: #aaa;
+            font-feature-settings: palt;
+            font-variant-numeric: oldstyle-nums;
+            -moz-font-feature-settings: onum;
+            -webkit-font-feature-settings: onum;
+            font-feature-settings: onum
+        }
 
-    svg {
-        top: 64px;
-        width: 100%;
-        position: absolute;
-    }
-    
-    .combo {
-        text-anchor: middle;
-        dominant-baseline: central;
-        background-color: #aaa;
-        font-feature-settings: palt;
-        font-variant-numeric: oldstyle-nums;
-        -moz-font-feature-settings: onum;
-        -webkit-font-feature-settings: onum;
-        font-feature-settings: onum
-    }
-    
-    .score {
-        font-family: Avenir Next;
-        dominant-baseline: central;
-        background-color: #aaa;
-        font-feature-settings: palt;
-        font-variant-numeric: oldstyle-nums;
-        -moz-font-feature-settings: onum;
-        -webkit-font-feature-settings: onum;
-        font-feature-settings: onum
-    }
-
-    .control {
-        top: 16px;
-        left: 16px;
-        position: absolute;
-    }
+        .control {
+            top: 16px;
+            left: 16px;
+            position: absolute;
+        }
 
     </style>
     </head>
