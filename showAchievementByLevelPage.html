@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>WACCA 達成状況ビューアー</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <script>
@@ -18,10 +19,33 @@
             alert("コピーしました");
         }
     </script>
+    <style>
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+        @media screen and (min-width: 767px) {
+            img {
+                width: 25%;
+            }
+        }
+        @media screen and (max-width: 479px) {
+            img {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid m-2">
         <h2>WACCA 達成状況ビューアー</h2>
+        <p class="p-2">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
+        <hr>
+        <h5 class="p-2">概要</h5>
+        <p>WACCAのマイページで閲覧できる情報を元に、譜面レベル別の達成状況をリスト表示します。</p>
+        <img src="https://user-images.githubusercontent.com/58391224/103669468-b808df80-4fbb-11eb-9460-76b844a402e5.jpg">
+        <h5 class="p-2">動作条件</h5>
+        <p>WACCAのマイページへアクセス可能であること</p>
+        <p>インターネットブラウザーのJavaScriptが有効であること</p>
         <h5 class="p-2">準備</h5>
         <p>1. 以下のボタンをクリックし、ブックマークレットのコードをコピーします。</p>
         <p>2. このページをブックマークします。（名前の変更は任意）</p>
@@ -35,7 +59,7 @@
             Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
         </div>
         <h5 class="p-2">通常版</h5>
-            <p>集計する項目は Clear MissLess FullCombo AllMarvelous S SS SSS です。</p>
+            <p>集計する項目は Clear Missless FullCombo AllMarvelous S SS SSS です。</p>
         <div class="form-group row m-2">
             <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevel.js'; import(path).then((obj) => obj.main())})();" readonly>
             <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
