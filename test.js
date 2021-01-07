@@ -145,14 +145,6 @@ export function main(){
                         </li>
                         <li>
                         <div>
-                            <img src="/img/web/play_data/icon/c_txt_s.png">
-                        </div>
-                        <p class="score-point__difficulty difficulty__all is-show"${styleS}>${rateS}/
-                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
-                        </p>
-                        </li>
-                        <li>
-                        <div>
                             <img src="/img/web/play_data/icon/c_txt_clear.png">
                         </div>
                         <p class="score-point__difficulty difficulty__all is-show"${styleClear}>${clear}/
@@ -161,9 +153,9 @@ export function main(){
                         </li>
                         <li>
                         <div>
-                            <img src="/img/web/play_data/icon/c_txt_ss.png">
+                            <img src="/img/web/play_data/icon/c_txt_s.png">
                         </div>
-                        <p class="score-point__difficulty difficulty__all is-show"${styleSS}>${rateSS}/
+                        <p class="score-point__difficulty difficulty__all is-show"${styleS}>${rateS}/
                             <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                         </p>
                         </li>
@@ -177,9 +169,9 @@ export function main(){
                         </li>
                         <li>
                         <div>
-                            <img src="/img/web/play_data/icon/c_txt_sss.png">
+                            <img src="/img/web/play_data/icon/c_txt_ss.png">
                         </div>
-                        <p class="score-point__difficulty difficulty__all is-show"${styleSSS}>${rateSSS}/
+                        <p class="score-point__difficulty difficulty__all is-show"${styleSS}>${rateSS}/
                             <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                         </p>
                         </li>
@@ -193,9 +185,9 @@ export function main(){
                         </li>
                         <li>
                         <div>
-                            <p style="color:hotpink;font-weight:bold;font-style:italic">990k</p>
+                            <img src="/img/web/play_data/icon/c_txt_sss.png">
                         </div>
-                        <p class="score-point__difficulty difficulty__all is-show"${style990k}>${rate990k}/
+                        <p class="score-point__difficulty difficulty__all is-show"${styleSSS}>${rateSSS}/
                             <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                         </p>
                         </li>
@@ -204,14 +196,6 @@ export function main(){
                             <img src="/img/web/play_data/icon/c_txt_all_m.png">
                         </div>
                         <p class="score-point__difficulty difficulty__all is-show"${styleAllmarvelous}>${allmarvelous}/
-                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
-                        </p>
-                        </li>
-                        <li>
-                        <div>
-                            <p style="color:hotpink;font-weight:bold;font-style:italic">995k</p>
-                        </div>
-                        <p class="score-point__difficulty difficulty__all is-show"${style995k}>${rate995k}/
                             <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                         </p>
                         </li>
