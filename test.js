@@ -116,43 +116,23 @@ export function main(){
             difficulty = 'expert'
         };
 
-        if (stageCount == rateS){
-            styleS = success;
-            rateS = '👑 ' + String(rateS);
-        };
-        
-        if (stageCount == rateSS){
-            styleSS = success;
-            rateSS = '👑 ' + String(rateSS);
-        };;
-        if (stageCount == rateSSS){
-            styleSSS = success;
-            rateSSS = '👑 ' + String(rateSSS);
-        };;
-        if (stageCount == rate990k){
-            style990k = success;
-            rate990k = '👑 ' + String(rate990k);
-        };;
-        if (stageCount == rate995k){
-            style995k = success;
-            rate995k = '👑 ' + String(rate995k);
-        };;
-        if (stageCount == clear){
-            styleClear = success;
-            clear = '👑 ' + String(clear);
-        };;
-        if (stageCount == missless){
-            styleMissless = success;
-            missless = '👑 ' + String(missless);
-        };;
-        if (stageCount == fullcombo){
-            styleFullcombo = success;
-            fullcombo = '👑 ' + String(fullcombo);
-        };;
-        if (stageCount == allmarvelous){
-            styleAllmarvelous = success;
-            allmarvelous = '👑 ' + String(allmarvelous);
-        };;
+        if (stageCount == rateS) styleS = success;
+
+        if (stageCount == rateSS) styleSS = success;
+
+        if (stageCount == rateSSS) styleSSS = success;
+
+        if (stageCount == rate990k) style990k = success;
+
+        if (stageCount == rate995k) style995k = success;
+
+        if (stageCount == clear) styleClear = success;
+
+        if (stageCount == missless) styleMissless = success;
+
+        if (stageCount == fullcombo) styleFullcombo = success;
+
+        if (stageCount == allmarvelous) styleAllmarvelous = success;
 
         if (insertCode != '') insertCode += '\n';
 
