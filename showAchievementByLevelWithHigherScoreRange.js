@@ -86,7 +86,7 @@ export function main(){
     // 集計結果をもとにHTMLのコードを生成
     let insertCode = '';
     level.forEach(function(l){
-        const success = ` style="color: deeppink; font-weight: bold"`
+        const success = ` style="color: deeppink; font-weight: bold"`;
         let
             difficulty = '',
             stageLevel = l,
