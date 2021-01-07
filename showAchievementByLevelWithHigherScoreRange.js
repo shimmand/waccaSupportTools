@@ -26,91 +26,6 @@ export function main(){
         'EXPERT 9'
     ];
 
-    // 挿入するHTMLの雛形
-    const template = `
-    <div class="playdata__playerdata">
-        <div class="playdata__score-point">  
-            <ul class="playdata__score-point__wrap">
-                <li>
-                    <div class="diff_icon_!difficulty!">!stageLevel!</div>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_s.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!s!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_clear.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!clear!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_ss.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!ss!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_missless.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!missless!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_sss.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!sss!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_full.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!fullcombo!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <p style="color:hotpink;font-weight:bold;font-style:italic">990k</p>
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!990k!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <img src="/img/web/play_data/icon/c_txt_all_m.png">
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!allmarvelous!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-                <li>
-                <div>
-                    <p style="color:hotpink;font-weight:bold;font-style:italic">995k</p>
-                </div>
-                <p class="score-point__difficulty difficulty__all is-show">!995k!/
-                    <span class="score-point__difficulty difficulty__all is-show">!stageCount!</span>
-                </p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <hr>`;
-
     // 集計結果を入れるための配列
     let result = {};
 
@@ -171,25 +86,139 @@ export function main(){
     // 集計結果をもとにHTMLのコードを生成
     let insertCode = '';
     level.forEach(function(l){
-        let tmp = template;
+        const success = ` style="color: deeppink; font-weight: bold"`
+        let
+            difficulty = '',
+            stageLevel = l,
+            stageCount = result[l]['stageCount'],
+            rateS = result[l]['s'],
+            styleS = '',
+            rateSS = result[l]['ss'],
+            styleSS = '',
+            rateSSS = result[l]['sss'],
+            styleSSS = '',
+            rate990k = result[l]['990k'],
+            style990k = '',
+            rate995k = result[l]['995k'],
+            style995k = '',
+            clear = result[l]['clear'],
+            styleClear = '',
+            missless = result[l]['missless'],
+            styleMissless = '',
+            fullcombo = result[l]['fullcombo'],
+            styleFullcombo = '',
+            allmarvelous = result[l]['allmarvelous'],
+            styleAllmarvelous = '';
+
         if (l.indexOf('INFERNO') != -1){
-            tmp = tmp.replaceAll('!difficulty!', 'inferno')
+            difficulty = 'inferno'
         } else {
-            tmp = tmp.replaceAll('!difficulty!', 'expert')
+            difficulty = 'expert'
         };
-        tmp = tmp.replaceAll('!stageLevel!', l);
-        tmp = tmp.replaceAll('!stageCount!', result[l]['stageCount']);
-        tmp = tmp.replaceAll('!s!', result[l]['s']);
-        tmp = tmp.replaceAll('!ss!', result[l]['ss']);
-        tmp = tmp.replaceAll('!sss!', result[l]['sss']);
-        tmp = tmp.replaceAll('!990k!', result[l]['990k']);
-        tmp = tmp.replaceAll('!995k!', result[l]['995k']);
-        tmp = tmp.replaceAll('!clear!', result[l]['clear']);
-        tmp = tmp.replaceAll('!missless!', result[l]['missless']);
-        tmp = tmp.replaceAll('!fullcombo!', result[l]['fullcombo']);
-        tmp = tmp.replaceAll('!allmarvelous!', result[l]['allmarvelous']);
+
+        if (stageCount == rateS) styleS = success;
+
+        if (stageCount == rateSS) styleSS = success;
+
+        if (stageCount == rateSSS) styleSSS = success;
+
+        if (stageCount == rate990k) style990k = success;
+
+        if (stageCount == rate995k) style995k = success;
+
+        if (stageCount == clear) styleClear = success;
+
+        if (stageCount == missless) styleMissless = success;
+
+        if (stageCount == fullcombo) styleFullcombo = success;
+
+        if (stageCount == allmarvelous) styleAllmarvelous = success;
+
         if (insertCode != '') insertCode += '\n';
-        insertCode += tmp
+
+        insertCode +=  `
+            <div class="playdata__playerdata">
+                <div class="playdata__score-point">  
+                    <ul class="playdata__score-point__wrap">
+                        <li>
+                            <div class="diff_icon_${difficulty}">${stageLevel}</div>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_s.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleS}>${rateS}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_clear.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleClear}>${clear}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_ss.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleSS}>${rateSS}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_missless.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleMissless}>${missless}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_sss.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleSSS}>${rateSSS}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_full.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleFullcombo}>${fullcombo}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <p style="color:hotpink;font-weight:bold;font-style:italic">990k</p>
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${style990k}>${rate990k}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <img src="/img/web/play_data/icon/c_txt_all_m.png">
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${styleAllmarvelous}>${allmarvelous}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                        <li>
+                        <div>
+                            <p style="color:hotpink;font-weight:bold;font-style:italic">995k</p>
+                        </div>
+                        <p class="score-point__difficulty difficulty__all is-show"${style995k}>${rate995k}/
+                            <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
+                        </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>`;
     });
 
     // 集計結果を挿入
