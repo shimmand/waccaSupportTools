@@ -161,7 +161,7 @@ export function main(){
                 <div class="playdata__score-point">  
                     <ul class="playdata__score-point__wrap">
                         <li>
-                            <div class="diff_icon_difficulty">${stageLevel}</div>
+                            <div class="diff_icon_${difficulty}">${stageLevel}</div>
                         </li>
                         <li>
                         <div>
