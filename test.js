@@ -118,40 +118,40 @@ export function main(){
 
         if (stageCount == rateS){
             styleS = success;
-            rateS = '👑' + String(rateS);
+            rateS = '👑 ' + String(rateS);
         };
         
         if (stageCount == rateSS){
             styleSS = success;
-            rateSS = '👑' + String(rateSS);
+            rateSS = '👑 ' + String(rateSS);
         };;
         if (stageCount == rateSSS){
             styleSSS = success;
-            rateSSS = '👑' + String(rateSSS);
+            rateSSS = '👑 ' + String(rateSSS);
         };;
         if (stageCount == rate990k){
             style990k = success;
-            rate990k = '👑' + String(rate990k);
+            rate990k = '👑 ' + String(rate990k);
         };;
         if (stageCount == rate995k){
             style995k = success;
-            rate995k = '👑' + String(rate995k);
+            rate995k = '👑 ' + String(rate995k);
         };;
         if (stageCount == clear){
             styleClear = success;
-            clear = '👑' + String(clear);
+            clear = '👑 ' + String(clear);
         };;
         if (stageCount == missless){
             styleMissless = success;
-            missless = '👑' + String(missless);
+            missless = '👑 ' + String(missless);
         };;
         if (stageCount == fullcombo){
             styleFullcombo = success;
-            fullcombo = '👑' + String(fullcombo);
+            fullcombo = '👑 ' + String(fullcombo);
         };;
         if (stageCount == allmarvelous){
             styleAllmarvelous = success;
-            allmarvelous = '👑' + String(allmarvelous);
+            allmarvelous = '👑 ' + String(allmarvelous);
         };;
 
         if (insertCode != '') insertCode += '\n';
