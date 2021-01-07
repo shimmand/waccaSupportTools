@@ -67,35 +67,35 @@ export function main(){
                 if (rateIcon != 'no_rate.svg'){
                     if (Number(String(rateIcon).match(/[0-9]+/g)) >= 7){
                         result[stageLevel]['s'] += 1;
-                        s.setAttribute(`${stageLevelClass}_rate_s`, 1);
+                        s.setAttribute(`${stageLevelClass}_rate_s`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_rate_s`, 0);
+                        s.setAttribute(`${stageLevelClass}_rate_s`, '0');
                     };
 
                     if (Number(String(rateIcon).match(/[0-9]+/g)) >= 8){
                         result[stageLevel]['ss'] += 1;
-                        s.setAttribute(`${stageLevelClass}_rate_ss`, 1);
+                        s.setAttribute(`${stageLevelClass}_rate_ss`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_rate_ss`, 0);
+                        s.setAttribute(`${stageLevelClass}_rate_ss`, '0');
                     };
 
                     if (Number(String(rateIcon).match(/[0-9]+/g)) >= 9){
                         result[stageLevel]['sss'] += 1;
-                        s.setAttribute(`${stageLevelClass}_rate_sss`, 1);
+                        s.setAttribute(`${stageLevelClass}_rate_sss`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_rate_sss`, 0);
+                        s.setAttribute(`${stageLevelClass}_rate_sss`, '0');
                     };
                     if (Number(playScore) >= 990000){
                         result[stageLevel]['990k'] += 1;
-                        s.setAttribute(`${stageLevelClass}_rate_990k`, 1);
+                        s.setAttribute(`${stageLevelClass}_rate_990k`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_rate_990k`, 0);
+                        s.setAttribute(`${stageLevelClass}_rate_990k`, '0');
                     };
                     if (Number(playScore) >= 995000){
                         result[stageLevel]['995k'] += 1;
-                        s.setAttribute(`${stageLevelClass}_rate_995k`, 1);
+                        s.setAttribute(`${stageLevelClass}_rate_995k`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_rate_995k`, 0);
+                        s.setAttribute(`${stageLevelClass}_rate_995k`, '0');
                     };
                 };
 
@@ -103,30 +103,30 @@ export function main(){
                 if (achieveIcon != 'no_achieve.svg'){
                     if (Number(String(achieveIcon).match(/[0-9]+/g)) >= 1){
                         result[stageLevel]['clear'] += 1;
-                        s.setAttribute(`${stageLevelClass}_clear`, 1);
+                        s.setAttribute(`${stageLevelClass}_clear`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_clear`, 0);
+                        s.setAttribute(`${stageLevelClass}_clear`, '0');
                     };
 
                     if (Number(String(achieveIcon).match(/[0-9]+/g)) >= 2){
                         result[stageLevel]['missless'] += 1;
-                        s.setAttribute(`${stageLevelClass}_missless`, 1);
+                        s.setAttribute(`${stageLevelClass}_missless`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_missless`, 0);
+                        s.setAttribute(`${stageLevelClass}_missless`, '0');
                     };
 
                     if (Number(String(achieveIcon).match(/[0-9]+/g)) >= 3){
                         result[stageLevel]['fullcombo'] += 1;
-                        s.setAttribute(`${stageLevelClass}_fullcombo`, 1);
+                        s.setAttribute(`${stageLevelClass}_fullcombo`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_fullcombo`, 0);
+                        s.setAttribute(`${stageLevelClass}_fullcombo`, '0');
                     };
 
                     if (Number(String(achieveIcon).match(/[0-9]+/g)) == 4){
                         result[stageLevel]['allmarvelous'] += 1;
-                        s.setAttribute(`${stageLevelClass}_allmarvelous`, 1);
+                        s.setAttribute(`${stageLevelClass}_allmarvelous`, '1');
                     } else {
-                        s.setAttribute(`${stageLevelClass}_allmarvelous`, 0);
+                        s.setAttribute(`${stageLevelClass}_allmarvelous`, '0');
                     };
                 };
             };
