@@ -88,8 +88,8 @@ export function main(){
     level.forEach(function(l){
         const success = ` style="color: deeppink; font-weight: bold"`
         let
-            difficulty = '';
-            stageLevelVal = l,
+            difficulty = '',
+            stageLevel = l,
             stageCount = result[l]['stageCount'],
             rateS = result[l]['s'],
             styleS = '',
@@ -161,7 +161,7 @@ export function main(){
                 <div class="playdata__score-point">  
                     <ul class="playdata__score-point__wrap">
                         <li>
-                            <div class="diff_icon_difficulty">${stageLevelVal}</div>
+                            <div class="diff_icon_difficulty">${stageLevel}</div>
                         </li>
                         <li>
                         <div>
