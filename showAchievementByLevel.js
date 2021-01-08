@@ -285,6 +285,15 @@ export function main(){
     // 集計結果を挿入
     document.querySelector('div.playdata__filter-btn').insertAdjacentHTML('beforebegin', insertCode);
 
+    const info = `<div style="text-align: center; font-size: 0.8em; font-weight: bold;">
+                    <p>達成状況ビューアー v1.01</p>
+                    <hr>
+                    <p>譜面数をタップすると、その条件を未達成の譜面がリスト表示されます。</p>
+                    <p>（未達成の譜面がない場合は表示されません）</p>
+                </div>
+                <hr>`;
+    document.querySelector('div.contents-wrap').insertAdjacentHTML('afterbegin', info);
+
     // メッセージを表示
     alert('集計が完了しました。\n元に戻すには画面を更新するか、他のページへ遷移してください。');
 
