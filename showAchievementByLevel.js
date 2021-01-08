@@ -288,13 +288,10 @@ export function main(){
     const info = `<div style="text-align: center; font-size: 0.8em; font-weight: bold;">
                     <p>達成状況ビューアー v1.01</p>
                     <hr>
+                    <p>元の画面に戻すには、ページを再読み込みしてください。</p>
                     <p>譜面数をタップすると、その条件を未達成の譜面がリスト表示されます。</p>
                     <p>（未達成の譜面がない場合は表示されません）</p>
                 </div>
                 <hr>`;
     document.querySelector('div.contents-wrap').insertAdjacentHTML('afterbegin', info);
-
-    // メッセージを表示
-    alert('集計が完了しました。\n元に戻すには画面を更新するか、他のページへ遷移してください。');
-
 };
