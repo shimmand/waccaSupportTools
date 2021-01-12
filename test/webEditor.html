@@ -134,6 +134,42 @@
                     getBeatDuration();
                 };
 
+                if (active.id == 'ipt-play-start'){
+                    if (event.key === 'ArrowDown') {
+                        active.value = Number(active.value) - 1;
+                    };
+                    
+                    if (event.key === 'ArrowUp') {
+                        active.value = Number(active.value) + 1;
+                    };
+
+                    if (event.key === 'ArrowLeft') {
+                        active.value = Number(active.value) - 5;
+                    };
+
+                    if (event.key === 'ArrowRight') {
+                        active.value = Number(active.value) + 5;
+                    };
+                };
+
+                if (active.id == 'ipt-play-end'){
+                    if (event.key === 'ArrowDown') {
+                        active.value = Number(active.value) - 1;
+                    };
+                    
+                    if (event.key === 'ArrowUp') {
+                        active.value = Number(active.value) + 1;
+                    };
+
+                    if (event.key === 'ArrowLeft') {
+                        active.value = Number(active.value) - 5;
+                    };
+
+                    if (event.key === 'ArrowRight') {
+                        active.value = Number(active.value) + 5;
+                    };
+                };
+
                 return true;
             };
 
@@ -831,27 +867,20 @@
                             <span class="input-group-text">〜</span>
                             <input id="ipt-play-end" type="text" class="form-control" placeholder="" value="30">
                             <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
+                            <span class="input-group-text alert-light"> ＊ 方向キーで変更</span>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">BPM (Ctrl+T)</span>
                             <input id="ipt-bpm" type="text" class="form-control" placeholder="180" value="180" onchange="getBeatDuration();">
-                            <button id="btn-bpm-dl" class="btn btn-outline-secondary" type="button" onclick="adjustBpm(-5);">-5</button>
-                            <button id="btn-bpm-ds" class="btn btn-outline-secondary" type="button" onclick="adjustBpm(-1);">-1</button>
-                            <button id="btn-bpm-is" class="btn btn-outline-secondary" type="button" onclick="adjustBpm(+1);">+1</button>
-                            <button id="btn-bpm-il" class="btn btn-outline-secondary" type="button" onclick="adjustBpm(+5);">+5</button>
                             <span class="input-group-text alert-light">＊ 方向キーで変更</span>
                         </div>
                     </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
+                    <div class="btn-group btn-group-sm p-1 hidden" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">一小節の拍数 (Ctrl+B)</span>
                             <input id="ipt-beat" type="text" class="form-control" placeholder="4" value="4" onchange="getBeatDuration();">
-                            <button id="btn-beat-dl" class="btn btn-outline-secondary" type="button" onclick="adjustBeat(-5);">-5</button>
-                            <button id="btn-beat-ds" class="btn btn-outline-secondary" type="button" onclick="adjustBeat(-1);">-1</button>
-                            <button id="btn-beat-is" class="btn btn-outline-secondary" type="button" onclick="adjustBeat(+1);">+1</button>
-                            <button id="btn-beat-il" class="btn btn-outline-secondary" type="button" onclick="adjustBeat(+5);">+5</button>
                             <span class="input-group-text alert-light"> ＊ 方向キーで変更</span>
                         </div>
                     </div>
@@ -861,7 +890,7 @@
                             <input id="ipt-beat-dur" type="text" class="form-control" placeholder="0" value="0.333" disabled="true">
                         </div>
                     </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
+                    <div class="btn-group btn-group-sm p-1 hidden" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">一小節あたりの秒数</span>
                             <input id="ipt-measure-dur" type="text" class="form-control" placeholder="0" value="1.333" disabled="true">
