@@ -344,9 +344,9 @@
             let start = document.getElementById('ipt-play-start');
             let end = document.getElementById('ipt-play-end');
 
-            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}`));
+            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}&small`));
             reloadFrame();
-            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value} `));
+            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}&small `));
         };
 
         function reloadFrame(){
