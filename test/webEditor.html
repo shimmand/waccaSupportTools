@@ -345,7 +345,6 @@
             let end = document.getElementById('ipt-play-end');
 
             player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}`));
-            alert(player.getAttribute('src'));
             player.contentWindow.location.reload();
         };
 
@@ -6235,6 +6234,6 @@
             </div>
         </div>
     </div>
-    <iframe id="ifr-player" class="hidden" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <iframe id="ifr-player" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>
