@@ -345,10 +345,11 @@
             let end = document.getElementById('ipt-play-end');
 
             player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}`));
-            reload_message_frame()
+            reloadFrame();
+            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value} `));
         };
 
-        function reload_message_frame(){
+        function reloadFrame(){
             var frame_id = 'ifr-player';
             if(window.document.getElementById(frame_id).location ) {  
                 window.document.getElementById(frame_id).location.reload(true);
@@ -356,9 +357,7 @@
                 window.document.getElementById(frame_id).contentWindow.location.reload(true);
             } else if (window.document.getElementById(frame_id).src){
                 window.document.getElementById(frame_id).src = window.document.getElementById(frame_id).src;
-            } else {
-                alert("Sorry, unable to reload that frame!");
-            }
+            };
         }
 
         // 拍子の長さを取得
