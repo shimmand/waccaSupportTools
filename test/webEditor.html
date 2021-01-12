@@ -344,15 +344,15 @@
             let start = document.getElementById('ipt-play-start');
             let end = document.getElementById('ipt-play-end');
 
-            player.setAttribute('src', `${url}?autoplay=1&start=${start}&end=${end}`);
+            player.setAttribute('src', String(`${url}?autoplay=1&start=${start}&end=${end}`));
             player.contentWindow.location.reload();
         };
 
         // 拍子の長さを取得
         function getBeatDuration(){
             let bpm = Number(document.getElementById('ipt-bpm').value);
-            let beat = Number(document.getElementById('ipt-beat').value);
             document.getElementById('ipt-beat-dur').value = Number(60 / bpm).toFixed(3);
+            let beat = Number(document.getElementById('ipt-beat').value);
             document.getElementById('ipt-measure-dur').value = Number((60 / bpm) * beat).toFixed(3);
         };
 
