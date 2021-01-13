@@ -994,20 +994,51 @@
             let rows =  document.querySelectorAll('tr');
             let data = [];
             let result = document.getElementById('ipt-export');
+            let tmp = '';
 
-            rows.forEach(function(e){
-                let name = e.querySelector('.name').innerText;
-                let value = String(e.querySelector('.value').innerText).trim();
-                let item = [name,value];
+            for (i = rows.length - 1; i >= 0; i--){
+                let e = rows[i];
+                
+                if (i > 0){
+                    let name = e.querySelector('.name').innerText;
+                    let values = String(`${String(e.querySelector('.value').innerText).trim()}    `).split(' ');
 
-                data.push(item);
-            });
+                    values.forEach(function(val, ind){
+                        if (ind < 5 && val != ''){
+                            let noteId = String(val).match(/[^-]+-[^-]+/g);
+                            let noteRotate = String(val).replace(`${noteId}-`, '');
 
-            result.value = data.toString();
-            result.select();
-            document.execCommand('Copy');
-            alert('コピーしました');
-            console.log(data);
+                            tmp += `
+            <svg viewBox="-320 -320 640 640" width="640" height="640">
+                <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
+                    <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
+                </symbol>
+                <use href="#${noteId}-${noteRotate}" x="-320" y="-320" width="640" height="640">
+                    <animate attributeName="transform" begin="${name}s" begin-orig="${name}s" dur="0.75s" repeatCount="1"
+                    values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                </use>
+            </svg>`;
+                        };
+                    });    
+                };
+            };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://shimmand.github.io/wacca_support_tools/test/simulator.html');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState === 4 && xhr.status === 200) {
+                    let res = xhr.responseText;
+                    tmp = String(res).replace('<!-- INSERT NOTES HERE -->', tmp);
+                    result.value = tmp;
+                    result.select();
+                    document.execCommand('Copy');
+                    document.execCommand('Copy');
+                    tmp = btoa(unescape(encodeURIComponent(tmp)));
+                    window.open('data:text/html;charset=utf-8;base64,' + tmp);
+                    alert('出力が完了しました')
+                };
+            };            
         };
 
         // 再読み込みの確認
@@ -1030,8 +1061,8 @@
         </div>
         <div class="input-group input-group-sm">
             <span class="input-group-text">出力</span>
-            <input id="ipt-export" type="text" class="form-control" placeholder="" value="" readonly>
-            <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-export').value = '';"">削除</button>
+            <textarea id="ipt-export" type="text" class="form-control" rows="1" placeholder="" value="" onclick="this.select();"></textarea>
+            <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-export').value = '';">削除</button>
         </div>
         <hr>
         <div class="row">
@@ -1043,8 +1074,7 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">プロジェクト (Ctrl+P)</span>
-                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">保存</button>
-                            <button class="btn btn-outline-secondary" type="button" disabled>読込</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">出力</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
