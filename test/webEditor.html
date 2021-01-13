@@ -134,7 +134,7 @@
                     getBeatDuration();
                 };
 
-                if (active.id == 'ipt-play-start'){
+                if (active.id == 'ipt-play-begin'){
                     if (event.key === 'ArrowDown') {
                         active.value = Number(active.value) - 1;
                     };
@@ -152,7 +152,7 @@
                     };
                 };
 
-                if (active.id == 'ipt-play-end'){
+                if (active.id == 'ipt-play-dur'){
                     if (event.key === 'ArrowDown') {
                         active.value = Number(active.value) - 1;
                     };
@@ -170,7 +170,7 @@
                     };
                 };
 
-                return true;
+                return false;
             };
 
             if (event.code === 'KeyQ' && !event.ctrlKey) {
@@ -376,13 +376,13 @@
 
         function playVideo(){
             let player = document.getElementById('ifr-player');
-            let url = document.getElementById('ipt-play-url');
-            let start = document.getElementById('ipt-play-start');
-            let end = document.getElementById('ipt-play-end');
+            let url = document.getElementById('ipt-play-url').value;
+            let start = document.getElementById('ipt-play-begin').value;
+            let end = Number(start) + Number(document.getElementById('ipt-play-dur').value);
 
-            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}&small`));
+            player.setAttribute('src', String(`${url}?autoplay=1&start=${start}&end=${end}&small`));
             reloadFrame();
-            player.setAttribute('src', String(`${url.value}?autoplay=1&start=${start.value}&end=${end.value}&small `));
+            player.setAttribute('src', String(`${url}?autoplay=1&start=${start}&end=${end}&small `));
         };
 
         function reloadFrame(){
@@ -855,33 +855,18 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">YouTube動画URL</span>
-                            <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="">
-                            <button class="btn btn-outline-secondary" type="button" disabled>削除</button>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">再生時間</span>
-                            <input id="ipt-play-start" type="text" class="form-control" placeholder="" value="0">
-                            <span class="input-group-text">〜</span>
-                            <input id="ipt-play-end" type="text" class="form-control" placeholder="" value="30">
-                            <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
-                            <span class="input-group-text alert-light"> ＊ 方向キーで変更</span>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
-                        <div class="input-group input-group-sm">
                             <span class="input-group-text">BPM (Ctrl+T)</span>
                             <input id="ipt-bpm" type="text" class="form-control" placeholder="180" value="180" onchange="getBeatDuration();">
-                            <span class="input-group-text alert-light">＊ 方向キーで変更</span>
+                            <button class="btn btn-outline-secondary" type="button">-5</button>
+                            <button class="btn btn-outline-secondary" type="button">-1</button>
+                            <button class="btn btn-outline-secondary" type="button">+1</button>
+                            <button class="btn btn-outline-secondary" type="button">+5</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1 hidden" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">一小節の拍数 (Ctrl+B)</span>
                             <input id="ipt-beat" type="text" class="form-control" placeholder="4" value="4" onchange="getBeatDuration();">
-                            <span class="input-group-text alert-light"> ＊ 方向キーで変更</span>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -894,6 +879,37 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">一小節あたりの秒数</span>
                             <input id="ipt-measure-dur" type="text" class="form-control" placeholder="0" value="1.333" disabled="true">
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">YouTube動画URL</span>
+                            <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="" onclick="this.select();">
+                            <button class="btn btn-outline-secondary" type="button" disabled>削除</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">再生開始</span>
+                            <input id="ipt-play-begin" type="text" class="form-control" placeholder="" value="0">
+                            <button class="btn btn-outline-secondary" type="button">-5</button>
+                            <button class="btn btn-outline-secondary" type="button">-1</button>
+                            <button class="btn btn-outline-secondary" type="button">+1</button>
+                            <button class="btn btn-outline-secondary" type="button">+5</button>
+                            <span class="input-group-text">再生時間</span>
+                            <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
+                            <button class="btn btn-outline-secondary" type="button">-5</button>
+                            <button class="btn btn-outline-secondary" type="button">-1</button>
+                            <button class="btn btn-outline-secondary" type="button">+1</button>
+                            <button class="btn btn-outline-secondary" type="button">+5</button>
+                            <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
+                            <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">※ 動画URLはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -934,10 +950,10 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">時間移動</span>
-                            <button id="btn-seek-dl" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.001);">-100ms (←)</button>
-                            <button id="btn-seek-ds" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.1);">-1ms (↓)</button>
-                            <button id="btn-seek-is" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.1);">+1ms (↑)</button>
-                            <button id="btn-seek-il" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.001);">+100ms (→)</button>
+                            <button id="btn-seek-dl" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.001);">-0.1 (←)</button>
+                            <button id="btn-seek-ds" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.1);">-0.001 (↓)</button>
+                            <button id="btn-seek-is" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.1);">+0.001 (↑)</button>
+                            <button id="btn-seek-il" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.001);">+0.1 (→)</button>
                         </div>
                     </div>
                     
@@ -1052,7 +1068,11 @@
                             <button id="btn-rotate-fl" class="btn btn-outline-secondary" type="button" onclick="adjustRotateFlip();">左右反転 (,)</button>
                             <button id="btn-rotate-ud" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(+180);">上下反転 (.)</button>
                             <button id="btn-rotate-0" class="btn btn-outline-secondary" type="button" onclick="adjustRotate0();">0に戻す (/)</button>
-                            <span class="input-group-text alert-light">＊ 0°はコンソール最下部</span>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">※ コンソール最下部は0°､ 左回転がマイナス､ 右回転がプラスです｡</span>
                         </div>
                     </div>
                 </div>
@@ -1101,6 +1121,11 @@
                             <button id="btn-insert" class="btn btn-outline-primary" type="button" onclick="insertNote();">配置 (Space)</button>
                             <button id="btn-copy" class="btn btn-outline-success" type="button" onclick="copyLastNote();">最後のフレームをコピー (Shift+Space)</button>
                             <button id="btn-delete" class="btn btn-outline-danger" type="button" onclick="deleteNote();">最後のノートを削除 (BackSpace)</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">※ ノートは､ 配置した順に下から重なります｡</span>
                         </div>
                     </div>
                 </div>
@@ -6275,6 +6300,6 @@
             </div>
         </div>
     </div>
-    <iframe id="ifr-player" name="ifr-player" class="hidden" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    <iframe id="ifr-player" name="ifr-player" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 </body>
 </html>
