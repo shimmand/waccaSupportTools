@@ -353,6 +353,11 @@
                 document.getElementById('btn-delete').focus();
             };
 
+            if (event.code === 'Enter') {
+                applyInserts();
+                document.getElementById('btn-apply').focus();
+            };
+
             if (event.code === 'KeyP' && event.ctrlKey) {
                 document.getElementById('ipt-proj').focus();
             };
@@ -374,17 +379,44 @@
             };
         });
 
+        // 時間のジャンプ
+        function jumpTime(time, notes){
+            let target = document.getElementById('ipt-time');
+            let targetDetail = document.getElementById('ipt-time-detail');
+
+            target.value = String(time);
+            targetDetail.value = String(time);
+
+            let srcNotes = String(`${notes}    `).split(' ');
+            const notesList = ['ipt-note-1', 'ipt-note-2', 'ipt-note-3', 'ipt-note-4', 'ipt-note-5'];
+
+            notesList.forEach(function(n, i){
+                let note = document.getElementById(n);
+                note.value = srcNotes[i];
+                if (note.value != '') note.classList.add('alert-primary');
+            });
+
+            updatePreview();
+        };
+
+        // 動画の再生
         function playVideo(){
             let player = document.getElementById('ifr-player');
             let url = document.getElementById('ipt-play-url').value;
             let start = document.getElementById('ipt-play-begin').value;
             let end = Number(start) + Number(document.getElementById('ipt-play-dur').value);
 
+            if (url == ''){
+                alert('動画URLが入力されていません！')
+                return false;
+            };
+
             player.setAttribute('src', String(`${url}?autoplay=1&start=${start}&end=${end}&small`));
             reloadFrame();
             player.setAttribute('src', String(`${url}?autoplay=1&start=${start}&end=${end}&small `));
         };
 
+        // iframeのリロード
         function reloadFrame(){
             var frame_id = 'ifr-player';
             if(window.document.getElementById(frame_id).location ) {  
@@ -426,12 +458,50 @@
             getBeatDuration();
         };
 
+        function searchFrame(){
+            let returnValue = -1;
+            let rows =  document.querySelectorAll('tr');
+                rows.forEach(function(e, i){
+                    if (e.querySelector('.name').innerHTML == document.getElementById('ipt-time').value) returnValue = i;
+                });
+
+            return returnValue;
+        };
+
+        function updateFrame(index){
+            let row =  document.querySelectorAll('tr')[index];
+            let value = row.querySelector('.value');
+            value.innerHTML = getTimelineHtmlUpdate();
+        };
+
+        function applyInserts(){
+            if (checkNoteExists()){
+                if (searchFrame() == -1){
+                    document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
+                    deleteNoteAll();
+                    pushHitsory(`フレーム挿入: ${document.getElementById('ipt-time').value}`);
+                } else {
+                    let arg = searchFrame();
+                    updateFrame(arg);
+                    deleteNoteAll();
+                    pushHitsory(`フレーム変更: ${document.getElementById('ipt-time').value}`);
+                };
+            };
+        };
+
         // 時間の変更
         function seekTime(event, denom){
             if (checkNoteExists()){
-                document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
-                deleteNoteAll();
-                pushHitsory(`フレーム挿入: ${document.getElementById('ipt-time').value}`);
+                if (searchFrame() == -1){
+                    document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
+                    deleteNoteAll();
+                    pushHitsory(`フレーム挿入: ${document.getElementById('ipt-time').value}`);
+                } else {
+                    let arg = searchFrame()
+                    updateFrame(arg);
+                    deleteNoteAll();
+                    pushHitsory(`フレーム変更: ${document.getElementById('ipt-time').value}`);
+                };
             };
 
             let time = document.getElementById('ipt-time');
@@ -457,9 +527,16 @@
         // 時間の詳細変更
         function seekTimeDetail(operand){
             if (checkNoteExists()){
-                document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
-                deleteNoteAll();
-                pushHitsory(`フレーム挿入: ${document.getElementById('ipt-time').value}`);
+                if (searchFrame() == -1){
+                    document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
+                    deleteNoteAll();
+                    pushHitsory(`フレーム挿入: ${document.getElementById('ipt-time').value}`);
+                } else {
+                    let arg = searchFrame()
+                    updateFrame(arg);
+                    deleteNoteAll();
+                    pushHitsory(`フレーム変更: ${document.getElementById('ipt-time').value}`);
+                };
             };
 
             before = document.getElementById('ipt-time').value;
@@ -711,6 +788,19 @@
             target.setAttribute('transform', `rotate(${rotate})`);
         };
 
+
+        function getNotesCode(){
+            const notes = ['ipt-note-1', 'ipt-note-2', 'ipt-note-3', 'ipt-note-4', 'ipt-note-5'];
+            let returnValue = ''; 
+
+            notes.forEach(function(n){
+                let note = document.getElementById(n);
+                if (note.value != '') returnValue += `${note.value} `;
+            });
+
+            return returnValue;
+        };
+
         function getTimelineHtml(){
             const notes = ['ipt-note-1', 'ipt-note-2', 'ipt-note-3', 'ipt-note-4', 'ipt-note-5'];
             let returnValue = ''; 
@@ -782,17 +872,98 @@
                     <polyline points="-32,0 0,28 32,0" stroke="dodgerblue" stroke-width="16" fill="none" />
                 </svg>`
             };
+            let time = document.getElementById('ipt-time').value;
+            let notesCode = getNotesCode()
 
             returnValue = `
                 <tr id="tr-note-${nextNumber}">
                     <td class="number">${nextNumber}</td>
-                    <td class="name">${document.getElementById('ipt-time').value}</td>
+                    <td class="name">${time}</td>
                     <td class="value">${noteIconHtml} ${returnValue}</td>
                     <td class="button">
-                        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">変更</button>
+                        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="jumpTime('${time}', '${notesCode}')">変更</button>
                         <button class="btn btn-outline-danger btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
                     </td>
                 </tr>`;
+
+            return returnValue;
+        };
+
+        function getTimelineHtmlUpdate(){
+            const notes = ['ipt-note-1', 'ipt-note-2', 'ipt-note-3', 'ipt-note-4', 'ipt-note-5'];
+            let returnValue = ''; 
+
+            notes.forEach(function(n){
+                let note = document.getElementById(n);
+                if (note.value != '') returnValue += `${note.value} `;
+            });
+
+            let nextNumber = 1;
+            if (document.querySelector('td.number') !== null){
+                nextNumber = Number(document.querySelector('td.number').innerText) + 1;
+            };
+            
+            let noteIconHtml = '';
+            if (String(returnValue).match(/touch/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="deeppink" />
+                </svg>`
+            };
+            
+            if (String(returnValue).match(/hold/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="olive" />
+                    <rect x="-24" y="-64" width="48" height="96" fill="orange" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/chain/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
+                    <line x1="-32" y1="48" x2="32" y2="48" stroke="gold" stroke-width="32"/>
+                    <line x1="-32" y1="48" x2="32" y2="48" stroke="olive" stroke-width="32" stroke-dasharray="16 8" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/left/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="orange" />
+                    <polyline points="20,-24 -20,0 20,24" stroke="orange" stroke-width="16" fill="none" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/right/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="limegreen" />
+                    <polyline points="-20,-24 20,0 -20,24" stroke="limegreen" stroke-width="16" fill="none" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/^in/g) || String(returnValue).match(/;in/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="orangered" />
+                    <polyline points="-32,0 0,-28 32,0" stroke="orangered" stroke-width="16" fill="none" />
+                    <polyline points="-32,28 0,0 32,28" stroke="orangered" stroke-width="16" fill="none" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/out/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="dodgerblue" />
+                    <polyline points="-32,-28 0,0 32,-28" stroke="dodgerblue" stroke-width="16" fill="none" />
+                    <polyline points="-32,0 0,28 32,0" stroke="dodgerblue" stroke-width="16" fill="none" />
+                </svg>`
+            };
+            let time = document.getElementById('ipt-time').value;
+            let notesCode = getNotesCode()
+
+            returnValue = `${noteIconHtml} ${returnValue}`;
 
             return returnValue;
         };
@@ -856,12 +1027,11 @@
             <input id="ipt-hist-3" type="text" class="form-control" placeholder="" value="" readonly>
             <input id="ipt-hist-4" type="text" class="form-control" placeholder="" value="" readonly>
             <input id="ipt-hist-5" type="text" class="form-control" placeholder="" value="" readonly>
-            <button class="btn btn-outline-danger" type="button" disabled>削除</button>
         </div>
         <div class="input-group input-group-sm">
             <span class="input-group-text">出力</span>
             <input id="ipt-export" type="text" class="form-control" placeholder="" value="" readonly>
-            <button class="btn btn-outline-danger" type="button" disabled>削除</button>
+            <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-export').value = '';"">削除</button>
         </div>
         <hr>
         <div class="row">
@@ -909,7 +1079,7 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">YouTube動画URL</span>
                             <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="" onclick="this.select();">
-                            <button class="btn btn-outline-secondary" type="button" disabled>削除</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('ipt-play-url').value = '';">削除</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -920,6 +1090,10 @@
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-1)">-1</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+1)">+1</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+5)">+5</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text">再生時間</span>
                             <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-5)">-5</button>
@@ -932,8 +1106,7 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">※ 動画URLはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。
-                            </span>
+                            <span class="input-group-text">※ 動画URLはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。動画の再生が始まるまで、時間のかかることがあります。</span>
                         </div>
                     </div>
                 </div>
@@ -980,7 +1153,6 @@
                             <button id="btn-seek-il" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.001);">+0.1 (→)</button>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -1145,6 +1317,7 @@
                             <button id="btn-insert" class="btn btn-outline-primary" type="button" onclick="insertNote();">配置 (Space)</button>
                             <button id="btn-copy" class="btn btn-outline-success" type="button" onclick="copyLastNote();">最後のフレームをコピー (Shift+Space)</button>
                             <button id="btn-delete" class="btn btn-outline-danger" type="button" onclick="deleteNote();">最後のノートを削除 (BackSpace)</button>
+                            <button id="btn-apply" class="btn btn-outline-secondary" type="button" onclick="applyInserts();">挿入/変更を反映 (Enter)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -1155,7 +1328,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row hidden">
             <div class="col-1">
                 <h5>メニュー</h5>
             </div>
