@@ -470,6 +470,30 @@
         };
 
         // ノート角度の変更
+        function adjustPlayBegin(operand){
+            let begin = document.getElementById('ipt-play-begin');
+            before = begin.value;
+            after =  Number(Number(begin.value) + operand);
+            if (after > 180) after = Number(Number(after) - 360);
+            if (after < -180) after = Number(Number(after) + 360);
+            if (Number.isNaN(after)) after = 0;
+            begin.value = Number(after);
+            updatePreviewTemp();
+        };
+
+        // ノート角度の変更
+        function adjustPlayDur(operand){
+            let dur = document.getElementById('ipt-play-dur');
+            before = dur.value;
+            after =  Number(Number(dur.value) + operand);
+            if (after > 180) after = Number(Number(after) - 360);
+            if (after < -180) after = Number(Number(after) + 360);
+            if (Number.isNaN(after)) after = 0;
+            dur.value = Number(after);
+            updatePreviewTemp();
+        };
+
+        // ノート角度の変更
         function adjustRotate(operand){
             let rotate = document.getElementById('ipt-rotate');
             before = rotate.value;
@@ -857,10 +881,10 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">BPM (Ctrl+T)</span>
                             <input id="ipt-bpm" type="text" class="form-control" placeholder="180" value="180" onchange="getBeatDuration();">
-                            <button class="btn btn-outline-secondary" type="button">-5</button>
-                            <button class="btn btn-outline-secondary" type="button">-1</button>
-                            <button class="btn btn-outline-secondary" type="button">+1</button>
-                            <button class="btn btn-outline-secondary" type="button">+5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustBpm(-5)">-5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustBpm(-1)">-1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustBpm(+1)">+1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustBpm(+5)">+5</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1 hidden" role="group">
@@ -892,16 +916,16 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">再生開始</span>
                             <input id="ipt-play-begin" type="text" class="form-control" placeholder="" value="0">
-                            <button class="btn btn-outline-secondary" type="button">-5</button>
-                            <button class="btn btn-outline-secondary" type="button">-1</button>
-                            <button class="btn btn-outline-secondary" type="button">+1</button>
-                            <button class="btn btn-outline-secondary" type="button">+5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-5)">-5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-1)">-1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+1)">+1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+5)">+5</button>
                             <span class="input-group-text">再生時間</span>
                             <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
-                            <button class="btn btn-outline-secondary" type="button">-5</button>
-                            <button class="btn btn-outline-secondary" type="button">-1</button>
-                            <button class="btn btn-outline-secondary" type="button">+1</button>
-                            <button class="btn btn-outline-secondary" type="button">+5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-5)">-5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-1)">-1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+1)">+1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+5)">+5</button>
                             <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
                             <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
                         </div>
