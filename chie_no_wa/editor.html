@@ -358,10 +358,6 @@
                 document.getElementById('btn-apply').focus();
             };
 
-            if (event.code === 'KeyP' && event.ctrlKey) {
-                document.getElementById('ipt-proj').focus();
-            };
-
             if (event.code === 'KeyT' && event.ctrlKey) {
                 document.getElementById('ipt-bpm').focus();
             };
@@ -372,10 +368,6 @@
 
             if (event.code === 'KeyO' && event.ctrlKey) {
                 document.getElementById('ipt-offset').focus();
-            };
-
-            if (event.code === 'KeyN' && event.ctrlKey) {
-                document.getElementById('ipt-note-1').focus();
             };
         });
 
@@ -1056,7 +1048,7 @@
                 <div class="input-group input-group-sm p-1">
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">プロジェクト (Ctrl+P)</span>
+                            <span class="input-group-text">プロジェクト</span>
                             <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">出力</button>
                         </div>
                     </div>
@@ -1184,7 +1176,7 @@
                             タッチ (Q)
                         </label>
                     
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-s" autocomplete="off">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-s" autocomplete="off" disabled>
                         <label class="btn btn-outline-secondary" for="btn-hold-s" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1193,7 +1185,7 @@
                             ホールド開始 (W)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-v" autocomplete="off">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-v" autocomplete="off" disabled>
                         <label class="btn btn-outline-secondary" for="btn-hold-v" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1201,7 +1193,7 @@
                             ホールド経由 (E)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-e" autocomplete="off">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-e" autocomplete="off" disabled>
                         <label class="btn btn-outline-secondary" for="btn-hold-e" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1295,7 +1287,7 @@
                 <div class="input-group input-group-sm p-1">
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">1 (Ctrl+N)</span>
+                            <span class="input-group-text">1</span>
                             <input id="ipt-note-1" type="text" class="form-control" placeholder="1つ目のノート" value="">
                         </div>
                     </div>
