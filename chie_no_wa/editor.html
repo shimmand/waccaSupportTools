@@ -1114,16 +1114,6 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">ノーツの落下時間 (Ctrl+O)</span>
-                            <input id="ipt-offset" type="text" class="form-control" placeholder="0" value="0.750">
-                            <button id="btn-offset-dl" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.1)">-0.1</button>
-                            <button id="btn-offset-ds" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.001)">-0.001</button>
-                            <button id="btn-offset-is" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.001)">+0.001</button>
-                            <button id="btn-offset-il" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.1)">+0.1</button>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
-                        <div class="input-group input-group-sm">
                             <span class="input-group-text">YouTube動画ID</span>
                             <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="" onclick="this.select();">
                             <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('ipt-play-url').value = '';">削除</button>
@@ -1149,6 +1139,16 @@
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+5)">+5</button>
                             <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
                             <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">ノーツの落下時間 (Ctrl+O)</span>
+                            <input id="ipt-offset" type="text" class="form-control" placeholder="0" value="0.750">
+                            <button id="btn-offset-dl" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.1)">-0.1</button>
+                            <button id="btn-offset-ds" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.001)">-0.001</button>
+                            <button id="btn-offset-is" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.001)">+0.001</button>
+                            <button id="btn-offset-il" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.1)">+0.1</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
