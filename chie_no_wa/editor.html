@@ -654,6 +654,7 @@
             if (document.getElementById('btn-hold-s').checked) note = 'hold';
             if (document.getElementById('btn-hold-v').checked) note = 'hold';
             if (document.getElementById('btn-hold-e').checked) note = 'hold';
+            if (document.getElementById('btn-chain').checked) note = 'chain';
             if (document.getElementById('btn-left').checked) note = 'left';
             if (document.getElementById('btn-right').checked) note = 'right';
             if (document.getElementById('btn-in').checked) note = 'in';
@@ -1015,7 +1016,7 @@
             document.getElementById('ipt-hist-1').value = value;
         };
 
-        function showNotesData(){
+        function exportNotesData(){
             let rows =  document.querySelectorAll('tr');
             let data = [];
             let result = document.getElementById('ipt-note-data');
@@ -1035,6 +1036,7 @@
                             let noteRotate = String(val).replace(`${noteId}-`, '');
 
                             tmp += `
+            <!--[${name},${String(e.querySelector('.value').innerText).trim()}]-->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
                     <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
@@ -1053,6 +1055,94 @@
             result.select();
             document.execCommand('Copy');
             alert('譜面データをコピーしました。\n譜面シミュレーターに貼り付けてください。');
+        };
+
+        function importNotesData(){
+            let notes = String(document.getElementById('ipt-note-data').value).match(/\[.+\]/g);
+            notes.forEach(function(note, index){
+                let noteWithTime = String(String(note).match(/[^\[\]]+/g)).split(',');
+                let lastTime = '';
+                let lastNote = '';
+                if (document.querySelector('td.name')) lastTime = String(document.querySelector('td.name').innerText).trim();
+                if (document.querySelector('td.value')) lastNote = String(document.querySelector('td.value').innerText).trim();
+
+                let time = noteWithTime[0];
+                let noteValue = noteWithTime[1];
+                let nextNumber = index + 1;
+
+                let noteIconHtml = '';
+                if (String(noteValue).match(/touch/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="deeppink" />
+                    </svg>`
+                };
+                
+                if (String(noteValue).match(/hold/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="olive" />
+                        <rect x="-24" y="-64" width="48" height="96" fill="orange" />
+                    </svg>`
+                };
+
+                if (String(noteValue).match(/chain/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
+                        <line x1="-32" y1="48" x2="32" y2="48" stroke="gold" stroke-width="32"/>
+                        <line x1="-32" y1="48" x2="32" y2="48" stroke="olive" stroke-width="32" stroke-dasharray="16 8" />
+                    </svg>`
+                };
+
+                if (String(noteValue).match(/left/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="orange" />
+                        <polyline points="20,-24 -20,0 20,24" stroke="orange" stroke-width="16" fill="none" />
+                    </svg>`
+                };
+
+                if (String(noteValue).match(/right/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="limegreen" />
+                        <polyline points="-20,-24 20,0 -20,24" stroke="limegreen" stroke-width="16" fill="none" />
+                    </svg>`
+                };
+
+                if (String(noteValue).match(/^in/g) || String(noteValue).match(/;in/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="orangered" />
+                        <polyline points="-32,0 0,-28 32,0" stroke="orangered" stroke-width="16" fill="none" />
+                        <polyline points="-32,28 0,0 32,28" stroke="orangered" stroke-width="16" fill="none" />
+                    </svg>`
+                };
+
+                if (String(noteValue).match(/out/g)){
+                    noteIconHtml += `
+                    <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
+                        <rect x="-32" y="32" width="64" height="32" fill="dodgerblue" />
+                        <polyline points="-32,-28 0,0 32,-28" stroke="dodgerblue" stroke-width="16" fill="none" />
+                        <polyline points="-32,0 0,28 32,0" stroke="dodgerblue" stroke-width="16" fill="none" />
+                    </svg>`
+                };
+
+                let insertHtml = `
+                <tr id="tr-note-${nextNumber}">
+                    <td class="number">${nextNumber}</td>
+                    <td class="name">${time}</td>
+                    <td class="value">${noteIconHtml} ${noteValue}</td>
+                    <td class="button">
+                        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="jumpTime('${time}', '${noteValue}')">変更</button>
+                        <button class="btn btn-outline-danger btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
+                    </td>
+                </tr>`;
+                
+                if (lastTime != time){
+                    document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', insertHtml);
+                }; 
+            });
         };
 
         // 再読み込みの確認
@@ -1088,8 +1178,8 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">プロジェクト</span>
-                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">読み込み</button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">書き出し</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="importNotesData()">読み込み</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="exportNotesData()">書き出し</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -6592,8 +6682,6 @@
                             if (event.data == YT.PlayerState.PLAYING && !done) {
                                 done = true;
                             };
-
-                            loadNotes();
                         };
                         function stopVideo() {
                             player.stopVideo();
