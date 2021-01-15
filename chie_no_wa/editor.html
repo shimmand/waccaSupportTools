@@ -1018,7 +1018,7 @@
         function showNotesData(){
             let rows =  document.querySelectorAll('tr');
             let data = [];
-            let result = document.getElementById('ipt-export');
+            let result = document.getElementById('ipt-note-data');
             let tmp = '';
 
             for (i = rows.length - 1; i >= 0; i--){
@@ -1026,7 +1026,7 @@
                 
                 if (i > 0){
                     let offset = Number(document.getElementById('ipt-offset').value)
-                    let name = Number(e.querySelector('.name').innerText) - offset;
+                    let name = Number(Number(e.querySelector('.name').innerText) - offset).toFixed(3);
                     let values = String(`${String(e.querySelector('.value').innerText).trim()}    `).split(' ');
 
                     values.forEach(function(val, ind){
@@ -1052,7 +1052,7 @@
             result.value = tmp;
             result.select();
             document.execCommand('Copy');
-            alert('出力が完了しました。\n譜面シミュレーターに貼り付けてください。');
+            alert('譜面データをコピーしました。\n譜面シミュレーターに貼り付けてください。');
         };
 
         // 再読み込みの確認
@@ -1074,9 +1074,9 @@
             <input id="ipt-hist-5" type="text" class="form-control" placeholder="" value="" readonly>
         </div>
         <div class="input-group input-group-sm">
-            <span class="input-group-text">出力</span>
-            <textarea id="ipt-export" type="text" class="form-control" rows="1" placeholder="" value="" onclick="this.select();"></textarea>
-            <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-export').value = '';">削除</button>
+            <span class="input-group-text">譜面データ</span>
+            <textarea id="ipt-note-data" type="text" class="form-control" rows="1" placeholder="" value="" onclick="this.select();"></textarea>
+            <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-note-data').value = '';">削除</button>
         </div>
         <hr>
         <div class="row">
@@ -1088,7 +1088,8 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">プロジェクト</span>
-                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">出力</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">読み込み</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="showNotesData()">書き出し</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
