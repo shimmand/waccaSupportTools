@@ -1036,7 +1036,7 @@
                             let noteRotate = String(val).replace(`${noteId}-`, '');
 
                             tmp += `
-            <!--[${name},${String(e.querySelector('.value').innerText).trim()}]-->
+            <!--[${name},${String(e.querySelector('.value').innerText).trim()},${offset}]-->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
                     <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
@@ -1054,10 +1054,17 @@
             result.value = tmp;
             result.select();
             document.execCommand('Copy');
-            alert('譜面データをコピーしました。\n譜面シミュレーターに貼り付けてください。');
+            alert(`譜面データをコピーしました。
+譜面シミュレーターに貼り付けてください。
+また、必要に応じてテキストファイルへ保存してください。
+テキストファイルへ保存すると、そのデータを読み込んで再開することが可能です。`);
         };
 
         function importNotesData(){
+            if (document.getElementById('ipt-note-data').value == ''){
+                alert('譜面データが空です。\n読み込む譜面データを貼り付け、やり直してください。');
+            };
+
             let notes = String(document.getElementById('ipt-note-data').value).match(/\[.+\]/g);
             notes.forEach(function(note, index){
                 let noteWithTime = String(String(note).match(/[^\[\]]+/g)).split(',');
@@ -1066,7 +1073,8 @@
                 if (document.querySelector('td.name')) lastTime = String(document.querySelector('td.name').innerText).trim();
                 if (document.querySelector('td.value')) lastNote = String(document.querySelector('td.value').innerText).trim();
 
-                let time = noteWithTime[0];
+                let offset = noteWithTime[2];
+                let time = Number(Number(noteWithTime[0]) + Number(offset)).toFixed(3);
                 let noteValue = noteWithTime[1];
                 let nextNumber = index + 1;
 
@@ -1143,6 +1151,8 @@
                     document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', insertHtml);
                 }; 
             });
+
+            alert('読み込みが完了しました。');
         };
 
         // 再読み込みの確認
@@ -1167,6 +1177,7 @@
             <span class="input-group-text">譜面データ</span>
             <textarea id="ipt-note-data" type="text" class="form-control" rows="1" placeholder="" value="" onclick="this.select();"></textarea>
             <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-note-data').value = '';">削除</button>
+            <span class="input-group-text">※ 譜面データはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。</span>
         </div>
         <hr>
         <div class="row">
