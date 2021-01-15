@@ -274,48 +274,48 @@
             };
 
             if (event.code === 'Digit1') {
-                seekTime(event, 1);
-                document.getElementById('btn-seek-1').focus();
-            };
-
-            if (event.code === 'Digit2') {
-                seekTime(event, 2);
-                document.getElementById('btn-seek-2').focus();
-            };
-
-            if (event.code === 'Digit3') {
-                seekTime(event, 3);
-                document.getElementById('btn-seek-3').focus();
-            };
-
-            if (event.code === 'Digit4') {
-                seekTime(event, 4);
+                seekTime(event, 4, 4);
                 document.getElementById('btn-seek-4').focus();
             };
 
-            if (event.code === 'Digit7') {
-                seekTime(event, 7);
-                document.getElementById('btn-seek-7').focus();
-            };
-
-            if (event.code === 'Digit8') {
-                seekTime(event, 8);
+            if (event.code === 'Digit2') {
+                seekTime(event, 4, 8);
                 document.getElementById('btn-seek-8').focus();
             };
 
-            if (event.code === 'Digit9') {
-                seekTime(event, 12);
-                document.getElementById('btn-seek-12').focus();
-            };
-
-            if (event.code === 'Digit0') {
-                seekTime(event, 16);
+            if (event.code === 'Digit3') {
+                seekTime(event, 4, 16);
                 document.getElementById('btn-seek-16').focus();
             };
 
-            if (event.code === 'Minus') {
-                seekTime(event, 24);
+            if (event.code === 'Digit4') {
+                seekTime(event, 4, 3);
+                document.getElementById('btn-seek-3').focus();
+            };
+
+            if (event.code === 'Digit5') {
+                seekTime(event, 4, 6);
+                document.getElementById('btn-seek-6').focus();
+            };
+
+            if (event.code === 'Digit6') {
+                seekTime(event, 4, 12);
+                document.getElementById('btn-seek-12').focus();
+            };
+
+            if (event.code === 'Digit7') {
+                seekTime(event, 4, 24);
                 document.getElementById('btn-seek-24').focus();
+            };
+
+            if (event.code === 'Digit8') {
+                seekTime(event, 4, 7);
+                document.getElementById('btn-seek-7').focus();
+            };
+
+            if (event.code === 'Digit9') {
+                seekTime(event, 4, 14);
+                document.getElementById('btn-seek-14').focus();
             };
 
             if (event.code === 'ArrowDown') {
@@ -477,7 +477,7 @@
         };
 
         // 時間の変更
-        function seekTime(event, denom){
+        function seekTime(event, num, denom){
             if (checkNoteExists()){
                 if (searchFrame() == -1){
                     document.getElementById('tbl-notes').insertAdjacentHTML('afterbegin', getTimelineHtml());
@@ -498,13 +498,13 @@
             before = time.value;
 
             if (event.shiftKey){
-                timeDetail.value = Number(Number(timeDetail.value) - Number(60 / bpm / denom));
+                timeDetail.value = Number(Number(timeDetail.value) - Number(60 / bpm / denom) * Number(num));
                 time.value = Number(timeDetail.value).toFixed(3);
                 
             };
 
             if (!event.shiftKey){
-                timeDetail.value = Number(Number(timeDetail.value) + Number(60 / bpm / denom));
+                timeDetail.value = Number(Number(timeDetail.value) + Number(60 / bpm / denom) * Number(num));
                 time.value = Number(timeDetail.value).toFixed(3);
             };
 
@@ -1138,15 +1138,15 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">拍子移動 (Shiftで巻き戻し)</span>
-                            <button id="btn-seek-1" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 1);">+1 (1)</button>
-                            <button id="btn-seek-2" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 2);">+1/2 (2)</button>
-                            <button id="btn-seek-3" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 3);">+1/3 (3)</button>
-                            <button id="btn-seek-4" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4);">+1/4 (4)</button>
-                            <button id="btn-seek-7" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 7);">+1/7 (7)</button>
-                            <button id="btn-seek-8" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 8);">+1/8 (8)</button>
-                            <button id="btn-seek-12" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 12);">+1/12 (9)</button>
-                            <button id="btn-seek-16" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 16);">+1/16 (0)</button>
-                            <button id="btn-seek-24" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 24);">+1/24 (-)</button>
+                            <button id="btn-seek-4" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 4);">+4分 (1)</button>
+                            <button id="btn-seek-8" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 8);">+8分 (2)</button>
+                            <button id="btn-seek-16" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 16);">+16分 (3)</button>
+                            <button id="btn-seek-3" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 3);">+3分 (4)</button>
+                            <button id="btn-seek-6" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 6);">+6分 (5)</button>
+                            <button id="btn-seek-12" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 12);">+12分 (6)</button>
+                            <button id="btn-seek-24" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 24);">+24分 (7)</button>
+                            <button id="btn-seek-7" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 7);">+7分 (8)</button>
+                            <button id="btn-seek-14" class="btn btn-outline-secondary" type="button" onclick="seekTime(event, 4, 14);">+14分 (9)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
