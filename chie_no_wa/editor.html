@@ -134,6 +134,27 @@
                     getBeatDuration();
                 };
 
+                if (active.id == 'ipt-offset'){
+                    if (event.key === 'ArrowDown') {
+                        active.value = Number(active.value.match(/[0-9.-]+/g)) - 0.001;
+                    };
+                    
+                    if (event.key === 'ArrowUp') {
+                        active.value = Number(active.value.match(/[0-9.-]+/g)) + 0.001;
+                    };
+
+                    if (event.key === 'ArrowLeft') {
+                        active.value = Number(active.value.match(/[0-9.-]+/g)) - 0.1;
+                    };
+
+                    if (event.key === 'ArrowRight') {
+                        active.value = Number(active.value.match(/[0-9.-]+/g)) + 0.1;
+                    };
+
+                    active.value = Number(active.value).toFixed(3)
+
+                };
+
                 if (active.id == 'ipt-play-begin'){
                     if (event.key === 'ArrowDown') {
                         active.value = Number(active.value) - 1;
@@ -421,6 +442,16 @@
             document.getElementById('ipt-beat-dur').value = Number(60 / bpm).toFixed(3);
             let beat = Number(document.getElementById('ipt-beat').value);
             document.getElementById('ipt-measure-dur').value = Number((60 / bpm) * beat).toFixed(3);
+        };
+
+
+        function adjustOffset(operand){
+            let offset = document.getElementById('ipt-offset');
+            before = offset.value;
+            after =  Number(Number(offset.value) + operand);
+            if (after < 0.001) after = Number(0.001);
+            if (Number.isNaN(after)) after = 0.750;
+            offset.value = Number(after).toFixed(3);
         };
 
         // BPMの変更
@@ -987,7 +1018,8 @@
                 let e = rows[i];
                 
                 if (i > 0){
-                    let name = e.querySelector('.name').innerText;
+                    let offset = Number(document.getElementById('ipt-offset').value)
+                    let name = Number(e.querySelector('.name').innerText) - offset;
                     let values = String(`${String(e.querySelector('.value').innerText).trim()}    `).split(' ');
 
                     values.forEach(function(val, ind){
@@ -1001,7 +1033,7 @@
                     <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
                 </symbol>
                 <use href="#${noteId}-${noteRotate}" x="-320" y="-320" width="640" height="640">
-                    <animate attributeName="transform" begin="${name}s" begin-orig="${name}s" dur="0.75s" repeatCount="1"
+                    <animate attributeName="transform" begin="${name}s" begin-orig="${name}s" dur="${offset}s" repeatCount="1"
                     values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
                 </use>
             </svg>`;
@@ -1082,6 +1114,17 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
+                            <span class="input-group-text">ノーツの落下時間 (Ctrl+O)</span>
+                            <input id="ipt-offset" type="text" class="form-control" placeholder="0" value="0.750">
+                            <button id="btn-offset-dl" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.1)">-0.1</button>
+                            <button id="btn-offset-ds" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(-0.001)">-0.001</button>
+                            <button id="btn-offset-is" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.001)">+0.001</button>
+                            <button id="btn-offset-il" class="btn btn-outline-secondary" type="button" onclick="adjustOffset(+0.1)">+0.1</button>
+                            <span class="input-group-text alert-light">＊ 方向キーで変更</span>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text">YouTube動画ID</span>
                             <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="" onclick="this.select();">
                             <button class="btn btn-outline-secondary" type="button" onclick="javascript:document.getElementById('ipt-play-url').value = '';">削除</button>
@@ -1126,13 +1169,13 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">時間</span>
-                            <input id="ipt-time" type="text" class="form-control" placeholder="0.000" value="0.000">
+                            <input id="ipt-time" type="text" class="form-control" placeholder="0.000" value="1.000">
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1 hidden" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">時間</span>
-                            <input id="ipt-time-detail" type="text" class="form-control" placeholder="0.000" value="0.000">
+                            <input id="ipt-time-detail" type="text" class="form-control" placeholder="0.000" value="1.000">
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
