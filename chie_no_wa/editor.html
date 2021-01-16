@@ -781,7 +781,7 @@
                     let delimiterCount = String(note.value).match(/-/g).length;
 
                     if (delimiterCount == 2 || delimiterCount == 3){
-                        let noteId = String(note.value).match(/[^-]+-{1,2}[^-]+/g);
+                        let noteId = String(note.value).match(/^[a-z]+-[0-9]+/g);
                         let noteRotate = String(note.value).replace(`${noteId}-`, '');
                         target.setAttribute('href', `#${noteId}`);
                         target.setAttribute('transform', `rotate(${noteRotate})`);
@@ -1054,7 +1054,7 @@
                                 let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3));
 
                                 if (startArr[0] != -1){
-                                    tmp += getHoldHtml(startArr[1], startArr[2], Number(name) + Number(offset), noteRotate, noteWidth);
+                                    tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
                                 };  
                             };
 
@@ -1194,43 +1194,55 @@
 
         // 最短のホールド終了を含むフレームの検索
         function searchHoldStartFrame(endTime){
-            let returnArr = [-1, '', ''];
+            let returnArr = [-1, '', '', ''];
             let rows =  document.querySelectorAll('tr');
 
             rows.forEach(function(e, i){
                 let reverseIndex = rows.length - i - 1;
+                let name = rows[reverseIndex].querySelector('.name').innerText;
+                let value = rows[reverseIndex].querySelector('.value').innerText;
                     
                 if (i = 0) return returnArr;
                 if (Number(rows[reverseIndex].querySelector('.name').innerText) >= Number(endTime)) return returnArr;
 
                 if (rows[reverseIndex].querySelector('.value').innerText.indexOf('holds') != -1){
                     returnArr[0] = reverseIndex;
-                    returnArr[1] = String(rows[reverseIndex].querySelector('.name').innerText).trim();
-                    returnArr[2] = String(rows[reverseIndex].querySelector('.value').innerText).match(/[0-9]+$/g)[0];
+                    returnArr[1] = String(name).trim(); // 時間
+                    returnArr[2] = String(String(value).match(/[a-z]+-[0-9]+/g)).match(/[0-9]+/g); // 幅
+                    
+                    if (String(String(value).match(/-/g).length == 2)){
+                        returnArr[3] = `${String(value).match(/[0-9]+$/g)}`; // 角度
+                    };
+
+                    if (String(String(value).match(/-/g).length == 3)){
+                        returnArr[3] = `-${String(value).match(/[0-9]+$/g)}`; // 角度
+                    };
                 };
 
                 if (rows[reverseIndex].querySelector('.value').innerText.indexOf('holde') != -1){
                     returnArr[0] = -1;
                     returnArr[1] = '';
                     returnArr[2] = '';
+                    returnArr[3] = '';
                 };
             });
 
             return returnArr;
         };
 
-        function getHoldHtml(beginTime, beginRotate, endTime, endRotate, width){
+        function getHoldHtml(beginTime, beginWidth, beginRotate, endTime, endWidth, endRotate){
             const interval = 0.015;
             let timeDif = Number(endTime) - Number(beginTime);
             let rotateDif = Number(endRotate) - Number(beginRotate);
+            let widthDif = Number(endWidth) - Number(beginWidth);
             let step = Number(Math.floor(timeDif / interval));
             let offset = Number(document.getElementById('ipt-offset').value)
-            let noteId = `hold-${width}`;
             let returnval = '';
 
             for (let i = 1; i < step; i++){
                 let time = Number(Number(beginTime) + (Number(i) * Number(interval)) - Number(offset)).toFixed(3);
-                let rotate = Number(i * (rotateDif / step)).toFixed(0);
+                let rotate = Number(Number(beginRotate) + Number(i) * Number(rotateDif) / Number(step)).toFixed(0);
+                let width = Number(Number(beginWidth) + Number(i) * Number(widthDif) / Number(step)).toFixed(0);
 
                 returnval += `
             <!-- hold -->
@@ -1427,41 +1439,41 @@
             <div class="col-11">
                 <div class="input-group input-group-sm p-1">
                     <div class="btn-group btn-group-sm p-1" role="group">
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-touch" autocomplete="off" checked>
-                        <label class="btn btn-outline-secondary" for="btn-touch" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-touch" autocomplete="off" onclick="updatePreviewTemp();" checked>
+                        <label class="btn btn-outline-secondary" for="btn-touch">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="deeppink" />
                             </svg>
                             タッチ (Q)
                         </label>
                     
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holds" autocomplete="off" disabled>
-                        <label class="btn btn-outline-secondary" for="btn-holds" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-holds" onclick="updatePreviewTemp();" autocomplete="off" disabled>
+                        <label class="btn btn-outline-secondary" for="btn-holds">
                             <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
                                 <rect x="-24" y="-64" width="48" height="96" fill="orange" />
                             </svg>
-                            <s>ホールド開始 (W)</s>
+                            ホールド開始 (W)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holdv" autocomplete="off" disabled>
-                        <label class="btn btn-outline-secondary" for="btn-holdv" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-holdv" onclick="updatePreviewTemp();" autocomplete="off" disabled>
+                        <label class="btn btn-outline-secondary" for="btn-holdv">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
                             </svg>
-                            <s>ホールド経由 (E)</s>
+                            ホールド経由 (E)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holde" autocomplete="off" disabled>
-                        <label class="btn btn-outline-secondary" for="btn-holde" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-holde" onclick="updatePreviewTemp();" autocomplete="off" disabled>
+                        <label class="btn btn-outline-secondary" for="btn-holde">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
                             </svg>
-                            <s>ホールド終了 (R)</s>
+                            ホールド終了 (R)
                         </label>
                         
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-chain" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btn-chain" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-chain" onclick="updatePreviewTemp();" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="btn-chain">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <line x1="-32" y1="48" x2="32" y2="48" stroke="gold" stroke-width="32"/>
                                 <line x1="-32" y1="48" x2="32" y2="48" stroke="olive" stroke-width="32" stroke-dasharray="16 8" />
@@ -1469,8 +1481,8 @@
                             チェイン (T)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-left" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btn-left" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-left" onclick="updatePreviewTemp();" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="btn-left">
                             <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="orange" />
                                 <polyline points="20,-24 -20,0 20,24" stroke="orange" stroke-width="16" fill="none" />
@@ -1478,8 +1490,8 @@
                             左スライド (Y)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-right" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btn-right" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-right" onclick="updatePreviewTemp();" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="btn-right">
                             <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="limegreen" />
                                 <polyline points="-20,-24 20,0 -20,24" stroke="limegreen" stroke-width="16" fill="none" />
@@ -1487,8 +1499,8 @@
                             右スライド (U)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-in" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btn-in" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-in" onclick="updatePreviewTemp();" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="btn-in">
                             <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="orangered" />
                                 <polyline points="-32,0 0,-28 32,0" stroke="orangered" stroke-width="16" fill="none" />
@@ -1497,8 +1509,8 @@
                             内スナップ (I)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-out" autocomplete="off">
-                        <label class="btn btn-outline-secondary" for="btn-out" onclick="updatePreviewTemp();">
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-out" onclick="updatePreviewTemp();" autocomplete="off">
+                        <label class="btn btn-outline-secondary" for="btn-out">
                             <svg class="icon" viewBox="-32 -48 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="dodgerblue" />
                                 <polyline points="-32,-28 0,0 32,-28" stroke="dodgerblue" stroke-width="16" fill="none" />
