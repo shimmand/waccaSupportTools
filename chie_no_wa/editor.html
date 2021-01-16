@@ -204,72 +204,87 @@
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyE' && !event.ctrlKey) {
-                document.getElementById('btn-holdv').click();
+            if (event.code === 'KeyH' && !event.ctrlKey) {
+                if (document.getElementById('btn-hold-a').checked){
+                    document.getElementById('btn-hold-b').click();
+
+                } else if (document.getElementById('btn-hold-b').checked) {
+                    document.getElementById('btn-hold-c').click();
+
+                } else if (document.getElementById('btn-hold-c').checked) {
+                    document.getElementById('btn-hold-d').click();
+
+                } else if (document.getElementById('btn-hold-d').checked) {
+                    document.getElementById('btn-hold-e').click();
+
+                } else if (document.getElementById('btn-hold-e').checked) {
+                    document.getElementById('btn-hold-a').click();
+                };
+                
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyR' && !event.ctrlKey) {
+            if (event.code === 'KeyE' && !event.ctrlKey) {
                 document.getElementById('btn-holde').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyT' && !event.ctrlKey) {
+            if (event.code === 'KeyR' && !event.ctrlKey) {
                 document.getElementById('btn-chain').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyY' && !event.ctrlKey) {
+            if (event.code === 'KeyT' && !event.ctrlKey) {
                 document.getElementById('btn-left').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyU' && !event.ctrlKey) {
+            if (event.code === 'KeyY' && !event.ctrlKey) {
                 document.getElementById('btn-right').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyI' && !event.ctrlKey) {
+            if (event.code === 'KeyU' && !event.ctrlKey) {
                 document.getElementById('btn-in').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyO' && !event.ctrlKey) {
+            if (event.code === 'KeyI' && !event.ctrlKey) {
                 document.getElementById('btn-out').click();
                 updatePreviewTemp();
             };
 
-            if (event.code === 'KeyA') {
+            if (event.code === 'KeyA' && !event.ctrlKey) {
                 adjustWidth(-5);
                 document.getElementById('btn-width-dl').focus();
             };
 
-            if (event.code === 'KeyS') {
+            if (event.code === 'KeyS' && !event.ctrlKey) {
                 adjustWidth(-1);
                 document.getElementById('btn-width-ds').focus();
             };
 
-            if (event.code === 'KeyD') {
+            if (event.code === 'KeyD' && !event.ctrlKey) {
                 adjustWidth(1);
                 document.getElementById('btn-width-is').focus();
             };
 
-            if (event.code === 'KeyF') {
+            if (event.code === 'KeyF' && !event.ctrlKey) {
                 adjustWidth(5);
                 document.getElementById('btn-width-il').focus();
             };
 
-            if (event.code === 'KeyJ') {
+            if (event.code === 'KeyJ' && !event.ctrlKey) {
                 adjustRotate(30);
                 document.getElementById('btn-rotate-dl').focus();
             };
 
-            if (event.code === 'KeyK') {
+            if (event.code === 'KeyK' && !event.ctrlKey) {
                 adjustRotate(6);
                 document.getElementById('btn-rotate-ds').focus();
             };
 
-            if (event.code === 'KeyL') {
+            if (event.code === 'KeyL' && !event.ctrlKey) {
                 adjustRotate(-6);
                 document.getElementById('btn-rotate-is').focus();
             };
@@ -279,22 +294,22 @@
                 document.getElementById('btn-rotate-il').focus();
             };
 
-            if (event.code === 'Comma') {
+            if (event.code === 'Comma' && !event.ctrlKey) {
                 adjustRotateFlip();
                 document.getElementById('btn-rotate-fl').focus();
             };
 
-            if (event.code === 'Period') {
+            if (event.code === 'Period' && !event.ctrlKey) {
                 adjustRotate(180);
                 document.getElementById('btn-rotate-ud').focus();
             };
 
-            if (event.code === 'Slash') {
+            if (event.code === 'Slash' && !event.ctrlKey) {
                 adjustRotate0();
                 document.getElementById('btn-rotate-0').focus();
             };
 
-            if (event.code === 'Minus') {
+            if (event.code === 'Minus' && !event.ctrlKey) {
                 if (document.getElementById('btn-seek-for').checked){
                     document.getElementById('btn-seek-back').click();
                 } else {
@@ -391,12 +406,25 @@
                 document.getElementById('ipt-bpm').focus();
             };
 
+            if (event.code === 'KeyI' && event.ctrlKey) {
+                document.getElementById('ipt-play-url').focus();
+            };
+
             if (event.code === 'KeyB' && event.ctrlKey) {
-                document.getElementById('ipt-beat').focus();
+                document.getElementById('ipt-play-begin').focus();
+            };
+
+            if (event.code === 'KeyD' && event.ctrlKey) {
+                document.getElementById('ipt-play-dur').focus();
             };
 
             if (event.code === 'KeyO' && event.ctrlKey) {
                 document.getElementById('ipt-offset').focus();
+            };
+
+            if (event.code === 'KeyP' && event.ctrlKey) {
+                document.getElementById('btn-play').focus();
+                playVideo();
             };
         });
 
@@ -651,9 +679,40 @@
         function insertNote(){
             let note = '';
             if (document.getElementById('btn-touch').checked) note = 'touch';
-            if (document.getElementById('btn-holds').checked) note = 'holds';
-            if (document.getElementById('btn-holdv').checked) note = 'holdv';
-            if (document.getElementById('btn-holde').checked) note = 'holde';
+            if (document.getElementById('btn-holds').checked){
+                if (document.getElementById('btn-hold-a').checked){
+                    note = 'holdsa';
+                
+                } else if (document.getElementById('btn-hold-b').checked){
+                    note = 'holdsb';
+                
+                } else if (document.getElementById('btn-hold-c').checked){
+                    note = 'holdsc';
+                
+                } else if (document.getElementById('btn-hold-d').checked){
+                    note = 'holdsd';
+                
+                } else if (document.getElementById('btn-hold-e').checked){
+                    note = 'holdse';
+                }
+            };
+            if (document.getElementById('btn-holde').checked){
+                if (document.getElementById('btn-hold-a').checked){
+                    note = 'holdea';
+                
+                } else if (document.getElementById('btn-hold-b').checked){
+                    note = 'holdeb';
+                
+                } else if (document.getElementById('btn-hold-c').checked){
+                    note = 'holdec';
+                
+                } else if (document.getElementById('btn-hold-d').checked){
+                    note = 'holded';
+                
+                } else if (document.getElementById('btn-hold-e').checked){
+                    note = 'holdee';
+                }
+            };
             if (document.getElementById('btn-chain').checked) note = 'chain';
             if (document.getElementById('btn-left').checked) note = 'left';
             if (document.getElementById('btn-right').checked) note = 'right';
@@ -783,6 +842,20 @@
                     if (delimiterCount == 2 || delimiterCount == 3){
                         let noteId = String(note.value).match(/^[a-z]+-[0-9]+/g);
                         let noteRotate = String(note.value).replace(`${noteId}-`, '');
+
+                        if (String(noteId).indexOf('hold') != -1){
+                            noteId = String(noteId).replace('sa', '');
+                            noteId = String(noteId).replace('sb', '');
+                            noteId = String(noteId).replace('sc', '');
+                            noteId = String(noteId).replace('sd', '');
+                            noteId = String(noteId).replace('se', '');
+                            noteId = String(noteId).replace('ea', '');
+                            noteId = String(noteId).replace('eb', '');
+                            noteId = String(noteId).replace('ec', '');
+                            noteId = String(noteId).replace('ed', '');
+                            noteId = String(noteId).replace('ee', '');
+                        };
+
                         target.setAttribute('href', `#${noteId}`);
                         target.setAttribute('transform', `rotate(${noteRotate})`);
                     };
@@ -799,7 +872,6 @@
 
             if (document.getElementById('btn-touch').checked) note = 'touch';
             if (document.getElementById('btn-holds').checked) note = 'hold';
-            if (document.getElementById('btn-holdv').checked) note = 'hold';
             if (document.getElementById('btn-holde').checked) note = 'hold';
             if (document.getElementById('btn-chain').checked) note = 'chain';
             if (document.getElementById('btn-left').checked) note = 'left';
@@ -1049,14 +1121,53 @@
                             let noteId = String(val).match(/[^-]+-{1,2}[^-]+/g);
                             let noteRotate = String(val).replace(`${noteId}-`, '');
                             let noteWidth = String(noteId).match(/[0-9]+/g);
-
-                            if (String(noteId).indexOf('holde') != -1){
-                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3));
+                            
+                            if (String(noteId).indexOf('holdea') != -1){
+                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3), 'a');
 
                                 if (startArr[0] != -1){
                                     tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
                                 };  
                             };
+                            if (String(noteId).indexOf('holdeb') != -1){
+                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3), 'b');
+                                
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holdec') != -1){
+                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3), 'c');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holded') != -1){
+                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3), 'd');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holdee') != -1){
+                                let startArr = searchHoldStartFrame(Number(Number(name) + Number(offset)).toFixed(3), 'e');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtml(startArr[1], startArr[2], startArr[3], Number(name) + Number(offset), noteWidth, noteRotate);
+                                };  
+                            };
+
+                            noteId = String(noteId).replace('holdsa', 'holds');
+                            noteId = String(noteId).replace('holdsb', 'holds');
+                            noteId = String(noteId).replace('holdsc', 'holds');
+                            noteId = String(noteId).replace('holdsd', 'holds');
+                            noteId = String(noteId).replace('holdse', 'holds');
+                            noteId = String(noteId).replace('holdea', 'holde');
+                            noteId = String(noteId).replace('holdeb', 'holde');
+                            noteId = String(noteId).replace('holdec', 'holde');
+                            noteId = String(noteId).replace('holded', 'holde');
+                            noteId = String(noteId).replace('holdee', 'holde');
 
                             tmp += `
             <!--[${name},${String(e.querySelector('.value').innerText).trim()},${offset}]-->
@@ -1193,7 +1304,7 @@
         };
 
         // 最短のホールド終了を含むフレームの検索
-        function searchHoldStartFrame(endTime){
+        function searchHoldStartFrame(endTime, type){
             let returnArr = [-1, '', '', ''];
             let rows =  document.querySelectorAll('tr');
 
@@ -1201,25 +1312,32 @@
                 let reverseIndex = rows.length - i - 1;
                 let name = rows[reverseIndex].querySelector('.name').innerText;
                 let value = rows[reverseIndex].querySelector('.value').innerText;
-                    
-                if (i = 0) return returnArr;
+                let pattern = ''
+                
+                if (type == 'a') pattern = /holdsa-[0-9]+-{1,2}[0-9]+/g;
+                if (type == 'b') pattern = /holdsb-[0-9]+-{1,2}[0-9]+/g;
+                if (type == 'c') pattern = /holdsc-[0-9]+-{1,2}[0-9]+/g;
+                if (type == 'd') pattern = /holdsd-[0-9]+-{1,2}[0-9]+/g;
+                if (type == 'e') pattern = /holdse-[0-9]+-{1,2}[0-9]+/g;
+                
+                if (reverseIndex == 0) return returnArr;
                 if (Number(rows[reverseIndex].querySelector('.name').innerText) >= Number(endTime)) return returnArr;
 
-                if (rows[reverseIndex].querySelector('.value').innerText.indexOf('holds') != -1){
+                if (String(value).indexOf(`holds${type}`) != -1){
                     returnArr[0] = reverseIndex;
                     returnArr[1] = String(name).trim(); // 時間
-                    returnArr[2] = String(String(value).match(/[a-z]+-[0-9]+/g)).match(/[0-9]+/g); // 幅
+                    returnArr[2] = String(String(value).match(pattern)).match(/[0-9]+/g)[0]; // 幅
                     
-                    if (String(String(value).match(/-/g).length == 2)){
-                        returnArr[3] = `${String(value).match(/[0-9]+$/g)}`; // 角度
+                    if (String(String(value).match(pattern)).match(/-/g).length == 2){
+                        returnArr[3] = `${String(String(value).match(pattern)).match(/[0-9]+$/g)}`; // 角度
                     };
 
-                    if (String(String(value).match(/-/g).length == 3)){
-                        returnArr[3] = `-${String(value).match(/[0-9]+$/g)}`; // 角度
+                    if (String(String(value).match(pattern)).match(/-/g).length == 3){
+                        returnArr[3] = `-${String(String(value).match(pattern)).match(/[0-9]+$/g)}`; // 角度
                     };
                 };
 
-                if (rows[reverseIndex].querySelector('.value').innerText.indexOf('holde') != -1){
+                if (String(value).indexOf(`holde${type}`) != -1){
                     returnArr[0] = -1;
                     returnArr[1] = '';
                     returnArr[2] = '';
@@ -1271,7 +1389,7 @@
 <body>
     <div class="container-fluid m-2">
         <h5>
-            CHIE-NO-WA Editor (beta v0.51)
+            CHIE-NO-WA Editor (beta v0.52)
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('simulator.html')">Simulator</button>
         </h5>
@@ -1333,14 +1451,14 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">YouTube動画ID</span>
+                            <span class="input-group-text">YouTube動画ID (Ctrl+I)</span>
                             <input id="ipt-play-url" type="text" class="form-control" placeholder="" value="" onclick="this.select();">
                             <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-play-url').value = '';">削除</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">再生開始</span>
+                            <span class="input-group-text">再生開始 (Ctrl+B)</span>
                             <input id="ipt-play-begin" type="text" class="form-control" placeholder="" value="0">
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-5)">-5</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-1)">-1</button>
@@ -1350,14 +1468,14 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">再生時間</span>
+                            <span class="input-group-text">再生時間 (Ctrl+D)</span>
                             <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-5)">-5</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-1)">-1</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+1)">+1</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+5)">+5</button>
                             <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
-                            <button class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生</button>
+                            <button id="btn-play" class="btn btn-outline-secondary" type="button" onclick="playVideo();">再生 (Ctrl+P)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -1399,6 +1517,15 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
+                            <span class="input-group-text">移動方向(-で切り替え)</span>
+                            <input name="btn-seek-dir" type="radio" class="btn-check" id="btn-seek-back" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="btn-seek-back">戻る</label>
+                            <input name="btn-seek-dir" type="radio" class="btn-check" id="btn-seek-for" autocomplete="off" checked>
+                            <label class="btn btn-outline-secondary" for="btn-seek-for">進む</label>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text">音符移動</span>
                             <button id="btn-seek-4" class="btn btn-outline-secondary" type="button" onclick="seekTime(4, 4);">4分 (1)</button>
                             <button id="btn-seek-8" class="btn btn-outline-secondary" type="button" onclick="seekTime(4, 8);">8分 (2)</button>
@@ -1409,15 +1536,6 @@
                             <button id="btn-seek-24" class="btn btn-outline-secondary" type="button" onclick="seekTime(4, 24);">24分 (7)</button>
                             <button id="btn-seek-7" class="btn btn-outline-secondary" type="button" onclick="seekTime(4, 7);">7分 (8)</button>
                             <button id="btn-seek-14" class="btn btn-outline-secondary" type="button" onclick="seekTime(4, 14);">14分 (9)</button>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">移動方向(-で切り替え)</span>
-                            <input name="btn-seek-dir" type="radio" class="btn-check" id="btn-seek-back" autocomplete="off">
-                            <label class="btn btn-outline-secondary" for="btn-seek-back">戻る</label>
-                            <input name="btn-seek-dir" type="radio" class="btn-check" id="btn-seek-for" autocomplete="off" checked>
-                            <label class="btn btn-outline-secondary" for="btn-seek-for">進む</label>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -1447,7 +1565,7 @@
                             タッチ (Q)
                         </label>
                     
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holds" onclick="updatePreviewTemp();" autocomplete="off" disabled>
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-holds" onclick="updatePreviewTemp();" autocomplete="off">
                         <label class="btn btn-outline-secondary" for="btn-holds">
                             <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1456,20 +1574,12 @@
                             ホールド開始 (W)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holdv" onclick="updatePreviewTemp();" autocomplete="off" disabled>
-                        <label class="btn btn-outline-secondary" for="btn-holdv">
-                            <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
-                                <rect x="-32" y="32" width="64" height="32" fill="olive" />
-                            </svg>
-                            ホールド経由 (E)
-                        </label>
-
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-holde" onclick="updatePreviewTemp();" autocomplete="off" disabled>
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-holde" onclick="updatePreviewTemp();" autocomplete="off">
                         <label class="btn btn-outline-secondary" for="btn-holde">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
                             </svg>
-                            ホールド終了 (R)
+                            ホールド終了 (E)
                         </label>
                         
                         <input name="btn-note" type="radio" class="btn-check" id="btn-chain" onclick="updatePreviewTemp();" autocomplete="off">
@@ -1478,7 +1588,7 @@
                                 <line x1="-32" y1="48" x2="32" y2="48" stroke="gold" stroke-width="32"/>
                                 <line x1="-32" y1="48" x2="32" y2="48" stroke="olive" stroke-width="32" stroke-dasharray="16 8" />
                             </svg>
-                            チェイン (T)
+                            チェイン (R)
                         </label>
 
                         <input name="btn-note" type="radio" class="btn-check" id="btn-left" onclick="updatePreviewTemp();" autocomplete="off">
@@ -1487,7 +1597,7 @@
                                 <rect x="-32" y="32" width="64" height="32" fill="orange" />
                                 <polyline points="20,-24 -20,0 20,24" stroke="orange" stroke-width="16" fill="none" />
                             </svg>
-                            左スライド (Y)
+                            左スライド (T)
                         </label>
 
                         <input name="btn-note" type="radio" class="btn-check" id="btn-right" onclick="updatePreviewTemp();" autocomplete="off">
@@ -1496,7 +1606,7 @@
                                 <rect x="-32" y="32" width="64" height="32" fill="limegreen" />
                                 <polyline points="-20,-24 20,0 -20,24" stroke="limegreen" stroke-width="16" fill="none" />
                             </svg>
-                            右スライド (U)
+                            右スライド (Y)
                         </label>
 
                         <input name="btn-note" type="radio" class="btn-check" id="btn-in" onclick="updatePreviewTemp();" autocomplete="off">
@@ -1506,7 +1616,7 @@
                                 <polyline points="-32,0 0,-28 32,0" stroke="orangered" stroke-width="16" fill="none" />
                                 <polyline points="-32,28 0,0 32,28" stroke="orangered" stroke-width="16" fill="none" />
                             </svg>
-                            内スナップ (I)
+                            内スナップ (U)
                         </label>
 
                         <input name="btn-note" type="radio" class="btn-check" id="btn-out" onclick="updatePreviewTemp();" autocomplete="off">
@@ -1516,8 +1626,29 @@
                                 <polyline points="-32,-28 0,0 32,-28" stroke="dodgerblue" stroke-width="16" fill="none" />
                                 <polyline points="-32,0 0,28 32,0" stroke="dodgerblue" stroke-width="16" fill="none" />
                             </svg>
-                            外スナップ (O)
+                            外スナップ (i)
                         </label>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">
+                                <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
+                                    <rect x="-32" y="32" width="64" height="32" fill="olive" />
+                                    <rect x="-24" y="-64" width="48" height="96" fill="orange" />
+                                </svg>
+                                ホールド選択(Hで切り替え)
+                            </span>
+                            <input name="btn-hold-type" type="radio" class="btn-check" id="btn-hold-a" autocomplete="off" checked>
+                            <label class="btn btn-outline-secondary" for="btn-hold-a">A</label>
+                            <input name="btn-hold-type" type="radio" class="btn-check" id="btn-hold-b" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="btn-hold-b">B</label>
+                            <input name="btn-hold-type" type="radio" class="btn-check" id="btn-hold-c" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="btn-hold-c">C</label>
+                            <input name="btn-hold-type" type="radio" class="btn-check" id="btn-hold-d" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="btn-hold-d">D</label>
+                            <input name="btn-hold-type" type="radio" class="btn-check" id="btn-hold-e" autocomplete="off">
+                            <label class="btn btn-outline-secondary" for="btn-hold-e">E</label>
+                        </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
