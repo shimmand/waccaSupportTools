@@ -9,115 +9,167 @@
         body {
             -webkit-text-size-adjust: 100%;
         }
+
         img {
             transform: scale(0.8);
         }
+
+        .card-img-bottom {
+            max-width: 600px;
+        }
+        
     </style>
 </head>
 <body>
     <div class="container-fluid m-2">
-        <h2>CHIE-NO-WA（ベータ版）</h2>
-        <h5>WACCA 創作譜面エディター/シミュレーター</h5>
-        <p class="py-2">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
-        <hr>
-        <div class="alert alert-primary">
-            <p>2021/01/16 更新:</p>
-            <p>読み込み・書き出し機能を用いて、作業状況を保存できるようになりました。</p>
-            <p>ホールドノーツを配置できるようになりました。</p>
-        </div>
-        <h5 class="py-2">概要</h5>
-        <p>WACCAの創作譜面を制作することのできるツールです。</p>
-        <p>譜面作成の「CHIE-NO-WA Editor」と、譜面再生の「CHIE-NO-WA Simulator」の2つで構成されます。</p>
-        <p> HTML／CSS／JavaScriptで設計されています。画像はSVG形式で、ラスタ形式の画像を一切使用しておりません。</p>
-        <p>現時点では、譜面で遊ぶ機能を実装しておりません。</p>
-        <h5 class="py-2">注意事項</h5>
-        <p>ただいま当ツールはベータ版につき、予期せぬ不具合が生じる可能性がございます。</p>
-        <p>あらかじめご了承の上、ご利用ください。</p>
-        <h5 class="py-2">リンク</h5>
-        <div class="btn-group btn-group-sm p-1" role="group">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">譜面作成</span>
-                <button class="btn btn-primary" type="button" onclick="javascript:window.open('editor.html')">CHIE-NO-WA Editor</button>
+        <div class="card text-white bg-dark m-2">
+            <div class="card-body">
+                <h5 class="card-title">CHIE-NO-WA（ベータ版）</h5>
+                <p class="card-text">WACCA 創作譜面エディター/シミュレーター</p>
+                <p class="card-text">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
             </div>
         </div>
-        <div class="btn-group btn-group-sm p-1" role="group">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">譜面再生</span>
-                <button class="btn btn-primary" type="button" onclick="javascript:window.open('simulator.html')">CHIE-NO-WA Simulator</button>
+        <div class="card text-white bg-secondary m-2" style="max-width: 18rem;">
+            <div class="card-header">2021/01/16 更新</div>
+            <div class="card-body">
+                <h5 class="card-title">機能更新</h5>
+                <p>読み込み・書き出し機能を用いて、作業状況を保存できるようになりました。</p>
+                <p>ホールドノーツを配置できるようになりました。</p>
             </div>
         </div>
-        <p>※ 新しいタブで開きます</p>
-        <h5 class="py-2">ノートの仕様について</h5>
-        <p>- ホールドノートは、始点と終点を最短距離で結びます。そのため、180度以上回る場合には、複数回に分けて入力して下さい。</p>
-        <p>- 同一のホールドノートの始点と終点、例えば、ホールドAの終点とホールドAの始点は、同一の時間に配置できません。続けてホールドを配置する場合は、他のホールドに切り替えて下さい。</p>
-        <h5 class="py-2">Editorの使い方</h5>
-        <h6 class="py-2">キーボードショートカットについて</h6>
-        <p>このツールでは、キーボードショートカットを使用できます。</p>
-        <p>画面上の一部項目には括弧付きのアルファベットや記号がありますが、これらの項目で利用可能です。</p>
-        <p>活用することで効率的に入力することが可能となりますので、PCをご利用の方はぜひご利用ください。</p>
-        <h6 class="py-2">1. BPMを設定する</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104618823-8638fc80-56d0-11eb-80ed-7b483756aefe.JPG">
-        <p></p>
-        <p>楽曲のBPMを設定します。BPMの変化に応じて、後から変更することもできます。</p>
-        <p>直接入力はできず、ボタンで変更します。</p>
-        <p>カーソル時は、方向キーで変更することも可能です。</p>
-        <h6 class="py-2">2. 動画IDを設定する（任意）</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104618821-8638fc80-56d0-11eb-91a2-06085121bfe3.JPG">
-        <p></p>
-        <img src="https://user-images.githubusercontent.com/58391224/104619302-0bbcac80-56d1-11eb-841c-14081b7bbd96.png">
-        <p></p>
-        <p>動画IDを設定します。</p>
-        <p>Ctrl+Vは使用できませんので、コンテキストメニュー（右クリック）から貼り付けてください。</p>
-        <p>YouTubeの動画URLのうち、?v=に続く10桁前後の英数字が動画IDです。</p>
-        <p>&以降はパラメーターのため含めないでください。</p>
-        <p>必要に応じて、再生開始（秒）および再生時間（秒）を変更してください。</p>
-        <p>好きなタイミングで、「再生」ボタンから再生できます。</p>
-        <h6 class="py-2">3. 開始時間まで移動する</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104618818-85a06600-56d0-11eb-8a2e-81a4f2c0a473.JPG">
-        <p></p>
-        <p>最初のノートを配置したい時間まで移動します。</p>
-        <p>ボタンを押すか、キーボードショートカットで移動します。</p>
-        <h6 class="py-2">4. ノートを入力する</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104618815-8507cf80-56d0-11eb-97b9-ddb096dae09d.JPG">
-        <p></p>
-        <p>画面の左下にはプレビューが表示されます。</p>
-        <p>プレビューを参考に「配置」グループ内のボタン類を操作して、好みのノーツに変更します。</p>
-        <p>ボタンで押すか、キーボードショートカットで変更します。</p>
-        <img src="https://user-images.githubusercontent.com/58391224/104618807-846f3900-56d0-11eb-91f0-68119454b9af.JPG">
-        <p></p>
-        <p>好みのノーツになったら、「配置」を押すか、スペースバー（ショートカット）を押します。</p>
-        <p>「ノート」グループのノート1にノートを示す記号が入力されたはずです。</p>
-        <p>誤った場合は、「最後のノートを削除」ボタンまたはBackspaceキーで削除します。</p>
-        <p>1つのフレームには5つまでノートを入力できますので、同時押しがある場合は続けて入力します。</p>
-        <h6 class="py-2">5. 次のノートまで移動する</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104618798-82a57580-56d0-11eb-8f5f-6f9d805bfb4b.JPG">
-        <p></p>
-        <p>次のノートを配置する時間まで移動します。</p>
-        <p>ここからは「音符移動」を使います。</p>
-        <p>例えば、4分音符の長さで進める場合は「4分」を押します。</p>
-        <p>4分音符の長さで戻す場合は「戻る」をクリックの上、「4分」押します。</p>
-        <p>この際、時間が移動されると共に、先ほどまで入力していたノートは自動的に確定されます。</p>
-        <p>画面下の「タイムライン」に新しく行が追加されているはずです。</p>
-        <h6>6. 繰り返す</h6>
-        <p>これまでの操作を繰り返します。</p>
-        <p>タイムラインでは、「変更」でフレーム内のノートの変更が、「削除」でフレームの削除が可能です。</p>
-        <h6 class="py-2">7. 出力する</h6>
-        <img src="https://user-images.githubusercontent.com/58391224/104623917-38bf8e00-56d6-11eb-8014-351edfc11324.jpg">
-        <p></p>
-        <p>全ての入力が完了、または途中までの結果を確認したい場合は、「出力」を押します。</p>
-        <p>自動的に譜面コード（ノートをデータ化したもの）をクリップボードにコピーします。</p>
-        <p>これで、シミュレーターに読み込ませる準備が完了しました。</p>
-        <h6 class="py-2">8. ファイルに保存する</h6>
-        <p>クリップボードにコピーされた譜面データをテキストファイルに保存しておくと、後からエディターの「読み込み」機能で再開することが可能です。</p>
-        <p>必要に応じてメモ帳に貼り付け、任意の名前で保存してください。</p>
-        <h5 class="py-2">Simulatorの使い方</h5>
-        <h6 class="py-2">1. 譜面コードを読み込ませる</h6>
-        <p>譜面データ欄に譜面コードを貼り付けます。</p>
-        <p>曲を再生せずにそのまま再生する場合は、「ノートのみを再生」を押します。</p>
-        <h6 class="py-2">2. 動画IDを設定する</h6>
-        <p>動画ID欄に動画IDを貼り付けます。</p>
-        <p>動画IDは、Editorと同一のものを使用可能です。</p>
-        <p>「曲とノートを再生」をクリックすると、動画の読み込み完了後にノートの再生が開始されます。</p>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-title">概要</h5>
+                <p class="card-text">WACCAの創作譜面を制作することのできるツールです。</p>
+                <p class="card-text">譜面作成の<span class="alert-warning">「CHIE-NO-WA Editor」</span>と、譜面再生の<span class="alert-warning">「CHIE-NO-WA Simulator」</span>の2つで構成されます。</p>
+                <p class="card-text">HTML／CSS／JavaScriptで設計されています。画像はSVG形式で、ラスタ形式の画像を一切使用しておりません。</p>
+                <p class="card-text">現時点では、譜面で遊ぶ機能を実装しておりません。</p>
+            </div>
+            <img src="https://user-images.githubusercontent.com/58391224/104811113-a38ad980-583c-11eb-812a-10a4e11c906c.png" class="card-img-bottom" alt="...">
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-title">特長</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">アプリのインストールが不要です。ページを開くだけですぐ使えます。</li>
+                    <li class="list-group-item">YouTubeの動画を同時に再生できます。</li>
+                    <li class="list-group-item">譜面を他の人と共有できます。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-title">注意事項</h5>
+                <p class="card-text">ただいま当ツールはベータ版につき、<span class="alert-warning">予期せぬ不具合が生じる可能性</span>がございます。</p>
+                <p class="card-text">あらかじめご了承の上、ご利用ください。</p>
+            </div>
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-title">リンク</h5>
+                <div class="btn-group btn-group-sm p-1" role="group">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">譜面作成</span>
+                        <button class="btn btn-secondary" type="button" onclick="javascript:window.open('editor.html')">CHIE-NO-WA Editor</button>
+                    </div>
+                </div>
+                <div class="btn-group btn-group-sm p-1" role="group">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">譜面再生</span>
+                        <button class="btn btn-secondary" type="button" onclick="javascript:window.open('simulator.html')">CHIE-NO-WA Simulator</button>
+                    </div>
+                </div>
+                <p class="card-text">※ 新しいタブで開きます</p>
+            </div>
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-title">Editorの使い方</h5>
+                <h6 class="card-text">キーボードショートカットについて</h6>
+                <p class="card-text">このツールでは、キーボードショートカットを使用できます。</p>
+                <p class="card-text">画面上の一部項目には括弧付きのアルファベットや記号がありますが、これらの項目で利用可能です。</p>
+                <p class="card-text">活用することで効率的に入力することが可能となりますので、PCをご利用の方はぜひご利用ください。</p>
+                <h6 class="py-2">1. BPMを設定する</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104618823-8638fc80-56d0-11eb-80ed-7b483756aefe.JPG">
+                <p class="card-text"></p>
+                <p class="card-text">楽曲のBPMを設定します。BPMの変化に応じて、後から変更することもできます。</p>
+                <p class="card-text">直接入力はできず、ボタンで変更します。</p>
+                <p class="card-text">カーソル時は、方向キーで変更することも可能です。</p>
+                <h6 class="card-text">2. 動画IDを設定する（任意）</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104618821-8638fc80-56d0-11eb-91a2-06085121bfe3.JPG">
+                <p class="card-text"></p>
+                <img src="https://user-images.githubusercontent.com/58391224/104619302-0bbcac80-56d1-11eb-841c-14081b7bbd96.png">
+                <p class="card-text"></p>
+                <p class="card-text">動画IDを設定します。</p>
+                <p class="card-text">Ctrl+Vは使用できませんので、コンテキストメニュー（右クリック）から貼り付けてください。</p>
+                <p class="card-text">YouTubeの動画URLのうち、?v=に続く10桁前後の英数字が動画IDです。</p>
+                <p class="card-text">&以降はパラメーターのため含めないでください。</p>
+                <p class="card-text">必要に応じて、再生開始（秒）および再生時間（秒）を変更してください。</p>
+                <p class="card-text">好きなタイミングで、「再生」ボタンから再生できます。</p>
+                <h6 class="card-text">3. 開始時間まで移動する</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104618818-85a06600-56d0-11eb-8a2e-81a4f2c0a473.JPG">
+                <p class="card-text"></p>
+                <p class="card-text">最初のノートを配置したい時間まで移動します。</p>
+                <p class="card-text">ボタンを押すか、キーボードショートカットで移動します。</p>
+                <h6 class="card-text">4. ノートを入力する</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104618815-8507cf80-56d0-11eb-97b9-ddb096dae09d.JPG">
+                <p class="card-text"></p>
+                <p class="card-text">画面の左下にはプレビューが表示されます。</p>
+                <p class="card-text">プレビューを参考に「配置」グループ内のボタン類を操作して、好みのノーツに変更します。</p>
+                <p class="card-text">ボタンで押すか、キーボードショートカットで変更します。</p>
+                <img src="https://user-images.githubusercontent.com/58391224/104618807-846f3900-56d0-11eb-91f0-68119454b9af.JPG">
+                <p class="card-text"></p>
+                <p class="card-text">好みのノーツになったら、「配置」を押すか、スペースバー（ショートカット）を押します。</p>
+                <p class="card-text">「ノート」グループのノート1にノートを示す記号が入力されたはずです。</p>
+                <p class="card-text">誤った場合は、「最後のノートを削除」ボタンまたはBackspaceキーで削除します。</p>
+                <p class="card-text">1つのフレームには5つまでノートを入力できますので、同時押しがある場合は続けて入力します。</p>
+                <h6 class="card-text">5. 次のノートまで移動する</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104618798-82a57580-56d0-11eb-8f5f-6f9d805bfb4b.JPG">
+                <p class="card-text"></p>
+                <p class="card-text">次のノートを配置する時間まで移動します。</p>
+                <p class="card-text">ここからは「音符移動」を使います。</p>
+                <p class="card-text">例えば、4分音符の長さで進める場合は「4分」を押します。</p>
+                <p class="card-text">4分音符の長さで戻す場合は「戻る」をクリックの上、「4分」押します。</p>
+                <p class="card-text">この際、時間が移動されると共に、先ほどまで入力していたノートは自動的に確定されます。</p>
+                <p class="card-text">画面下の「タイムライン」に新しく行が追加されているはずです。</p>
+                <h6 class="card-text">6. 繰り返す</h6>
+                <p class="card-text">これまでの操作を繰り返します。</p>
+                <p class="card-text">タイムラインでは、「変更」でフレーム内のノートの変更が、「削除」でフレームの削除が可能です。</p>
+                <h6 class="card-text">7. 出力する</h6>
+                <img src="https://user-images.githubusercontent.com/58391224/104623917-38bf8e00-56d6-11eb-8014-351edfc11324.jpg">
+                <p class="card-text"></p>
+                <p class="card-text">全ての入力が完了、または途中までの結果を確認したい場合は、「出力」を押します。</p>
+                <p class="card-text">自動的に譜面コード（ノートをデータ化したもの）をクリップボードにコピーします。</p>
+                <p class="card-text">これで、シミュレーターに読み込ませる準備が完了しました。</p>
+                <h6 class="card-text">8. ファイルに保存する</h6>
+                <p class="card-text">クリップボードにコピーされた譜面データをテキストファイルに保存しておくと、後からエディターの「読み込み」機能で再開することが可能です。</p>
+                <p class="card-text">必要に応じてメモ帳に貼り付け、任意の名前で保存してください。</p>
+            </div>
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-text">Simulatorの使い方</h5>
+                <h6 class="card-text">1. 譜面コードを読み込ませる</h6>
+                <p class="card-text">譜面データ欄に譜面コードを貼り付けます。</p>
+                <p class="card-text">曲を再生せずにそのまま再生する場合は、「ノートのみを再生」を押します。</p>
+                <h6 class="card-text">2. 動画IDを設定する</h6>
+                <p class="card-text">動画ID欄に動画IDを貼り付けます。</p>
+                <p class="card-text">動画IDは、Editorと同一のものを使用可能です。</p>
+                <p class="card-text">「曲とノートを再生」をクリックすると、動画の読み込み完了後にノートの再生が開始されます。</p>
+            </div>
+        </div>
+        <div class="card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-text">ノートの仕様について</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ホールドノートは、始点と終点を最短距離で結びます。そのため、<span class="alert-warning">180度以上回る場合には、複数回に分けて入力</span>してください。</li>
+                    <li class="list-group-item">同一のホールドノートの始点と終点、例えば、ホールドAの終点とホールドAの始点は、同一の時間に配置できません。<span class="alert-warning">続けてホールドを配置する場合は、他のホールドに切り替えて</span>ください。</li>
+                </ul>
+            </div>
+        </div>
     </div>
+    <nav class="navbar navbar-secondary bg-secondary text-white">
+        <p class="m-2">最終更新日: 2021-01-16</p>
+    </nav>
 </body>
 </html>
