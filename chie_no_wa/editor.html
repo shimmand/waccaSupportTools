@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>CHIE-NO-WA Editor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
@@ -781,7 +781,7 @@
                     let delimiterCount = String(note.value).match(/-/g).length;
 
                     if (delimiterCount == 2 || delimiterCount == 3){
-                        let noteId = String(note.value).match(/[^-]+-[^-]+/g);
+                        let noteId = String(note.value).match(/[^-]+-{1,2}[^-]+/g);
                         let noteRotate = String(note.value).replace(`${noteId}-`, '');
                         target.setAttribute('href', `#${noteId}`);
                         target.setAttribute('transform', `rotate(${noteRotate})`);
@@ -1032,7 +1032,7 @@
 
                     values.forEach(function(val, ind){
                         if (ind < 5 && val != ''){
-                            let noteId = String(val).match(/[^-]+-[^-]+/g);
+                            let noteId = String(val).match(/[^-]+-{1,2}[^-]+/g);
                             let noteRotate = String(val).replace(`${noteId}-`, '');
 
                             tmp += `
@@ -1337,7 +1337,7 @@
                             タッチ (Q)
                         </label>
                     
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-s" autocomplete="off" disabled>
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-s" autocomplete="off">
                         <label class="btn btn-outline-secondary" for="btn-hold-s" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1346,7 +1346,7 @@
                             ホールド開始 (W)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-v" autocomplete="off" disabled>
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-v" autocomplete="off">
                         <label class="btn btn-outline-secondary" for="btn-hold-v" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
@@ -1354,7 +1354,7 @@
                             ホールド経由 (E)
                         </label>
 
-                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-e" autocomplete="off" disabled>
+                        <input name="btn-note" type="radio" class="btn-check" id="btn-hold-e" autocomplete="off">
                         <label class="btn btn-outline-secondary" for="btn-hold-e" onclick="updatePreviewTemp();">
                             <svg class="icon" viewBox="-32 -16 64 128" width="10" height="20">
                                 <rect x="-32" y="32" width="64" height="32" fill="olive" />
