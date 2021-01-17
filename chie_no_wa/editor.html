@@ -626,8 +626,6 @@
             let begin = document.getElementById('ipt-play-begin');
             before = begin.value;
             after =  Number(Number(begin.value) + operand);
-            if (after > 180) after = Number(Number(after) - 360);
-            if (after < -180) after = Number(Number(after) + 360);
             if (Number.isNaN(after)) after = 0;
             begin.value = Number(after);
             updatePreviewTemp();
@@ -638,8 +636,6 @@
             let dur = document.getElementById('ipt-play-dur');
             before = dur.value;
             after =  Number(Number(dur.value) + operand);
-            if (after > 180) after = Number(Number(after) - 360);
-            if (after < -180) after = Number(Number(after) + 360);
             if (Number.isNaN(after)) after = 0;
             dur.value = Number(after);
             updatePreviewTemp();
