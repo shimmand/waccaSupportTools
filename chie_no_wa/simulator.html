@@ -58,10 +58,45 @@
                 };
     
             };
-    
-            function loadNotesWithVideo(){
-                let videoId = document.getElementById('ipt-vid-url').value;
-                player.loadVideoById(videoId, 0, "small");
+
+            function playVideo(){
+                let url = document.getElementById('ipt-play-url').value;
+                let start = document.getElementById('ipt-play-begin').value;
+                let end = Number(start) + Number(document.getElementById('ipt-play-dur').value);
+
+                player.loadVideoById({'videoId': url,
+                'startSeconds': start,
+                'endSeconds': end,
+                'suggestedQuality': 'small'});
+            };
+
+            function reloadFrame(){
+                var frame_id = 'ifr-player';
+                if(window.document.getElementById(frame_id).location ) {  
+                    window.document.getElementById(frame_id).location.reload(true);
+                } else if (window.document.getElementById(frame_id).contentWindow.location ) {
+                    window.document.getElementById(frame_id).contentWindow.location.reload(true);
+                } else if (window.document.getElementById(frame_id).src){
+                    window.document.getElementById(frame_id).src = window.document.getElementById(frame_id).src;
+                };
+            }
+
+            function adjustPlayBegin(operand){
+                let begin = document.getElementById('ipt-play-begin');
+                before = begin.value;
+                after =  Number(Number(begin.value) + operand);
+                if (Number.isNaN(after)) after = 0;
+                begin.value = Number(after);
+                updatePreviewTemp();
+            };
+
+            function adjustPlayDur(operand){
+                let dur = document.getElementById('ipt-play-dur');
+                before = dur.value;
+                after =  Number(Number(dur.value) + operand);
+                if (Number.isNaN(after)) after = 0;
+                dur.value = Number(after);
+                updatePreviewTemp();
             };
         </script>
     </head>
@@ -82,9 +117,30 @@
             <div class="btn-group btn-group-sm p-1" role="group">
                 <div class="input-group input-group-sm">
                     <span class="input-group-text">YouTube動画ID</span>
-                    <input id="ipt-vid-url" type="text" class="form-control" placeholder="動画ID" value="">
-                    <button class="btn btn-outline-secondary" type="button" onclick="loadNotesWithVideo();">曲とノートを再生</button>
-                    <button class="btn btn-outline-danger" type="button" onclick="stopVideo();">停止</button>
+                    <input id="ipt-play-url" type="text" class="form-control" placeholder="動画ID" value="">
+                </div>
+            </div>
+            <div class="btn-group btn-group-sm p-1" role="group">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text">再生開始</span>
+                    <input id="ipt-play-begin" type="text" class="form-control" placeholder="" value="0">
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-5)">-5</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-1)">-1</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+1)">+1</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+5)">+5</button>
+                </div>
+            </div>
+            <div class="btn-group btn-group-sm p-1" role="group">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text">再生時間</span>
+                    <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-5)">-5</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-1)">-1</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+1)">+1</button>
+                    <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+5)">+5</button>
+                    <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
+                    <button id="btn-play" class="btn btn-outline-secondary" type="button" onclick="playVideo();">曲とノートを再生</button>
+                    <button class="btn btn-outline-danger" type="button" onclick="stopVideo();">動画を停止</button>
                 </div>
             </div>
             <hr>
