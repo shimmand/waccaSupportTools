@@ -59,7 +59,6 @@
         tbody {
             display: block;
             overflow-y: scroll;
-            height: 200px;
         }
 
         .number {
@@ -1332,6 +1331,23 @@
 
             return returnval;
 
+        };
+
+        function adjustTimelineHeightByInput(){
+            let height = document.getElementById('ipt-timeline-height');
+            let table = document.getElementById('tbl-notes');
+            after = height.value;
+            table.setAttribute('style', `height: ${after}`);
+        };
+
+        function adjustTimelineHeight(operand){
+            let height = document.getElementById('ipt-timeline-height');
+            let table = document.getElementById('tbl-notes');
+            after = Number(height.value) + Number(operand);
+            if (after < 200) after = 200;
+            if (Number.isNaN(after)) after = 200;
+            height.value = after;
+            table.setAttribute('style', `height: ${after}`);
         };
 
         // 再読み込みの確認
@@ -7203,8 +7219,17 @@
                         
                     </div>
                 </div>
-                <div class="col-5">
-                    <h5 id="input">タイムライン</h5>
+                <div class="col-6">
+                    <h5 id="input">
+                        タイムライン
+                        <div class="btn-group btn-group-sm ps-2 w-50" role="group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text">表示の高さ[px]</span>
+                                <input id="ipt-timeline-height" type="text" class="form-control" placeholder="" value="200" onchange="adjustTimelineHeightByInput();">
+                                <button class="btn btn-outline-secondary" type="button" onclick="adjustTimelineHeight(+100);">+100</button>
+                            </div>
+                        </div>
+                    </h5>
                     <table class="table">
                         <thead>
                             <tr>
@@ -7214,11 +7239,11 @@
                                 <th class="button"></th>
                             </tr>
                         </thead>
-                        <tbody id="tbl-notes">
+                        <tbody id="tbl-notes" style="height: 200px;">
                         </tbody>
                     </table>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <h5 id="input">動画</h5>
                     <div id="player"></div>
 
@@ -7258,7 +7283,7 @@
                     </script>
 
                     <div class="input-group input-group-sm">
-                        <span class="input-group-text">※ 動画を一度再生するまではエラーが表示されますが、異常ではありません。</span>
+                        <span class="input-group-text">※ 一度再生するまではエラーが表示されますが、異常ではありません。</span>
                     </div>
                 </div>
             </div>
