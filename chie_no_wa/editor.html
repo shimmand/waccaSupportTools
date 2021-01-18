@@ -1496,6 +1496,15 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
+                            <span class="input-group-text">時間移動</span>
+                            <button id="btn-seek-dl" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.1);">-0.1 (←)</button>
+                            <button id="btn-seek-ds" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.001);">-0.001 (↓)</button>
+                            <button id="btn-seek-is" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.001);">+0.001 (↑)</button>
+                            <button id="btn-seek-il" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.1);">+0.1 (→)</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
                             <span class="input-group-text">移動方向(-で切り替え)</span>
                             <input name="btn-seek-dir" type="radio" class="btn-check" id="btn-seek-back" autocomplete="off" onclick="switchSeekButton('backward')">
                             <label class="btn btn-outline-secondary" for="btn-seek-back">戻る</label>
@@ -1526,15 +1535,6 @@
                             <button id="btn-seek-24" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 24);">+24分 (8)</button>
                             <button id="btn-seek-7" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 7);">+7分 (9)</button>
                             <button id="btn-seek-14" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 14);">+14分 (0)</button>
-                        </div>
-                    </div>
-                    <div class="btn-group btn-group-sm p-1" role="group">
-                        <div class="input-group input-group-sm">
-                            <span class="input-group-text">時間移動</span>
-                            <button id="btn-seek-dl" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.1);">-0.1 (←)</button>
-                            <button id="btn-seek-ds" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(-0.001);">-0.001 (↓)</button>
-                            <button id="btn-seek-is" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.001);">+0.001 (↑)</button>
-                            <button id="btn-seek-il" class="btn btn-outline-secondary" type="button" onclick="seekTimeDetail(+0.1);">+0.1 (→)</button>
                         </div>
                     </div>
                 </div>
