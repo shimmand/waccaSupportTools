@@ -521,11 +521,16 @@
 
             return returnValue;
         };
-
+        
         function updateFrame(index){
             let row =  document.querySelectorAll('tr')[index];
             let value = row.querySelector('.value');
             value.innerHTML = getTimelineHtmlUpdate();
+            
+            let button = row.querySelector('.button .btn-sm');
+            let time = document.getElementById('ipt-time').value;
+            let notesCode = getNotesCode();
+            button.setAttribute('onclick', `jumpTime('${time}', '${notesCode}')`);
         };
 
         function applyInserts(){
@@ -1003,7 +1008,7 @@
                 </svg>`
             };
             let time = document.getElementById('ipt-time').value;
-            let notesCode = getNotesCode()
+            let notesCode = getNotesCode();
 
             returnValue = `
                 <tr id="tr-note-${nextNumber}">
@@ -1041,11 +1046,25 @@
                 </svg>`
             };
             
-            if (String(returnValue).match(/hold/g)){
+            if (String(returnValue).match(/holds/g)){
                 noteIconHtml += `
                 <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
                     <rect x="-32" y="32" width="64" height="32" fill="olive" />
                     <rect x="-24" y="-64" width="48" height="96" fill="orange" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/holdv/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="olive" />
+                </svg>`
+            };
+
+            if (String(returnValue).match(/holde/g)){
+                noteIconHtml += `
+                <svg class="icon" viewBox="-32 -64 64 128" width="10" height="20">
+                    <rect x="-32" y="32" width="64" height="32" fill="olive" />
                 </svg>`
             };
 
@@ -1091,7 +1110,7 @@
                 </svg>`
             };
             let time = document.getElementById('ipt-time').value;
-            let notesCode = getNotesCode()
+            let notesCode = getNotesCode();
 
             returnValue = `${noteIconHtml} ${returnValue}`;
 
@@ -1407,7 +1426,7 @@
 <body>
     <div class="container-fluid m-2">
         <h5>
-            CHIE-NO-WA Editor (beta v0.52)
+            CHIE-NO-WA Editor (beta v0.52.1)
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('simulator.html')">Simulator</button>
         </h5>
