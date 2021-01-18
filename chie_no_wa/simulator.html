@@ -103,16 +103,14 @@
     <body>
         <div class="container-fluid m-2">
             <h5>
-                CHIE-NO-WA Simulator (beta v0.52)
+                CHIE-NO-WA Simulator (beta v0.52.1)
                 <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
                 <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('editor.html')">Editor</button>
             </h5>
-            <div class="btn-group btn-group-sm p-1" role="group">
-                <div class="input-group input-group-sm">
-                    <span class="input-group-text">譜面データ</span>
-                    <textarea id="ipt-import" type="text" class="form-control" rows="1" placeholder="譜面コード" value="" onclick="this.select();"></textarea>
-                    <button class="btn btn-outline-secondary" type="button" onclick="loadNotes();">ノートのみを再生</button>
-                </div>
+            <div class="input-group input-group-sm p-1">
+                <span class="input-group-text">譜面データ</span>
+                <textarea id="ipt-import" type="text" class="form-control" rows="1" placeholder="譜面コード" value="" onclick="this.select();"></textarea>
+                <button class="btn btn-outline-secondary" type="button" onclick="loadNotes();">ノートのみを再生</button>
             </div>
             <div class="btn-group btn-group-sm p-1" role="group">
                 <div class="input-group input-group-sm">
