@@ -1311,6 +1311,13 @@
             const interval = 0.015;
             let timeDif = Number(endTime) - Number(beginTime);
             let rotateDif = Number(endRotate) - Number(beginRotate);
+            if (Number(endRotate) < 0 && Number(beginRotate) > 0){
+                rotateDif = Number(endRotate) - Number(beginRotate) + 360;
+            };
+            if (Number(endRotate) > 0 && Number(beginRotate) < 0){
+                rotateDif = Number(endRotate) - Number(beginRotate) - 360;
+            };
+
             let widthDif = Number(endWidth) - Number(beginWidth);
             let step = Number(Math.floor(timeDif / interval));
             let dur = Number(document.getElementById('ipt-duration').value)
