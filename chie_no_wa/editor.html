@@ -85,114 +85,15 @@
     <script>
         // キーボードショートカットの判定
         document.addEventListener('keydown', event => {
-            if (event.code !== 'Tab') {
+            var active = document.activeElement;
+            if (active.tagName == 'INPUT' || active.tagName == 'TEXTAREA' || event.code === 'Tab') {
+                return false
+            } else {
                 event.preventDefault();
             };
 
-            var active = document.activeElement;
             var before = '';
             var after = '';
-
-            if (active.tagName == 'INPUT') {
-                if (active.id == 'ipt-bpm'){
-                    if (event.key === 'ArrowDown') {
-                        active.value = Number(active.value) - 1;
-                    };
-                    
-                    if (event.key === 'ArrowUp') {
-                        active.value = Number(active.value) + 1;
-                    };
-
-                    if (event.key === 'ArrowLeft') {
-                        active.value = Number(active.value) - 5;
-
-                    };
-
-                    if (event.key === 'ArrowRight') {
-                        active.value = Number(active.value) + 5;
-                    };
-
-                    getBeatDuration();
-                };
-                if (active.id == 'ipt-beat'){
-                    if (event.key === 'ArrowDown') {
-                        active.value = Number(active.value) - 1;
-                    };
-                    
-                    if (event.key === 'ArrowUp') {
-                        active.value = Number(active.value) + 1;
-                    };
-
-                    if (event.key === 'ArrowLeft') {
-                        active.value = Number(active.value) - 5;
-                    };
-
-                    if (event.key === 'ArrowRight') {
-                        active.value = Number(active.value) + 5;
-                    };
-
-                    getBeatDuration();
-                };
-
-                if (active.id == 'ipt-offset'){
-                    if (event.key === 'ArrowDown') {
-                        active.value = Number(active.value.match(/[0-9.-]+/g)) - 0.001;
-                    };
-                    
-                    if (event.key === 'ArrowUp') {
-                        active.value = Number(active.value.match(/[0-9.-]+/g)) + 0.001;
-                    };
-
-                    if (event.key === 'ArrowLeft') {
-                        active.value = Number(active.value.match(/[0-9.-]+/g)) - 0.1;
-                    };
-
-                    if (event.key === 'ArrowRight') {
-                        active.value = Number(active.value.match(/[0-9.-]+/g)) + 0.1;
-                    };
-
-                    active.value = Number(active.value).toFixed(3)
-
-                };
-
-                if (active.id == 'ipt-play-begin'){
-                    if (event.key === 'ArrowDown') {
-                        active.value = Number(active.value) - 1;
-                    };
-                    
-                    if (event.key === 'ArrowUp') {
-                        active.value = Number(active.value) + 1;
-                    };
-
-                    if (event.key === 'ArrowLeft') {
-                        active.value = Number(active.value) - 5;
-                    };
-
-                    if (event.key === 'ArrowRight') {
-                        active.value = Number(active.value) + 5;
-                    };
-                };
-
-                if (active.id == 'ipt-play-dur'){
-                    if (event.key === 'ArrowDown') {
-                        active.value = Number(active.value) - 1;
-                    };
-                    
-                    if (event.key === 'ArrowUp') {
-                        active.value = Number(active.value) + 1;
-                    };
-
-                    if (event.key === 'ArrowLeft') {
-                        active.value = Number(active.value) - 5;
-                    };
-
-                    if (event.key === 'ArrowRight') {
-                        active.value = Number(active.value) + 5;
-                    };
-                };
-
-                return false;
-            };
 
             if (event.code === 'KeyQ' && !event.ctrlKey) {
                 document.getElementById('btn-touch').click();
@@ -1442,7 +1343,6 @@
             <span class="input-group-text">譜面データ</span>
             <textarea id="ipt-note-data" type="text" class="form-control" rows="1" placeholder="" value="" onclick="this.select();"></textarea>
             <button class="btn btn-outline-danger" type="button" onclick="javascript:document.getElementById('ipt-note-data').value = '';">削除</button>
-            <span class="input-group-text">※ 譜面データはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。</span>
         </div>
         <hr>
         <div class="row">
@@ -1527,7 +1427,6 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">※ 動画URLはCtrl+Vで貼り付けられません｡ コンテキストメニューから貼り付けてください。</span>
                             <span class="input-group-text">※ 数値を変更する入力欄では、フォーカス中、方向キーで値を変更できます。</span>
                         </div>
                     </div>
