@@ -233,31 +233,36 @@
             };
 
             if (event.code === 'Digit4') {
-                seekTime(4, 3);
+                seekTime(4, 32);
                 document.getElementById('btn-seek-3').focus();
             };
 
             if (event.code === 'Digit5') {
+                seekTime(4, 3);
+                document.getElementById('btn-seek-3').focus();
+            };
+
+            if (event.code === 'Digit6') {
                 seekTime(4, 6);
                 document.getElementById('btn-seek-6').focus();
             };
 
-            if (event.code === 'Digit6') {
+            if (event.code === 'Digit7') {
                 seekTime(4, 12);
                 document.getElementById('btn-seek-12').focus();
             };
 
-            if (event.code === 'Digit7') {
+            if (event.code === 'Digit8') {
                 seekTime(4, 24);
                 document.getElementById('btn-seek-24').focus();
             };
 
-            if (event.code === 'Digit8') {
+            if (event.code === 'Digit9') {
                 seekTime(4, 7);
                 document.getElementById('btn-seek-7').focus();
             };
 
-            if (event.code === 'Digit9') {
+            if (event.code === 'Digit0') {
                 seekTime(4, 14);
                 document.getElementById('btn-seek-14').focus();
             };
@@ -1504,21 +1509,23 @@
                             <button id="btn-seek-4" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 4);" style="display: none">-4分 (1)</button>
                             <button id="btn-seek-8" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 8);" style="display: none">-8分 (2)</button>
                             <button id="btn-seek-16" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 16);" style="display: none">-16分 (3)</button>
-                            <button id="btn-seek-3" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 3);" style="display: none">-3分 (4)</button>
-                            <button id="btn-seek-6" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 6);" style="display: none">-6分 (5)</button>
-                            <button id="btn-seek-12" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 12);" style="display: none">-12分 (6)</button>
-                            <button id="btn-seek-24" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 24);" style="display: none">-24分 (7)</button>
-                            <button id="btn-seek-7" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 7);" style="display: none">-7分 (8)</button>
-                            <button id="btn-seek-14" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 14);" style="display: none">-14分 (9)</button>
+                            <button id="btn-seek-16" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 32);" style="display: none">-32分 (4)</button>
+                            <button id="btn-seek-3" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 3);" style="display: none">-3分 (5)</button>
+                            <button id="btn-seek-6" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 6);" style="display: none">-6分 (6)</button>
+                            <button id="btn-seek-12" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 12);" style="display: none">-12分 (7)</button>
+                            <button id="btn-seek-24" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 24);" style="display: none">-24分 (8)</button>
+                            <button id="btn-seek-7" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 7);" style="display: none">-7分 (9)</button>
+                            <button id="btn-seek-14" class="btn btn-outline-danger backward" type="button" onclick="seekTime(4, 14);" style="display: none">-14分 (0)</button>
                             <button id="btn-seek-4" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 4);">+4分 (1)</button>
                             <button id="btn-seek-8" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 8);">+8分 (2)</button>
                             <button id="btn-seek-16" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 16);">+16分 (3)</button>
-                            <button id="btn-seek-3" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 3);">+3分 (4)</button>
-                            <button id="btn-seek-6" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 6);">+6分 (5)</button>
-                            <button id="btn-seek-12" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 12);">+12分 (6)</button>
-                            <button id="btn-seek-24" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 24);">+24分 (7)</button>
-                            <button id="btn-seek-7" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 7);">+7分 (8)</button>
-                            <button id="btn-seek-14" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 14);">+14分 (9)</button>
+                            <button id="btn-seek-16" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 32);">+32分 (4)</button>
+                            <button id="btn-seek-3" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 3);">+3分 (5)</button>
+                            <button id="btn-seek-6" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 6);">+6分 (6)</button>
+                            <button id="btn-seek-12" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 12);">+12分 (7)</button>
+                            <button id="btn-seek-24" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 24);">+24分 (8)</button>
+                            <button id="btn-seek-7" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 7);">+7分 (9)</button>
+                            <button id="btn-seek-14" class="btn btn-outline-secondary forward" type="button" onclick="seekTime(4, 14);">+14分 (0)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
