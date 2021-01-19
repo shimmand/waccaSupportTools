@@ -1363,12 +1363,38 @@
         function getHoldHtml(beginTime, beginWidth, beginRotate, endTime, endWidth, endRotate){
             const interval = 0.015;
             let timeDif = Number(endTime) - Number(beginTime);
-            let rotateDif = Number(endRotate) - Number(beginRotate);
-            if (Number(endRotate) < 0 && Number(beginRotate) > 0){
-                rotateDif = Number(endRotate) - Number(beginRotate) + 360;
+            let rotateDif = 0;
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) >= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
             };
-            if (Number(endRotate) > 0 && Number(beginRotate) < 0){
-                rotateDif = Number(endRotate) - Number(beginRotate) - 360;
+            
+            if (Number(beginRotate) <= 0 && Number(endRotate) <= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) <= 0 ){
+                if ((Number(beginRotate) + 180) <= (Number(endRotate) + 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) + 360) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) <= 0 && Number(endRotate) >= 0 ){
+                if ((Number(beginRotate) - 180) >= (Number(endRotate) - 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) - 360) - Number(beginRotate);
+                };
             };
 
             let widthDif = Number(endWidth) - Number(beginWidth);
