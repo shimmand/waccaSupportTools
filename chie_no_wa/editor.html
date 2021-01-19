@@ -1325,7 +1325,7 @@
 
             for (let i = 1; i < step; i++){
                 let time = Number(Number(beginTime) + (Number(i) * Number(interval)) - Number(dur)).toFixed(3);
-                let rotate = Number(Number(beginRotate) + Number(i) * Number(rotateDif) / Number(step)).toFixed(0);
+                let rotate = Number(Number(beginRotate) + Number(i) * Number(rotateDif) / Number(step)).toFixed(3);
                 let width = Number(Number(beginWidth) + Number(i) * Number(widthDif) / Number(step)).toFixed(0);
 
                 returnval += `
