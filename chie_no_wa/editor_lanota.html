@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>CHIE-NO-WA Editor</title>
+    <title>CHIE-NO-WA Editor: Lanota Edition</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
         html {
@@ -1363,12 +1363,38 @@
         function getHoldHtml(beginTime, beginWidth, beginRotate, endTime, endWidth, endRotate){
             const interval = 0.015;
             let timeDif = Number(endTime) - Number(beginTime);
-            let rotateDif = Number(endRotate) - Number(beginRotate);
-            if (Number(endRotate) < 0 && Number(beginRotate) > 0){
-                rotateDif = Number(endRotate) - Number(beginRotate) + 360;
+            let rotateDif = 0;
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) >= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
             };
-            if (Number(endRotate) > 0 && Number(beginRotate) < 0){
-                rotateDif = Number(endRotate) - Number(beginRotate) - 360;
+            
+            if (Number(beginRotate) <= 0 && Number(endRotate) <= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) <= 0 ){
+                if ((Number(beginRotate) + 180) <= (Number(endRotate) + 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) + 360) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) <= 0 && Number(endRotate) >= 0 ){
+                if ((Number(beginRotate) - 180) >= (Number(endRotate) - 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) - 360) - Number(beginRotate);
+                };
             };
 
             let widthDif = Number(endWidth) - Number(beginWidth);
