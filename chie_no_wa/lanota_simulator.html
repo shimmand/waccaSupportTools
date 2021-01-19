@@ -1,0 +1,426 @@
+<html>
+<head>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>CHIE-NO-WA Simulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <style>
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        svg {
+            width: 100%;
+            position: absolute;
+        }
+        
+        .combo {
+            text-anchor: middle;
+            dominant-baseline: central;
+            background-color: #aaa;
+            font-feature-settings: palt;
+            font-variant-numeric: oldstyle-nums;
+            -moz-font-feature-settings: onum;
+            -webkit-font-feature-settings: onum;
+            font-feature-settings: onum;
+        }
+        
+        .score {
+            font-family: Avenir Next;
+            dominant-baseline: central;
+            background-color: #aaa;
+            font-feature-settings: palt;
+            font-variant-numeric: oldstyle-nums;
+            -moz-font-feature-settings: onum;
+            -webkit-font-feature-settings: onum;
+            font-feature-settings: onum;
+        }
+
+    </style>
+        <script>
+            function loadNotes(){
+                if (document.querySelector('.note') != null){
+                    document.querySelectorAll('.note').forEach(function(e){
+                        e.remove();
+                    });
+                };
+    
+                const noteCode = document.getElementById('ipt-import').value;
+                document.getElementById('plate').insertAdjacentHTML('afterend', noteCode);
+            };
+    
+            function stopNotes(){
+                if (document.querySelector('.note') != null){
+                    document.querySelectorAll('.note').forEach(function(e){
+                        e.querySelector('animate').setAttribute('dur', '0s');
+                    });
+                };
+    
+            };
+
+            function playVideo(){
+                let url = document.getElementById('ipt-play-url').value;
+                let start = document.getElementById('ipt-play-begin').value;
+                let end = Number(start) + Number(document.getElementById('ipt-play-dur').value);
+
+                player.loadVideoById({'videoId': url,
+                'startSeconds': start,
+                'endSeconds': end,
+                'suggestedQuality': 'small'});
+            };
+
+            function reloadFrame(){
+                var frame_id = 'ifr-player';
+                if(window.document.getElementById(frame_id).location ) {  
+                    window.document.getElementById(frame_id).location.reload(true);
+                } else if (window.document.getElementById(frame_id).contentWindow.location ) {
+                    window.document.getElementById(frame_id).contentWindow.location.reload(true);
+                } else if (window.document.getElementById(frame_id).src){
+                    window.document.getElementById(frame_id).src = window.document.getElementById(frame_id).src;
+                };
+            }
+
+            function adjustPlayBegin(operand){
+                let begin = document.getElementById('ipt-play-begin');
+                before = begin.value;
+                after =  Number(Number(begin.value) + operand);
+                if (Number.isNaN(after)) after = 0;
+                begin.value = Number(after);
+                updatePreviewTemp();
+            };
+
+            function adjustPlayDur(operand){
+                let dur = document.getElementById('ipt-play-dur');
+                before = dur.value;
+                after =  Number(Number(dur.value) + operand);
+                if (Number.isNaN(after)) after = 0;
+                dur.value = Number(after);
+                updatePreviewTemp();
+            };
+        </script>
+    </head>
+    <body>
+        <div class="container-fluid m-2">
+            <h5>
+                CHIE-NO-WA Simulator (beta v0.52.2)
+                <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
+                <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('editor.html')">Editor</button>
+            </h5>
+            <div class="row">
+                <div class="col-9">
+                    <div class="input-group input-group-sm p-1">
+                        <span class="input-group-text">譜面データ</span>
+                        <textarea id="ipt-import" type="text" class="form-control" rows="1" placeholder="譜面コード" value="" onclick="this.select();"></textarea>
+                        <button class="btn btn-outline-secondary" type="button" onclick="loadNotes();">ノートのみを再生</button>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">YouTube動画ID</span>
+                            <input id="ipt-play-url" type="text" class="form-control" placeholder="動画ID" value="">
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">再生開始</span>
+                            <input id="ipt-play-begin" type="text" class="form-control" placeholder="" value="0">
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-5)">-5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(-1)">-1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+1)">+1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayBegin(+5)">+5</button>
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-sm p-1" role="group">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">再生時間</span>
+                            <input id="ipt-play-dur" type="text" class="form-control" placeholder="" value="30">
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-5)">-5</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(-1)">-1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+1)">+1</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="adjustPlayDur(+5)">+5</button>
+                            <input type="checkbox" class="btn-check" id="btn-play-sync" autocomplete="off">
+                            <button id="btn-play" class="btn btn-outline-secondary" type="button" onclick="playVideo();">曲とノートを再生</button>
+                            <button class="btn btn-outline-danger" type="button" onclick="stopVideo();">動画を停止</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div id="player"></div>
+    
+                    <script>
+                        var tag = document.createElement('script');
+                
+                        tag.src = "https://www.youtube.com/iframe_api";
+                        var firstScriptTag = document.getElementsByTagName('script')[0];
+                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                
+                        var player;
+                        function onYouTubeIframeAPIReady() {
+                            player = new YT.Player('player', {
+                                height: '180',
+                                width: '320',
+                                videoId: '',
+                                events: {
+                                'onReady': onPlayerReady,
+                                'onStateChange': onPlayerStateChange
+                                }
+                            });
+                        };
+                
+                        function onPlayerReady(event) {
+                            event.target.playVideo();
+                        };
+                
+                        var done = false;
+                        function onPlayerStateChange(event) {
+                            if (event.data == YT.PlayerState.PLAYING && !done) {
+                                done = true;
+                            };
+
+                            loadNotes();
+                        };
+                        function stopVideo() {
+                            player.stopVideo();
+                        };
+                    </script>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="play-area">
+            <svg id="defs" viewBox="-320 -320 640 640" width="640" height="640">
+                <defs class="back">
+                    <!-- ノーツ以外の塗り色 -->
+                    <radialGradient id="dimmer-fill" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="dimgray"></stop>
+                        <stop offset="85%" stop-color="black"></stop>
+                    </radialGradient>
+                    <linearGradient id="judge-fill" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="yellow"></stop>
+                        <stop offset="50%" stop-color="turquoise"></stop>
+                        <stop offset="100%" stop-color="yellow"></stop>
+                    </linearGradient>
+
+                    <!-- 背景 -->
+                    <symbol id="bg" viewBox="-320 -320 640 640">
+                        <circle cx="0" cy="0" r="320" stroke="none" fill="url(#dimmer-fill)"></circle>
+                    </symbol>
+
+                    <!-- 判定ライン -->
+                    <symbol id="judge" viewBox="-320 -320 640 640">
+                        <circle cx="0" cy="0" r="300" stroke="url(#judge-fill)" stroke-width="16" fill="none"></circle>
+                        <circle cx="0" cy="0" r="300" stroke="black" stroke-width="8" stroke-opacity="0.25" fill="none"></circle>
+                    </symbol>
+
+                    <!-- ガイドラインの素材 -->
+                    <symbol id="guide-src" viewBox="-320 -320 640 640">
+                        <line x1="0" y1="-320" x2="0" y2="320" stroke="white" stroke-width="1" stroke-opacity="0.250"></line>
+                    </symbol>
+
+                    <!-- ガイドライン -->
+                    <symbol id="guide-a" viewBox="-320 -320 640 640">
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(0)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(6)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(12)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(18)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(24)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(30)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(36)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(42)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(48)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(54)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(60)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(66)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(72)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(78)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(84)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(90)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(96)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(102)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(108)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(114)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(120)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(126)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(132)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(138)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(144)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(150)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(156)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(162)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(168)"></use>
+                        <use x="-320" y="-320" href="#guide-src" transform="rotate(174)"></use>
+                    </symbol>
+
+                    <!-- 小節線 -->
+                    <symbol id="bar-line" viewBox="-320 -320 640 640">
+                        <circle cx="0" cy="0" r="300" stroke="white" stroke-width="4" stroke-opacity="0.250" fill="none"></circle>
+                    </symbol>
+
+                    <!-- 表示物 -->
+                    <symbol id="info" viewBox="-320 -320 640 640">
+                        <text class="combo" x="0" y="-40" font-family="Avenir Next" font-size="16px" font-weight="800" fill="white" stroke="url(#judge-fill)" stroke-width="1.5">COMBO </text>
+                        <text class="combo" x="0" y="-70" font-family="Avenir Next" font-size="40px" font-weight="600" fill="white" stroke="url(#judge-fill)" stroke-width="1.5">360 </text>
+                        <rect x="-150" y="-120" width="270" height="5" fill="gold"></rect>
+                        <rect x="-150" y="-120" width="300" height="5" stroke="url(#judge-fill)" stroke-width="2" fill="none"></rect>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-fill">
+                    <!-- 塗り色の定義 -->
+                    <linearGradient id="in-a-fill-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="white"></stop>
+                        <stop offset="100%" stop-color="firebrick"></stop>
+                    </linearGradient>
+                    <linearGradient id="in-a-fill-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="white"></stop>
+                        <stop offset="40%" stop-color="firebrick"></stop>
+                    </linearGradient>
+                    <linearGradient id="out-a-fill-1" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="white"></stop>
+                        <stop offset="100%" stop-color="dodgerblue"></stop>
+                    </linearGradient>
+                    <linearGradient id="out-a-fill-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="white"></stop>
+                        <stop offset="40%" stop-color="dodgerblue"></stop>
+                    </linearGradient>
+                    <linearGradient id="left-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="khaki"></stop>
+                        <stop offset="100%" stop-color="orange"></stop>
+                    </linearGradient>
+                    <linearGradient id="right-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="white"></stop>
+                        <stop offset="100%" stop-color="lime"></stop>
+                    </linearGradient>
+                </defs>
+
+                <defs class="notes-touch">
+                    <!-- タッチノーツの定義 -->
+                    <symbol id="touch-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="white" stroke-width="12" fill="none"></path>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-chain">
+                    <!-- タッチノーツの定義 -->
+                    <symbol id="chain-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="dodgerblue" stroke-width="12" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="darkgoldenrod" stroke-width="2" fill="none"></path>
+                        <path d="M 31,298 a 300 300 84 0 1 -62,0" stroke="darkgoldenrod" stroke-width="4" fill="none"></path>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-hold">
+                    <!-- ホールドノーツ端点の定義 -->
+                    <symbol id="hold-4" viewBox="-320 -320 640 640">
+                        <path d="M 16,300 a 300 300 87 0 1 -32,0" stroke="dodgerblue" stroke-width="12" fill="none"></path>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-holds">
+                    <!-- ホールドノーツ端点の定義 -->
+                    <symbol id="holds-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="dodgerblue" stroke-width="12" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="darkgoldenrod" stroke-width="2" fill="none"></path>
+                        <path d="M 31,298 a 300 300 84 0 1 -62,0" stroke="darkgoldenrod" stroke-width="4" fill="none"></path>
+                    </symbol>         
+                </defs>
+
+                <defs class="notes-holde">
+                    <!-- ホールドノーツ端点の定義 -->
+                    <symbol id="holde-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="dodgerblue" stroke-width="12" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="darkgoldenrod" stroke-width="2" fill="none"></path>
+                        <path d="M 31,298 a 300 300 84 0 1 -62,0" stroke="darkgoldenrod" stroke-width="4" fill="none"></path>
+                    </symbol>             
+                </defs>
+
+                <defs class="notes-in">
+                    <symbol id="in-a" viewBox="-320 -320 640 640">
+                        <g stroke-linejoin="miter" stroke-miterlimit="6" stroke="firebrick" stroke-width="2" transform="translate(0 16)">
+                            <polygon points="-15,275 0,240 15,275 15,290 0,255 -15,290" fill="url(#in-a-fill-2)"></polygon>
+                        </g>
+                    </symbol>
+                    <symbol id="in-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="tomato" stroke-width="12" fill="none"></path>
+                        <use transform="rotate(0)" x="-300" y="-300" width="600" height="600" href="#in-a"></use>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-out">
+                    <symbol id="out-a" viewBox="-320 -320 640 640">
+                        <g stroke-linejoin="miter" stroke-miterlimit="6" stroke="dodgerblue" stroke-width="2" transform="translate(0 16)">
+                            <polygon points="-15,240 0,275 15,240 15,255 0,290 -15,255" fill="url(#out-a-fill-2)"></polygon>
+                        </g>
+                    </symbol>
+                    <symbol id="out-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="mediumaquamarine" stroke-width="12" fill="none"></path>
+                        <use transform="rotate(0)" x="-300" y="-300" width="600" height="600" href="#out-a"></use>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-left">
+                    <symbol id="left-a-md" viewBox="-320 -320 640 640">
+                        <polygon points="15,263 0,275 15,287 0,287 -15,275 0,263" transform="rotate(0) translate(0 10)" stroke="orange" fill="url(#left-fill)" stroke-width="2"></polygon>
+                    </symbol>
+                    <symbol id="left-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="gold" stroke-width="12" fill="none"></path>
+                        <use transform="rotate(0)" x="-300" y="-300" width="600" height="600" href="#left-a-md"></use>
+                    </symbol>
+                </defs>
+
+                <defs class="notes-right">
+                    <symbol id="right-a-md" viewBox="-320 -320 640 640">
+                        <polygon points="0,263 15,275 0,287 -15,287 0,275 -15,263" transform="rotate(0) translate(0 10)" stroke="limegreen" fill="url(#right-fill)" stroke-width="2"></polygon>
+                    </symbol>
+                    <symbol id="right-4" viewBox="-320 -320 640 640">
+                        <path d="M 62,293 a 300 300 78 0 1 -124,0" stroke="darkgoldenrod" stroke-width="16" fill="none"></path>
+                        <path d="M 47,296 a 300 300 81 0 1 -94,0" stroke="greenyellow" stroke-width="12" fill="none"></path>
+                        <use transform="rotate(0)" x="-300" y="-300" width="600" height="600" href="#right-a-md"></use>
+                    </symbol>
+                </defs>
+            </svg>
+
+            <svg id="plate" viewBox="-320 -320 640 640" width="640" height="640">
+                <use x="-320" y="-320" width="640" height="640" href="#bg"></use>
+                <use x="-320" y="-320" width="640" height="640" href="#guide-a"></use>
+                <use x="-320" y="-320" width="640" height="640" href="#judge"></use>
+            </svg>
+            
+            <!-- 
+            <svg id="info" viewBox="-320 -320 640 640" width="640" height="640">
+                <path id="path-count" d="M -166,-238 a 290 290 235 0 1 166,-52" fill="none" stroke="black" stroke-width="0.001" />
+                <text font-family="Avenir Next" font-weight="600" font-size="16" fill="indigo" dy="-4">
+                    <textPath href="#path-count">
+                        1/1 <tspan font-weight="700" font-size="12">曲目</tspan>
+                    </textPath>
+                </text>
+                <path id="path-score" d="M -90,-276 a 290 290 252 0 1 180,0" fill="none" stroke="black" stroke-width="0.001" />
+                <text class="score" font-weight="600" font-size="20" fill="deeppink" dy="-4">
+                    <textPath href="#path-score">
+                        <tspan font-size="12" fill="indigo">SCORE</tspan><tspan dx="6">1000000</tspan>
+                    </textPath>
+                </text>
+                <path id="path-level" d="M 60,-284 a 290 290 282 0 1 230,284" fill="none" stroke="black" stroke-width="0.001" />
+                <text font-family="Avenir Next" font-weight="600" font-size="16" fill="deeppink" dy="-4">
+                    <textPath href="#path-level">
+                        <tspan font-size="12">E X P E R T / L V .</tspan>12+
+                    </textPath>
+                </text>
+                <path id="path-title" d="M 194,-216 a 290 290 312 0 1 -388,432" fill="none" stroke="black" stroke-width="0.001" />
+                <text font-family="Avenir Next" font-weight="bold" font-size="16" fill="indigo" dy="-4">
+                    <textPath href="#path-title">
+                        E x t r a  M o d e
+                    </textPath>
+                </text>                
+            </svg>
+            -->
+        </div>
+    </body>
+</html>
