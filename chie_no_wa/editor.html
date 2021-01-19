@@ -1171,9 +1171,39 @@
             result.select();
             document.execCommand('Copy');
             alert(`譜面データをコピーしました。
-譜面シミュレーターに貼り付けてください。
-また、必要に応じてテキストファイルへ保存してください。
-テキストファイルへ保存すると、そのデータを読み込んで再開することが可能です。`);
+シミュレーターに読み込ませてください。
+また、必要に応じてテキストファイルへ控えてください。
+控えたデータは、エディターで読み込むことが可能です。`);
+        };
+
+        function exportNotesDataSlim(){
+            let rows =  document.querySelectorAll('tr');
+            let data = [];
+            let result = document.getElementById('ipt-note-data');
+            let tmp = '';
+
+            for (i = rows.length - 1; i >= 0; i--){
+                let e = rows[i];
+                
+                if (i > 0){
+                    let dur = Number(document.getElementById('ipt-duration').value);
+                    let offset = Number(document.getElementById('ipt-offset').value);
+                    let name = Number(e.querySelector('.name').innerText).toFixed(3);
+                    let fixedName = Number(Number(e.querySelector('.name').innerText) - dur + offset).toFixed(3);
+                    let values = String(`${String(e.querySelector('.value').innerText).trim()}    `).split(' ');
+
+                    if (tmp != '') tmp += '\n'; 
+                    tmp += `<!--[${fixedName},${String(e.querySelector('.value').innerText).trim()},${dur}]-->`;
+                };
+            };
+
+            result.value = tmp;
+            result.select();
+            document.execCommand('Copy');
+            alert(`譜面データをコピーしました。
+必要に応じてテキストファイルへ控えてください。
+シミュレーターに読み込ませることはできませんが、
+控えたデータは、エディターで読み込むことが可能です。`);
         };
 
         function importNotesData(){
@@ -1424,6 +1454,7 @@
                             <span class="input-group-text">プロジェクト</span>
                             <button class="btn btn-outline-secondary" type="button" onclick="importNotesData()">読み込み</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="exportNotesData()">書き出し</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="exportNotesDataSlim()">書き出し(再開データのみ)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
@@ -1715,7 +1746,7 @@
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-text">※ コンソール最下部は0°､ 左回転がマイナス､ 右回転がプラスです｡</span>
+                            <span class="input-group-text">※ コンソール最下部は0°､ 左方向(右回転)がプラス､ 右方向(左回転)がマイナスです｡</span>
                         </div>
                     </div>
                 </div>
