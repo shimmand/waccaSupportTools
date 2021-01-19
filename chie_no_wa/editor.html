@@ -579,6 +579,17 @@
             updatePreviewTemp();
         };
 
+        function adjustRotateByInput(input){
+            let rotate = document.getElementById('ipt-rotate');
+            after =  input;
+            if (after > 180) after = Number(Number(after) - 360);
+            if (after < -180) after = Number(Number(after) + 360);
+            if (Number.isNaN(after)) after = 0;
+            rotate.value = Number(after);
+            pushHitsory(`角度: ${after}`);
+            updatePreviewTemp();
+        };
+
         // ノート角度の左右反転
         function adjustRotateFlip(){
             let rotate = document.getElementById('ipt-rotate');
@@ -612,9 +623,21 @@
             after =  Number(Number(width.value) + operand);
             if (after > 60) after = Number('60');
             if (after < 4) after = Number('4');
-            if (Number.isNaN(after)) after = 1;
+            if (Number.isNaN(after)) after = Number('4');
             width.value = after;
             pushHitsory(`幅: ${after} ← ${before}`);
+            updatePreviewTemp();
+        };
+
+        // ノート幅の変更
+        function adjustWidthByInput(number){
+            let width = document.getElementById('ipt-width');
+            after = number;
+            if (after > 60) after = Number('60');
+            if (after < 4) after = Number('4');
+            if (Number.isNaN(after)) after = Number('4');
+            width.value = after;
+            pushHitsory(`幅: ${after}`);
             updatePreviewTemp();
         };
 
@@ -1554,7 +1577,7 @@
                 <h5>配置</h5>
             </div>
             <div class="col-11">
-                <div class="input-group input-group-sm p-1">
+                <div class="input-group input-group-sm pt-1 ps-1 pe-1">
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <input name="btn-note" type="radio" class="btn-check" id="btn-touch" autocomplete="off" onclick="updatePreviewTemp();" checked>
                         <label class="btn btn-outline-secondary" for="btn-touch">
@@ -1628,6 +1651,8 @@
                             外スナップ (i)
                         </label>
                     </div>
+                </div>
+                <div class="input-group input-group-sm pb-1 ps-1 pe-1">
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">
@@ -1652,24 +1677,40 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">レーン幅</span>
-                            <input id="ipt-width" type="text" class="form-control" placeholder="0" value="4" onchange="this.value = Number(this.value).toFixed(0)">
-                            <button id="btn-width-dl" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-5);">→← -5 (A)</button>
-                            <button id="btn-width-ds" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-1);">→← -1 (S)</button>
-                            <button id="btn-width-is" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+1);">←→ +1 (D)</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+5);">←→ +5 (F)</button>
+                            <input id="ipt-width" type="text" class="form-control" placeholder="0" value="4" onchange="this.value = Number(this.value).toFixed(0);adjustWidthByInput(this.value);">
+                            <button id="btn-width-dl" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-5);">-5 (A)</button>
+                            <button id="btn-width-ds" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-1);">-1 (S)</button>
+                            <button id="btn-width-is" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+1);">+1 (D)</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+5);">+5 (F)</button>
+                            <span class="input-group-text">プリセット</span>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(4);">4</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(8);">8</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(15);">15</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(30);">30</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(45);">45</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(60);">60</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">角度</span>
-                            <input id="ipt-rotate" type="text" class="form-control" placeholder="0" value="0" onchange="this.value = Number(this.value).toFixed(0)">
-                            <button id="btn-rotate-dl" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(+30);">← 30° (J)</button>
-                            <button id="btn-rotate-ds" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(+6);">← 6° (K)</button>
+                            <input id="ipt-rotate" type="text" class="form-control" placeholder="0" value="0" onchange="this.value = Number(this.value).toFixed(0);adjustRotateByInput(this.value);">
+                            <button id="btn-rotate-dl" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(30);">← 30° (J)</button>
+                            <button id="btn-rotate-ds" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(6);">← 6° (K)</button>
                             <button id="btn-rotate-is" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(-6);">→ 6° (L)</button>
                             <button id="btn-rotate-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(-30);">→ 30° (:;)</button>
                             <button id="btn-rotate-fl" class="btn btn-outline-secondary" type="button" onclick="adjustRotateFlip();">左右反転 (,)</button>
-                            <button id="btn-rotate-ud" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(+180);">上下反転 (.)</button>
+                            <button id="btn-rotate-ud" class="btn btn-outline-secondary" type="button" onclick="adjustRotate(180);">上下反転 (.)</button>
                             <button id="btn-rotate-0" class="btn btn-outline-secondary" type="button" onclick="adjustRotate0();">0に戻す (/)</button>
+                            <span class="input-group-text">プリセット</span>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(180);">上</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(90);">左</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(0);">下</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(-90);">右</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(36);">レーンA</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(12);">レーンB</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(-12);">レーンC</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustRotateByInput(-36);">レーンD</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
