@@ -1425,7 +1425,7 @@
 <body>
     <div class="container-fluid m-2">
         <h5>
-            CHIE-NO-WA Editor (beta v0.52.2)
+            CHIE-NO-WA Editor: Lanota Edition (beta v0.52.2)
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('simulator.html')">Simulator</button>
         </h5>
@@ -1708,18 +1708,18 @@
                     <div class="btn-group btn-group-sm p-1" role="group">
                         <div class="input-group input-group-sm">
                             <span class="input-group-text">レーン幅</span>
-                            <input id="ipt-width" type="text" class="form-control" placeholder="0" value="4" onchange="this.value = Number(this.value).toFixed(0);adjustWidthByInput(this.value);">
-                            <button id="btn-width-dl" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-5);">-5 (A)</button>
-                            <button id="btn-width-ds" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-1);">-1 (S)</button>
-                            <button id="btn-width-is" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+1);">+1 (D)</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+5);">+5 (F)</button>
+                            <input id="ipt-width" type="text" class="form-control" placeholder="0" value="4" onchange="this.value = Number(this.value).toFixed(0);adjustWidthByInput(this.value);" disabled>
+                            <button id="btn-width-dl" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-5);" disabled>-5 (A)</button>
+                            <button id="btn-width-ds" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(-1);" disabled>-1 (S)</button>
+                            <button id="btn-width-is" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+1);" disabled>+1 (D)</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidth(+5);" disabled>+5 (F)</button>
                             <span class="input-group-text">プリセット</span>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(4);">4</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(8);">8</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(15);">15</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(30);">30</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(45);">45</button>
-                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(60);">60</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(4);" disabled>4</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(8);" disabled>8</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(15);" disabled>15</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(30);" disabled>30</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(45);" disabled>45</button>
+                            <button id="btn-width-il" class="btn btn-outline-secondary" type="button" onclick="adjustWidthByInput(60);" disabled>60</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
