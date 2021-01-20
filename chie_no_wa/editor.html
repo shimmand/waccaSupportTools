@@ -1155,11 +1155,17 @@
             <!--[${fixedName},${String(e.querySelector('.value').innerText).trim()},${dur}]-->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
-                    <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
+                    <use href="#${noteId}" transform="rotate(${noteRotate})" x="-320" y="-320" width="640" height="640"></use>
                 </symbol>
-                <use href="#${noteId}-${noteRotate}" x="-320" y="-320" width="640" height="640">
-                    <animate attributeName="transform" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
-                    values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                <use href="#${noteId}-${noteRotate}" x="0" y="0" width="0" height="0">
+                    <animate attributeName="x" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
+                    values="0;-12.8;-51.2;-115.2;-204.8;-320" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                    <animate attributeName="y" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
+                    values="0;-12.8;-51.2;-115.2;-204.8;-320" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                    <animate attributeName="width" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
+                    values="0;25.6;102.4;230.4;409.6;640;0" keyTimes="0;0.2;0.4;0.6;0.8;0.999;1" fill="freeze"/>
+                    <animate attributeName="height" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
+                    values="0;25.6;102.4;230.4;409.6;640;0" keyTimes="0;0.2;0.4;0.6;0.8;0.999;1" fill="freeze"/>
                 </use>
             </svg>`;
                         };
@@ -1411,11 +1417,17 @@
             <!-- hold -->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="hold-${width}-${rotate}" viewBox="-320 -320 640 640">
-                    <use href="#hold-${width}" transform="rotate(${rotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
+                    <use href="#hold-${width}" transform="rotate(${rotate})" x="-320" y="-320" width="640" height="640"></use>
                 </symbol>
-                <use href="#hold-${width}-${rotate}" x="-320" y="-320" width="640" height="640">
-                    <animate attributeName="transform" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
-                    values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                <use href="#hold-${width}-${rotate}" x="0" y="0" width="0" height="0">
+                    <animate attributeName="x" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
+                    values="0;-12.8;-51.2;-115.2;-204.8;-320" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                    <animate attributeName="y" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
+                    values="0;-12.8;-51.2;-115.2;-204.8;-320" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                    <animate attributeName="width" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
+                    values="0;25.6;102.4;230.4;409.6;640;0" keyTimes="0;0.2;0.4;0.6;0.8;0.999;1" fill="freeze"/>
+                    <animate attributeName="height" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
+                    values="0;25.6;102.4;230.4;409.6;640;0" keyTimes="0;0.2;0.4;0.6;0.8;0.999;1" fill="freeze"/>
                 </use>
             </svg>`
             };
@@ -1451,7 +1463,7 @@
 <body>
     <div class="container-fluid m-2">
         <h5>
-            CHIE-NO-WA Editor (beta v0.52.3)
+            CHIE-NO-WA Editor (beta v0.52.4)
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('entrance.html')">概要</button>
             <button class="btn btn-outline-secondary ms-2" type="button" onclick="javascript:window.open('simulator.html')">Simulator</button>
         </h5>
