@@ -1182,6 +1182,100 @@
 控えたデータは、エディターで読み込むことが可能です。`);
         };
 
+        function exportNotesDataSafari(){
+            let rows =  document.querySelectorAll('tr');
+            let data = [];
+            let result = document.getElementById('ipt-note-data');
+            let tmp = '';
+
+            for (i = rows.length - 1; i >= 0; i--){
+                let e = rows[i];
+                
+                if (i > 0){
+                    let dur = Number(document.getElementById('ipt-duration').value);
+                    let offset = Number(document.getElementById('ipt-offset').value);
+                    let name = Number(e.querySelector('.name').innerText).toFixed(3);
+                    let fixedName = Number(Number(e.querySelector('.name').innerText) - dur + offset).toFixed(3);
+                    let values = String(`${String(e.querySelector('.value').innerText).trim()}    `).split(' ');
+
+                    values.forEach(function(val, ind){
+                        if (ind < 5 && val != ''){
+                            let noteId = String(val).match(/[^-]+-{1,2}[^-]+/g);
+                            let noteRotate = String(val).replace(`${noteId}-`, '');
+                            let noteWidth = String(noteId).match(/[0-9]+/g);
+                            
+                            if (String(noteId).indexOf('holdea') != -1){
+                                let startArr = searchHoldStartFrame(Number(name).toFixed(3), 'a');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtmlSafari(startArr[1], startArr[2], startArr[3], Number(name), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holdeb') != -1){
+                                let startArr = searchHoldStartFrame(Number(name).toFixed(3), 'b');
+                                
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtmlSafari(startArr[1], startArr[2], startArr[3], Number(name), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holdec') != -1){
+                                let startArr = searchHoldStartFrame(Number(name).toFixed(3), 'c');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtmlSafari(startArr[1], startArr[2], startArr[3], Number(name), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holded') != -1){
+                                let startArr = searchHoldStartFrame(Number(name).toFixed(3), 'd');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtmlSafari(startArr[1], startArr[2], startArr[3], Number(name), noteWidth, noteRotate);
+                                };  
+                            };
+                            if (String(noteId).indexOf('holdee') != -1){
+                                let startArr = searchHoldStartFrame(Number(name).toFixed(3), 'e');
+
+                                if (startArr[0] != -1){
+                                    tmp += getHoldHtmlSafari(startArr[1], startArr[2], startArr[3], Number(name), noteWidth, noteRotate);
+                                };  
+                            };
+
+                            noteId = String(noteId).replace('holdsa', 'holds');
+                            noteId = String(noteId).replace('holdsb', 'holds');
+                            noteId = String(noteId).replace('holdsc', 'holds');
+                            noteId = String(noteId).replace('holdsd', 'holds');
+                            noteId = String(noteId).replace('holdse', 'holds');
+                            noteId = String(noteId).replace('holdea', 'holde');
+                            noteId = String(noteId).replace('holdeb', 'holde');
+                            noteId = String(noteId).replace('holdec', 'holde');
+                            noteId = String(noteId).replace('holded', 'holde');
+                            noteId = String(noteId).replace('holdee', 'holde');
+
+                            tmp += `
+            <!--[${fixedName},${String(e.querySelector('.value').innerText).trim()},${dur}]-->
+            <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
+                <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
+                    <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
+                </symbol>
+                <use href="#${noteId}-${noteRotate}" x="-320" y="-320" width="640" height="640">
+                    <animate attributeName="transform" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
+                    values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                </use>
+            </svg>`;
+                        };
+                    });    
+                };
+            };
+
+            result.value = tmp;
+            result.select();
+            document.execCommand('Copy');
+            alert(`譜面データをコピーしました。
+シミュレーターに読み込ませてください。
+また、必要に応じてテキストファイルへ控えてください。
+控えたデータは、エディターで読み込むことが可能です。`);
+        };
+
         function exportNotesDataSlim(){
             let rows =  document.querySelectorAll('tr');
             let data = [];
@@ -1436,6 +1530,70 @@
 
         };
 
+        function getHoldHtmlSafari(beginTime, beginWidth, beginRotate, endTime, endWidth, endRotate){
+            const interval = 0.015;
+            let timeDif = Number(endTime) - Number(beginTime);
+            let rotateDif = 0;
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) >= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
+            };
+            
+            if (Number(beginRotate) <= 0 && Number(endRotate) <= 0 ){
+                if (Number(beginRotate) >= Number(endRotate)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) >= 0 && Number(endRotate) <= 0 ){
+                if ((Number(beginRotate) + 180) <= (Number(endRotate) + 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) + 360) - Number(beginRotate);
+                };
+            };
+
+            if (Number(beginRotate) <= 0 && Number(endRotate) >= 0 ){
+                if ((Number(beginRotate) - 180) >= (Number(endRotate) - 360)){
+                    rotateDif = Number(endRotate) - Number(beginRotate);
+                } else {
+                    rotateDif = (Number(endRotate) - 360) - Number(beginRotate);
+                };
+            };
+
+            let widthDif = Number(endWidth) - Number(beginWidth);
+            let step = Number(Math.floor(timeDif / interval));
+            let dur = Number(document.getElementById('ipt-duration').value)
+            let returnval = '';
+
+            for (let i = 1; i < step; i++){
+                let time = Number(Number(beginTime) + (Number(i) * Number(interval)) - Number(dur)).toFixed(3);
+                let rotate = Number(Number(beginRotate) + Number(i) * Number(rotateDif) / Number(step)).toFixed(3);
+                let width = Number(Number(beginWidth) + Number(i) * Number(widthDif) / Number(step)).toFixed(0);
+
+                returnval += `
+            <!-- hold -->
+            <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
+                <symbol id="hold-${width}-${rotate}" viewBox="-320 -320 640 640">
+                    <use href="#hold-${width}" transform="rotate(${rotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
+                </symbol>
+                <use href="#hold-${width}-${rotate}" x="-320" y="-320" width="640" height="640">
+                    <animate attributeName="transform" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
+                    values="scale(0);scale(40);scale(160);scale(360);scale(640);scale(1000)" keyTimes="0;0.2;0.4;0.6;0.8;1"/>
+                </use>
+            </svg>`
+            };
+
+            return returnval;
+
+        };
+
         function adjustTimelineHeightByInput(){
             let height = document.getElementById('ipt-timeline-height');
             let table = document.getElementById('tbl-notes');
@@ -1492,7 +1650,8 @@
                             <span class="input-group-text">プロジェクト</span>
                             <button class="btn btn-outline-secondary" type="button" onclick="importNotesData()">読み込み</button>
                             <button class="btn btn-outline-secondary" type="button" onclick="exportNotesData()">書き出し</button>
-                            <button class="btn btn-outline-secondary" type="button" onclick="exportNotesDataSlim()">書き出し(再開データのみ)</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="exportNotesDataSafari()">書き出し(Safari用)</button>
+                            <button class="btn btn-outline-secondary" type="button" onclick="exportNotesDataSlim()">書き出し(保存/共有用)</button>
                         </div>
                     </div>
                     <div class="btn-group btn-group-sm p-1" role="group">
