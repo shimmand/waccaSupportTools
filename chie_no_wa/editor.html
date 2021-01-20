@@ -1155,7 +1155,7 @@
             <!--[${fixedName},${String(e.querySelector('.value').innerText).trim()},${dur}]-->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="${noteId}-${noteRotate}" viewBox="-320 -320 640 640">
-                    <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
+                    <use href="#${noteId}" transform="rotate(${noteRotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
                 </symbol>
                 <use href="#${noteId}-${noteRotate}" x="-320" y="-320" width="640" height="640">
                     <animate attributeName="transform" begin="${fixedName}s" begin-orig="${fixedName}s" dur="${dur}s" repeatCount="1"
@@ -1411,7 +1411,7 @@
             <!-- hold -->
             <svg class="note" viewBox="-320 -320 640 640" width="640" height="640">
                 <symbol id="hold-${width}-${rotate}" viewBox="-320 -320 640 640">
-                    <use href="#hold-${width}" transform="rotate(${rotate}) scale(0.001)" x="-320" y="-320" width="640" height="640">
+                    <use href="#hold-${width}" transform="rotate(${rotate}) scale(0.001)" x="-320" y="-320" width="640" height="640"></use>
                 </symbol>
                 <use href="#hold-${width}-${rotate}" x="-320" y="-320" width="640" height="640">
                     <animate attributeName="transform" begin="${time}s" begin-orig="${time}s" dur="${dur}s" repeatCount="1"
