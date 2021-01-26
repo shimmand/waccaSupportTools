@@ -33,6 +33,12 @@
     <div class="container-fluid m-2">
         <h2>WACCA 全国行脚地図</h2>
         <p class="py-2">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showVisitedPrefs.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
+        </div>
         <hr>
         <h5 class="p-2">概要</h5>
         <p>WACCAのマイページで閲覧できる情報を元に、全国行脚の達成状況を地図で表示できるツールです。</p>
@@ -45,7 +51,7 @@
         <p>WACCAのマイページへアクセス可能であること</p>
         <p>インターネットブラウザーのJavaScriptが有効であること</p>
         <h5 class="p-2">準備</h5>
-        <p>1. ページ下部のボタンをクリックし、ブックマークレットのコードをコピーします。</p>
+        <p>1. ページ上部の「ブックマークレットをコピー」をクリックし、ブックマークレットのコードをコピーします。</p>
         <p>2. このページをブックマークします。（名前の変更は任意）</p>
         <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
         <h5 class="p-2">使い方</h5>
@@ -55,13 +61,6 @@
         <p>Android系OSの場合: アドレスバーに [準備] で作成したブックマークの名前を入力し、表示された候補から「javascript〜」というものを選びタップします。名前の入力中にも候補が表示されるため、名前を完全に入力する必要はありません。</p>
         <div class="alert alert-primary">
             Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
-        </div>
-        <h5 class="p-2">ブックマークレット</h5>
-        <div class="form-group row m-2 mb-5">
-            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showVisitedPrefs.js'; import(path).then((obj) => obj.main())})();" readonly>
-            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
-                ブックマークレットをコピー
-            </button>
         </div>
     </div>
 </body>
