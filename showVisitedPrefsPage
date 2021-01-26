@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>WACCA 達成状況ビューアー</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script>
+        function copyToClipboard() {
+            var copyTarget = document.getElementById("copyTarget");
+            copyTarget.select();
+            document.execCommand("Copy");
+            alert("コピーしました");
+        };
+    </script>
+    <style>
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+        @media screen and (min-width: 767px) {
+            img {
+                width: 30%;
+            }
+        }
+        @media screen and (max-width: 479px) {
+            img {
+                width: 30%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid m-2">
+        <h2>WACCA 全国行脚地図</h2>
+        <p class="py-2">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
+        <hr>
+        <h5 class="p-2">概要</h5>
+        <p>WACCAのマイページで閲覧できる情報を元に、全国行脚の達成状況を地図で表示できるツールです。</p>
+        <img src="https://user-images.githubusercontent.com/58391224/105868940-0b5dd300-603a-11eb-98cd-58e74daf66ed.jpg">
+        <h5 class="p-2">仕組み</h5>
+        <p>1. WACCAのカスタマイズ称号のパーツから、都道府県名を検索します。</p>
+        <p>2. 都道府県名が見つかった場合、事前に用意した地図に色を塗ります。</p>
+        <p>3. 生成された地図をページ上に挿入します。</p>
+        <h5 class="p-2">動作条件</h5>
+        <p>WACCAのマイページへアクセス可能であること</p>
+        <p>インターネットブラウザーのJavaScriptが有効であること</p>
+        <h5 class="p-2">準備</h5>
+        <p>1. ページ下部のボタンをクリックし、ブックマークレットのコードをコピーします。</p>
+        <p>2. このページをブックマークします。（名前の変更は任意）</p>
+        <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
+        <h5 class="p-2">使い方</h5>
+        <p>WACCAのマイページで、[ コレクション ＞ 称号 ＞ カスタマイズ ]と進み、ブックマークレットを実行します。</p>
+        <p>ブックマークレットの実行方法は以下の通りです。</p>
+        <p>iPhoneまたはPCの場合: ブックマーク一覧を表示し、[準備] で作成したブックマークをタップします。</p>
+        <p>Android系OSの場合: アドレスバーに [準備] で作成したブックマークの名前を入力し、表示された候補から「javascript〜」というものを選びタップします。名前の入力中にも候補が表示されるため、名前を完全に入力する必要はありません。</p>
+        <div class="alert alert-primary">
+            Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
+        </div>
+        <h5 class="p-2">ブックマークレット</h5>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showVisitedPrefs.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
+        </div>
+    </div>
+</body>
+</html>
