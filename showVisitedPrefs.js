@@ -419,8 +419,8 @@ export function main(){
                     };
                     
                 } else {
-                    visitedCount++
-                }
+                    visitedCount++;
+                };
                 
             };
         });
