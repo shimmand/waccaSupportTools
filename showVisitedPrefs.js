@@ -402,6 +402,7 @@ export function main(){
 
     let parts = document.querySelectorAll('select#partId1 > option');
     let isVisited = false;
+    let isHokkaidoVisited = false;
     let visitedCount = 0;
 
     prefs.forEach(function(s){
@@ -410,8 +411,18 @@ export function main(){
         parts.forEach(function(e){
             if (e.innerText == s){
                 isVisited = true;
-                visitedCount++;
-            }
+
+                if (e.innerText == '北海道'){
+                    if (!isHokkaidoVisited){
+                        visitedCount++;
+                        isHokkaidoVisited = true;
+                    };
+                    
+                } else {
+                    visitedCount++
+                }
+                
+            };
         });
 
         if (isVisited){
