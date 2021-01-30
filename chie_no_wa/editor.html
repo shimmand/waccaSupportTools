@@ -390,7 +390,21 @@
             notesList.forEach(function(n, i){
                 let note = document.getElementById(n);
                 note.value = srcNotes[i];
-                if (note.value != '') note.classList.add('alert-primary');
+                if (note.value != '') note.setAttribute('class', 'form-control alert-primary');
+            });
+
+            updatePreview();
+        };
+
+        // フレームのコピー
+        function copyFrame(notes){
+            let srcNotes = String(`${notes}    `).split(' ');
+            const notesList = ['ipt-note-1', 'ipt-note-2', 'ipt-note-3', 'ipt-note-4', 'ipt-note-5'];
+
+            notesList.forEach(function(n, i){
+                let note = document.getElementById(n);
+                note.value = srcNotes[i];
+                if (note.value != '') note.setAttribute('class', 'form-control alert-success');
             });
 
             updatePreview();
@@ -772,34 +786,34 @@
 
             if (document.getElementById('ipt-note-1').value == ''){
                 document.getElementById('ipt-note-1').value = val;
-                document.getElementById('ipt-note-1').classList.add('alert-primary');
+                document.getElementById('ipt-note-1').setAttribute('class', 'form-control alert-primary');
                 pushHitsory(`ノート挿入(1): ${val}`);
 
             } else if (document.getElementById('ipt-note-2').value == ''){
                 if (document.getElementById('ipt-note-1').value != val){
                     document.getElementById('ipt-note-2').value = val;
-                    document.getElementById('ipt-note-2').classList.add('alert-primary');
+                    document.getElementById('ipt-note-2').setAttribute('class', 'form-control alert-primary');
                     pushHitsory(`ノート挿入(2): ${val}`);
                 };
 
             } else if (document.getElementById('ipt-note-3').value == ''){
                 if (document.getElementById('ipt-note-2').value != val){
                     document.getElementById('ipt-note-3').value = val;
-                    document.getElementById('ipt-note-3').classList.add('alert-primary');
+                    document.getElementById('ipt-note-3').setAttribute('class', 'form-control alert-primary');
                     pushHitsory(`ノート挿入(3): ${val}`);
                 };
 
             } else if (document.getElementById('ipt-note-4').value == ''){
                 if (document.getElementById('ipt-note-3').value != val){
                     document.getElementById('ipt-note-4').value = val;
-                    document.getElementById('ipt-note-4').classList.add('alert-primary');
+                    document.getElementById('ipt-note-4').setAttribute('class', 'form-control alert-primary');
                     pushHitsory(`ノート挿入(4): ${val}`);
                 };
 
             } else {
                 if (document.getElementById('ipt-note-4').value != val){
                     document.getElementById('ipt-note-5').value = val;
-                    document.getElementById('ipt-note-5').classList.add('alert-primary');
+                    document.getElementById('ipt-note-5').setAttribute('class', 'form-control alert-primary');
                     pushHitsory(`ノート挿入(5): ${val}`);
                 };
             };
@@ -1046,6 +1060,7 @@
                     <td class="value">${noteIconHtml} ${returnValue}</td>
                     <td class="button">
                         <button class="btn btn-outline-secondary btn-sm" type="button" onclick="jumpTime('${time}', '${notesCode}')">変更</button>
+                        <button class="btn btn-outline-success btn-sm" type="button" onclick="copyFrame('${notesCode}')">コピー</button>
                         <button class="btn btn-outline-danger btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
                     </td>
                 </tr>`;
@@ -1155,7 +1170,7 @@
                 let note = document.getElementById(n);
 
                 note.value = lastNotes[i + 1];
-                if (note.value != '') note.classList.add('alert-success');
+                if (note.value != '') note.setAttribute('class', 'form-control alert-success');
             });
         };
 
@@ -1489,6 +1504,7 @@
                     <td class="value">${noteIconHtml} ${noteValue}</td>
                     <td class="button">
                         <button class="btn btn-outline-secondary btn-sm" type="button" onclick="jumpTime('${time}', '${noteValue}')">変更</button>
+                        <button class="btn btn-outline-success btn-sm" type="button" onclick="copyFrame('${noteValue}')">コピー</button>
                         <button class="btn btn-outline-danger btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
                     </td>
                 </tr>`;
