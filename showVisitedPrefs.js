@@ -426,13 +426,13 @@ export function main(){
         });
 
         if (isVisited){
-            svg = svg.replaceAll(s, 'deeppink')
+            svg = svg.replaceAll(s, 'deeppink');
         } else {
-            svg = svg.replaceAll(s, 'none')
+            svg = svg.replaceAll(s, 'none');
         };
     });
 
-    svg = svg.replaceAll('都道府県数', visitedCount)
+    svg = svg.replaceAll('都道府県数', visitedCount);
     document.querySelector('div.collection__current-title > dl').insertAdjacentHTML('beforebegin', svg);
 
 };
