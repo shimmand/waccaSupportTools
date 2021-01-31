@@ -503,7 +503,8 @@
             let button = row.querySelector('.button .btn-sm');
             let time = document.getElementById('ipt-time').value;
             let notesCode = getNotesCode();
-            button.setAttribute('onclick', `jumpTime('${time}', '${notesCode}')`);
+            row.querySelector('button.modify').setAttribute('onclick', `jumpTime('${time}', '${notesCode}')`);
+            row.querySelector('button.copy').setAttribute('onclick', `copyFrame('${notesCode}')`);
         };
 
         function applyInserts(){
@@ -1062,9 +1063,9 @@
                     <td class="name">${time}</td>
                     <td class="value">${noteIconHtml} ${returnValue}</td>
                     <td class="button">
-                        <button class="btn btn-outline-secondary btn-sm" type="button" onclick="jumpTime('${time}', '${notesCode}')">変更</button>
-                        <button class="btn btn-outline-success btn-sm" type="button" onclick="copyFrame('${notesCode}')">コピー</button>
-                        <button class="btn btn-outline-danger btn-sm" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
+                        <button class="btn btn-outline-secondary btn-sm modify" type="button" onclick="jumpTime('${time}', '${notesCode}')">変更</button>
+                        <button class="btn btn-outline-success btn-sm copy" type="button" onclick="copyFrame('${notesCode}')">コピー</button>
+                        <button class="btn btn-outline-danger btn-sm delete" type="button" onclick="javascript:document.getElementById('tr-note-${nextNumber}').remove()">削除</button>
                     </td>
                 </tr>`;
 
