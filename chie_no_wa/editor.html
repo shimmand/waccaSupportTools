@@ -975,8 +975,11 @@
             });
 
             let nextNumber = 1;
-            if (document.querySelector('td.number') !== null){
-                nextNumber = Number(document.querySelector('td.number').innerText) + 1;
+            let numbers = document.querySelectorAll('td.number');
+            if (numbers !== null){
+                numbers.forEach(function(e){
+                    if (nextNumber <= e.innerText) nextNumber = Number(e.innerText) + 1;
+                });
             };
             
             let noteIconHtml = '';
@@ -1078,8 +1081,11 @@
             });
 
             let nextNumber = 1;
-            if (document.querySelector('td.number') !== null){
-                nextNumber = Number(document.querySelector('td.number').innerText) + 1;
+            let numbers = document.querySelectorAll('td.number');
+            if (numbers !== null){
+                numbers.forEach(function(e){
+                    if (nextNumber <= e.innerText) nextNumber = Number(e.innerText) + 1;
+                });
             };
             
             let noteIconHtml = '';
@@ -3387,230 +3393,230 @@
                                 <!-- ホールドノーツ端点の定義 -->
                                 <symbol id="holds-4" viewBox="-320 -320 640 640">
                                     <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 46.930,296.307 a 300 300 81 0 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 46.930,296.307 a 300 300 81 0 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-5" viewBox="-320 -320 640 640">
                                     <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-6" viewBox="-320 -320 640 640">
                                     <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-7" viewBox="-320 -320 640 640">
                                     <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-8" viewBox="-320 -320 640 640">
                                     <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-9" viewBox="-320 -320 640 640">
                                     <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-10" viewBox="-320 -320 640 640">
                                     <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-11" viewBox="-320 -320 640 640">
                                     <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-12" viewBox="-320 -320 640 640">
                                     <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-13" viewBox="-320 -320 640 640">
                                     <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-14" viewBox="-320 -320 640 640">
                                     <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-15" viewBox="-320 -320 640 640">
                                     <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-16" viewBox="-320 -320 640 640">
                                     <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-17" viewBox="-320 -320 640 640">
                                     <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-18" viewBox="-320 -320 640 640">
                                     <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-19" viewBox="-320 -320 640 640">
                                     <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-20" viewBox="-320 -320 640 640">
                                     <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-21" viewBox="-320 -320 640 640">
                                     <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-22" viewBox="-320 -320 640 640">
                                     <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-23" viewBox="-320 -320 640 640">
                                     <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-24" viewBox="-320 -320 640 640">
                                     <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-25" viewBox="-320 -320 640 640">
                                     <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-26" viewBox="-320 -320 640 640">
                                     <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-27" viewBox="-320 -320 640 640">
                                     <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-28" viewBox="-320 -320 640 640">
                                     <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-29" viewBox="-320 -320 640 640">
                                     <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-30" viewBox="-320 -320 640 640">
                                     <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-31" viewBox="-320 -320 640 640">
                                     <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-32" viewBox="-320 -320 640 640">
                                     <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-33" viewBox="-320 -320 640 640">
                                     <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-34" viewBox="-320 -320 640 640">
                                     <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-35" viewBox="-320 -320 640 640">
                                     <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-36" viewBox="-320 -320 640 640">
                                     <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-37" viewBox="-320 -320 640 640">
                                     <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-38" viewBox="-320 -320 640 640">
                                     <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-39" viewBox="-320 -320 640 640">
                                     <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-40" viewBox="-320 -320 640 640">
                                     <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-41" viewBox="-320 -320 640 640">
                                     <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-42" viewBox="-320 -320 640 640">
                                     <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-43" viewBox="-320 -320 640 640">
                                     <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-44" viewBox="-320 -320 640 640">
                                     <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-45" viewBox="-320 -320 640 640">
                                     <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-46" viewBox="-320 -320 640 640">
                                     <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-47" viewBox="-320 -320 640 640">
                                     <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-48" viewBox="-320 -320 640 640">
                                     <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-49" viewBox="-320 -320 640 640">
                                     <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-50" viewBox="-320 -320 640 640">
                                     <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-51" viewBox="-320 -320 640 640">
                                     <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-52" viewBox="-320 -320 640 640">
                                     <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-53" viewBox="-320 -320 640 640">
                                     <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-54" viewBox="-320 -320 640 640">
                                     <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-55" viewBox="-320 -320 640 640">
                                     <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-56" viewBox="-320 -320 640 640">
                                     <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-57" viewBox="-320 -320 640 640">
                                     <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-58" viewBox="-320 -320 640 640">
                                     <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-59" viewBox="-320 -320 640 640">
                                     <path d="M 15.701,-299.589 a 300 300 -87 1 1 -31.402,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holds-60" viewBox="-320 -320 640 640">
-                                    <circle cx="0" cy="0" r="300" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <circle cx="0" cy="0" r="300" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                             </defs>
                             
@@ -3618,230 +3624,230 @@
                                 <!-- ホールドノーツ端点の定義 -->
                                 <symbol id="holde-4" viewBox="-320 -320 640 640">
                                     <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 46.930,296.307 a 300 300 81 0 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 46.930,296.307 a 300 300 81 0 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-5" viewBox="-320 -320 640 640">
                                     <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 62.374,293.444 a 300 300 78 0 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-6" viewBox="-320 -320 640 640">
                                     <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 77.646,289.778 a 300 300 75 0 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-7" viewBox="-320 -320 640 640">
                                     <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 92.705,285.317 a 300 300 72 0 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-8" viewBox="-320 -320 640 640">
                                     <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 107.510,280.074 a 300 300 69 0 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-9" viewBox="-320 -320 640 640">
                                     <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 122.021,274.064 a 300 300 66 0 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-10" viewBox="-320 -320 640 640">
                                     <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 136.197,267.302 a 300 300 63 0 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-11" viewBox="-320 -320 640 640">
                                     <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 150.000,259.808 a 300 300 60 0 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-12" viewBox="-320 -320 640 640">
                                     <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 163.392,251.601 a 300 300 57 0 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-13" viewBox="-320 -320 640 640">
                                     <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 176.336,242.705 a 300 300 54 0 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-14" viewBox="-320 -320 640 640">
                                     <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 188.796,233.144 a 300 300 51 0 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-15" viewBox="-320 -320 640 640">
                                     <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 200.739,222.943 a 300 300 48 0 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-16" viewBox="-320 -320 640 640">
                                     <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 212.132,212.132 a 300 300 45 0 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-17" viewBox="-320 -320 640 640">
                                     <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 222.943,200.739 a 300 300 42 0 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-18" viewBox="-320 -320 640 640">
                                     <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 233.144,188.796 a 300 300 39 0 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-19" viewBox="-320 -320 640 640">
                                     <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 242.705,176.336 a 300 300 36 0 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-20" viewBox="-320 -320 640 640">
                                     <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 251.601,163.392 a 300 300 33 0 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-21" viewBox="-320 -320 640 640">
                                     <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 259.808,150.000 a 300 300 30 0 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-22" viewBox="-320 -320 640 640">
                                     <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 267.302,136.197 a 300 300 27 0 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-23" viewBox="-320 -320 640 640">
                                     <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 274.064,122.021 a 300 300 24 0 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-24" viewBox="-320 -320 640 640">
                                     <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 280.074,107.510 a 300 300 21 0 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-25" viewBox="-320 -320 640 640">
                                     <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 285.317,92.705 a 300 300 18 0 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-26" viewBox="-320 -320 640 640">
                                     <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 289.778,77.646 a 300 300 15 0 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-27" viewBox="-320 -320 640 640">
                                     <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 293.444,62.374 a 300 300 12 0 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-28" viewBox="-320 -320 640 640">
                                     <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 296.307,46.930 a 300 300 9 0 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-29" viewBox="-320 -320 640 640">
                                     <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 298.357,31.359 a 300 300 6 0 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-30" viewBox="-320 -320 640 640">
                                     <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 299.589,15.701 a 300 300 3 0 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-31" viewBox="-320 -320 640 640">
                                     <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 300.000,0.000 a 300 300 0 0 1 -600.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-32" viewBox="-320 -320 640 640">
                                     <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 299.589,-15.701 a 300 300 -3 1 1 -599.178,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-33" viewBox="-320 -320 640 640">
                                     <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 298.357,-31.359 a 300 300 -6 1 1 -596.714,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-34" viewBox="-320 -320 640 640">
                                     <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 296.307,-46.930 a 300 300 -9 1 1 -592.614,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-35" viewBox="-320 -320 640 640">
                                     <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 293.444,-62.374 a 300 300 -12 1 1 -586.888,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-36" viewBox="-320 -320 640 640">
                                     <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 289.778,-77.646 a 300 300 -15 1 1 -579.556,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-37" viewBox="-320 -320 640 640">
                                     <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 285.317,-92.705 a 300 300 -18 1 1 -570.634,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-38" viewBox="-320 -320 640 640">
                                     <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 280.074,-107.510 a 300 300 -21 1 1 -560.148,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-39" viewBox="-320 -320 640 640">
                                     <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 274.064,-122.021 a 300 300 -24 1 1 -548.128,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-40" viewBox="-320 -320 640 640">
                                     <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 267.302,-136.197 a 300 300 -27 1 1 -534.604,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-41" viewBox="-320 -320 640 640">
                                     <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 259.808,-150.000 a 300 300 -30 1 1 -519.616,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-42" viewBox="-320 -320 640 640">
                                     <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 251.601,-163.392 a 300 300 -33 1 1 -503.202,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-43" viewBox="-320 -320 640 640">
                                     <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 242.705,-176.336 a 300 300 -36 1 1 -485.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-44" viewBox="-320 -320 640 640">
                                     <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 233.144,-188.796 a 300 300 -39 1 1 -466.288,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-45" viewBox="-320 -320 640 640">
                                     <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 222.943,-200.739 a 300 300 -42 1 1 -445.886,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-46" viewBox="-320 -320 640 640">
                                     <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 212.132,-212.132 a 300 300 -45 1 1 -424.264,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-47" viewBox="-320 -320 640 640">
                                     <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 200.739,-222.943 a 300 300 -48 1 1 -401.478,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-48" viewBox="-320 -320 640 640">
                                     <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 188.796,-233.144 a 300 300 -51 1 1 -377.592,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-49" viewBox="-320 -320 640 640">
                                     <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 176.336,-242.705 a 300 300 -54 1 1 -352.672,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-50" viewBox="-320 -320 640 640">
                                     <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 163.392,-251.601 a 300 300 -57 1 1 -326.784,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-51" viewBox="-320 -320 640 640">
                                     <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 150.000,-259.808 a 300 300 -60 1 1 -300.000,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-52" viewBox="-320 -320 640 640">
                                     <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 136.197,-267.302 a 300 300 -63 1 1 -272.394,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-53" viewBox="-320 -320 640 640">
                                     <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 122.021,-274.064 a 300 300 -66 1 1 -244.042,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-54" viewBox="-320 -320 640 640">
                                     <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 107.510,-280.074 a 300 300 -69 1 1 -215.020,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-55" viewBox="-320 -320 640 640">
                                     <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 92.705,-285.317 a 300 300 -72 1 1 -185.410,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-56" viewBox="-320 -320 640 640">
                                     <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 77.646,-289.778 a 300 300 -75 1 1 -155.292,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-57" viewBox="-320 -320 640 640">
                                     <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 62.374,-293.444 a 300 300 -78 1 1 -124.748,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-58" viewBox="-320 -320 640 640">
                                     <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 46.930,-296.307 a 300 300 -81 1 1 -93.860,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-59" viewBox="-320 -320 640 640">
                                     <path d="M 15.701,-299.589 a 300 300 -87 1 1 -31.402,0.000" stroke="deepskyblue" stroke-width="16" stroke-opacity="0.8" fill="none" />
-                                    <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <path d="M 31.359,-298.357 a 300 300 -84 1 1 -62.718,0.000" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                                 <symbol id="holde-60" viewBox="-320 -320 640 640">
-                                    <circle cx="0" cy="0" r="300" stroke="darkgoldenrod" stroke-width="32" stroke-opacity="0.8" fill="none" />
+                                    <circle cx="0" cy="0" r="300" stroke="darkgoldenrod" stroke-width="16" stroke-opacity="0.8" fill="none" />
                                 </symbol>
                             </defs>
 
