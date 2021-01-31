@@ -235,17 +235,48 @@
         </div>
         <div class="shadow card bg-light m-2">
             <div class="card-body">
-                <h5 class="card-text">Editor: ホールドノートにご注意</h5>
+                <h5 class="card-text">Editor: ホールドノートの置き方</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ホールドノートは、始点と終点を最短距離で結びます。そのため、<span class="alert-warning">180度以上回る場合には、複数回に分けて入力</span>してください。</li>
-                    <li class="list-group-item">同一のホールドノートの始点と終点、例えば、ホールドAの終点とホールドAの始点は、同一の時間に配置できません。<span class="alert-warning">続けてホールドを配置する場合は、他のホールドに切り替えて</span>ください。</li>
-                    <li class="list-group-item">2つのホールドを交互に入力する場合の例: ホールドA始点 → ホールドA終点+ホールドB始点 → ホールドB終点+ホールドA始点 → ホールドA終点+ホールドB始点 ...</li>
+                    <li class="list-group-item">
+                        <p>ホールドノートには、A〜Eの5つがあります。同一アルファベットの始点と終点が結ばれます。</p>
+                        <p><img src="https://user-images.githubusercontent.com/58391224/106375602-c8508680-63d0-11eb-92b9-cb6f6969f160.png"></p>
+                    </li>
+                    <li class="list-group-item">
+                        <p>同一のホールドノートの始点と終点、例えば、ホールドAの終点と次のホールドAの始点は、同一の時間に配置できません。<span class="alert-warning">続けてホールドを配置する場合は、他のホールドに切り替えて</span>ください。</p>
+                        <p>2つのホールドを交互に入力する場合の例: ホールドA始点 → ホールドA終点+ホールドB始点 → ホールドB終点+ホールドA始点 → ホールドA終点+ホールドB始点 ...</p>
+                        <p><img src="https://user-images.githubusercontent.com/58391224/106376401-4d8b6980-63d8-11eb-817a-f01a9e5e36ad.jpg"></p>
+                    <li class="list-group-item">
+                        <p>ホールドノートが回転する際、始点と終点を最短距離で結びます。そのため、<span class="alert-warning">180°以上回る場合には、複数回に分けて入力</span>してください。</p>
+                        <p>例えば、270°右回転するホールドノートを入力したい場合、90°右回転するノートを3回入力してください（分割の仕方は自由です）。分割しない場合は、最短距離として90°左回転します。</p>
+                        <p><img src="https://user-images.githubusercontent.com/58391224/106375948-03a08480-63d4-11eb-8cb7-da95b0022b8c.jpg"></p>
+                    </li>
                     <li class="list-group-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
                             <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                         </svg> 
-                        ホールドのアルファベットは識別用です。アルファベットの違いにより挙動が変わることはありません。
+                        ホールドのアルファベットは識別用です。アルファベットの違いにより挙動が変わることはありません。終点に達していない、つまりホールド中のものを除き、どれを使用しても構いません。
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="shadow card bg-light m-2">
+            <div class="card-body">
+                <h5 class="card-text">Editor: フレームを編集する</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        タイムライン上にノートが挿入されると、編集するためのボタンが表示されます。
+                        <p><img src="https://user-images.githubusercontent.com/58391224/106376443-c38fd080-63d8-11eb-86a2-d57a84ff05cd.png"></p>
+                    </li>
+                    <li class="list-group-item">「変更」は、その時間にジャンプ、および挿入されたノートをノート欄に表示します。変更が完了したら、時間を移動するか、「挿入/変更を反映」をタップします。</li>
+                    <li class="list-group-item">「コピー」は、挿入されたノートを現在のノート欄にコピーします。変更とは異なり、時間はジャンプしません。</li>
+                    <li class="list-group-item">「削除」は、該当のフレームを削除します。</li>
+                    <li class="list-group-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
+                            <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                        </svg> 
+                        「変更」および「コピー」機能は、挿入されていないノート（挿入待ちノート）がある場合、それらを破棄します。時間を移動するか、「挿入/変更を反映」をタップして予めノートを挿入してください。
                     </li>
                 </ul>
             </div>
