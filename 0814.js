@@ -156,7 +156,7 @@ export function main(){
     // 集計結果をもとにHTMLのコードを生成
     let insertCode = '';
     level.forEach(function(l){
-        const success = ` style="color: deeppink; font-weight: bold"`;
+        const success = ` style="color: deeppink; font-weight: bold;"`;
         let
             difficulty = '',
             stageLevel = l,
@@ -182,15 +182,18 @@ export function main(){
             allmarvelous = result[l]['allmarvelous'],
             styleAllmarvelous = '',
             stageLevelClass = stageLevel.toLowerCase().replace(' ','').replace('+','.1'),
+            backgroundColor = '',
             click = '';
 
         // INFERNO
         if (l.indexOf('INFERNO') != -1){
             difficulty = 'inferno';
-            click = `document.querySelector('#isInferno').click();`
+            backgroundColor = 'rgba(29,0,31,0.75)';
+            click = `document.querySelector('#isInferno').click();`;
         } else {
             difficulty = 'expert';
-            click = `document.querySelector('#isExpert').click();`
+            backgroundColor = 'rgba(98,5,60,0.75)';
+            click = `document.querySelector('#isExpert').click();`;
         };
 
         if (stageCount == rateS) styleS = success;
@@ -216,9 +219,9 @@ export function main(){
         if (insertCode != '') insertCode += '\n';
 
         insertCode +=  `
-            <div class="playdata__playerdata">
+            <div class="playdata__playerdata" style="background-color: rgba(29,0,31,0.25)">
                 <div class="playdata__score-point">
-                    <div class="diff_icon_${difficulty}">${stageLevel}</div>
+                    <div class="diff_icon_${difficulty}" style="line-height: 30px; margin: 0 0 4px; width: auto;">${stageLevel}</div>
                     <ul class="playdata__score-point__wrap">
                         <li>
                             <div>
@@ -338,8 +341,8 @@ export function main(){
     // 集計結果を挿入
     document.querySelector('div.playdata__filter-btn').insertAdjacentHTML('beforebegin', insertCode);
 
-    const info = `<div style="text-align: center; font-size: 0.8em; font-weight: bold;">
-                    <p>達成状況ビューアー v1.02</p>
+    const info = `<div style="text-align: center; font-size: 0.8em;">
+                    <p style="font-weight: bold;">達成状況ビューアー v1.02</p>
                     <hr>
                     <p>元の画面に戻すには、ページを再読み込みしてください。</p>
                     <p>譜面数をタップすると、その条件を未達成の譜面がリスト表示されます。</p>
