@@ -43,33 +43,21 @@
         <h5 class="p-2">概要</h5>
         <p>WACCAのマイページで閲覧できる情報を元に、譜面レベル別の達成状況をリスト表示できるツール（ブックマークレット）です。</p>
         <h5 class="p-2">機能</h5>
-        <p>譜面レベル別に、例えばSSSといったスコア評価、FullCombo数といったコンボ評価を達成した譜面数を確認できます。</p>
+        <p>譜面レベル別に、例えばSSやSSSといったスコア評価、MisslessやFullComboといったクリア状況（クリアランプ）を達成した譜面数を確認できます。</p>
         <p>各項目の右側に表示される譜面数をタップすると、達成済みの譜面または未達成の譜面を絞り込んで表示できます。</p>
-        <div class="card-group">
-            <div class="card">
-                <img src="https://user-images.githubusercontent.com/58391224/129459083-b8a47286-7455-4a48-be45-f33ecef3af4d.jpg" class="card-img-top">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://user-images.githubusercontent.com/58391224/129459082-5bf857f9-97ea-49ef-87d9-e69b510f930b.jpg" class="card-img-top">
-                <div class="card-body">
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-            <div class="card">
-                    <img src="https://user-images.githubusercontent.com/58391224/129459080-af1c0fd0-1263-407b-b6b5-60c712e04963.jpg" class="card-img-top">
-                <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                </div>
-            </div>
-        </div>
+        <p>現時点で対応している難易度は、INFERNOのLv13〜14、EXPERTのLv9〜14です。（需要があればNORMALおよびHARDにも対応する予定です。）</p>
+        <h5 class="p-2">仕組み</h5>
+        <p>マイページの「楽曲スコア」ページに表示されているスコアやクリア状況（クリアランプ）を順々に集計し、その集計結果をページへ追記します。</p>
+        <p>内部的に、難易度ごとにClearやMissless、SやS+などの数をカウントする表が用意されており、譜面1つずつを照合して加算していきます。</p>
+        <p>例えば、スコアが975000かつMisslessである譜面は、Clear/Missless/S/S+/SS/SS+が1加算されます。</p>
+        <p>母数に関しては譜面が追加されていればそれだけで加算されるため、解禁されていない譜面も母数とみなします。</p>
+        <p>全楽曲の照合が終了した時点で、その集計結果を元にページの要素を生成し、ページへ追記します。</p>
         <h5 class="p-2">動作条件</h5>
         <p>WACCAのマイページへアクセス可能であること</p>
         <p>インターネットブラウザーのJavaScriptが有効であること</p>
+        <p>ブックマークレットの実行に制限がないブラウザーを使用していること</p>
         <h5 class="p-2">準備</h5>
-        <p>1. ページ下部の「ブックマークレットをコピー」をクリックします。</p>
+        <p>1. ページ下部の「ブックマークレットをコピー」をタップします。</p>
         <p>2. このページをブックマークします。（名前の変更は任意です）</p>
         <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
         <h5 class="p-2">使い方</h5>
@@ -80,12 +68,33 @@
         <div class="alert alert-primary">
             Android系OSでは、環境によりブックマークレットの実行方法が異なったり、ブックマークレットを実行できない場合があります。
         </div>
-        <h5 class="p-2">ツール</h5>
+        <h5 class="p-2">ツール本体</h5>
         <div class="form-group row m-2">
             <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevel.js'; import(path).then((obj) => obj.main())})();" readonly>
             <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
                 ブックマークレットをコピー
             </button>
+        </div>
+        <h5 class="p-2">参考画像</h5>
+        <div class="card-group">
+            <div class="card">
+                <img src="https://user-images.githubusercontent.com/58391224/129459083-b8a47286-7455-4a48-be45-f33ecef3af4d.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text">実行後、ページ上部に表示される部分です。フィルターの設定もここに表示されます。</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://user-images.githubusercontent.com/58391224/129459082-5bf857f9-97ea-49ef-87d9-e69b510f930b.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text">譜面レベル別に、各アイコン（ランプ）の条件を達成した譜面数が表示されます。すべて達成している場合はマゼンタ色で表示されます。</p>
+                </div>
+            </div>
+            <div class="card">
+                    <img src="https://user-images.githubusercontent.com/58391224/129459080-af1c0fd0-1263-407b-b6b5-60c712e04963.jpg" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text">実際に「EXPERT 13+」のSSS+部分をタップし、該当の譜面を表示させた状態です。</p>
+                </div>
+            </div>
         </div>
     </div>
     <nav class="navbar navbar-ight bg-light">
