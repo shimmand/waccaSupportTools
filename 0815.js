@@ -343,12 +343,15 @@ export function main(){
                     <p>- 各項目の譜面数をタップすると、譜面の一覧でフィルターが適用され、該当の譜面のみが表示されます。</p>
                     <p>- フィルターの条件は、以下の「フィルター設定」で変更することができます。</p>
                     <p>- 難易度タブを切り替えたり、デフォルトの「フィルタ」ボタンでフィルターを適用したりすると、前述のフィルターは解除されます。</p>
+                    <p>- 元の画面に戻すには、このページを再読み込みするか、他のページへ移動します。</p>
                     <hr>
                     <p style="font-weight: bold; padding: 10px 0 10px;">フィルター設定</p>
-                    <input type="radio" id="achieved" name="filter-option" class="filter-option" checked>
-                    <label for="achieved">達成済みの譜面を表示</label>
-                    <input type="radio" id="unachieved" name="filter-option" class="filter-option">
-                    <label for="unachieved">未達成の譜面を表示</label>
+                    <div style="padding: 0 0 10px;">
+                        <input type="radio" id="achieved" name="filter-option" class="filter-option" checked>
+                        <label for="achieved">達成済みの譜面を表示</label>
+                        <input type="radio" id="unachieved" name="filter-option" class="filter-option">
+                        <label for="unachieved">未達成の譜面を表示</label>
+                    </div>
                     <p>- 上記のラジオボタンを変更すると、この後に譜面数をタップした時から反映されます。</p>
                 </div>
                 <hr>`;
