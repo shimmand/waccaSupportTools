@@ -247,7 +247,7 @@ export function main(){
                                 <img src="/img/web/play_data/icon/c_txt_s_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s_plus') == 2}); location.href = '#isNormal'">
-                                <p class="score-point__difficulty difficulty__all is-show"${styleS}>${rateS}/
+                                <p class="score-point__difficulty difficulty__all is-show"${styleSP}>${rateSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
                             </a>
@@ -280,7 +280,7 @@ export function main(){
                                 <img src="/img/web/play_data/icon/c_txt_ss_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss_plus') == 2}); location.href = '#isNormal'">
-                                <p class="score-point__difficulty difficulty__all is-show"${styleSS}>${rateSS}/
+                                <p class="score-point__difficulty difficulty__all is-show"${styleSSP}>${rateSSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
                             </a>
@@ -313,7 +313,7 @@ export function main(){
                                 <img src="/img/web/play_data/icon/c_txt_sss_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss_plus') == 2}); location.href = '#isNormal'">
-                                <p class="score-point__difficulty difficulty__all is-show"${styleSSS}>${rateSSS}/
+                                <p class="score-point__difficulty difficulty__all is-show"${styleSSSP}>${rateSSSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
                             </a>
