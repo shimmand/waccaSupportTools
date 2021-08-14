@@ -338,7 +338,7 @@ export function main(){
     // 集計結果を挿入
     document.querySelector('div.playdata__filter-btn').insertAdjacentHTML('beforebegin', insertCode);
 
-    const info = `<div style="text-align: left; font-size: 0.8em;">
+    const info = `<div style="text-align: left; font-size: 0.8em; padding: 20px">
                     <p style="font-weight: bold; padding: 10px 0 10px;">達成状況ビューアー v1.02</p>
                     <p>- 各項目の譜面数をタップすると、譜面の一覧でフィルターが適用され、該当の譜面のみが表示されます。</p>
                     <p>- フィルターの条件は、以下の「フィルター設定」で変更することができます。</p>
