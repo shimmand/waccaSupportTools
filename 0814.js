@@ -231,8 +231,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_s.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s') == 2}); location.href = '#isNormal'">
@@ -242,8 +242,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_s_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s_plus') == 2}); location.href = '#isNormal'">
@@ -253,8 +253,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_missless.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_missless') == 2}); location.href = '#isNormal'">
@@ -264,8 +264,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_ss.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss') == 2}); location.href = '#isNormal'">
@@ -275,8 +275,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_ss_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss_plus') == 2}); location.href = '#isNormal'">
@@ -286,8 +286,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_full.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_fullcombo') == 2}); location.href = '#isNormal'">
@@ -297,8 +297,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_sss.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss') == 2}); location.href = '#isNormal'">
@@ -308,8 +308,8 @@ export function main(){
                             </a>
                         </li>
 
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_sss_plus.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss_plus') == 2}); location.href = '#isNormal'">
@@ -319,8 +319,8 @@ export function main(){
                             </a>
                         </li>
                         
-                        <li>
-                            <div class="rate">
+                        <li class="rate">
+                            <div>
                                 <img src="/img/web/play_data/icon/c_txt_all_m.png">
                             </div>
                             <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_allmarvelous') == 2}); location.href = '#isNormal'">
