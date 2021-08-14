@@ -217,12 +217,9 @@ export function main(){
 
         insertCode +=  `
             <div class="playdata__playerdata">
-                <div class="playdata__score-point">  
+                <div class="playdata__score-point">
+                    <div class="diff_icon_${difficulty}">${stageLevel}</div>
                     <ul class="playdata__score-point__wrap">
-                        <li>
-                            <div class="diff_icon_${difficulty}">${stageLevel}</div>
-                        </li>
-                    
                         <li>
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_clear.png">
