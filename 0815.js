@@ -224,7 +224,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_clear.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_clear') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_clear') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleClear}>${clear}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -235,7 +235,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_s.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleS}>${rateS}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -246,7 +246,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_s_plus.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s_plus') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_s_plus') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleSP}>${rateSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -257,7 +257,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_missless.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_missless') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_missless') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleMissless}>${missless}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -268,7 +268,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_ss.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleSS}>${rateSS}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -279,7 +279,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_ss_plus.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss_plus') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_ss_plus') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleSSP}>${rateSSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -290,7 +290,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_full.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_fullcombo') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_fullcombo') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleFullcombo}>${fullcombo}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -301,7 +301,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_sss.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleSSS}>${rateSSS}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -312,7 +312,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_sss_plus.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss_plus') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_rate_sss_plus') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleSSSP}>${rateSSSP}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -323,7 +323,7 @@ export function main(){
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_all_m.png">
                             </div>
-                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_allmarvelous') == document.querySelectorAll('input[name="filter-option"]')[0].checked}); location.href = '#isNormal'">
+                            <a onclick="javascript:${click} grid.filter(function (item) { var element = item.getElement(); return element.getAttribute('${stageLevelClass}_allmarvelous') == document.querySelectorAll('input.filter-option')[0].checked}); location.href = '#isNormal'">
                                 <p class="score-point__difficulty difficulty__all is-show"${styleAllmarvelous}>${allmarvelous}/
                                     <span class="score-point__difficulty difficulty__all is-show">${stageCount}</span>
                                 </p>
@@ -342,9 +342,9 @@ export function main(){
                     <p style="font-weight: bold;">達成状況ビューアー v1.02</p>
                     <hr>
                     <p style="font-weight: bold;">フィルター設定</p>
-                    <input type="radio" id="achieved" name="filter-option" checked>
+                    <input type="radio" id="achieved" name="filter-option" class="filter-option" checked>
                     <label for="achieved">達成済みの譜面を表示</label>
-                    <input type="radio" id="unachieved" name="filter-option">
+                    <input type="radio" id="unachieved" name="filter-option" class="filter-option">
                     <label for="unachieved">未達成の譜面を表示</label>
                 </div>
                 <hr>`;
