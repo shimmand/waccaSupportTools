@@ -339,13 +339,17 @@ export function main(){
     document.querySelector('div.playdata__filter-btn').insertAdjacentHTML('beforebegin', insertCode);
 
     const info = `<div style="text-align: center; font-size: 0.8em;">
-                    <p style="font-weight: bold;">達成状況ビューアー v1.02</p>
+                    <p style="font-weight: bold;">達成状況ビューアー</p>
+                    <p>各項目の譜面数をタップすると、譜面の一覧でフィルターが適用され、該当の譜面のみが表示されます。</p>
+                    <p>フィルターの条件は、以下の「フィルター設定」で変更することができます。</p>
+                    <p>難易度タブを切り替えたり、デフォルトの「フィルタ」ボタンでフィルターを適用したりすると、前述のフィルターは解除されます。</p>
                     <hr>
                     <p style="font-weight: bold;">フィルター設定</p>
                     <input type="radio" id="achieved" name="filter-option" class="filter-option" checked>
                     <label for="achieved">達成済みの譜面を表示</label>
                     <input type="radio" id="unachieved" name="filter-option" class="filter-option">
                     <label for="unachieved">未達成の譜面を表示</label>
+                    <p>上記のラジオボタンを変更すると、この後に譜面数をタップした時から反映されます。</p>
                 </div>
                 <hr>`;
     document.querySelector('div.contents-wrap').insertAdjacentHTML('afterbegin', info);
