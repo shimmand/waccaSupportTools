@@ -12,12 +12,6 @@
             document.execCommand("Copy");
             alert("コピーしました");
         };
-        function copyToClipboard2() {
-            var copyTarget = document.getElementById("copyTarget2");
-            copyTarget.select();
-            document.execCommand("Copy");
-            alert("コピーしました");
-        }
     </script>
     <style>
         body {
@@ -55,7 +49,7 @@
         <p>WACCAのマイページへアクセス可能であること</p>
         <p>インターネットブラウザーのJavaScriptが有効であること</p>
         <h5 class="p-2">準備</h5>
-        <p>1. ページ下部の「通常版」または「上位スコア帯対応版」のボタンをクリックし、ブックマークレットのコードをコピーします。</p>
+        <p>1. ページ下部の「ブックマークレットをコピー」をクリックします。</p>
         <p>2. このページをブックマークします。（名前の変更は任意）</p>
         <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
         <h5 class="p-2">使い方</h5>
@@ -66,19 +60,10 @@
         <div class="alert alert-primary">
             Android系OSをご利用の方は、環境により上記の手順に従っても動作しない場合があります。製作者はChromeおよびFirefoxでの動作を確認済みですが、これらのブラウザーを利用することにより必ずしも動作するとは限りません。ご了承ください。
         </div>
-        <h5 class="p-2">通常版</h5>
-            <p>集計する項目は Clear Missless FullCombo AllMarvelous S SS SSS です。</p>
+        <h5 class="p-2">ツール</h5>
         <div class="form-group row m-2">
             <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevel.js'; import(path).then((obj) => obj.main())})();" readonly>
             <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
-                ブックマークレットをコピー
-            </button>
-        </div>
-        <h5 class="p-2">上位スコア帯対応版</h5>
-            <p>集計する項目は通常版のものに加え、990k 995k が含まれます。</p>
-        <div class="form-group row m-2 pb-5">
-            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget2" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/showAchievementByLevelWithHigherScoreRange.js'; import(path).then((obj) => obj.main())})();" readonly>
-            <button type="button" class="btn btn-primary col" onclick="copyToClipboard2()" data-toggle="tooltip" data-placement="top" title="コピーする">
                 ブックマークレットをコピー
             </button>
         </div>
