@@ -220,7 +220,7 @@ export function main(){
                 <div class="playdata__score-point">
                     <div class="diff_icon_${difficulty}">${stageLevel}</div>
                     <ul class="playdata__score-point__wrap">
-                        <li class="rate">
+                        <li>
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_clear.png">
                             </div>
@@ -253,7 +253,7 @@ export function main(){
                             </a>
                         </li>
 
-                        <li class="rate">
+                        <li>
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_missless.png">
                             </div>
@@ -286,7 +286,7 @@ export function main(){
                             </a>
                         </li>
 
-                        <li class="rate">
+                        <li>
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_full.png">
                             </div>
@@ -319,7 +319,7 @@ export function main(){
                             </a>
                         </li>
                         
-                        <li class="rate">
+                        <li>
                             <div>
                                 <img src="/img/web/play_data/icon/c_txt_all_m.png">
                             </div>
