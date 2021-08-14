@@ -341,9 +341,11 @@ export function main(){
     const info = `<div style="text-align: center; font-size: 0.8em;">
                     <p style="font-weight: bold;">達成状況ビューアー v1.02</p>
                     <hr>
-                    <p>元の画面に戻すには、ページを再読み込みしてください。</p>
-                    <p>譜面数をタップすると、その条件を未達成の譜面がリスト表示されます。</p>
-                    <p>（未達成の譜面がない場合は表示されません）</p>
+                    <p style="font-weight: bold;">フィルター設定</p>
+                    <input type="radio" id="achieved" name="filter-option" checked>
+                    <label for="achieved">達成済みの譜面を表示</label>
+                    <input type="radio" id="unachieved" name="filter-option">
+                    <label for="unachieved">未達成の譜面を表示</label>
                 </div>
                 <script>
                     function getFilterOption(){
