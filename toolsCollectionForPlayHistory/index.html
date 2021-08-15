@@ -12,6 +12,12 @@
             document.execCommand("Copy");
             alert("コピーしました");
         };
+        function copyToClipboardLight() {
+            var copyTarget = document.getElementById("copyTargetLight");
+            copyTarget.select();
+            document.execCommand("Copy");
+            alert("コピーしました");
+        };
     </script>
     <style>
         body {
@@ -60,8 +66,8 @@
         </div>
         <h5 class="p-2">ツール本体（時刻部分の削除のみ）</h5>
         <div class="form-group row m-2">
-            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/toolsCollectionForPlayHistory/light.js'; import(path).then((obj) => obj.main())})();" readonly>
-            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTargetLight" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/toolsCollectionForPlayHistory/light.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboardLight()" data-toggle="tooltip" data-placement="top" title="コピーする">
                 ブックマークレットをコピー
             </button>
         </div>
