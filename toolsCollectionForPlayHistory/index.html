@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>WACCA 達成状況ビューアー</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script>
+        function copyToClipboard() {
+            var copyTarget = document.getElementById("copyTarget");
+            copyTarget.select();
+            document.execCommand("Copy");
+            alert("コピーしました");
+        };
+    </script>
+    <style>
+        body {
+            -webkit-text-size-adjust: 100%;
+        }
+        @media screen and (min-width: 767px) {
+            img {
+                width: 40%;
+            }
+        }
+        @media screen and (max-width: 479px) {
+            img {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid m-2">
+        <h2>WACCA プレイ履歴用ツールの寄せ集め（仮）</h2>
+        <p class="py-2">Twitter: <a href="https://twitter.com/shimmand">@shimmand</a></p>
+        <hr>
+        <h5 class="p-2">概要</h5>
+        <p>WACCAのマイページで確認できるプレイ履歴において、個人的に面倒だった操作を自動で行ってくれるツールです。</p>
+        <h5 class="p-2">機能</h5>
+        <p>すべてのプレイ日時のうち、時刻のみを消去します。（いわゆる「身バレ」を防ぎます）</p>
+        <p>すべての「詳細」ボタンを押し、詳細リザルトを開きます。</p>
+        <h5 class="p-2">準備</h5>
+        <p>1. ページ下部の「ブックマークレットをコピー」をタップします。</p>
+        <p>2. このページをブックマークします。（名前の変更は任意です）</p>
+        <p>3. ブックマークのアドレスを、[1] でコピーしたものに変更します。</p>
+        <h5 class="p-2">使い方</h5>
+        <p>WACCAのマイページで、[ プレイデータ ＞ 楽曲スコア ]と進み、ブックマークレットを実行します。</p>
+        <p>ブックマークレットの実行方法は以下の通りです。</p>
+        <p>iPhoneまたはPCの場合: ブックマーク一覧を表示し、[準備] で作成したブックマークをタップします。</p>
+        <p>Android系OSの場合: アドレスバーに [準備] で作成したブックマークの名前を入力し、表示された候補から「javascript〜」というものを選びタップします。名前の入力中にも候補が表示されるため、完全な名前を入力する必要はありません。</p>
+        <div class="alert alert-primary">
+            Android系OSでは、環境によりブックマークレットの実行方法が異なったり、ブックマークレットを実行できない場合があります。
+        </div>
+        <h5 class="p-2">ツール本体</h5>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/toolsCollectionForPlayHistory/main.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
+        </div>
+    </div>
+    <nav class="navbar navbar-ight bg-light">
+        <p></p>
+    </nav>
+</body>
+</html>
