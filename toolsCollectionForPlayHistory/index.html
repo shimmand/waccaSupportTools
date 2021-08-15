@@ -37,7 +37,7 @@
         <h5 class="p-2">概要</h5>
         <p>WACCAのマイページで確認できるプレイ履歴において、個人的に面倒だった操作を自動で行ってくれるツールです。</p>
         <h5 class="p-2">機能</h5>
-        <p>すべてのプレイ日時のうち、時刻のみを消去します。（いわゆる「身バレ」を防ぎます）</p>
+        <p>すべてのプレイ日時のうち、時刻部分を消去します。（いわゆる「特定」や「身バレ」を防ぎます）</p>
         <p>すべての「詳細」ボタンを押し、詳細リザルトを開きます。</p>
         <h5 class="p-2">準備</h5>
         <p>1. ページ下部の「ブックマークレットをコピー」をタップします。</p>
@@ -54,6 +54,13 @@
         <h5 class="p-2">ツール本体</h5>
         <div class="form-group row m-2">
             <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/toolsCollectionForPlayHistory/main.js'; import(path).then((obj) => obj.main())})();" readonly>
+            <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                ブックマークレットをコピー
+            </button>
+        </div>
+        <h5 class="p-2">ツール本体（時刻部分の削除のみ）</h5>
+        <div class="form-group row m-2">
+            <input class="border border-primary rounded text-secondary form-control-plaintext col-10" id="copyTarget" type="text" value="javascript:(function(){ let path = 'https://shimmand.github.io/wacca_support_tools/toolsCollectionForPlayHistory/light.js'; import(path).then((obj) => obj.main())})();" readonly>
             <button type="button" class="btn btn-primary col" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
                 ブックマークレットをコピー
             </button>
