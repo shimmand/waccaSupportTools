@@ -14,8 +14,8 @@ export function main(){
     function showAllTables(){
         // #pushobj > section > div.contents-wrap > div > ul > li:nth-child(any) > div > a
         const selectors = 'a.playdata__history-list__detail-btn';
-        const datesPlayed = document.querySelectorAll(selectors);
-        datesPlayed.forEach(function(e){
+        const actionButtons = document.querySelectorAll(selectors);
+        actionButtons.forEach(function(e){
             e.click();
         });
     };
