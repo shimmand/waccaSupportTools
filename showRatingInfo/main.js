@@ -7,7 +7,7 @@ export function main() {
             songTitle = item.querySelector('div.playdata__rate-list__song-info__name').innerText,
             diffValue = item.querySelector('div[class*="diff_icon"]').innerText;
 
-        if( !diffValue.toString.match(/NORMAL|HARD/g) ){
+        if( !diffValue.match(/NORMAL|HARD/g) ){
             const ratingValue = getRatingValue( songTitle, diffValue );
 
             if( ratingValue != '0.0'){
