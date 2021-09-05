@@ -6,16 +6,19 @@ export function main() {
             item = titles[i],
             songTitle = item.querySelector('div.playdata__rate-list__song-info__name').innerText,
             diffValue = item.querySelector('div[class*="diff_icon"]').innerText,
+
+        if( !diffValue.toString.match(/NORMAL|HARD/g) ){
             ratingValue = getRatingValue( songTitle, diffValue );
-        
-        if( ratingValue != '0.0' && diffValue.indexOf("NORMAL") != 0 && diffValue.indexOf("HARD") != 0 ){
-            item.querySelector('div[class*="diff_icon"]').innerHTML = diffValue.replace( /[0-9+]{1,3}/, ratingValue );
-            
-            let
-                yourScore = item.querySelector('div.playdata__rate-list__song-info__score').innerText.match(/[0-9]{1,7}/),
-                htmlText = getInsertHtml(ratingValue, yourScore); 
-            
-            item.querySelector('div.playdata__rate-list__song-info__score').insertAdjacentHTML( 'beforebegin', htmlText );
+
+            if( ratingValue != '0.0'){
+                item.querySelector('div[class*="diff_icon"]').innerHTML = diffValue.replace( /[0-9+]{1,3}/, ratingValue );
+                
+                let
+                    yourScore = item.querySelector('div.playdata__rate-list__song-info__score').innerText.match(/[0-9]{1,7}/),
+                    htmlText = getInsertHtml(ratingValue, yourScore); 
+                
+                item.querySelector('div.playdata__rate-list__song-info__score').insertAdjacentHTML( 'beforebegin', htmlText );
+            };
         };
     };
 };
