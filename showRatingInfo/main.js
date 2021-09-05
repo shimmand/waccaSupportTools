@@ -5,10 +5,10 @@ export function main() {
         const
             item = titles[i],
             songTitle = item.querySelector('div.playdata__rate-list__song-info__name').innerText,
-            diffValue = item.querySelector('div[class*="diff_icon"]').innerText,
+            diffValue = item.querySelector('div[class*="diff_icon"]').innerText;
 
         if( !diffValue.toString.match(/NORMAL|HARD/g) ){
-            ratingValue = getRatingValue( songTitle, diffValue );
+            const ratingValue = getRatingValue( songTitle, diffValue );
 
             if( ratingValue != '0.0'){
                 item.querySelector('div[class*="diff_icon"]').innerHTML = diffValue.replace( /[0-9+]{1,3}/, ratingValue );
