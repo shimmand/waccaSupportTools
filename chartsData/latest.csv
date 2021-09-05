@@ -75,7 +75,7 @@ song_order,song_id,song_title,song_title_initial,song_category,song_category_lab
 74,1090,五等分の気持ち,か,1,アニメ／POP,true,9+,9.9,false,false,,,
 75,1027,ギミチョコ!!,か,1,アニメ／POP,true,12+,12.9,false,false,,,
 76,1017,ウマーベラス,あ,1,アニメ／POP,true,9+,9.8,false,false,,,
-77,3005,KING,K,2,ボカロ,false,,,,false,,,
+77,3005,KING,K,2,ボカロ,true,11,11.6,true,false,,,
 78,3006,ダーリンダンス,た,2,ボカロ,true,12+,12.8,true,false,,,
 79,2239,トリノコシティ,た,2,ボカロ,true,12,12.2,true,false,,,
 80,3007,サマータイムレコード,さ,2,ボカロ,true,11+,11.9,,false,,,
