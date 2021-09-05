@@ -78,7 +78,7 @@ song_order,song_id,song_title,song_title_initial,song_category,song_category_lab
 77,3005,KING,K,2,ボカロ,true,11,11.6,true,false,,,
 78,3006,ダーリンダンス,た,2,ボカロ,true,12+,12.8,true,false,,,
 79,2239,トリノコシティ,た,2,ボカロ,true,12,12.2,true,false,,,
-80,3007,サマータイムレコード,さ,2,ボカロ,true,11+,11.9,,false,,,
+80,3007,サマータイムレコード,さ,2,ボカロ,true,11+,11.9,true,false,,,
 81,2205,テレキャスタービーボーイ,た,2,ボカロ,true,11+,11.9,false,false,,,
 82,2215,フィクサー,は,2,ボカロ,true,12+,12.9,false,false,,,
 83,2214,バレリーコ,は,2,ボカロ,true,11,11.6,false,false,,,
