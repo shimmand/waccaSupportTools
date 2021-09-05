@@ -8,7 +8,7 @@ export function main() {
             diffValue = item.querySelector('div[class*="diff_icon"]').innerText,
             ratingValue = getRatingValue( songTitle, diffValue );
         
-        if( ratingValue != '0.0' || diffValue.indexOf("NORMAL") != 0 || diffValue.indexOf("HARD") != 0 ){
+        if( ratingValue != '0.0' && diffValue.indexOf("NORMAL") != 0 && diffValue.indexOf("HARD") != 0 ){
             item.querySelector('div[class*="diff_icon"]').innerHTML = diffValue.replace( /[0-9+]{1,3}/, ratingValue );
             
             let
