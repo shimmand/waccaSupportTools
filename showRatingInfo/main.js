@@ -30,9 +30,8 @@ function getInsertHtml( ratingValue, yourScore ) {
         };
     };
 
-    const
-        adjustedRating = ( yourStrength * ratingValue ).toFixed(2),
-        paragStyle = '';
+    const adjustedRating = ( yourStrength * ratingValue ).toFixed(2);
+    let paragStyle = '';
     
     if( yourStrength == 4 ) paragStyle = 'style="color:#ff0084"';
     
