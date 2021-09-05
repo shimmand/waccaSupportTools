@@ -21,9 +21,8 @@ export function main() {
 };
 
 function getInsertHtml( ratingValue, yourScore ) {
-    const
-        strength = getStrengthTable(),
-        yourStrength = 0;
+    const strength = getStrengthTable(),
+    let yourStrength = 0;
 
     for( let i = 0; i < strength.length; i++ ){
         if( yourStrength == 0 ){
