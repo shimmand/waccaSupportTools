@@ -14,7 +14,6 @@
                 var pasteText = document.querySelector('#output');
                 pasteText.focus();
                 document.execCommand('paste');
-                console.log(pasteText.textContent);
             };
         </script>
     </head>
@@ -23,9 +22,18 @@
             <div class="navbar-brand">WACCA SUPPORT TOOLS<small class="text-muted"> by <a href="https://twitter.com/shimmand">@shimmand</small></a>
         </nav>
         <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="output"></textarea>
+            <textarea class="form-control" placeholder="Leave a comment here" id="output" style="height: 200px"></textarea>
             <label for="output">Comments</label>
-            <button id="paste" onclick="paste()">Paste</button>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
+                    データを読込
+                    <small>LOAD</small>
+                </button>
+                <button type="button" class="btn btn-outline-primary" id="paste" onclick="">
+                    分析を実行
+                    <small>RUN</small>
+                </button>
+            </div>
         </div>
     </body>
 </html>
