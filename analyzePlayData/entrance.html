@@ -16,8 +16,6 @@
                 document.execCommand('paste');
                 console.log(pasteText.textContent);
             };
-
-            document.querySelector('#paste').addEventListener('click', paste);
         </script>
     </head>
     <body>
@@ -27,7 +25,7 @@
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="output"></textarea>
             <label for="output">Comments</label>
-            <button id="paste">Paste</button>
+            <button id="paste" onclick="paste()">Paste</button>
         </div>
     </body>
 </html>
