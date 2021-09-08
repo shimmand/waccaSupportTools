@@ -24,12 +24,13 @@ export function main(){
 
     const stringToCopy = scoresList.join('\n');
     
-    const tempTextarea = document.createElement('textarea');
+    let tempTextarea = document.createElement('textarea');
     tempTextarea.textContent = stringToCopy;
     
     var bodyNode = document.querySelectorAll('body')[0];
     bodyNode.appendChild(tempTextarea);
     
+    console.log(tempTextarea.textContent);
     tempTextarea.select();
     document.execCommand('copy');
 
