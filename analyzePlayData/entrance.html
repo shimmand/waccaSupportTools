@@ -92,17 +92,14 @@
 
                     if (index < 15){
                         tableRow.classList.add('table-primary');
+                        minRatingNew = chart[6];
                     };
 
-                    if (index == 14) minRatingNew = chart[6];
-
-                    if (index > 14){
-                        const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingNew - (chart[4] * 3.00));
-                        const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingNew - (chart[4] * 3.25));
-                        const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingNew - (chart[4] * 3.50));
-                        const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingNew - (chart[4] * 3.75));
-                        const rise990k = (scale == 4.00 ? '-' : '+' + minRatingNew - (chart[4] * 4.00));
-                    };
+                    const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingNew - (chart[4] * 3.00));
+                    const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingNew - (chart[4] * 3.25));
+                    const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingNew - (chart[4] * 3.50));
+                    const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingNew - (chart[4] * 3.75));
+                    const rise990k = (scale == 4.00 ? '-' : '+' + minRatingNew - (chart[4] * 4.00));
 
                     const code = `
                         <td>${index + 1}</td>
@@ -129,17 +126,14 @@
 
                     if (index < 35){
                         tableRow.classList.add('table-primary');
+                        minRatingOld = chart[6];
                     };
 
-                    if (index == 35) minRatingOld = chart[6];
-
-                    if (index > 35){
-                        const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingOld - (chart[4] * 3.00));
-                        const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingOld - (chart[4] * 3.25));
-                        const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingOld - (chart[4] * 3.50));
-                        const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingOld - (chart[4] * 3.75));
-                        const rise990k = (scale == 4.00 ? '-' : '+' + minRatingOld - (chart[4] * 4.00));
-                    };
+                    const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingOld - (chart[4] * 3.00));
+                    const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingOld - (chart[4] * 3.25));
+                    const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingOld - (chart[4] * 3.50));
+                    const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingOld - (chart[4] * 3.75));
+                    const rise990k = (scale == 4.00 ? '-' : '+' + minRatingOld - (chart[4] * 4.00));
 
                     const code = `
                         <td>${index + 1}</td>
