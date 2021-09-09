@@ -18,7 +18,7 @@
 
             function analyze(){
                 const playdata = document.querySelector('#playdata').value.split('\n');
-                const scoresTable = document.querySelector('#scoresTable');
+                const scoresTableNew = document.querySelector('#scoresTableNew');
                 let chartsList = [];
 
                 playdata.forEach(song => {
@@ -79,7 +79,7 @@
 
                 chartsList.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
-                    const tableRow = scoresTable.appendChild(tempRow);
+                    const tableRow = scoresTableNew.appendChild(tempRow);
 
                     const code = `
                         <td>${index + 1}</td>
@@ -501,27 +501,56 @@
                 </div>
             </div>
             <div class="mt-2">
-                <table class="table table-sm">
-                    <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">曲名</th>
-                          <th scope="col">レベル</th>
-                          <th scope="col">スコア</th>
-                          <th scope="col">定数</th>
-                          <th scope="col">倍率</th>
-                          <th scope="col"><small>現在の</small><br>レート</th>
-                          <th scope="col"><small>最大の</small><br>レート</th>
-                          <th scope="col"><small>950k</small><br>上昇量</th>
-                          <th scope="col"><small>960k</small><br>上昇量</th>
-                          <th scope="col"><small>970k</small><br>上昇量</th>
-                          <th scope="col"><small>980k</small><br>上昇量</th>
-                          <th scope="col"><small>990k</small><br>上昇量</th>
-                        </tr>
-                    </thead>
-                    <tbody id="scoresTable">
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-sm caption-top">
+                        <caption>新曲枠（WACCA Reverse）</caption>
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">曲名</th>
+                            <th scope="col">レベル</th>
+                            <th scope="col">スコア</th>
+                            <th scope="col">定数</th>
+                            <th scope="col">倍率</th>
+                            <th scope="col"><small>現在の</small><br>レート</th>
+                            <th scope="col"><small>最大の</small><br>レート</th>
+                            <th scope="col"><small>950k</small><br>上昇量</th>
+                            <th scope="col"><small>960k</small><br>上昇量</th>
+                            <th scope="col"><small>970k</small><br>上昇量</th>
+                            <th scope="col"><small>980k</small><br>上昇量</th>
+                            <th scope="col"><small>990k</small><br>上昇量</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scoresTableNew">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="table-responsive">
+                    <table class="table table-sm caption-top">
+                        <caption>旧曲枠（WACCA Lily R まで）</caption>
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">曲名</th>
+                            <th scope="col">レベル</th>
+                            <th scope="col">スコア</th>
+                            <th scope="col">定数</th>
+                            <th scope="col">倍率</th>
+                            <th scope="col"><small>現在の</small><br>レート</th>
+                            <th scope="col"><small>最大の</small><br>レート</th>
+                            <th scope="col"><small>950k</small><br>上昇量</th>
+                            <th scope="col"><small>960k</small><br>上昇量</th>
+                            <th scope="col"><small>970k</small><br>上昇量</th>
+                            <th scope="col"><small>980k</small><br>上昇量</th>
+                            <th scope="col"><small>990k</small><br>上昇量</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scoresTableOld">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
