@@ -25,8 +25,8 @@
                     const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
                     const code = `
-                        <td>${index + 1}</td>    
-                        <td>${data[0]}</td>
+                        <td>${index + 1}</td>
+                        <td>${data[0].replace('__', ',')}</td>
                         <td>${data[3]}</td>
                         <td>${data[4]}</td>
                         <td></td>
