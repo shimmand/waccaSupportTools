@@ -25,31 +25,37 @@
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
+
+                    const title = data[0].replace('__', ',');
+                    const level = data[1];
+                    const score = data[2];
+                    
                     let color = '';
 
-                    if( data[1].indexOf('EXPERT') == 0 ) color = '#FA0C98';
-                    if( data[1].indexOf('INFERNO') == 0 ) color = '#4A004F';
-                    if( data[1] == 'INFERNO 0' ) color = '';
-
-                    const rating = getRatingValue(data[0].replace('__', ','), data[1]);
-                    const strength = getStrengthTable();
-                    let scale = 0;
-
-                    for( let i = 0; i < strength.length; i++ ){
-                        if( yourStrength == 0 ){
-                            if( strength[i][0] <= Number(yourScore) ) scale = strength[i][1];
-                        };
-                    };
-
-                    const adjustedRating = ( scale * rating ).toFixed(2);
+                    if( level.indexOf('EXPERT') == 0 ) color = '#FA0C98';
+                    if( level.indexOf('INFERNO') == 0 ) color = '#4A004F';
+                    if( level == 'INFERNO 0' ) color = '';
 
                     if( color != '' ){
                         index++;
+
+                        const rating = getRatingValue(title, level);
+                        const strength = getStrengthTable();
+                        let scale = 0;
+
+                        for( let i = 0; i < strength.length; i++ ){
+                            if( scale == 0 ){
+                                if( strength[i][0] <= Number(score) ) scale = strength[i][1];
+                            };
+                        };
+
+                        const adjustedRating = ( scale * rating ).toFixed(2);
+
                         const code = `
                             <td>${index}</td>
-                            <td>${data[0].replace('__', ',')}</td>
-                            <td><small style="color: ${color}">■</small>${data[1]}</td>
-                            <td>${data[2]}</td>
+                            <td>${title}</td>
+                            <td><small style="color: ${color}">■</small>${level}</td>
+                            <td>${score}</td>
                             <td>${rating}</td>
                             <td>${adjustedRating}</td>
                             <td></td>
