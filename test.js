@@ -4,13 +4,14 @@ export function main(){
 
     songs.forEach(e => {
         const title = e.querySelector('.playdata__score-list__song-info__name');
+        const escapedTitle = title.innerText.replace(',', '__');
         const levels = e.querySelectorAll('.playdata__score-list__song-info__lv');
         const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
         const pattern = /(HARD|NORMAL|EXPERT|INFERNO) [0-9]{1,2}\+*/;
 
         scoresList.push(
             [
-                title.innerText,
+                escapedTitle,
                 levels[0].innerText.match(pattern)[0],
                 parseInt(scores[0].innerText.match(/[0-9]+/)),
                 levels[1].innerText.match(pattern)[0],
