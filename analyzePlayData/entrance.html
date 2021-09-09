@@ -10,7 +10,7 @@
             };
         </style>
         <script>
-            function paste() {
+            function paste(){
                 const pasteText = document.querySelector('#playdata');
                 pasteText.focus();
                 document.execCommand('paste');
@@ -32,22 +32,22 @@
                     
                     let color = '';
 
-                    if( level.indexOf('EXPERT') == 0 ) color = '#FA0C98';
-                    if( level.indexOf('INFERNO') == 0 ) color = '#4A004F';
-                    if( level == 'INFERNO 0' ) color = '';
+                    if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
+                    if (level.indexOf('INFERNO') == 0) color = '#4A004F';
+                    if (level == 'INFERNO 0') color = '';
 
-                    if( color != '' ){
+                    if (color != ''){
                         const rating = getRatingValue(title, level);
                         const strength = getStrengthTable();
                         let scale = 0;
 
-                        for( let i = 0; i < strength.length; i++ ){
-                            if( scale == 0 ){
-                                if( strength[i][0] <= Number(score) ) scale = strength[i][1];
+                        for (let i = 0; i < strength.length; i++){
+                            if (scale == 0 ){
+                                if (strength[i][0] <= Number(score)) scale = strength[i][1];
                             };
                         };
 
-                        const adjustedRating = ( scale * rating ).toFixed(2);
+                        const adjustedRating = (scale * rating).toFixed(2);
                         const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
 
                         const rise950k = (scale >= 3 ? '-' : '+0.00');
@@ -56,7 +56,7 @@
                         const rise980k = (scale >= 3.75 ? '-' : '+0.00');
                         const rise990k = (scale == 4 ? '-' : '+0.00');
 
-                        if( checkChartIsNew(title, level) ){
+                        if (checkChartIsNew(title, level)){
                             chartsListNew.push(
                                 [
                                     title,
@@ -102,6 +102,9 @@
                 chartsListNew.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTableNew.appendChild(tempRow);
+                    if (index < 15){
+                        tableRow.classList.add('table-primary');
+                    };
 
                     const code = `
                         <td>${index + 1}</td>
@@ -125,6 +128,9 @@
                 chartsListOld.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTableOld.appendChild(tempRow);
+                    if (index < 35){
+                        tableRow.classList.add('table-primary');
+                    };
 
                     const code = `
                         <td>${index + 1}</td>
