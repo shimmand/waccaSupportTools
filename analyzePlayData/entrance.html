@@ -20,7 +20,7 @@
                 const playdata = document.querySelector('#playdata').value.split('/n');
                 const scoresTable = document.querySelector('#scoresTable');
 
-                playdata.forEach(song, index => {
+                playdata.forEach((song, index) => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
