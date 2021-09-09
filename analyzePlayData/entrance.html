@@ -16,8 +16,24 @@
                 document.execCommand('paste');
             };
 
-            function hoge(){
-                const playdata = document.querySelector('#playdata').value;
+            function analyze(){
+                const playdata = document.querySelector('#playdata').value.split('/n');
+                const scoresTable = document.querySelector('#scoresTable');
+
+                playdata.forEach(song => {
+                    const tempRow = document.createElement('tr');
+                    const tableRow = scoresTable.appendChild(tempRow);
+                    const data = song.split(',');
+                    const code = `
+                        <td>${data[0]}</td>
+                        <td>${data[2]}</td>
+                        <td></td>
+                        <td>${data[3]}</td>
+                        <td></td>
+                        <td>${data[4]}</td>
+                        <td></td>`;
+                    tableRow.innerHTML = code;
+                });
             };
         </script>
     </head>
@@ -39,7 +55,7 @@
                         </svg>
                         データを読込
                     </button>
-                    <button type="button" class="btn btn-outline-primary" id="paste" onclick="hoge()">
+                    <button type="button" class="btn btn-outline-primary" id="paste" onclick="analyze()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
@@ -53,7 +69,7 @@
                     </button>
                 </div>
             </div>
-            <div class="mt-2" id="export">
+            <div class="mt-2">
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -66,7 +82,9 @@
                           <th scope="col"><small style="color: #4A004F">INFERNO</small><br>スコア</th>
                           <th scope="col"><small style="color: #4A004F">INFERNO</small><br>定数</th>
                         </tr>
-                      </thead>
+                    </thead>
+                    <tbody id="scoresTable">
+                    </tbody>
                 </table>
             </div>
         </div>
