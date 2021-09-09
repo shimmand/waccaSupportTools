@@ -25,13 +25,16 @@
                     const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
                     const code = `
-                        <td>${index}</td>    
+                        <td>${index + 1}</td>    
                         <td>${data[0]}</td>
                         <td>${data[2]}</td>
-                        <td></td>
                         <td>${data[3]}</td>
                         <td></td>
                         <td>${data[4]}</td>
+                        <td>${data[5]}</td>
+                        <td></td>
+                        <td>${data[6]}</td>
+                        <td>${data[7]}</td>
                         <td></td>`;
                     tableRow.innerHTML = code;
                 });
@@ -76,10 +79,13 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">曲名</th>
+                          <th scope="col"><small style="color: #FED131">HARD</small><br>Lv</th>
                           <th scope="col"><small style="color: #FED131">HARD</small><br>スコア</th>
                           <th scope="col"><small style="color: #FED131">HARD</small><br>定数</th>
+                          <th scope="col"><small style="color: #FA0C98">EXPERT</small><br>Lv</th>
                           <th scope="col"><small style="color: #FA0C98">EXPERT</small><br>スコア</th>
                           <th scope="col"><small style="color: #FA0C98">EXPERT</small><br>定数</th>
+                          <th scope="col"><small style="color: #4A004F">INFERNO</small><br>Lv</th>
                           <th scope="col"><small style="color: #4A004F">INFERNO</small><br>スコア</th>
                           <th scope="col"><small style="color: #4A004F">INFERNO</small><br>定数</th>
                         </tr>
