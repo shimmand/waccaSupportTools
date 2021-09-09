@@ -6,17 +6,18 @@ export function main(){
         const title = e.querySelector('.playdata__score-list__song-info__name');
         const levels = e.querySelectorAll('.playdata__score-list__song-info__lv');
         const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
+        const pattern = /(HARD|NORMAL|EXPERT|INFERNO) [0-9]{1,2}\+*/;
 
         scoresList.push(
             [
                 title.innerText,
-                levels[0].innerText.trim(),
+                levels[0].innerText.match(pattern)[0],
                 parseInt(scores[0].innerText.match(/[0-9]+/)),
-                levels[1].innerText.trim(),
+                levels[1].innerText.match(pattern)[0],
                 parseInt(scores[1].innerText.match(/[0-9]+/)),
-                levels[2].innerText.trim(),
+                levels[2].innerText.match(pattern)[0],
                 parseInt(scores[2].innerText.match(/[0-9]+/)),
-                levels[3].innerText.trim(),
+                levels[3].innerText.match(pattern)[0],
                 parseInt(scores[3].innerText.match(/[0-9]+/))
             ]
         );
