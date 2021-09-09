@@ -50,12 +50,6 @@
                         const adjustedRating = (scale * rating).toFixed(2);
                         const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
 
-                        const rise950k = (scale >= 3 ? '-' : '+0.00');
-                        const rise960k = (scale >= 3.25 ? '-' : '+0.00');
-                        const rise970k = (scale >= 3.5 ? '-' : '+0.00');
-                        const rise980k = (scale >= 3.75 ? '-' : '+0.00');
-                        const rise990k = (scale == 4 ? '-' : '+0.00');
-
                         if (checkChartIsNew(title, level)){
                             chartsListNew.push(
                                 [
@@ -66,12 +60,7 @@
                                     rating,
                                     scale,
                                     adjustedRating,
-                                    upperRating,
-                                    rise950k,
-                                    rise960k,
-                                    rise970k,
-                                    rise980k,
-                                    rise990k
+                                    upperRating
                                 ]
                             );
                         } else {
@@ -84,12 +73,7 @@
                                     rating,
                                     scale,
                                     adjustedRating,
-                                    upperRating,
-                                    rise950k,
-                                    rise960k,
-                                    rise970k,
-                                    rise980k,
-                                    rise990k
+                                    upperRating
                                 ]
                             );
                         };
@@ -99,11 +83,25 @@
                 chartsListNew.sort(function(a,b){return(b[6] - a[6]);});
                 chartsListOld.sort(function(a,b){return(b[6] - a[6]);});
 
+                let minRatingNew = 0;
+                let minRatingOld = 0;
+
                 chartsListNew.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTableNew.appendChild(tempRow);
+
                     if (index < 15){
                         tableRow.classList.add('table-primary');
+                    };
+
+                    if (index == 14) minRatingNew = chart[6];
+
+                    if (index > 14){
+                        const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingNew - (chart[4] * 3.00));
+                        const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingNew - (chart[4] * 3.25));
+                        const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingNew - (chart[4] * 3.50));
+                        const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingNew - (chart[4] * 3.75));
+                        const rise990k = (scale == 4.00 ? '-' : '+' + minRatingNew - (chart[4] * 4.00));
                     };
 
                     const code = `
@@ -115,11 +113,11 @@
                         <td>${chart[5].toFixed(2)}</td>
                         <td>${chart[6]}</td>
                         <td>${chart[7]}</td>
-                        <td>${chart[8]}</td>
-                        <td>${chart[9]}</td>
-                        <td>${chart[10]}</td>
-                        <td>${chart[11]}</td>
-                        <td>${chart[12]}</td>
+                        <td>${rise950k}</td>
+                        <td>${rise960k}</td>
+                        <td>${rise970k}</td>
+                        <td>${rise980k}</td>
+                        <td>${rise990k}</td>
                     `;
 
                     tableRow.innerHTML = code;
@@ -128,8 +126,19 @@
                 chartsListOld.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTableOld.appendChild(tempRow);
+
                     if (index < 35){
                         tableRow.classList.add('table-primary');
+                    };
+
+                    if (index == 35) minRatingOld = chart[6];
+
+                    if (index > 35){
+                        const rise950k = (scale >= 3.00 ? '-' : '+' + minRatingOld - (chart[4] * 3.00));
+                        const rise960k = (scale >= 3.25 ? '-' : '+' + minRatingOld - (chart[4] * 3.25));
+                        const rise970k = (scale >= 3.50 ? '-' : '+' + minRatingOld - (chart[4] * 3.50));
+                        const rise980k = (scale >= 3.75 ? '-' : '+' + minRatingOld - (chart[4] * 3.75));
+                        const rise990k = (scale == 4.00 ? '-' : '+' + minRatingOld - (chart[4] * 4.00));
                     };
 
                     const code = `
@@ -141,11 +150,11 @@
                         <td>${chart[5].toFixed(2)}</td>
                         <td>${chart[6]}</td>
                         <td>${chart[7]}</td>
-                        <td>${chart[8]}</td>
-                        <td>${chart[9]}</td>
-                        <td>${chart[10]}</td>
-                        <td>${chart[11]}</td>
-                        <td>${chart[12]}</td>
+                        <td>${rise950k}</td>
+                        <td>${rise960k}</td>
+                        <td>${rise970k}</td>
+                        <td>${rise980k}</td>
+                        <td>${rise990k}</td>
                     `;
 
                     tableRow.innerHTML = code;
@@ -432,7 +441,7 @@
                     ["LEVATEiN feat. 野宮あゆみ","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
                     ["BIG HEAD BANGING","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
                     ["Knight Rider","EXPERT 13",13.3,false,"INFERNO 0",0.0,],
-                    ["PARALLEL★PRISM","EXPERT 10",10.8,false,"INFERNO 0",0.0,],
+                    ["PARALLEL★PRISM","EXPERT 10+",10.8,false,"INFERNO 0",0.0,],
                     ["ガヴリールドロップキック","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
                     ["Rainbow Dream","EXPERT 11",11.4,false,"INFERNO 0",0.0,],
                     ["Quon","EXPERT 12+",12.8,false,"INFERNO 13+",13.9,false],
