@@ -10,13 +10,13 @@ export function main(){
         scoresList.push(
             [
                 title.innerText,
-                levels[0].innerText,
+                levels[0].innerText.trim(),
                 parseInt(scores[0].innerText.match(/[0-9]+/)),
-                levels[1].innerText,
+                levels[1].innerText.trim(),
                 parseInt(scores[1].innerText.match(/[0-9]+/)),
-                levels[2].innerText,
+                levels[2].innerText.trim(),
                 parseInt(scores[2].innerText.match(/[0-9]+/)),
-                levels[3].innerText,
+                levels[3].innerText.trim(),
                 parseInt(scores[3].innerText.match(/[0-9]+/))
             ]
         );
