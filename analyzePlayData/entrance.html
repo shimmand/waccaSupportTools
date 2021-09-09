@@ -19,11 +19,9 @@
             function analyze(){
                 const playdata = document.querySelector('#playdata').value.split('\n');
                 const scoresTable = document.querySelector('#scoresTable');
-                let index = 0;
+                let chartsList = [];
 
                 playdata.forEach(song => {
-                    const tempRow = document.createElement('tr');
-                    const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
 
                     const title = data[0].replace('__', ',');
@@ -37,8 +35,6 @@
                     if( level == 'INFERNO 0' ) color = '';
 
                     if( color != '' ){
-                        index++;
-
                         const rating = getRatingValue(title, level);
                         const strength = getStrengthTable();
                         let scale = 0;
@@ -58,24 +54,50 @@
                         const rise980k = (scale >= 3.75 ? '-' : '+0.00');
                         const rise990k = (scale == 4 ? '-' : '+0.00');
 
-                        const code = `
-                            <td>${index}</td>
-                            <td>${title}</td>
-                            <td><small style="color: ${color}">■</small>${level}</td>
-                            <td>${score}</td>
-                            <td>${rating}</td>
-                            <td>${scale.toFixed(2)}</td>
-                            <td>${adjustedRating}</td>
-                            <td>${upperRating}</td>
-                            <td>${rise950k}</td>
-                            <td>${rise960k}</td>
-                            <td>${rise970k}</td>
-                            <td>${rise980k}</td>
-                            <td>${rise990k}</td>
-                            `;
 
-                        tableRow.innerHTML = code;
+                        chartsList.push(
+                            [
+                                title,
+                                color,
+                                level,
+                                score,
+                                rating,
+                                scale,
+                                adjustedRating,
+                                upperRating,
+                                rise950k,
+                                rise960k,
+                                rise970k,
+                                rise980k,
+                                rise990k
+                            ]
+                        );
                     };
+                });
+
+                chartsList.sort(function(a,b){return(a[6] - b[6]);});
+
+                chartsList.forEach((chart, index) => {
+                    const tempRow = document.createElement('tr');
+                    const tableRow = scoresTable.appendChild(tempRow);
+
+                    const code = `
+                        <td>${index + 1}</td>
+                        <td>${chart[0]}</td>
+                        <td><small style="color: ${chart[1]}">■</small>${chart[2]}</td>
+                        <td>${chart[3]}</td>
+                        <td>${chart[4]}</td>
+                        <td>${chart[5].toFixed(2)}</td>
+                        <td>${chart[6]}</td>
+                        <td>${chart[7]}</td>
+                        <td>${chart[8]}</td>
+                        <td>${chart[9]}</td>
+                        <td>${chart[10]}</td>
+                        <td>${chart[11]}</td>
+                        <td>${chart[12]}</td>
+                    `;
+
+                    tableRow.innerHTML = code;
                 });
             };
 
