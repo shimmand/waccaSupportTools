@@ -35,4 +35,6 @@ export function main(){
     document.execCommand('copy');
 
     bodyNode.removeChild(tempTextarea);
+
+    window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
 };
