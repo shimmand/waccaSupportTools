@@ -19,8 +19,9 @@
             function analyze(){
                 const playdata = document.querySelector('#playdata').value.split('\n');
                 const scoresTable = document.querySelector('#scoresTable');
+                let index = 0;
 
-                playdata.forEach((song, index) => {
+                playdata.forEach(song => {
                     const tempRow = document.createElement('tr');
                     const tableRow = scoresTable.appendChild(tempRow);
                     const data = song.split(',');
@@ -28,6 +29,7 @@
 
                     if( data[1].indexOf('EXPERT') == 0 ) color = '#FA0C98';
                     if( data[1].indexOf('INFERNO') == 0 ) color = '#4A004F';
+                    if( data[1] = 'INFERNO 0' ) color = '';
 
                     if( color != '' ){
                         const code = `
@@ -45,7 +47,7 @@
                             <td></td>
                             <td></td>
                             `;
-                            
+
                         tableRow.innerHTML = code;
                     };
                 });
