@@ -95,11 +95,11 @@
                         minRatingNew = chart[6];
                     };
 
-                    const rise950k = (chart[5] >= 3.00 ? '-' : '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2));
-                    const rise960k = (chart[5] >= 3.25 ? '-' : '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2));
-                    const rise970k = (chart[5] >= 3.50 ? '-' : '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2));
-                    const rise980k = (chart[5] >= 3.75 ? '-' : '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2));
-                    const rise990k = (chart[5] == 4.00 ? '-' : '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2));
+                    const rise950k = (chart[5] >= 3.00 && (chart[4] * 3.00) > minRatingNew ? '-' : '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2));
+                    const rise960k = (chart[5] >= 3.25 && (chart[4] * 3.00) > minRatingNew ? '-' : '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2));
+                    const rise970k = (chart[5] >= 3.50 && (chart[4] * 3.00) > minRatingNew ? '-' : '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2));
+                    const rise980k = (chart[5] >= 3.75 && (chart[4] * 3.00) > minRatingNew ? '-' : '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2));
+                    const rise990k = (chart[5] == 4.00 && (chart[4] * 3.00) > minRatingNew ? '-' : '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2));
 
                     const code = `
                         <td>${index + 1}</td>
@@ -129,11 +129,11 @@
                         minRatingOld = chart[6];
                     };
 
-                    const rise950k = (chart[5] >= 3.00 ? '-' : '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2));
-                    const rise960k = (chart[5] >= 3.25 ? '-' : '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2));
-                    const rise970k = (chart[5] >= 3.50 ? '-' : '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2));
-                    const rise980k = (chart[5] >= 3.75 ? '-' : '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2));
-                    const rise990k = (chart[5] == 4.00 ? '-' : '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2));
+                    const rise950k = (chart[5] >= 3.00 && (chart[4] * 3.00) > minRatingOld ? '-' : '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2));
+                    const rise960k = (chart[5] >= 3.25 && (chart[4] * 3.00) > minRatingOld ? '-' : '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2));
+                    const rise970k = (chart[5] >= 3.50 && (chart[4] * 3.00) > minRatingOld ? '-' : '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2));
+                    const rise980k = (chart[5] >= 3.75 && (chart[4] * 3.00) > minRatingOld ? '-' : '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2));
+                    const rise990k = (chart[5] == 4.00 && (chart[4] * 3.00) > minRatingOld ? '-' : '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2));
 
                     const code = `
                         <td>${index + 1}</td>
