@@ -13,15 +13,34 @@ export function main(){
             [
                 escapedTitle,
                 levels[0].innerText.match(pattern)[0],
-                parseInt(scores[0].innerText.match(/[0-9]+/)),
+                parseInt(scores[0].innerText.match(/[0-9]+/))
+            ]
+        );
+
+        scoresList.push(
+            [
+                escapedTitle,
                 levels[1].innerText.match(pattern)[0],
-                parseInt(scores[1].innerText.match(/[0-9]+/)),
+                parseInt(scores[1].innerText.match(/[0-9]+/))
+            ]
+        );
+
+        scoresList.push(
+            [
+                escapedTitle,
                 levels[2].innerText.match(pattern)[0],
-                parseInt(scores[2].innerText.match(/[0-9]+/)),
+                parseInt(scores[2].innerText.match(/[0-9]+/))
+            ]
+        );
+        
+        scoresList.push(
+            [
+                escapedTitle,
                 levels[3].innerText.match(pattern)[0],
                 parseInt(scores[3].innerText.match(/[0-9]+/))
             ]
         );
+
     });
 
     scoresList.forEach((e, i) => {
