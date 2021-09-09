@@ -31,9 +31,10 @@
                     if( data[1].indexOf('INFERNO') == 0 ) color = '#4A004F';
                     if( data[1] == 'INFERNO 0' ) color = '';
 
-                    if( color != '' ){
+                    if( color != '' )
+                        index++;
                         const code = `
-                            <td>${index + 1}</td>
+                            <td>${index}</td>
                             <td>${data[0].replace('__', ',')}</td>
                             <td><small style="color: ${color}">■</small>${data[1]}</td>
                             <td>${data[2]}</td>
@@ -96,13 +97,13 @@
                           <th scope="col">スコア</th>
                           <th scope="col">定数</th>
                           <th scope="col">倍率</th>
-                          <th scope="col"><small>現在の</small>レート</th>
-                          <th scope="col"><small>最大の</small>レート</th>
-                          <th scope="col"><small>950k</small>上昇量</th>
-                          <th scope="col"><small>960k</small>上昇量</th>
-                          <th scope="col"><small>970k</small>上昇量</th>
-                          <th scope="col"><small>980k</small>上昇量</th>
-                          <th scope="col"><small>990k</small>上昇量</th>
+                          <th scope="col"><small>現在の</small><br>レート</th>
+                          <th scope="col"><small>最大の</small><br>レート</th>
+                          <th scope="col"><small>950k</small><br>上昇量</th>
+                          <th scope="col"><small>960k</small><br>上昇量</th>
+                          <th scope="col"><small>970k</small><br>上昇量</th>
+                          <th scope="col"><small>980k</small><br>上昇量</th>
+                          <th scope="col"><small>990k</small><br>上昇量</th>
                         </tr>
                     </thead>
                     <tbody id="scoresTable">
