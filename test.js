@@ -2,7 +2,7 @@ export function main(){
     const songs = document.querySelectorAll('li.item');
     let scoresList = [];
 
-    songs.forEach(function(e){
+    songs.forEach(e => {
         const title = e.querySelector('.playdata__score-list__song-info__name');
         const levels = e.querySelectorAll('.playdata__score-list__song-info__lv');
         const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
@@ -22,8 +22,7 @@ export function main(){
         );
     });
 
-
-    scoresList.forEach(function(e, i){
+    scoresList.forEach((e, i) => {
         scoresList[i] = e.join(',');
     });
 
