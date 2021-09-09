@@ -38,44 +38,47 @@
 
                     if (color != ''){
                         const rating = getRatingValue(title, level);
-                        const strength = getStrengthTable();
-                        let scale = 0;
 
-                        for (let i = 0; i < strength.length; i++){
-                            if (scale == 0 ){
-                                if (strength[i][0] <= Number(score)) scale = strength[i][1];
+                        if (rating != null) {
+                            const strength = getStrengthTable();
+                            let scale = 0;
+
+                            for (let i = 0; i < strength.length; i++){
+                                if (scale == 0 ){
+                                    if (strength[i][0] <= Number(score)) scale = strength[i][1];
+                                };
                             };
-                        };
 
-                        const adjustedRating = (scale * rating).toFixed(2);
-                        const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
+                            const adjustedRating = (scale * rating).toFixed(2);
+                            const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
 
-                        if (checkChartIsNew(title, level)){
-                            chartsListNew.push(
-                                [
-                                    title,
-                                    color,
-                                    level,
-                                    score,
-                                    rating,
-                                    scale,
-                                    adjustedRating,
-                                    upperRating
-                                ]
-                            );
-                        } else {
-                            chartsListOld.push(
-                                [
-                                    title,
-                                    color,
-                                    level,
-                                    score,
-                                    rating,
-                                    scale,
-                                    adjustedRating,
-                                    upperRating
-                                ]
-                            );
+                            if (checkChartIsNew(title, level)){
+                                chartsListNew.push(
+                                    [
+                                        title,
+                                        color,
+                                        level,
+                                        score,
+                                        rating,
+                                        scale,
+                                        adjustedRating,
+                                        upperRating
+                                    ]
+                                );
+                            } else {
+                                chartsListOld.push(
+                                    [
+                                        title,
+                                        color,
+                                        level,
+                                        score,
+                                        rating,
+                                        scale,
+                                        adjustedRating,
+                                        upperRating
+                                    ]
+                                );
+                            };
                         };
                     };
                 });
