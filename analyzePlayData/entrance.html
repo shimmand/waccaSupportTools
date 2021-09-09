@@ -50,6 +50,13 @@
                         };
 
                         const adjustedRating = ( scale * rating ).toFixed(2);
+                        const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
+
+                        const rise950k = (scale >= 3 ? '-' : '+0.00');
+                        const rise960k = (scale >= 3.25 ? '-' : '+0.00');
+                        const rise970k = (scale >= 3.5 ? '-' : '+0.00');
+                        const rise980k = (scale >= 3.75 ? '-' : '+0.00');
+                        const rise990k = (scale == 4 ? '-' : '+0.00');
 
                         const code = `
                             <td>${index}</td>
@@ -57,14 +64,14 @@
                             <td><small style="color: ${color}">■</small>${level}</td>
                             <td>${score}</td>
                             <td>${rating}</td>
-                            <td>${scale}</td>
+                            <td>${scale.toFixed(2)}</td>
                             <td>${adjustedRating}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>${upperRating}</td>
+                            <td>${rise950k}</td>
+                            <td>${rise960k}</td>
+                            <td>${rise970k}</td>
+                            <td>${rise980k}</td>
+                            <td>${rise990k}</td>
                             `;
 
                         tableRow.innerHTML = code;
