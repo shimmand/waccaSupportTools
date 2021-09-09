@@ -75,7 +75,7 @@
                     };
                 });
 
-                chartsList.sort(function(a,b){return(a[6] - b[6]);});
+                chartsList.sort(function(a,b){return(b[6] - a[6]);});
 
                 chartsList.forEach((chart, index) => {
                     const tempRow = document.createElement('tr');
