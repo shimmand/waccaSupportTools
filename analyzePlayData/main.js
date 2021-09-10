@@ -52,7 +52,8 @@ export function main(){
         scoresList[i] = e.join(',');
     });
 
-    text = 
+    const parentNode = document.querySelector('.playdata__score-list');
+    const insertCode = 
     `<div style="text-align: left; font-size: 0.8em; padding: 20px">
         <script>
             function openMainPage(){        
@@ -76,7 +77,6 @@ export function main(){
         <textarea style="width: 100%; height: 100px;" id="scoresList" readonly>${scoresList.join('\n')}</textarea>
     </div>`;
 
-    parentNode = document.querySelector('.playdata__score-list');
-    parentNode.insertAdjacentHTML('beforebegin', text);
+    parentNode.insertAdjacentHTML('beforebegin', insertCode);
     window.location.href = '#isNormal'
 };
