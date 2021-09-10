@@ -167,11 +167,11 @@
                             <ol class="list-group list-group-numbered">
                                 <li class="list-group-item">このページをブックマークします</li>
                                 <li class="list-group-item">
-                                    以下のボタンをクリックします
-                                    <input class="bborder border-primary rounded form-control-plaintext p-1" id="copyTarget" type="text" value="javascript:(function(){ let path = 'javascript:(function(){ let path = 'https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js?version=1.00'; import(path).then((obj) => obj.main())})();'; import(path).then((obj) => obj.main())})();" readonly="">
-                                    <button type="button" class="btn btn-primary" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
-                                        ブックマークレットをコピー
-                                    </button>
+                                    以下の<span class="badge bg-secondary rounded-pill">コピー</span>をクリックします
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){ let path = 'javascript:(function(){ let path = 'https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js?version=1.00'; import(path).then((obj) => obj.main())})();'; import(path).then((obj) => obj.main())})();" readonly="">
+                                        <button class="btn btn-outline-secondary" onclick="copyToClipboard()" type="button" id="button-addon">コピー</button>
+                                    </div>
                                 </li>
                                 <li class="list-group-item">[1] のブックマークのアドレス欄に、コピーしたコードを貼り付けます</li>
                             </ol>
