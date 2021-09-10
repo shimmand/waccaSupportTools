@@ -165,7 +165,7 @@
                         <div class="card-body">
                             <p>ブックマークレットを追加するだけです。</p>
                             <ol class="list-group list-group-numbered">
-                                <li class="list-group-item">このページをブックマークする</li>
+                                <li class="list-group-item">このページをブックマークする<span class="text-muted">（名前の変更は任意です）</span></li>
                                 <li class="list-group-item">
                                     以下の<span class="badge bg-secondary rounded-pill">コピー</span>をクリックする
                                     <div class="input-group mb-3">
@@ -173,39 +173,7 @@
                                         <button class="btn btn-outline-secondary" onclick="copyToClipboard()" type="button" id="button-addon">コピー</button>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    ブックマークのアドレスをコピーしたものに書き換える
-                                    <p>
-                                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                            Safari (iPhone/iPad) の場合
-                                        </button>
-                                    </p>
-                                    <div class="collapse" id="collapseExample">
-                                        <ol class="list-group list-group-numbered">
-                                            <li class="list-group-item">
-                                                1. まず
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
-                                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-                                                </svg>
-                                                をタップしてブックマーク一覧を開き、ブックマークを保存したフォルダーへ移動します。
-                                            </li>
-                                            <li class="list-group-item">
-                                                2. 画面隅の [編集] をタップし、[1] で作成したブックマークをタップします。
-                                            </li>
-                                            <li class="list-group-item">
-                                                3. アドレス欄（2行目）をタップし、
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                </svg>
-                                                をタップしてアドレスを消去し、コピーしたものを貼り付けます。
-                                            </li>
-                                            <li class="list-group-item">
-                                                4. 前のページに戻り、画面隅の [完了] をタップします。
-                                            </li>
-                                        </ol>
-                                    </div>
-                                </li>
+                                <li class="list-group-item">ブックマークのアドレスを、コピーしたものに書き換える</li>
                             </ol>
                         </div>
                     </div>
@@ -213,51 +181,22 @@
                 <div class="col-md-3">
                     <div class="card m-2">
                         <div class="card-header">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                             </svg>
-                            注意事項
+                            使い方
                         </div>
                         <div class="card-body">
-                            <div class="accordion" id="accordionExample">
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      Accordion Item #1
-                                    </button>
-                                  </h2>
-                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                      <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      Accordion Item #2
-                                    </button>
-                                  </h2>
-                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                      <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                      Accordion Item #3
-                                    </button>
-                                  </h2>
-                                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                      <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                            <p></p>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item">WACCAのマイページへログインする</li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">プレイデータ</span>をクリックする</li>
+                                <li class="list-group-item">ブックマークレットを実行する</li>
+                                <li class="list-group-item">処理が完了した旨がページ上に表示されたら、<span class="badge bg-secondary rounded-pill">ツールを開く</span>をクリックする<span class="text-muted">（新しいページが開きます）</span></li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">データを読込</span>をクリックする<span class="text-muted">（クリック後に [ペースト] と表示された場合は [ペースト] もクリックします）</span></li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">分析を実行</span>をクリックする</li>
+                                <li class="list-group-item list-group-item-secondary">完了！</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
