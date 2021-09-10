@@ -78,5 +78,5 @@ export function main(){
     </div>`;
 
     parentNode.insertAdjacentHTML('beforebegin', insertCode);
-    window.location.href = '#isNormal'
+    window.location.href = '#isNormal';
 };
