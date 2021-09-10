@@ -12,6 +12,14 @@
                 -webkit-text-size-adjust: 100%;
             }
         </style>
+        <script>
+            function copyToClipboard() {
+                var copyTarget = document.getElementById("copyTarget");
+                copyTarget.select();
+                document.execCommand("Copy");
+                alert("コピーしました");
+            };
+        </script>
     </head>
     <body>
         <div class="container p-1">
@@ -21,9 +29,9 @@
                     WACCA RATING ANALYZER ヘルプ
                 </div>
             </nav>
-            <div class="row p-3">
+            <div class="row p-1">
                 <div class="col-md-3">
-                    <div class="shadow card m-2">
+                    <div class="card m-2">
                         <div class="card-header">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -31,13 +39,145 @@
                             </svg>
                             概要
                         </div>
-                        <img src="https://user-images.githubusercontent.com/58391224/132910487-f05211e6-982f-4706-b79a-0799332a6246.png" class="card-img-top" alt="">
                         <div class="card-body">
                             <p>WACCAのマイページで確認できる情報を元に、譜面ごとのレーティング値を計算するツールです。</p>
                         </div>
+                        <img src="https://user-images.githubusercontent.com/58391224/132910487-f05211e6-982f-4706-b79a-0799332a6246.png" class="card-img-top" alt="">
                     </div>
                 </div>
-                
+                <div class="col-md-3">
+                    <div class="card m-2">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning" viewBox="0 0 16 16">
+                                <path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1H6.374z"/>
+                            </svg>
+                            特長
+                        </div>
+                        <div class="card-body">
+                            <p>マイページで確認できるレーティング情報よりも、多くの情報を確認することができます。</p>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">候補曲の数</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                    </svg>
+                                    上限なし
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">会員登録</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                    </svg>
+                                    不要<span class="text-muted">（WACCAのマイページのみ登録が必要です）</span>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">データ収集</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                    </svg>
+                                    なし<span class="text-muted">（すべてブラウザー上で処理します）</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card m-2">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                            </svg>
+                            確認できる情報
+                        </div>
+                        <div class="card-body">
+                            <p>譜面別に以下の情報を確認できます。</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">スコア</span></li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">譜面定数</span></li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">スコアに応じた倍率</span></li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">譜面別レーティング値</span>：譜面定数に倍率を乗じた値</li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">最大譜面別レーティング値</span>：990kに到達した際の譜面別レーティング値</li>
+                                <li class="list-group-item"><span class="badge bg-secondary rounded-pill">総合レーティング上昇量</span>：より高いスコアを出した際に上昇する総合レーティングの量（950k以上）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card m-2">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                            </svg>
+                            注意事項
+                        </div>
+                        <div class="card-body">
+                            <p>当ツールは非公式ツールです。また不具合により、正常に動作しない可能性があります。</p>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">対応難易度</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                    EXPERTおよびINFERNO<span class="text-muted">（譜面定数を特定できていないため、NORMALおよびHARDは無視されます）</span>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">新曲への対応</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                    1日程度<span class="text-muted">（譜面定数の特定が必要であるため）</span>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-secondary">スマホへの対応</li>
+                                <li class="list-group-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+                                    そこそこ<span class="text-muted">（表を確認する際には、画面を横向きにすることをお勧めします）</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card m-2">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+                                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+                            </svg>
+                            準備
+                        </div>
+                        <div class="card-body">
+                            <p>当ツールは、ブックマークレットとWebページの2点で構成されています。</p>
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item">このページをブックマークします</li>
+                                <li class="list-group-item">
+                                    以下のボタンをクリックします
+                                    <input class="bborder border-primary rounded form-control-plaintext p-1" id="copyTarget" type="text" value="javascript:(function(){ let path = 'javascript:(function(){ let path = 'https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js?version=1.00'; import(path).then((obj) => obj.main())})();'; import(path).then((obj) => obj.main())})();" readonly="">
+                                    <button type="button" class="btn btn-primary" onclick="copyToClipboard()" data-toggle="tooltip" data-placement="top" title="コピーする">
+                                        ブックマークレットをコピー
+                                    </button>
+                                </li>
+                                <li class="list-group-item">[1] のブックマークのアドレス欄に、コピーしたコードを貼り付けます</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
