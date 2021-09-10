@@ -1,4 +1,5 @@
 export function main(){
+    // #pushobj > section > div.contents-wrap > div.playdata__score-list > ul > li:nth-child(any)
     const songs = document.querySelectorAll('li.item');
     let scoresList = [];
 
@@ -9,6 +10,7 @@ export function main(){
         const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
         const pattern = /(HARD|NORMAL|EXPERT|INFERNO) [0-9]{1,2}\+*/;
 
+        // [0: 曲名, 1: NORMALの譜面レベル, 2: NORMALのスコア]
         scoresList.push(
             [
                 escapedTitle,
@@ -17,6 +19,7 @@ export function main(){
             ]
         );
 
+        // [0: 曲名, 1: HARDの譜面レベル, 2: HARDのスコア]
         scoresList.push(
             [
                 escapedTitle,
@@ -25,6 +28,7 @@ export function main(){
             ]
         );
 
+        // [0: 曲名, 1: EXPERTの譜面レベル, 2: EXPERTのスコア]
         scoresList.push(
             [
                 escapedTitle,
@@ -32,7 +36,8 @@ export function main(){
                 parseInt(scores[2].innerText.match(/[0-9]+/))
             ]
         );
-        
+
+        // [0: 曲名, 1: INFERNOの譜面レベル, 2: INFERNOのスコア]
         scoresList.push(
             [
                 escapedTitle,
@@ -61,5 +66,6 @@ export function main(){
 
     bodyNode.removeChild(tempTextarea);
 
-    window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
+    window.alert('スコアの収集が完了しました。\n分析ツールを開きます。');
+    window.location.href = 'https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html';
 };
