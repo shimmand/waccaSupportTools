@@ -53,25 +53,13 @@ export function main(){
     });
 
     const parentNode = document.querySelector('.playdata__score-list');
+    const openMainPage = `setData=document.querySelector('scoresList').innerText;if(navigator.clipboard==undefined){window.clipboardData.setData('Text',setData);}else{navigator.clipboard.writeText(setData);};window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');`;
     const insertCode = 
     `<div style="text-align: left; font-size: 0.8em; padding: 20px">
-        <script>
-            function openMainPage(){        
-                setData = document.querySelector('scoresList').innerText;
-        
-                if (navigator.clipboard == undefined){
-                    window.clipboardData.setData('Text', setData);
-                } else {
-                    navigator.clipboard.writeText(setData);
-                };
-        
-                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
-            };
-        </script>
         <p style="font-weight: bold; padding: 10px 0 10px;">レーティング計算ツール v1.00</p>
         <p>スコアの収集が完了しました。</p><p>計算を開始するには、以下のボタンをクリックしてください。</p>
         <div style="padding: 10px 0 10px;">
-            <button onclick="openMainPage()">ツールを開く</button>
+            <button onclick="${openMainPage}">ツールを開く</button>
         </div>
         <p>収集されたデータ:</p>
         <textarea style="width: 100%; height: 100px;" id="scoresList" readonly>${scoresList.join('\n')}</textarea>
