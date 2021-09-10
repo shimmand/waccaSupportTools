@@ -53,7 +53,7 @@ export function main(){
     });
 
     const parentNode = document.querySelector('.playdata__score-list');
-    const openMainPage = `javascript:setData=document.querySelector('#scoresList').value;if(navigator.clipboard==undefined){window.clipboardData.setData('Text',setData);}else{navigator.clipboard.writeText(setData);};window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');`;
+    const openMainPage = `javascript:setData=document.querySelector('#scoresList').value;if(navigator.clipboard==undefined){window.clipboardData.setData('Text',setData);}else{navigator.clipboard.writeText(setData);};window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/rating.html');`;
     const insertCode = 
     `<div style="text-align: left; font-size: 0.8em; padding: 20px">
         <p style="font-weight: bold; padding: 10px 0 10px;">レーティング計算ツール v1.00</p>
