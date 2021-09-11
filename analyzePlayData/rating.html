@@ -55,8 +55,9 @@
                                     };
                                 };
 
+                                const maxPillCode = '<span class="badge rounded-pill bg-secondary">MAX</span>';
                                 const adjustedRating = (scale * rating).toFixed(2);
-                                const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
+                                const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : maxPillCode);
 
                                 if (checkChartIsNew(title, level)){
                                     chartsListNew.push(
