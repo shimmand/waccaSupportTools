@@ -22,145 +22,149 @@
 
             // スコアの分析()
             function analyze(){
-                const playdata = document.querySelector('#playdata').value.split('\n');
-                const scoresTableNew = document.querySelector('#scoresTableNew');
-                const scoresTableOld = document.querySelector('#scoresTableOld');
-                let chartsListNew = [];
-                let chartsListOld = [];
+                if (document.querySelectorAll('tr').length == 2){
+                    const playdata = document.querySelector('#playdata').value.split('\n');
+                    const scoresTableNew = document.querySelector('#scoresTableNew');
+                    const scoresTableOld = document.querySelector('#scoresTableOld');
+                    let chartsListNew = [];
+                    let chartsListOld = [];
 
-                playdata.forEach(song => {
-                    const data = song.split(',');
+                    playdata.forEach(song => {
+                        const data = song.split(',');
 
-                    const title = data[0].replace('__', ',');
-                    const level = data[1];
-                    const score = data[2];
-                    
-                    let color = '';
+                        const title = data[0].replace('__', ',');
+                        const level = data[1];
+                        const score = data[2];
+                        
+                        let color = '';
 
-                    if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
-                    if (level.indexOf('INFERNO') == 0) color = '#4A004F';
-                    if (level == 'INFERNO 0') color = '';
+                        if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
+                        if (level.indexOf('INFERNO') == 0) color = '#4A004F';
+                        if (level == 'INFERNO 0') color = '';
 
-                    if (color != ''){
-                        const rating = getRatingValue(title, level);
+                        if (color != ''){
+                            const rating = getRatingValue(title, level);
 
-                        if (rating != null) {
-                            const strength = getStrengthTable();
-                            let scale = 0;
+                            if (rating != null) {
+                                const strength = getStrengthTable();
+                                let scale = 0;
 
-                            for (let i = 0; i < strength.length; i++){
-                                if (scale == 0 ){
-                                    if (strength[i][0] <= Number(score)) scale = strength[i][1];
+                                for (let i = 0; i < strength.length; i++){
+                                    if (scale == 0 ){
+                                        if (strength[i][0] <= Number(score)) scale = strength[i][1];
+                                    };
+                                };
+
+                                const adjustedRating = (scale * rating).toFixed(2);
+                                const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
+
+                                if (checkChartIsNew(title, level)){
+                                    chartsListNew.push(
+                                        [
+                                            title,
+                                            color,
+                                            level,
+                                            score,
+                                            rating,
+                                            scale,
+                                            adjustedRating,
+                                            upperRating
+                                        ]
+                                    );
+                                } else {
+                                    chartsListOld.push(
+                                        [
+                                            title,
+                                            color,
+                                            level,
+                                            score,
+                                            rating,
+                                            scale,
+                                            adjustedRating,
+                                            upperRating
+                                        ]
+                                    );
                                 };
                             };
-
-                            const adjustedRating = (scale * rating).toFixed(2);
-                            const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : 'MAX');
-
-                            if (checkChartIsNew(title, level)){
-                                chartsListNew.push(
-                                    [
-                                        title,
-                                        color,
-                                        level,
-                                        score,
-                                        rating,
-                                        scale,
-                                        adjustedRating,
-                                        upperRating
-                                    ]
-                                );
-                            } else {
-                                chartsListOld.push(
-                                    [
-                                        title,
-                                        color,
-                                        level,
-                                        score,
-                                        rating,
-                                        scale,
-                                        adjustedRating,
-                                        upperRating
-                                    ]
-                                );
-                            };
                         };
-                    };
-                });
+                    });
 
-                chartsListNew.sort(function(a,b){return(b[6] - a[6]);});
-                chartsListOld.sort(function(a,b){return(b[6] - a[6]);});
+                    chartsListNew.sort(function(a,b){return(b[6] - a[6]);});
+                    chartsListOld.sort(function(a,b){return(b[6] - a[6]);});
 
-                let minRatingNew = 0;
-                let minRatingOld = 0;
+                    let minRatingNew = 0;
+                    let minRatingOld = 0;
 
-                chartsListNew.forEach((chart, index) => {
-                    const tempRow = document.createElement('tr');
-                    const tableRow = scoresTableNew.appendChild(tempRow);
+                    chartsListNew.forEach((chart, index) => {
+                        const tempRow = document.createElement('tr');
+                        const tableRow = scoresTableNew.appendChild(tempRow);
 
-                    if (index < 15){
-                        tableRow.classList.add('table-primary');
-                        minRatingNew = chart[6];
-                    };
+                        if (index < 15){
+                            tableRow.classList.add('table-primary');
+                            minRatingNew = chart[6];
+                        };
 
-                    const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingNew ? '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2) : "-");
-                    const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingNew ? '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2) : "-");
-                    const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingNew ? '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2) : "-");
-                    const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingNew ? '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2) : "-");
-                    const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingNew ? '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2) : "-");
+                        const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingNew ? '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2) : "-");
+                        const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingNew ? '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2) : "-");
+                        const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingNew ? '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2) : "-");
+                        const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingNew ? '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2) : "-");
+                        const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingNew ? '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2) : "-");
 
-                    const code = `
-                        <td>${index + 1}</td>
-                        <td>${chart[0]}</td>
-                        <td><small style="color: ${chart[1]}">■</small>${chart[2]}</td>
-                        <td>${chart[3]}</td>
-                        <td>${chart[4]}</td>
-                        <td>${chart[5].toFixed(2)}</td>
-                        <td>${chart[6]}</td>
-                        <td>${chart[7]}</td>
-                        <td>${rise950k}</td>
-                        <td>${rise960k}</td>
-                        <td>${rise970k}</td>
-                        <td>${rise980k}</td>
-                        <td>${rise990k}</td>
-                    `;
+                        const code = `
+                            <td>${index + 1}</td>
+                            <td>${chart[0]}</td>
+                            <td><small style="color: ${chart[1]}">■</small>${chart[2]}</td>
+                            <td>${chart[3]}</td>
+                            <td>${chart[4]}</td>
+                            <td>${chart[5].toFixed(2)}</td>
+                            <td>${chart[6]}</td>
+                            <td>${chart[7]}</td>
+                            <td>${rise950k}</td>
+                            <td>${rise960k}</td>
+                            <td>${rise970k}</td>
+                            <td>${rise980k}</td>
+                            <td>${rise990k}</td>
+                        `;
 
-                    tableRow.innerHTML = code;
-                });
+                        tableRow.innerHTML = code;
+                    });
 
-                chartsListOld.forEach((chart, index) => {
-                    const tempRow = document.createElement('tr');
-                    const tableRow = scoresTableOld.appendChild(tempRow);
+                    chartsListOld.forEach((chart, index) => {
+                        const tempRow = document.createElement('tr');
+                        const tableRow = scoresTableOld.appendChild(tempRow);
 
-                    if (index < 35){
-                        tableRow.classList.add('table-primary');
-                        minRatingOld = chart[6];
-                    };
+                        if (index < 35){
+                            tableRow.classList.add('table-primary');
+                            minRatingOld = chart[6];
+                        };
 
-                    const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingOld ? '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2) : "-");
-                    const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingOld ? '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2) : "-");
-                    const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingOld ? '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2) : "-");
-                    const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingOld ? '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2) : "-");
-                    const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingOld ? '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2) : "-");
+                        const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingOld ? '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2) : "-");
+                        const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingOld ? '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2) : "-");
+                        const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingOld ? '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2) : "-");
+                        const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingOld ? '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2) : "-");
+                        const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingOld ? '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2) : "-");
 
-                    const code = `
-                        <td>${index + 1}</td>
-                        <td>${chart[0]}</td>
-                        <td><small style="color: ${chart[1]}">■</small>${chart[2]}</td>
-                        <td>${chart[3]}</td>
-                        <td>${chart[4]}</td>
-                        <td>${chart[5].toFixed(2)}</td>
-                        <td>${chart[6]}</td>
-                        <td>${chart[7]}</td>
-                        <td>${rise950k}</td>
-                        <td>${rise960k}</td>
-                        <td>${rise970k}</td>
-                        <td>${rise980k}</td>
-                        <td>${rise990k}</td>
-                    `;
+                        const code = `
+                            <td>${index + 1}</td>
+                            <td>${chart[0]}</td>
+                            <td><small style="color: ${chart[1]}">■</small>${chart[2]}</td>
+                            <td>${chart[3]}</td>
+                            <td>${chart[4]}</td>
+                            <td>${chart[5].toFixed(2)}</td>
+                            <td>${chart[6]}</td>
+                            <td>${chart[7]}</td>
+                            <td>${rise950k}</td>
+                            <td>${rise960k}</td>
+                            <td>${rise970k}</td>
+                            <td>${rise980k}</td>
+                            <td>${rise990k}</td>
+                        `;
 
-                    tableRow.innerHTML = code;
-                });
+                        tableRow.innerHTML = code;
+                    });
+                } else {
+                    window.alert('「しかし　なにも　おこらなかった。」\n（実行エラー：既に分析は実行済みです。）');
+                };
             };
 
             // 説明書を開く()
