@@ -13,12 +13,14 @@
             };
         </style>
         <script>
+            // 貼り付け()
             function paste(){
                 const pasteText = document.querySelector('#playdata');
                 pasteText.focus();
-                document.execCommand('paste');
+                navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
             };
 
+            // スコアの分析()
             function analyze(){
                 const playdata = document.querySelector('#playdata').value.split('\n');
                 const scoresTableNew = document.querySelector('#scoresTableNew');
@@ -161,10 +163,12 @@
                 });
             };
 
+            // 説明書を開く()
             function openEntrancePage(){
                 window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
             };
 
+            // スコアと倍数の対応表() => Array[[]]
             function getStrengthTable(){
                 return [
                     [990000, 4],
@@ -188,6 +192,7 @@
                 ];
             };
 
+            // 定数を取得(曲名, レベル文字列) => 0.0
             function getRatingValue(songTitle, diffValue){
                 const rating = getRatingTable();
                 
@@ -199,6 +204,7 @@
                 };
             };
 
+            // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
             function checkChartIsNew(songTitle, diffValue){
                 const rating = getRatingTable();
                 
@@ -210,6 +216,9 @@
                 };
             };
 
+            // レーティング一覧表() => Array[[]]
+            // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
+            // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
             function getRatingTable(){
                 return [
                     ["叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
