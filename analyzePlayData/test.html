@@ -190,7 +190,10 @@
             // 表示と非表示を切り替え()
             function toggleDisplayState(){
                 const allTargetRows = document.querySelectorAll('.all-clear');
-                allTargetRows.classList.toggle('d-none');
+                
+                if (allTargetRows.length != 0){
+                    allTargetRows.classList.toggle('d-none');
+                };
             };
 
             // 説明書を開く()
