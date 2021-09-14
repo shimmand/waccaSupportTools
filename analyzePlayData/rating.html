@@ -11,6 +11,10 @@
             body {
                 -webkit-text-size-adjust: 100%;
             };
+
+            .hidden {
+                display: none;
+            };
         </style>
         <script>
             // 貼り付け()
@@ -93,6 +97,9 @@
                     chartsListNew.sort(function(a,b){return(b[6] - a[6]);});
                     chartsListOld.sort(function(a,b){return(b[6] - a[6]);});
 
+                    const targetsVolumeNew = 15;
+                    const targetsVolumeOld = 35;
+
                     let minRatingNew = 0;
                     let minRatingOld = 0;
 
@@ -100,16 +107,22 @@
                         const tempRow = document.createElement('tr');
                         const tableRow = scoresTableNew.appendChild(tempRow);
 
-                        if (index < 15){
+                        if (index < targetsVolumeNew){
                             tableRow.classList.add('table-primary');
                             minRatingNew = chart[6];
                         };
 
-                        const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingNew ? '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2) : "-");
-                        const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingNew ? '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2) : "-");
-                        const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingNew ? '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2) : "-");
-                        const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingNew ? '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2) : "-");
-                        const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingNew ? '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2) : "-");
+                        const increases = [
+                            (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingNew ? '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2) : "-"),
+                            (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingNew ? '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2) : "-"),
+                            (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingNew ? '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2) : "-"),
+                            (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingNew ? '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2) : "-"),
+                            (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingNew ? '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2) : "-")
+                        ];
+
+                        if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumeNew){
+                            tableRow.classList.add('all-clear');
+                        };
 
                         const code = `
                             <td>${index + 1}</td>
@@ -120,11 +133,11 @@
                             <td>${chart[5].toFixed(2)}</td>
                             <td>${chart[6]}</td>
                             <td>${chart[7]}</td>
-                            <td>${rise950k}</td>
-                            <td>${rise960k}</td>
-                            <td>${rise970k}</td>
-                            <td>${rise980k}</td>
-                            <td>${rise990k}</td>
+                            <td>${increases[0]}</td>
+                            <td>${increases[1]}</td>
+                            <td>${increases[2]}</td>
+                            <td>${increases[3]}</td>
+                            <td>${increases[4]}</td>
                         `;
 
                         tableRow.innerHTML = code;
@@ -134,16 +147,22 @@
                         const tempRow = document.createElement('tr');
                         const tableRow = scoresTableOld.appendChild(tempRow);
 
-                        if (index < 35){
+                        if (index < targetsVolumeOld){
                             tableRow.classList.add('table-primary');
                             minRatingOld = chart[6];
                         };
 
-                        const rise950k = (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingOld ? '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2) : "-");
-                        const rise960k = (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingOld ? '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2) : "-");
-                        const rise970k = (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingOld ? '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2) : "-");
-                        const rise980k = (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingOld ? '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2) : "-");
-                        const rise990k = (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingOld ? '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2) : "-");
+                        const increases = [
+                            (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingOld ? '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2) : "-"),
+                            (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingOld ? '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2) : "-"),
+                            (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingOld ? '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2) : "-"),
+                            (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingOld ? '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2) : "-"),
+                            (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingOld ? '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2) : "-")
+                        ];
+
+                        if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumeOld){
+                            tableRow.classList.add('all-clear');
+                        };
 
                         const code = `
                             <td>${index + 1}</td>
@@ -154,11 +173,11 @@
                             <td>${chart[5].toFixed(2)}</td>
                             <td>${chart[6]}</td>
                             <td>${chart[7]}</td>
-                            <td>${rise950k}</td>
-                            <td>${rise960k}</td>
-                            <td>${rise970k}</td>
-                            <td>${rise980k}</td>
-                            <td>${rise990k}</td>
+                            <td>${increases[0]}</td>
+                            <td>${increases[1]}</td>
+                            <td>${increases[2]}</td>
+                            <td>${increases[3]}</td>
+                            <td>${increases[4]}</td>
                         `;
 
                         tableRow.innerHTML = code;
@@ -166,6 +185,11 @@
                 } else {
                     window.open('https://dic.nicovideo.jp/id/4139324');
                 };
+            };
+
+            // 表示と非表示を切り替え()
+            function toggleDisplayState(){
+                document.querySelectorAll('.all-clear').forEach(e => e.classList.toggle('d-none'));
             };
 
             // 説明書を開く()
@@ -565,9 +589,9 @@
                 </div>
             </nav>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="playdata" style="height: 200px"></textarea>
+                <textarea class="form-control" id="playdata" style="height: 200px"></textarea>
                 <label for="playdata">Playdata</label>
-                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
                             <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
@@ -588,6 +612,40 @@
                         </svg>
                         ヘルプ
                     </button>
+                </div>
+            </div>
+            <div class="mt-2">
+                <h3>表示設定</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card m-2">
+                            <div class="card-header">
+                                レーティングに影響しない譜面
+                            </div>
+                            <div class="card-body">
+                                <div class="btn-group" role="group">
+                                    <input type="radio" class="btn-check" name="radio1" id="radio1-1" autocomplete="off" onchange="toggleDisplayState()" checked>
+                                    <label class="btn btn-outline-primary" for="radio1-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                        </svg>
+                                        表示する
+                                    </label>
+                                    <input type="radio" class="btn-check" name="radio1" id="radio1-2" autocomplete="off" onchange="toggleDisplayState()">
+                                    <label class="btn btn-outline-primary" for="radio1-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                            <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                                            <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                                            <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                                        </svg>
+                                        表示しない
+                                    </label>
+                                </div>
+                                <p class="text-muted">レーティング対象曲は常に表示されます。</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mt-2">
