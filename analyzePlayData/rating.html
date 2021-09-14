@@ -189,7 +189,9 @@
 
             // 表示と非表示を切り替え()
             function toggleDisplayState(){
-                document.querySelectorAll('.all-clear').forEach(e => e.classList.toggle('d-none'));
+                if (document.querySelectorAll('tr').length != 2){
+                    document.querySelectorAll('.all-clear').forEach(e => e.classList.toggle('d-none'));
+                }
             };
 
             // 説明書を開く()
