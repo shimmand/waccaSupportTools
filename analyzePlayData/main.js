@@ -8,7 +8,7 @@ export function main(){
         const escapedTitle = title.innerText.replace(',', '__');
         const levels = e.querySelectorAll('.playdata__score-list__song-info__lv');
         const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
-        const pattern = /(HARD|NORMAL|EXPERT|INFERNO) [0-9]{1,2}\+*/;
+        const pattern = /(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+*/;
 
         // [0: 曲名, 1: NORMALの譜面レベル, 2: NORMALのスコア]
         scoresList.push(
