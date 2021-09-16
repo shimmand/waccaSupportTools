@@ -57,11 +57,11 @@ export function main(){
     const insertCode = 
     `<div style="text-align: left; font-size: 0.8em; padding: 20px">
         <p style="font-weight: bold; padding: 10px 0 10px;">WACCA RATING ANALYZER v1.00</p>
-        <p>スコアの収集が完了しました。</p><p>計算を開始するには、以下のボタンをクリックしてください。</p>
+        <p>スコアの取得が完了しました。</p><p>計算を開始するには、以下のボタンをクリックしてください。</p>
         <div style="padding: 10px 0 10px;">
             <button onclick="${openMainPage}">ツールを開く</button>
         </div>
-        <p>収集されたデータ:</p>
+        <p>取得したデータ:</p>
         <textarea style="width: 100%; height: 100px;" id="scoresList" readonly>${scoresList.join('\n')}</textarea>
     </div>`;
 
