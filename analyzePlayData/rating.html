@@ -11,187 +11,176 @@
             body {
                 -webkit-text-size-adjust: 100%;
             };
-
-            .hidden {
-                display: none;
-            };
         </style>
         <script>
             // 貼り付け()
             function paste(){
                 const pasteText = document.querySelector('#playdata');
+                
+                // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 pasteText.focus();
+                
+                // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
                 navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
             };
 
             // スコアの分析()
             function analyze(){
-                if (document.querySelectorAll('tr').length == 2){
-                    const playdata = document.querySelector('#playdata').value.split('\n');
+
+                // 表の行数が初期値の4である場合のみ続行
+                if (document.querySelectorAll('tr').length == 4){
+
+                    // 改行で区切って譜面を配列化
+                    const charts = document.querySelector('#playdata').value.split('\n');
+
+                    // 書き出し先のテーブルを定義
                     const scoresTableNew = document.querySelector('#scoresTableNew');
                     const scoresTableOld = document.querySelector('#scoresTableOld');
+                    
+                    // 譜面データを格納する配列を用意
                     let chartsListNew = [];
                     let chartsListOld = [];
 
-                    playdata.forEach(song => {
-                        const data = song.split(',');
+                    // 譜面ごとに・・・
+                    charts.forEach(chart => {
+                        
+                        // [0: 曲名, 1: 譜面レベル, 2: スコア]
+                        const data = chart.split(',');
 
+                        // 取得時にエスケープしたカンマをここで元に戻す
                         const title = data[0].replace('__', ',');
                         const level = data[1];
                         const score = data[2];
-                        
-                        let color = '';
 
-                        if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
-                        if (level.indexOf('INFERNO') == 0) color = '#4A004F';
-                        if (level == 'INFERNO 0') color = '';
+                        // 曲名とレベルで譜面定数を取得
+                        const rating = getRatingValue(title, level);
 
-                        if (color != ''){
-                            const rating = getRatingValue(title, level);
+                        // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
+                        if ((level != 'INFERNO 0') && (rating != null)){
 
-                            if (rating != null) {
-                                const strength = getStrengthTable();
-                                let scale = 0;
+                            // 難易度に応じた色を設定
+                            let color = '';
+                            if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
+                            if (level.indexOf('INFERNO') == 0) color = '#4A004F';
 
-                                for (let i = 0; i < strength.length; i++){
-                                    if (scale == 0 ){
-                                        if (strength[i][0] <= Number(score)) scale = strength[i][1];
-                                    };
+                            // スコアに応じた譜面定数へ乗ずる値（倍数）
+                            const multipliers = getMultiplierTable();
+                            let multiplier = 0;
+
+                            // スコアと照らし合わせて倍数を設定
+                            for (let i = 0; i < multipliers.length; i++){
+                                if (multiplier == 0){
+                                    if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
                                 };
+                            };
 
-                                const maxPillCode = '<span class="badge rounded-pill bg-secondary">MAX</span>';
-                                const adjustedRating = (scale * rating).toFixed(2);
-                                const upperRating = (scale < 4 ? ( 4 * rating ).toFixed(2) : maxPillCode);
+                            // 倍数が上限値である場合に表示するアイコン
+                            const maxPillCode = '<span class="badge rounded-pill bg-secondary">MAX</span>';
 
-                                if (checkChartIsNew(title, level)){
-                                    chartsListNew.push(
-                                        [
-                                            title,
-                                            color,
-                                            level,
-                                            score,
-                                            rating,
-                                            scale,
-                                            adjustedRating,
-                                            upperRating
-                                        ]
-                                    );
-                                } else {
-                                    chartsListOld.push(
-                                        [
-                                            title,
-                                            color,
-                                            level,
-                                            score,
-                                            rating,
-                                            scale,
-                                            adjustedRating,
-                                            upperRating
-                                        ]
-                                    );
-                                };
+                            // 現在の譜面別レーティング
+                            const adjustedRating = (multiplier * rating).toFixed(2);
+
+                            // 譜面別レーティングの上限値
+                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxPillCode);
+
+                            // 配列に入れるデータ
+                            const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
+
+                            // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
+                            if (checkChartIsNew(title, level)){
+                                chartsListNew.push(chartData);
+                            } else {
+                                chartsListOld.push(chartData);
                             };
                         };
                     });
 
+                    // 譜面データの配列を譜面別レーティングの降順で並び替え
                     chartsListNew.sort(function(a,b){return(b[6] - a[6]);});
                     chartsListOld.sort(function(a,b){return(b[6] - a[6]);});
 
-                    const targetsVolumeNew = 15;
-                    const targetsVolumeOld = 35;
+                    // 反復処理で扱いやすいようにこれまでの変数を配列化
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const chartsLists = [chartsListNew, chartsListOld];
+                    const scoresTable = [scoresTableNew, scoresTableOld];
 
-                    let minRatingNew = 0;
-                    let minRatingOld = 0;
+                    // レーティング対象曲の数
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const targetsVolumes = [15, 35];
 
-                    chartsListNew.forEach((chart, index) => {
-                        const tempRow = document.createElement('tr');
-                        const tableRow = scoresTableNew.appendChild(tempRow);
+                    // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let minRatings = [0, 0];
 
-                        if (index < targetsVolumeNew){
-                            tableRow.classList.add('table-primary');
-                            minRatingNew = chart[6];
-                        };
+                    // 目標倍率（スコア）の一覧
+                    // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                    // !!! 関連要素: tr > td[8-12]
+                    const targetMultipliers = [3.00, 3.25, 3.50, 3.75, 4.00];
 
-                        const increases = [
-                            (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingNew ? '+' + ((chart[4] * 3.00) - minRatingNew).toFixed(2) : "-"),
-                            (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingNew ? '+' + ((chart[4] * 3.25) - minRatingNew).toFixed(2) : "-"),
-                            (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingNew ? '+' + ((chart[4] * 3.50) - minRatingNew).toFixed(2) : "-"),
-                            (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingNew ? '+' + ((chart[4] * 3.75) - minRatingNew).toFixed(2) : "-"),
-                            (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingNew ? '+' + ((chart[4] * 4.00) - minRatingNew).toFixed(2) : "-")
-                        ];
+                    // 新曲枠 -> 旧曲枠の順に・・・
+                    chartsLists.forEach((chartsList, listIndex) => {
 
-                        if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumeNew){
-                            tableRow.classList.add('all-clear');
-                        };
+                        // 譜面ごとに・・・
+                        chartsList.forEach((chart, index) => {
 
-                        const code = `
-                            <td>${index + 1}</td>
-                            <td>${chart[0]}</td>
-                            <td><span class="badge rounded-pill" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
-                            <td>${chart[3]}</td>
-                            <td>${chart[4]}</td>
-                            <td>${chart[5].toFixed(2)}</td>
-                            <td>${chart[6]}</td>
-                            <td>${chart[7]}</td>
-                            <td>${increases[0]}</td>
-                            <td>${increases[1]}</td>
-                            <td>${increases[2]}</td>
-                            <td>${increases[3]}</td>
-                            <td>${increases[4]}</td>
-                        `;
+                            // 新しい行を生成
+                            const tempRow = document.createElement('tr');
+                            const tableRow = scoresTable[listIndex].appendChild(tempRow);
 
-                        tableRow.innerHTML = code;
-                    });
+                            // レーティング対象曲であれば背景を青く設定し、レーティングの下限値を更新
+                            if (index < targetsVolumes[listIndex]){
+                                tableRow.classList.add('table-primary');
+                                minRatings[listIndex] = chart[6];
+                            };
 
-                    chartsListOld.forEach((chart, index) => {
-                        const tempRow = document.createElement('tr');
-                        const tableRow = scoresTableOld.appendChild(tempRow);
+                            // 特定スコアに到達した際の総合レーティング上昇量
+                            // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                            const increases = targetMultipliers.map(multiplier => {
+                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > minRatings[listIndex])){
+                                    return '+' + ((chart[4] * multiplier) - minRatings[listIndex]).toFixed(2);
+                                } else {
+                                    return '-';
+                                };
+                            });
 
-                        if (index < targetsVolumeOld){
-                            tableRow.classList.add('table-primary');
-                            minRatingOld = chart[6];
-                        };
+                            // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
+                            if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumes[listIndex]){
+                                tableRow.classList.add('all-clear');
+                            };
 
-                        const increases = [
-                            (chart[5] < 3.00 && (chart[4] * 3.00) > minRatingOld ? '+' + ((chart[4] * 3.00) - minRatingOld).toFixed(2) : "-"),
-                            (chart[5] < 3.25 && (chart[4] * 3.25) > minRatingOld ? '+' + ((chart[4] * 3.25) - minRatingOld).toFixed(2) : "-"),
-                            (chart[5] < 3.50 && (chart[4] * 3.50) > minRatingOld ? '+' + ((chart[4] * 3.50) - minRatingOld).toFixed(2) : "-"),
-                            (chart[5] < 3.75 && (chart[4] * 3.75) > minRatingOld ? '+' + ((chart[4] * 3.75) - minRatingOld).toFixed(2) : "-"),
-                            (chart[5] < 4.00 && (chart[4] * 4.00) > minRatingOld ? '+' + ((chart[4] * 4.00) - minRatingOld).toFixed(2) : "-")
-                        ];
+                            // 挿入するHTMLのコードを生成
+                            const code = `
+                                <td>${index + 1}</td>
+                                <td>${chart[0]}</td>
+                                <td><span class="badge rounded-pill" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
+                                <td>${chart[3]}</td>
+                                <td>${chart[4]}</td>
+                                <td>${chart[5].toFixed(2)}</td>
+                                <td>${chart[6]}</td>
+                                <td>${chart[7]}</td>
+                                <td>${increases[0]}</td>
+                                <td>${increases[1]}</td>
+                                <td>${increases[2]}</td>
+                                <td>${increases[3]}</td>
+                                <td>${increases[4]}</td>
+                            `;
 
-                        if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumeOld){
-                            tableRow.classList.add('all-clear');
-                        };
+                            // コードを挿入
+                            tableRow.innerHTML = code;
 
-                        const code = `
-                            <td>${index + 1}</td>
-                            <td>${chart[0]}</td>
-                            <td><span class="badge rounded-pill" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
-                            <td>${chart[3]}</td>
-                            <td>${chart[4]}</td>
-                            <td>${chart[5].toFixed(2)}</td>
-                            <td>${chart[6]}</td>
-                            <td>${chart[7]}</td>
-                            <td>${increases[0]}</td>
-                            <td>${increases[1]}</td>
-                            <td>${increases[2]}</td>
-                            <td>${increases[3]}</td>
-                            <td>${increases[4]}</td>
-                        `;
-
-                        tableRow.innerHTML = code;
-
-                        document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+                            // 無効にされているフォームをすべて有効化
+                            document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+                        });
                     });
                 } else {
+                    // 2回以上実行されるとページが崩壊するので警告を発して終了
                     window.open('https://dic.nicovideo.jp/id/4139324');
                 };
             };
 
             // 表示と非表示を切り替え()
             function toggleDisplayState(){
-                if (document.querySelectorAll('tr').length != 2){
+                if (document.querySelectorAll('tr').length != 4){
                     document.querySelectorAll('.all-clear').forEach(e => e.classList.toggle('d-none'));
                 }
             };
@@ -202,7 +191,7 @@
             };
 
             // スコアと倍数の対応表() => Array[[]]
-            function getStrengthTable(){
+            function getMultiplierTable(){
                 return [
                     [990000, 4],
                     [980000, 3.75],
@@ -226,24 +215,34 @@
             };
 
             // 定数を取得(曲名, レベル文字列) => 0.0
+            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
             function getRatingValue(songTitle, diffValue){
                 const rating = getRatingTable();
                 
                 for( let i = 0; i < rating.length; i++ ){
                     if( rating[i][0] == songTitle ) {
+                        
+                        // [..., 1: EXPERTレベル, 2: EXPERT定数, ...]
                         if( rating[i][1] == diffValue ) return rating[i][2].toFixed(1);
+                        
+                        // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
                         if( rating[i][4] == diffValue ) return rating[i][5].toFixed(1);
                     };
                 };
             };
 
             // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
+            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
             function checkChartIsNew(songTitle, diffValue){
                 const rating = getRatingTable();
                 
                 for( let i = 0; i < rating.length; i++ ){
                     if( rating[i][0] == songTitle ) {
+
+                        // [..., 1: EXPERTレベル, ..., 3: EXPERTは新曲枠?, ...]
                         if( rating[i][1] == diffValue ) return rating[i][3];
+
+                        // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
                         if( rating[i][4] == diffValue ) return rating[i][6];
                     };
                 };
@@ -252,6 +251,7 @@
             // レーティング一覧表() => Array[[]]
             // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
             // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
+            // !!! 関連要素: getRatingValue(), checkChartIsNew()
             function getRatingTable(){
                 return [
                     ["叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
@@ -593,8 +593,8 @@
                 </div>
             </nav>
             <div class="form-floating">
-                <textarea class="form-control" id="playdata" style="height: 200px"></textarea>
-                <label for="playdata">Playdata</label>
+                <textarea class="form-control" id="playdata" style="height: 100px" placeholder="「データを読込」を押してください"></textarea>
+                <label for="playdata">プレイデータ</label>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
@@ -664,19 +664,24 @@
                         </caption>
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">曲名</th>
-                            <th scope="col">レベル</th>
-                            <th scope="col">スコア</th>
-                            <th scope="col">定数</th>
-                            <th scope="col">倍率</th>
-                            <th scope="col"><small>現在の</small><br>レート</th>
-                            <th scope="col"><small>最大の</small><br>レート</th>
-                            <th scope="col"><small>950k</small><br>上昇量</th>
-                            <th scope="col"><small>960k</small><br>上昇量</th>
-                            <th scope="col"><small>970k</small><br>上昇量</th>
-                            <th scope="col"><small>980k</small><br>上昇量</th>
-                            <th scope="col"><small>990k</small><br>上昇量</th>
+                                <th scope="col" colspan="4"><small>基本情報</small></th>
+                                <th scope="col" colspan="4"><small>譜面別レーティング</small></th>
+                                <th scope="col" colspan="5"><small>スコア別上昇値</small></th>
+                            </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">曲名</th>
+                                <th scope="col">レベル</th>
+                                <th scope="col">スコア</th>
+                                <th scope="col">定数</th>
+                                <th scope="col">倍数</th>
+                                <th scope="col">現在</th>
+                                <th scope="col">上限</th>
+                                <th scope="col">950k</th>
+                                <th scope="col">960k</th>
+                                <th scope="col">970k</th>
+                                <th scope="col">980k</th>
+                                <th scope="col">990k</th>
                             </tr>
                         </thead>
                         <tbody id="scoresTableNew">
@@ -696,19 +701,24 @@
                         </caption>
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">曲名</th>
-                            <th scope="col">レベル</th>
-                            <th scope="col">スコア</th>
-                            <th scope="col">定数</th>
-                            <th scope="col">倍率</th>
-                            <th scope="col"><small>現在の</small><br>レート</th>
-                            <th scope="col"><small>最大の</small><br>レート</th>
-                            <th scope="col"><small>950k</small><br>上昇量</th>
-                            <th scope="col"><small>960k</small><br>上昇量</th>
-                            <th scope="col"><small>970k</small><br>上昇量</th>
-                            <th scope="col"><small>980k</small><br>上昇量</th>
-                            <th scope="col"><small>990k</small><br>上昇量</th>
+                                <th scope="col" colspan="4"><small>基本情報</small></th>
+                                <th scope="col" colspan="4"><small>譜面別レーティング</small></th>
+                                <th scope="col" colspan="5"><small>スコア別上昇値</small></th>
+                            </tr>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">曲名</th>
+                                <th scope="col">レベル</th>
+                                <th scope="col">スコア</th>
+                                <th scope="col">定数</th>
+                                <th scope="col">倍数</th>
+                                <th scope="col">現在</th>
+                                <th scope="col">上限</th>
+                                <th scope="col">950k</th>
+                                <th scope="col">960k</th>
+                                <th scope="col">970k</th>
+                                <th scope="col">980k</th>
+                                <th scope="col">990k</th>
                             </tr>
                         </thead>
                         <tbody id="scoresTableOld">
