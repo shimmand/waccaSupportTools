@@ -182,21 +182,20 @@
                             if (chart[5] == 3.75) totalRatings[4] += Number(chart[6]);
                             if (chart[5] == 4.00) totalRatings[5] += Number(chart[6]);
 
-                            if (chart[5] == 0.00) window.alert(Number(chart[6]));
-
                             // コードを挿入
                             tableRow.innerHTML = code;
                         });
 
+                        // グラフ用に合計値を
                         const sumRating = totalRatings.reduce((sum, e) => sum + e, 0);
 
                         const statsGraphCode = `
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-pink);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>`;
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[0].toFixed(2)}</div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[1].toFixed(2)}</div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[2].toFixed(2)}</div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[3].toFixed(2)}</div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}"><${totalRatings[4].toFixed(2)}/div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[5].toFixed(2)}</div>`;
 
                         statsGraphs[listIndex].innerHTML = statsGraphCode;
                     });
