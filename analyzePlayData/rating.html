@@ -7,6 +7,8 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
         <style>
             body {
                 -webkit-text-size-adjust: 100%;
@@ -33,9 +35,13 @@
                     // 改行で区切って譜面を配列化
                     const charts = document.querySelector('#playdata').value.split('\n');
 
-                    // 書き出し先のテーブルを定義
+                    // レーティング情報の書き出し先
                     const scoresTableNew = document.querySelector('#scoresTableNew');
                     const scoresTableOld = document.querySelector('#scoresTableOld');
+
+                    // 統計グラフの書き出し先
+                    const statsGraphNew = document.querySelector('#statsGraphNew');
+                    const statsGraphOld = document.querySelector('#statsGraphOld');
                     
                     // 譜面データを格納する配列を用意
                     let chartsListNew = [];
@@ -102,7 +108,8 @@
                     // 反復処理で扱いやすいようにこれまでの変数を配列化
                     // [0: 新曲枠, 1: 旧曲枠]
                     const chartsLists = [chartsListNew, chartsListOld];
-                    const scoresTable = [scoresTableNew, scoresTableOld];
+                    const scoresTables = [scoresTableNew, scoresTableOld];
+                    const statsGraphs = [statsGraphNew, statsGraphOld];
 
                     // レーティング対象曲の数
                     // [0: 新曲枠, 1: 旧曲枠]
@@ -120,12 +127,16 @@
                     // 新曲枠 -> 旧曲枠の順に・・・
                     chartsLists.forEach((chartsList, listIndex) => {
 
+                        // グラフ用の配列
+                        // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
+                        let totalRatings = [0, 0, 0, 0, 0, 0];
+
                         // 譜面ごとに・・・
                         chartsList.forEach((chart, index) => {
 
                             // 新しい行を生成
                             const tempRow = document.createElement('tr');
-                            const tableRow = scoresTable[listIndex].appendChild(tempRow);
+                            const tableRow = scoresTables[listIndex].appendChild(tempRow);
 
                             // レーティング対象曲であれば背景を青く設定し、レーティングの下限値を更新
                             if (index < targetsVolumes[listIndex]){
@@ -165,13 +176,78 @@
                                 <td>${increases[4]}</td>
                             `;
 
+                            if (chart[5] < 3.00) totalRatings[0] += 1;
+                            if (chart[5] == 3.00) totalRatings[1] += 1;
+                            if (chart[5] == 3.25) totalRatings[2] += 1;
+                            if (chart[5] == 3.50) totalRatings[3] += 1;
+                            if (chart[5] == 3.75) totalRatings[4] += 1;
+                            if (chart[5] == 4.00) totalRatings[5] += 1;
+
                             // コードを挿入
                             tableRow.innerHTML = code;
-
-                            // 無効にされているフォームをすべて有効化
-                            document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
                         });
+
+                        // 譜面数の合計を計算
+                        const sumRating = totalRatings.reduce((sum, e) => sum + e, 0);
+
+                        // 統計グラフの挿入
+                        const statsGraphCode = `
+                            <div class="progress">    
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            </div>
+                            <div class="progress" style="background-color: transparent;">
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-gray);">&lt;950k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-yellow);">950k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-orange);">960k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-red);">970k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-purple);">980k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-blue);">990k</span>
+                                </div>
+                            </div>
+                            <div class="progress" style="background-color: transparent;">
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-gray);">(${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-yellow);">(${(totalRatings[1] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-orange);">(${(totalRatings[2] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-red);">(${(totalRatings[3] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-purple);">(${(totalRatings[4] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-blue);">(${(totalRatings[5] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                            </div>
+                        `;
+
+                        statsGraphs[listIndex].innerHTML = statsGraphCode;
                     });
+
+                    // 無効にされているフォームをすべて有効化
+                    document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+
                 } else {
                     // 2回以上実行されるとページが崩壊するので警告を発して終了
                     window.open('https://dic.nicovideo.jp/id/4139324');
@@ -668,6 +744,8 @@
             </div>
             <div class="mt-2">
                 <h3>新曲枠</h3>
+                <div id="statsGraphNew">
+                </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
                         <caption>
@@ -705,6 +783,8 @@
             </div>
             <div class="mt-2">
                 <h3>旧曲枠</h3>
+                <div id="statsGraphOld">
+                </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
                         <caption>
