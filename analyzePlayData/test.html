@@ -191,12 +191,34 @@
 
                         // 
                         const statsGraphCode = `
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[0].toFixed(2)}</div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[1].toFixed(2)}</div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[2].toFixed(2)}</div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[3].toFixed(2)}</div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[4].toFixed(2)}</div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}">${totalRatings[5].toFixed(2)}</div>`;
+                            <div class="progress">    
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            </div>
+                            <div class="progress" style="background-color: transparent;">
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-gray);">950k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-yellow);">950k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-orange);">960k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-red);">970k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-purple);">980k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-blue);">990k (${(totalRatings[0] / sumRating * 100).toFixed(2)}%)</span>
+                                </div>
+                            </div>`;
 
                         statsGraphs[listIndex].innerHTML = statsGraphCode;
                     });
@@ -700,27 +722,7 @@
             </div>
             <div class="mt-2">
                 <h3>新曲枠</h3>
-                <div class="progress" id="statsGraphNew">
-                </div>
-                <div class="progress" style="background-color: transparent;">
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-gray);">■ &lt;950k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-yellow);">■ 950k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-orange);">■ 960k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-red);">■ 970k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-purple);">■ 980k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-blue);">■ 990k</span>
-                    </div>
+                <div id="statsGraphNew">
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
@@ -759,27 +761,7 @@
             </div>
             <div class="mt-2">
                 <h3>旧曲枠</h3>
-                <div class="progress" id="statsGraphOld">
-                </div>
-                <div class="progress" style="background-color: transparent;">
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-gray);">■ &lt;950k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-yellow);">■ 950k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-orange);">■ 960k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-red);">■ 970k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-purple);">■ 980k</span>
-                    </div>
-                    <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                        <span style="color: var(--bs-blue);">■ 990k</span>
-                    </div>
+                <div id="statsGraphOld">
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
