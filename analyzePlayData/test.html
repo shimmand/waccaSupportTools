@@ -182,12 +182,13 @@
                             if (chart[5] == 3.75) totalRatings[4] += chart[6];
                             if (chart[5] == 4.00) totalRatings[5] += chart[6];
 
+                            console.log(totalRatings);
+
                             // コードを挿入
                             tableRow.innerHTML = code;
                         });
 
                         const sumRating = totalRatings.reduce((sum, e) => sum + e, 0);
-                        console.log(sumRating);
 
                         const statsGraphCode = `
                             <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
