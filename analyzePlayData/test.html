@@ -181,7 +181,9 @@
                             if (chart[5] == 3.50) totalRatings[3] += Number(chart[6]);
                             if (chart[5] == 3.75) totalRatings[4] += Number(chart[6]);
                             if (chart[5] == 4.00) totalRatings[5] += Number(chart[6]);
-                            
+
+                            if (chart[5] == 0.00) window.alert(Number(chart[6]));
+
                             // コードを挿入
                             tableRow.innerHTML = code;
                         });
