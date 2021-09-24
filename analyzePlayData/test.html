@@ -38,6 +38,9 @@
                     // 書き出し先のテーブルを定義
                     const scoresTableNew = document.querySelector('#scoresTableNew');
                     const scoresTableOld = document.querySelector('#scoresTableOld');
+
+                    const statsGraphNew = document.querySelector('#statsGraphNew');
+                    const statsGraphOld = document.querySelector('#statsGraphOld');
                     
                     // 譜面データを格納する配列を用意
                     let chartsListNew = [];
@@ -104,7 +107,8 @@
                     // 反復処理で扱いやすいようにこれまでの変数を配列化
                     // [0: 新曲枠, 1: 旧曲枠]
                     const chartsLists = [chartsListNew, chartsListOld];
-                    const scoresTable = [scoresTableNew, scoresTableOld];
+                    const scoresTables = [scoresTableNew, scoresTableOld];
+                    const statsGraphs = [statsGraphNew, statsGraphOld];
 
                     // レーティング対象曲の数
                     // [0: 新曲枠, 1: 旧曲枠]
@@ -122,12 +126,16 @@
                     // 新曲枠 -> 旧曲枠の順に・・・
                     chartsLists.forEach((chartsList, listIndex) => {
 
+                        // グラフ用の配列
+                        // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
+                        let totalRatings = [0, 0, 0, 0, 0, 0];
+
                         // 譜面ごとに・・・
                         chartsList.forEach((chart, index) => {
 
                             // 新しい行を生成
                             const tempRow = document.createElement('tr');
-                            const tableRow = scoresTable[listIndex].appendChild(tempRow);
+                            const tableRow = scoresTables[listIndex].appendChild(tempRow);
 
                             // レーティング対象曲であれば背景を青く設定し、レーティングの下限値を更新
                             if (index < targetsVolumes[listIndex]){
@@ -167,13 +175,33 @@
                                 <td>${increases[4]}</td>
                             `;
 
+                            if (chart[5] < 3.00) totalRatings[0] += chart[6];
+                            if (chart[5] == 3.00) totalRatings[1] += chart[6];
+                            if (chart[5] == 3.25) totalRatings[2] += chart[6];
+                            if (chart[5] == 3.50) totalRatings[3] += chart[6];
+                            if (chart[5] == 3.75) totalRatings[4] += chart[6];
+                            if (chart[5] == 4.00) totalRatings[5] += chart[6];
+
                             // コードを挿入
                             tableRow.innerHTML = code;
-
-                            // 無効にされているフォームをすべて有効化
-                            document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
                         });
+
+                        const sumRating = totalRatings.reduce((sum, e) => sum + e, 0);
+
+                        const statsGraphCode = `
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / sumRating * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / sumRating * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / sumRating * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / sumRating * 100}%; background-color: var(--bs-pink);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / sumRating * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>
+                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / sumRating * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${sumRating}"></div>`
+
+                        statsGraphs[listIndex].innerHTML = statsGraphCode;
                     });
+
+                    // 無効にされているフォームをすべて有効化
+                    document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+
                 } else {
                     // 2回以上実行されるとページが崩壊するので警告を発して終了
                     window.open('https://dic.nicovideo.jp/id/4139324');
@@ -671,20 +699,6 @@
             <div class="mt-2">
                 <h3>新曲枠</h3>
                 <div class="progress" id="statsGraphNew">
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-gray);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-red);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-pink);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-purple);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-indigo);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar" role="progressbar" style="width: 0%; background-color: var(--bs-blue);" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                    <p>
-                        <span style="color: var(--bs-gray);">■</span>: &lt;950k
-                        <span style="color: var(--bs-red);">■</span>: 950k
-                        <span style="color: var(--bs-pink);">■</span>: 960k
-                        <span style="color: var(--bs-purple);">■</span>: 970k
-                        <span style="color: var(--bs-indigo);">■</span>: 980k
-                        <span style="color: var(--bs-blue);">■</span>: 990k
-                    </p>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
