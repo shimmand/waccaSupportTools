@@ -175,15 +175,13 @@
                                 <td>${increases[4]}</td>
                             `;
 
-                            if (chart[5] < 3.00) totalRatings[0] += chart[6];
-                            if (chart[5] == 3.00) totalRatings[1] += chart[6];
-                            if (chart[5] == 3.25) totalRatings[2] += chart[6];
-                            if (chart[5] == 3.50) totalRatings[3] += chart[6];
-                            if (chart[5] == 3.75) totalRatings[4] += chart[6];
-                            if (chart[5] == 4.00) totalRatings[5] += chart[6];
-
-                            console.log(totalRatings);
-
+                            if (chart[5] < 3.00) totalRatings[0] += Number(chart[6]);
+                            if (chart[5] == 3.00) totalRatings[1] += Number(chart[6]);
+                            if (chart[5] == 3.25) totalRatings[2] += Number(chart[6]);
+                            if (chart[5] == 3.50) totalRatings[3] += Number(chart[6]);
+                            if (chart[5] == 3.75) totalRatings[4] += Number(chart[6]);
+                            if (chart[5] == 4.00) totalRatings[5] += Number(chart[6]);
+                            
                             // コードを挿入
                             tableRow.innerHTML = code;
                         });
