@@ -17,19 +17,19 @@
         <script>
             // 貼り付け()
             function paste(){
+                // 貼り付け先
                 const pasteText = document.querySelector('#playdata');
                 
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 pasteText.focus();
                 
-                // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => pasteText.value = clipText, anotherPaste());
-            };
-
-            function anotherPaste(){
-                const pasteText = document.querySelector("#paste");
-                pasteText.focus();
-                document.execCommand("paste");
+                try {
+                    // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
+                    navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
+                } catch (e) {
+                    // FireFoxだと上記が実行できないので従来の方法で転記する
+                    document.execCommand("paste");
+                };
             };
 
             // スコアの分析()
