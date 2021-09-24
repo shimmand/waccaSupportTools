@@ -23,7 +23,13 @@
                 pasteText.focus();
                 
                 // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
+                navigator.clipboard.readText().then(clipText => pasteText.value = clipText, anotherPaste());
+            };
+
+            function anotherPaste(){
+                const pasteText = document.querySelector("#paste");
+                pasteText.focus();
+                document.execCommand("paste");
             };
 
             // スコアの分析()
@@ -664,7 +670,7 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar sticky-top navbar-light bg-light border border-secondary rounded" style="opacity: 0.9;">
+            <nav class="navbar navbar-light bg-light border border-secondary rounded" style="opacity: 0.9;">
                 <div class="container-fluid">
                     <span class="navbar-brand">WACCA RATING ANALYZER</span>
                     <a href="https://twitter.com/shimmand" target="_blank" rel="noopener noreferrer">
@@ -676,20 +682,20 @@
                 </div>
             </nav>
             <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                 </svg>
-                バージョン: <code>2021-09-22</code>
+                譜面データ: <code>2021-09-22</code>
             </p>
             <div class="form-floating">
                 <textarea class="form-control" id="playdata" style="height: 100px" placeholder="「データを読込」を押してください"></textarea>
                 <label for="playdata">プレイデータ</label>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
-                            <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
-                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                         </svg>
                         データを読込
                     </button>
@@ -709,7 +715,9 @@
                 </div>
             </div>
             <div class="mt-2">
-                <h3>表示設定</h3>
+                <div class="navbar sticky-top rounded" style="opacity: 0.9; background-color: var(--bs-white);">
+                    <h3>表示設定</h3>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card m-2">
@@ -743,7 +751,9 @@
                 </div>
             </div>
             <div class="mt-2">
-                <h3>新曲枠</h3>
+                <div class="navbar sticky-top rounded" style="opacity: 0.9; background-color: var(--bs-white);">
+                    <h3>新曲枠</h3>
+                </div>
                 <div id="statsGraphNew">
                 </div>
                 <div class="table-responsive">
@@ -782,7 +792,9 @@
                 </div>
             </div>
             <div class="mt-2">
-                <h3>旧曲枠</h3>
+                <div class="navbar sticky-top rounded" style="opacity: 0.9; background-color: var(--bs-white);">
+                    <h3>旧曲枠</h3>
+                </div>
                 <div id="statsGraphOld">
                 </div>
                 <div class="table-responsive">
