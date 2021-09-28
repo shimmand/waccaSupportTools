@@ -113,15 +113,15 @@
 
                     // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
                     // [0: 新曲枠, 1: 旧曲枠]
-                    let lowerSingleRatings = [0, 0];
+                    let varSingleRateLowers = [0, 0];
 
                     // 現在のレーティング
                     // [0: 新曲枠, 1: 旧曲枠]
-                    let currentSumRatings = [0, 0];
+                    let varSummedRateCurrents = [0, 0];
 
                     // レーティング理論値
                     // [0: 新曲枠, 1: 旧曲枠]
-                    let upperSumRatings = [0, 0];
+                    let varSummedRateUppers = [0, 0];
 
                     // 目標倍率（スコア）の一覧
                     // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
@@ -133,7 +133,7 @@
 
                         // レーティング理論値を計算
                         // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
-                        upperSumRatings[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, (targetsVolumes[listIndex] - 1)).reduce((sum, e) => sum + (4 * e), 0);
+                        varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, (targetsVolumes[listIndex] - 1)).reduce((sum, e) => sum + (4 * e), 0);
 
                         // グラフ用の配列
                         // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
@@ -152,17 +152,17 @@
                                 tableRow.classList.add('table-primary');
 
                                 // 譜面別レーティングの下限値を更新
-                                lowerSingleRatings[listIndex] = Number(chart[6]);
+                                varSingleRateLowers[listIndex] = Number(chart[6]);
 
                                 // 譜面別レーティングの小計に加算
-                                currentSumRatings[listIndex] += Number(chart[6]);
+                                varSummedRateCurrents[listIndex] += Number(chart[6]);
                             };
 
                             // 特定スコアに到達した際の総合レーティング上昇量
                             // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
                             const increases = targetMultipliers.map(multiplier => {
-                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > lowerSingleRatings[listIndex])){
-                                    return '+' + ((chart[4] * multiplier) - lowerSingleRatings[listIndex]).toFixed(2);
+                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])){
+                                    return '+' + ((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2);
                                 } else {
                                     return '-';
                                 };
@@ -201,9 +201,10 @@
                             tableRow.innerHTML = code;
                         });
 
-                        singleRateLowers.innerHTML = lowerSingleRatings[listIndex].toFixed(2);
-                        summedRateCurrents.innerHTML = currentSumRatings[listIndex].toFixed(2);
-                        summedRateUppers.innerHTML = upperSumRatings[listIndex].toFixed(2);
+                        
+                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
+                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
+                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
