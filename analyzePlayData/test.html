@@ -38,272 +38,270 @@
                 const testResult = charts.map(chart => testString.test(chart));
 
                 // エラー確認
-                try {
-                    if (playdata.value == '') throw 'empty';
-                    if (!!testResult.indexOf(false)) throw 'invalid-data';
-                    if (document.querySelectorAll('tr').length != 4) throw 'already-executed';
-                } catch (exception) {
+                let isClear = true;
 
-                    if (exception == 'empty'){
-                        if (!playdata.classList.contains('is-invalid')){
-                            playdata.classList.add('is-invalid');
-                        };
+                if (playdata.length == 0){
+                    isClear = false;
+                    if (!playdata.classList.contains('is-invalid')){
+                        playdata.classList.add('is-invalid');
+                    };
+                    window.alert('データが空です！');
+                };
+
+                if (!!testResult.indexOf(false)){
+                    isClear = false;
+                    if (!playdata.classList.contains('is-invalid')){
+                        playdata.classList.add('is-invalid');
+                    };
+                    window.alert('データに不正な要素が含まれています！');
+                };
+                if (document.querySelectorAll('tr').length != 4){
+                    isClear = false;
+                    window.alert('すでに実行されています！');
+                };
+                    
+                if (isClear){
+                    // テキストエリアが無効の表示である場合は解除
+                    if (playdata.classList.contains('is-invalid')){
+                        playdata.classList.remove('is-invalid');
+                    };
                         
-                        window.alert('データが空です！\nThe textarea is empty!');
-                    };
-
-                    if (exception == 'invalid-data'){
-                        if (!playdata.classList.contains('is-invalid')){
-                            playdata.classList.add('is-invalid');
-                        };
-
-                        window.alert('データが壊れています！\nThe data is corrupted!');
-                    };
-
-                    if (exception == 'already-executed'){
-                        window.alert('すでに実行されています！\nThis function has already been executed!');
-                    };
-                };
-
-                // テキストエリアが無効の表示である場合は解除
-                if (playdata.classList.contains('is-invalid')){
-                    playdata.classList.remove('is-invalid');
-                };
-                    
-                // 譜面データを格納する配列を用意
-                let chartsListNew = [];
-                let chartsListOld = [];
-
-                // 譜面ごとに・・・
-                charts.forEach(chart => {
-                    
-                    // [0: 曲名, 1: 譜面レベル, 2: スコア]
-                    const data = chart.split(',');
-
-                    // 取得時にエスケープしたカンマをここで元に戻す
-                    const title = data[0].replace('__', ',');
-                    const level = data[1];
-                    const score = data[2];
-
-                    // 曲名とレベルで譜面定数を取得
-                    const rating = getRatingValue(title, level);
-
-                    // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
-                    if ((level != 'INFERNO 0') && (rating != null)){
-
-                        // 難易度に応じた色を設定
-                        let color = '';
-                        if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
-                        if (level.indexOf('INFERNO') == 0) color = '#4A004F';
-
-                        // スコアに応じた譜面定数へ乗ずる値（倍数）
-                        const multipliers = getMultiplierTable();
-                        let multiplier = 0;
-
-                        // スコアと照らし合わせて倍数を設定
-                        for (let i = 0; i < multipliers.length; i++){
-                            if (multiplier == 0){
-                                if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
-                            };
-                        };
-
-                        // 倍数が上限値である場合に表示するアイコン
-                        const maxBadgeCode = '<span class="badge bg-secondary">MAX</span>';
-
-                        // 現在の譜面別レーティング
-                        const adjustedRating = (multiplier * rating).toFixed(2);
-
-                        // 譜面別レーティングの上限値
-                        const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
-
-                        // 配列に入れるデータ
-                        const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
-
-                        // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
-                        if (checkChartIsNew(title, level)){
-                            chartsListNew.push(chartData);
-                        } else {
-                            chartsListOld.push(chartData);
-                        };
-                    };
-                });
-
-                // 譜面データの配列を譜面別レーティングの降順で並び替え
-                chartsListNew.sort(function(a, b){return (b[6] - a[6])});
-                chartsListOld.sort(function(a, b){return (b[6] - a[6])});
-
-                // 反復処理で扱いやすいようにこれまでの変数を配列化
-                // [0: 新曲枠, 1: 旧曲枠]
-                const chartsLists = [chartsListNew, chartsListOld];
-
-                const scoresTables = document.querySelectorAll('.scoresTable');
-                const statsGraphs = document.querySelectorAll('.statsGraph');
-                const singleRateLowers = document.querySelectorAll('.singleRateLower');
-                const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
-                const summedRateUppers = document.querySelectorAll('.summedRateUpper');
-
-                // レーティング対象曲の数
-                // [0: 新曲枠, 1: 旧曲枠]
-                const targetsVolumes = [15, 35];
-
-                // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
-                // [0: 新曲枠, 1: 旧曲枠]
-                let varSingleRateLowers = [0, 0];
-
-                // 現在のレーティング
-                // [0: 新曲枠, 1: 旧曲枠]
-                let varSummedRateCurrents = [0, 0];
-
-                // レーティング理論値
-                // [0: 新曲枠, 1: 旧曲枠]
-                let varSummedRateUppers = [0, 0];
-
-                // 目標倍率（スコア）の一覧
-                // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
-                // !!! 関連要素: tr > td[8-12]
-                const targetMultipliers = [3.00, 3.25, 3.50, 3.75, 4.00];
-
-                // 新曲枠 -> 旧曲枠の順に・・・
-                chartsLists.forEach((chartsList, listIndex) => {
-
-                    // レーティング理論値を計算
-                    // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
-                    varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, targetsVolumes[listIndex]).reduce((sum, e) => sum + Number(e[4]), 0) * 4;
-
-                    // グラフ用の配列
-                    // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
-                    let totalRatings = [0, 0, 0, 0, 0, 0];
+                    // 譜面データを格納する配列を用意
+                    let chartsListNew = [];
+                    let chartsListOld = [];
 
                     // 譜面ごとに・・・
-                    chartsList.forEach((chart, index) => {
+                    charts.forEach(chart => {
+                        
+                        // [0: 曲名, 1: 譜面レベル, 2: スコア]
+                        const data = chart.split(',');
 
-                        // 新しい行を生成
-                        const tempRow = document.createElement('tr');
-                        const tableRow = scoresTables[listIndex].appendChild(tempRow);
+                        // 取得時にエスケープしたカンマをここで元に戻す
+                        const title = data[0].replace('__', ',');
+                        const level = data[1];
+                        const score = data[2];
 
-                        // レーティング対象曲であれば・・・
-                        if (index < targetsVolumes[listIndex]){
-                            // 背景をハイライト
-                            tableRow.classList.add('table-primary');
+                        // 曲名とレベルで譜面定数を取得
+                        const rating = getRatingValue(title, level);
 
-                            // 譜面別レーティングの下限値を更新
-                            varSingleRateLowers[listIndex] = Number(chart[6]);
+                        // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
+                        if ((level != 'INFERNO 0') && (rating != null)){
 
-                            // 譜面別レーティングの小計に加算
-                            varSummedRateCurrents[listIndex] += Number(chart[6]);
-                        };
+                            // 難易度に応じた色を設定
+                            let color = '';
+                            if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
+                            if (level.indexOf('INFERNO') == 0) color = '#4A004F';
 
-                        // 特定スコアに到達した際の総合レーティング上昇量
-                        // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
-                        const increases = targetMultipliers.map(multiplier => {
-                            if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])){
-                                return '+' + ((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2);
-                            } else {
-                                return '-';
+                            // スコアに応じた譜面定数へ乗ずる値（倍数）
+                            const multipliers = getMultiplierTable();
+                            let multiplier = 0;
+
+                            // スコアと照らし合わせて倍数を設定
+                            for (let i = 0; i < multipliers.length; i++){
+                                if (multiplier == 0){
+                                    if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
+                                };
                             };
-                        });
 
-                        // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
-                        if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumes[listIndex]){
-                            tableRow.classList.add('all-clear');
+                            // 倍数が上限値である場合に表示するアイコン
+                            const maxBadgeCode = '<span class="badge bg-secondary">MAX</span>';
+
+                            // 現在の譜面別レーティング
+                            const adjustedRating = (multiplier * rating).toFixed(2);
+
+                            // 譜面別レーティングの上限値
+                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
+
+                            // 配列に入れるデータ
+                            const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
+
+                            // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
+                            if (checkChartIsNew(title, level)){
+                                chartsListNew.push(chartData);
+                            } else {
+                                chartsListOld.push(chartData);
+                            };
                         };
-
-                        // 挿入するHTMLのコードを生成
-                        const code = `
-                            <td>${index + 1}</td>
-                            <td>${chart[0]}</td>
-                            <td><span class="badge" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
-                            <td>${chart[3]}</td>
-                            <td>${chart[4]}</td>
-                            <td>${chart[5].toFixed(2)}</td>
-                            <td>${chart[6]}</td>
-                            <td>${chart[7]}</td>
-                            <td>${increases[0]}</td>
-                            <td>${increases[1]}</td>
-                            <td>${increases[2]}</td>
-                            <td>${increases[3]}</td>
-                            <td>${increases[4]}</td>
-                        `;
-
-                        if (chart[5] < 3.00) totalRatings[0] += 1;
-                        if (chart[5] == 3.00) totalRatings[1] += 1;
-                        if (chart[5] == 3.25) totalRatings[2] += 1;
-                        if (chart[5] == 3.50) totalRatings[3] += 1;
-                        if (chart[5] == 3.75) totalRatings[4] += 1;
-                        if (chart[5] == 4.00) totalRatings[5] += 1;
-
-                        // コードを挿入
-                        tableRow.innerHTML = code;
                     });
 
+                    // 譜面データの配列を譜面別レーティングの降順で並び替え
+                    chartsListNew.sort(function(a, b){return (b[6] - a[6])});
+                    chartsListOld.sort(function(a, b){return (b[6] - a[6])});
 
-                    singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
-                    summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
-                    summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
+                    // 反復処理で扱いやすいようにこれまでの変数を配列化
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const chartsLists = [chartsListNew, chartsListOld];
 
-                    // 譜面数の合計を計算
-                    const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
+                    const scoresTables = document.querySelectorAll('.scoresTable');
+                    const statsGraphs = document.querySelectorAll('.statsGraph');
+                    const singleRateLowers = document.querySelectorAll('.singleRateLower');
+                    const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
+                    const summedRateUppers = document.querySelectorAll('.summedRateUpper');
 
-                    // 統計グラフの挿入
-                    const statsGraphCode = `
-                        <div class="progress">    
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / chartsCount * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / chartsCount * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / chartsCount * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / chartsCount * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / chartsCount * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / chartsCount * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                        </div>
-                        <div class="progress" style="background-color: transparent;">
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-gray);">&lt;950k</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-yellow);">950k</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-orange);">960k</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-red);">970k</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-purple);">980k</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-blue);">990k</span>
-                            </div>
-                        </div>
-                        <div class="progress" style="background-color: transparent;">
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-gray);">(${(totalRatings[0] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-yellow);">(${(totalRatings[1] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-orange);">(${(totalRatings[2] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-red);">(${(totalRatings[3] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-purple);">(${(totalRatings[4] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                            <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                <span style="color: var(--bs-blue);">(${(totalRatings[5] / chartsCount * 100).toFixed(2)}%)</span>
-                            </div>
-                        </div>
-                    `;
+                    // レーティング対象曲の数
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const targetsVolumes = [15, 35];
 
-                    statsGraphs[listIndex].innerHTML = statsGraphCode;
-                });
+                    // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSingleRateLowers = [0, 0];
 
-                // 無効にされているフォームをすべて有効化
-                document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+                    // 現在のレーティング
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSummedRateCurrents = [0, 0];
 
-                // 再描画
-                document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
+                    // レーティング理論値
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSummedRateUppers = [0, 0];
+
+                    // 目標倍率（スコア）の一覧
+                    // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                    // !!! 関連要素: tr > td[8-12]
+                    const targetMultipliers = [3.00, 3.25, 3.50, 3.75, 4.00];
+
+                    // 新曲枠 -> 旧曲枠の順に・・・
+                    chartsLists.forEach((chartsList, listIndex) => {
+
+                        // レーティング理論値を計算
+                        // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
+                        varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, targetsVolumes[listIndex]).reduce((sum, e) => sum + Number(e[4]), 0) * 4;
+
+                        // グラフ用の配列
+                        // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
+                        let totalRatings = [0, 0, 0, 0, 0, 0];
+
+                        // 譜面ごとに・・・
+                        chartsList.forEach((chart, index) => {
+
+                            // 新しい行を生成
+                            const tempRow = document.createElement('tr');
+                            const tableRow = scoresTables[listIndex].appendChild(tempRow);
+
+                            // レーティング対象曲であれば・・・
+                            if (index < targetsVolumes[listIndex]){
+                                // 背景をハイライト
+                                tableRow.classList.add('table-primary');
+
+                                // 譜面別レーティングの下限値を更新
+                                varSingleRateLowers[listIndex] = Number(chart[6]);
+
+                                // 譜面別レーティングの小計に加算
+                                varSummedRateCurrents[listIndex] += Number(chart[6]);
+                            };
+
+                            // 特定スコアに到達した際の総合レーティング上昇量
+                            // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                            const increases = targetMultipliers.map(multiplier => {
+                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])){
+                                    return '+' + ((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2);
+                                } else {
+                                    return '-';
+                                };
+                            });
+
+                            // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
+                            if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumes[listIndex]){
+                                tableRow.classList.add('all-clear');
+                            };
+
+                            // 挿入するHTMLのコードを生成
+                            const code = `
+                                <td>${index + 1}</td>
+                                <td>${chart[0]}</td>
+                                <td><span class="badge" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
+                                <td>${chart[3]}</td>
+                                <td>${chart[4]}</td>
+                                <td>${chart[5].toFixed(2)}</td>
+                                <td>${chart[6]}</td>
+                                <td>${chart[7]}</td>
+                                <td>${increases[0]}</td>
+                                <td>${increases[1]}</td>
+                                <td>${increases[2]}</td>
+                                <td>${increases[3]}</td>
+                                <td>${increases[4]}</td>
+                            `;
+
+                            if (chart[5] < 3.00) totalRatings[0] += 1;
+                            if (chart[5] == 3.00) totalRatings[1] += 1;
+                            if (chart[5] == 3.25) totalRatings[2] += 1;
+                            if (chart[5] == 3.50) totalRatings[3] += 1;
+                            if (chart[5] == 3.75) totalRatings[4] += 1;
+                            if (chart[5] == 4.00) totalRatings[5] += 1;
+
+                            // コードを挿入
+                            tableRow.innerHTML = code;
+                        });
+
+
+                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
+                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
+                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
+
+                        // 譜面数の合計を計算
+                        const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
+
+                        // 統計グラフの挿入
+                        const statsGraphCode = `
+                            <div class="progress">    
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / chartsCount * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / chartsCount * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / chartsCount * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / chartsCount * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / chartsCount * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / chartsCount * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
+                            </div>
+                            <div class="progress" style="background-color: transparent;">
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-gray);">&lt;950k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-yellow);">950k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-orange);">960k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-red);">970k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-purple);">980k</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-blue);">990k</span>
+                                </div>
+                            </div>
+                            <div class="progress" style="background-color: transparent;">
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-gray);">(${(totalRatings[0] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-yellow);">(${(totalRatings[1] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-orange);">(${(totalRatings[2] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-red);">(${(totalRatings[3] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-purple);">(${(totalRatings[4] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                                    <span style="color: var(--bs-blue);">(${(totalRatings[5] / chartsCount * 100).toFixed(2)}%)</span>
+                                </div>
+                            </div>
+                        `;
+
+                        statsGraphs[listIndex].innerHTML = statsGraphCode;
+                    });
+
+                    // 無効にされているフォームをすべて有効化
+                    document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+
+                    // 再描画
+                    document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
+
+                };
             };
 
             // 表示と非表示を切り替え()
