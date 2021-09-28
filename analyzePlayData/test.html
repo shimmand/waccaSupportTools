@@ -134,6 +134,9 @@
                         // レーティング理論値を計算
                         // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
                         varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, (targetsVolumes[listIndex] - 1)).reduce((sum, e) => sum + e, 0) * 4;
+                        console.log(chartsList.slice());
+                        console.log(chartsList.slice().sort(function(a, b){return (b[4] - a[4])}));
+                        console.log(chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, (targetsVolumes[listIndex] - 1)));
 
                         // グラフ用の配列
                         // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
