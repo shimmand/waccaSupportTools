@@ -28,13 +28,59 @@
 
             // スコアの分析()
             function analyze(){
+                
+                // 改行で区切って譜面を配列化
+                const playdata = document.querySelector('#playdata');
+                const charts = playdata.value.split('\n');
 
-                // 表の行数が初期値の4である場合のみ続行
-                if (document.querySelectorAll('tr').length == 4){
+                // エラー確認
+                let isClear = true;
 
-                    // 改行で区切って譜面を配列化
-                    const charts = document.querySelector('#playdata').value.split('\n');
+                // プレイデータが空の場合
+                if (playdata.value.length == 0){
+                    isClear = false;
+
+                    if (!playdata.classList.contains('is-invalid')){
+                        playdata.classList.add('is-invalid');
+                        playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
+                    };
+
+                    window.alert('データが空です！');
+
+                } else {
+                    // 譜面データの検証
+                    const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/g;
+                    const testResult = charts.map(chart => chart.match(searchPattern) == chart);
                     
+                    // プレイデータの書式に誤りがある場合
+                    if (!testResult.indexOf(false)){
+                        isClear = false;
+
+                        if (!playdata.classList.contains('is-invalid')){
+                            playdata.classList.add('is-invalid');
+                            playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
+                        };
+                        
+                        window.alert('データが壊れています！');
+                    };
+                };
+
+                if (isClear){
+
+                    const scoresTables = document.querySelectorAll('.scoresTable');
+
+                    // 既に実行された形跡がある場合は内容を削除
+                    if (document.querySelectorAll('tr').length != 4){
+                        scoresTables.forEach(table => table.innerHTML = '');
+                        document.querySelector('#radio1-1').checked = true;
+                    };
+
+                    // テキストエリアが無効の表示である場合は解除
+                    if (playdata.classList.contains('is-invalid')){
+                        playdata.classList.remove('is-invalid');
+                        playdata.setAttribute('style', 'height: 100px;');
+                    };
+
                     // 譜面データを格納する配列を用意
                     let chartsListNew = [];
                     let chartsListOld = [];
@@ -101,7 +147,6 @@
                     // [0: 新曲枠, 1: 旧曲枠]
                     const chartsLists = [chartsListNew, chartsListOld];
 
-                    const scoresTables = document.querySelectorAll('.scoresTable');
                     const statsGraphs = document.querySelectorAll('.statsGraph');
                     const singleRateLowers = document.querySelectorAll('.singleRateLower');
                     const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
@@ -270,9 +315,6 @@
                     // 再描画
                     document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
 
-                } else {
-                    // 2回以上実行されるとページが崩壊するので警告を発して終了
-                    window.open('https://dic.nicovideo.jp/id/4139324');
                 };
             };
 
@@ -705,7 +747,7 @@
                 譜面データ: <code>2021-09-22</code>
             </p>
             <div class="form-floating">
-                <textarea class="form-control" id="playdata" style="height: 100px" placeholder="「データを読込」を押してください"></textarea>
+                <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="「データを読込」を押してください"></textarea>
                 <label for="playdata">プレイデータ</label>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
