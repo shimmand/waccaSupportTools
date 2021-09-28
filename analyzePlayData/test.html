@@ -72,6 +72,7 @@
                     // 既に実行された形跡がある場合は内容を削除
                     if (document.querySelectorAll('tr').length != 4){
                         scoresTables.forEach(table => table.innerHTML = '');
+                        document.querySelector('#radio1-1').checked = true;
                     };
 
                     // テキストエリアが無効の表示である場合は解除
