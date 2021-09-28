@@ -267,8 +267,8 @@
                     // 無効にされているフォームをすべて有効化
                     document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
 
-                    document.querySelectorAll('.refresh-target').forEach(e => e.classList.toggle('sticky-top'));
-                    document.querySelectorAll('.refresh-target').forEach(e => e.classList.toggle('sticky-top'));
+                    // 再描画
+                    document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
 
                 } else {
                     // 2回以上実行されるとページが崩壊するので警告を発して終了
