@@ -33,24 +33,41 @@
                 const playdata = document.querySelector('#playdata');
                 const charts = playdata.value.split('\n');
 
-                // 譜面データの確認
+                // 譜面データの検証
                 const testString = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/;
                 const testResult = charts.map(chart => testString.test(chart));
 
-                // 譜面データに不正な値が含まれていた場合はフォームを警告表示に変更して終了
-                if (!!testResult.indexOf(false)){
-                    if (!playdata.classList.contains('is-invalid')){
-                        playdata.classList.add('is-invalid');
+                // エラー確認
+                try {
+                    if (playdata.value == '') throw 'empty';
+                    if (!!testResult.indexOf(false)) throw 'invalid-data';
+                    if (document.querySelectorAll('tr').length != 4) throw 'already-executed';
+                } catch (exception) {
+
+                    if (exception == 'empty'){
+                        if (!playdata.classList.contains('is-invalid')){
+                            playdata.classList.add('is-invalid');
+                        };
+                        
+                        window.alert('データが空です！\nThe textarea is empty!');
                     };
-                    return false;
-                } else {
-                    playdata.classList.remove('is-invalid');
+
+                    if (exception == 'invalid-data'){
+                        if (!playdata.classList.contains('is-invalid')){
+                            playdata.classList.add('is-invalid');
+                        };
+
+                        window.alert('データが壊れています！\nThe data is corrupted!');
+                    };
+
+                    if (exception == 'already-executed'){
+                        window.alert('すでに実行されています！\nThis function has already been executed!');
+                    };
                 };
 
-                // 表の行数が初期値の4でない場合は終了
-                if (document.querySelectorAll('tr').length != 4){
-                    window.open('https://dic.nicovideo.jp/id/4139324');
-                    return false;
+                // テキストエリアが無効の表示である場合は解除
+                if (playdata.classList.contains('is-invalid')){
+                    playdata.classList.remove('is-invalid');
                 };
                     
                 // 譜面データを格納する配列を用意
