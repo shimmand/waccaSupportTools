@@ -41,6 +41,7 @@
                 let isClear = true;
 
                 if (playdata.length == 0){
+                    console.log('1');
                     isClear = false;
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
@@ -49,6 +50,7 @@
                 };
 
                 if (!!testResult.indexOf(false)){
+                    console.log('2');
                     isClear = false;
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
@@ -56,16 +58,17 @@
                     window.alert('データが壊れています！');
                 };
                 if (document.querySelectorAll('tr').length != 4){
+                    console.log('3');
                     isClear = false;
                     window.alert('すでに実行されています！');
                 };
-                    
+
                 if (isClear){
                     // テキストエリアが無効の表示である場合は解除
                     if (playdata.classList.contains('is-invalid')){
                         playdata.classList.remove('is-invalid');
                     };
-                        
+
                     // 譜面データを格納する配列を用意
                     let chartsListNew = [];
                     let chartsListOld = [];
