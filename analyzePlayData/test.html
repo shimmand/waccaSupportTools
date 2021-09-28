@@ -49,7 +49,7 @@
 
                 } else {
                     // 譜面データの検証
-                    const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/;
+                    const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/g;
                     const testResult = charts.map(chart => chart.match(searchPattern)[0] == chart);
                     
                     // プレイデータの書式に誤りがある場合
