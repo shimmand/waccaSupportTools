@@ -40,25 +40,30 @@
                 // エラー確認
                 let isClear = true;
 
+                // プレイデータが空の場合
                 if (playdata.value.length == 0){
-                    console.log('1');
                     isClear = false;
+
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
                     };
+
                     window.alert('データが空です！');
                 };
 
-                if (!!testResult.indexOf(false)){
-                    console.log('2');
+                // プレイデータの中身が怪しい場合
+                if (!testResult.indexOf(false)){
                     isClear = false;
+
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
                     };
+                    
                     window.alert('データが壊れています！');
                 };
+
+                // 既に分析を実行済みの場合
                 if (document.querySelectorAll('tr').length != 4){
-                    console.log('3');
                     isClear = false;
                     window.alert('すでに実行されています！');
                 };
