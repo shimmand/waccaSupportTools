@@ -46,32 +46,35 @@
 
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
+                        playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                     };
 
                     window.alert('データが空です！');
-                };
 
-                // プレイデータの中身が怪しい場合
-                if (!testResult.indexOf(false)){
+                // プレイデータの書式に誤りがある場合
+                } else if (!testResult.indexOf(false)){
                     isClear = false;
 
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
+                        playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                     };
                     
                     window.alert('データが壊れています！');
                 };
 
-                // 既に分析を実行済みの場合
-                if (document.querySelectorAll('tr').length != 4){
-                    isClear = false;
-                    window.alert('すでに実行されています！');
-                };
-
                 if (isClear){
+
+                    const scoresTables = document.querySelectorAll('.scoresTable');
+
+                    if (document.querySelectorAll('tr').length != 4){
+                        scoresTables.forEach(table => table.innerHTML = '');
+                    };
+
                     // テキストエリアが無効の表示である場合は解除
                     if (playdata.classList.contains('is-invalid')){
                         playdata.classList.remove('is-invalid');
+                        playdata.removeAttribute('style');
                     };
 
                     // 譜面データを格納する配列を用意
@@ -140,7 +143,6 @@
                     // [0: 新曲枠, 1: 旧曲枠]
                     const chartsLists = [chartsListNew, chartsListOld];
 
-                    const scoresTables = document.querySelectorAll('.scoresTable');
                     const statsGraphs = document.querySelectorAll('.statsGraph');
                     const singleRateLowers = document.querySelectorAll('.singleRateLower');
                     const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
@@ -741,7 +743,7 @@
                 譜面データ: <code>2021-09-22</code>
             </p>
             <div class="form-floating">
-                <textarea class="form-control" id="playdata" style="height: 100px; background-color: #F8D7DA" placeholder="「データを読込」を押してください"></textarea>
+                <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="「データを読込」を押してください"></textarea>
                 <label for="playdata">プレイデータ</label>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
