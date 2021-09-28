@@ -13,6 +13,26 @@
             body {
                 -webkit-text-size-adjust: 100%;
             };
+
+            .badge-expert {
+                color: #FA0C98;
+                background-color: #FFFFFF;
+                border-color: #FA0C98!important;
+                width: 100px;
+            };
+
+            .badge-inferno {
+                color: #4A004F;
+                background-color: #FFFFFF;
+                border-color: #4A004F!important;
+                width: 100px;
+            };
+
+            .badge-max {
+                color: #212529;
+                background-color: #FFFFFF;
+                border-color: #212529!important;
+            };
         </style>
         <script>
             // 貼り付け()
@@ -57,9 +77,9 @@
                         if ((level != 'INFERNO 0') && (rating != null)){
 
                             // 難易度に応じた色を設定
-                            let color = '';
-                            if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
-                            if (level.indexOf('INFERNO') == 0) color = '#4A004F';
+                            let difficulty = '';
+                            if (level.indexOf('EXPERT') == 0) difficulty = 'expert';
+                            if (level.indexOf('INFERNO') == 0) difficulty = 'inferno';
 
                             // スコアに応じた譜面定数へ乗ずる値（倍数）
                             const multipliers = getMultiplierTable();
@@ -82,7 +102,7 @@
                             const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
 
                             // 配列に入れるデータ
-                            const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
+                            const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
 
                             // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
                             if (checkChartIsNew(title, level)){
@@ -177,7 +197,7 @@
                             const code = `
                                 <td>${index + 1}</td>
                                 <td>${chart[0]}</td>
-                                <td><span class="badge" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
+                                <td><span class="badge border badge-${chart[1]}">${chart[2]}</span></td>
                                 <td>${chart[3]}</td>
                                 <td>${chart[4]}</td>
                                 <td>${chart[5].toFixed(2)}</td>
