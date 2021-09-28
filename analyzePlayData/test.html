@@ -34,7 +34,7 @@
                 const charts = playdata.value.split('\n');
 
                 // 譜面データの検証
-                const testString = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/;
+                const testString = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,1?[0-9]{1,6}/;
                 const testResult = charts.map(chart => testString.test(chart));
 
                 // エラー確認
