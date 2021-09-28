@@ -267,6 +267,9 @@
                     // 無効にされているフォームをすべて有効化
                     document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
 
+                    document.querySelectorAll('.refresh-target').forEach(e => e.classList.toggle('sticky-top'));
+                    document.querySelectorAll('.refresh-target').forEach(e => e.classList.toggle('sticky-top'));
+
                 } else {
                     // 2回以上実行されるとページが崩壊するので警告を発して終了
                     window.open('https://dic.nicovideo.jp/id/4139324');
@@ -735,7 +738,7 @@
                 </p>
             </div>
             <div class="mt-2">
-                <div class="navbar sticky-top" style="opacity: 0.9; background-color: var(--bs-white);">
+                <div class="navbar sticky-top refresh-target" style="opacity: 0.9; background-color: var(--bs-white);">
                     <h3>表示設定</h3>
                 </div>
                 <div class="row">
@@ -771,7 +774,7 @@
                 </div>
             </div>
             <div class="mt-2">
-                <div class="navbar sticky-top" style="opacity: 0.9; background-color: var(--bs-white);">
+                <div class="navbar sticky-top refresh-target" style="opacity: 0.9; background-color: var(--bs-white);">
                     <div class="h3">新曲枠</div>
                     <div class="h6">
                         <div>
@@ -822,7 +825,7 @@
                 </div>
             </div>
             <div class="mt-2">
-                <div class="navbar sticky-top" style="opacity: 0.9; background-color: var(--bs-white);">
+                <div class="navbar sticky-top refresh-target" style="opacity: 0.9; background-color: var(--bs-white);">
                     <div class="h3">旧曲枠</div>
                     <div class="h6">
                         <div>
