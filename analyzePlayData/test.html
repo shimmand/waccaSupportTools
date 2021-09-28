@@ -67,6 +67,7 @@
 
                     const scoresTables = document.querySelectorAll('.scoresTable');
 
+                    // 既に実行された形跡がある場合は内容を削除
                     if (document.querySelectorAll('tr').length != 4){
                         scoresTables.forEach(table => table.innerHTML = '');
                     };
@@ -74,7 +75,7 @@
                     // テキストエリアが無効の表示である場合は解除
                     if (playdata.classList.contains('is-invalid')){
                         playdata.classList.remove('is-invalid');
-                        playdata.removeAttribute('style');
+                        playdata.setAttribute('style', 'height: 100px;');
                     };
 
                     // 譜面データを格納する配列を用意
