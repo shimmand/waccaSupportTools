@@ -50,7 +50,12 @@
                 } else {
                     // 譜面データの検証
                     const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/;
-                    const testResult = charts.map(chart => chart.match(searchPattern)[0] == chart);
+                    const testResult = charts.map(chart => {
+                        if (chart.match(searchPattern)[0] != chart) return false;
+                        if (chart.split(',').length != 3) return false;
+                        if (chart.split(',')[2] > 1000000) return false;
+                        return true;
+                    });
                     
                     // プレイデータの書式に誤りがある場合
                     if (!testResult.indexOf(false)){
