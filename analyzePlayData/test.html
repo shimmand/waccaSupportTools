@@ -73,13 +73,13 @@
                             };
 
                             // 倍数が上限値である場合に表示するアイコン
-                            const maxPillCode = '<span class="badge rounded-pill bg-secondary">MAX</span>';
+                            const maxBadgeCode = '<span class="badge bg-secondary">MAX</span>';
 
                             // 現在の譜面別レーティング
                             const adjustedRating = (multiplier * rating).toFixed(2);
 
                             // 譜面別レーティングの上限値
-                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxPillCode);
+                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
 
                             // 配列に入れるデータ
                             const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
@@ -177,7 +177,7 @@
                             const code = `
                                 <td>${index + 1}</td>
                                 <td>${chart[0]}</td>
-                                <td><span class="badge rounded-pill" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
+                                <td><span class="badge" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
                                 <td>${chart[3]}</td>
                                 <td>${chart[4]}</td>
                                 <td>${chart[5].toFixed(2)}</td>
@@ -776,14 +776,16 @@
             <div class="mt-2">
                 <div class="navbar sticky-top refresh-target" style="opacity: 0.9; background-color: var(--bs-white);">
                     <div class="h3">新曲枠</div>
-                    <div class="h6">
+                    <div class="h6 text-end">
                         <div>
-                            下限値:&nbsp;<span class="singleRateLower">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">下限値</span>
+                            <span class="singleRateLower align-middle">0.00</span>
                         </div>
                         <div>
-                            合計:&nbsp;<span class="summedRateCurrent">0.00</span>
-                            &nbsp;/&nbsp;
-                            <span class="summedRateUpper">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">合計</span>
+                            <span class="summedRateCurrent me-1 align-middle">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">理論値</span>
+                            <span class="summedRateUpper align-middle">0.00</span>
                         </div>
                     </div>
                 </div>
@@ -827,14 +829,16 @@
             <div class="mt-2">
                 <div class="navbar sticky-top refresh-target" style="opacity: 0.9; background-color: var(--bs-white);">
                     <div class="h3">旧曲枠</div>
-                    <div class="h6">
+                    <div class="h6 text-end">
                         <div>
-                            下限値:&nbsp;<span class="singleRateLower">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">下限値</span>
+                            <span class="singleRateLower align-middle">0.00</span>
                         </div>
                         <div>
-                            合計:&nbsp;<span class="summedRateCurrent">0.00</span>
-                            &nbsp;/&nbsp;
-                            <span class="summedRateUpper">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">合計</span>
+                            <span class="summedRateCurrent me-1 align-middle">0.00</span>
+                            <span class="badge border border-secondary text-dark align-middle me-1">理論値</span>
+                            <span class="summedRateUpper align-middle">0.00</span>
                         </div>
                     </div>
                 </div>
