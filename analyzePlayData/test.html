@@ -45,7 +45,7 @@
                         playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                     }
 
-                    document.querySelectorAll('error-feedback-1').forEach(div => {
+                    document.querySelectorAll('.error-feedback-1').forEach(div => {
                         if (div.classList.contains('d-none')) div.classList.add('d-none');
                     })
 
@@ -65,7 +65,7 @@
                             playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                         }
                         
-                        document.querySelectorAll('error-feedback-1').forEach(div => {
+                        document.querySelectorAll('.error-feedback-1').forEach(div => {
                             if (div.classList.contains('d-none')) div.classList.add('d-none');
                         })
 
@@ -756,14 +756,18 @@
             <div class="form-floating">
                 <textarea class="form-control is-invalid" id="playdata" style="height: 100px;" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
-                <div class="invalid-feedback error-feedback-1" id="is-empty">
-                    <span class="me-1 align-bottom">データが空です。</span>
-                    <span class="badge border border-danger text-danger align-middle ms-1 me-1">データを読込</span>
-                    <span class="me-1 align-bottom">を押してください。</span>
+                <div class="invalid-feedback error-feedback-1 d-none" id="is-empty">
+                    <p class="me-1">
+                        データが空です。
+                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">データを読込</span>
+                        を押してください。
+                    </p>
                 </div>
-                <div class="invalid-feedback error-feedback-1" id="is-invalid">
-                    <span class="me-1 align-bottom me-1">データの形式が不正です。</span>
-                    <span class="me-1 align-bottom me-1">ブックマークレットを実行するところからやり直してください。</span>
+                <div class="invalid-feedback error-feedback-1 d-none" id="is-invalid">
+                    <p class="me-1">
+                        データの形式が不正です。
+                        お手数ですが、マイページに戻って再度ブックマークレットを実行してください。
+                    </p>
                 </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
