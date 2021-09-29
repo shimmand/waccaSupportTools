@@ -759,14 +759,14 @@
                 <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
                 <div class="invalid-feedback error-feedback-1 d-none" id="is-empty">
-                    <p class="me-1">
+                    <p>
                         データが空です。
                         <span class="badge border border-danger text-danger align-bottom ms-1 me-1">データを読込</span>
                         を押してください。
                     </p>
                 </div>
                 <div class="invalid-feedback error-feedback-1 d-none" id="is-invalid">
-                    <p class="me-1">
+                    <p>
                         データの形式が不正です。
                         お手数ですが、マイページに戻って再度ブックマークレットを実行してください。
                     </p>
@@ -800,7 +800,10 @@
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                     </svg>
-                    Firefoxでは<span class="badge bg-secondary">データを読込</span>が動作しません。代わりに、プレイデータ欄へクリップボードのデータを貼り付けてください。
+                    Firefoxでは
+                    <span class="badge border border-secondary text-secondary align-bottom ms-1 me-1">データを読込</span>
+                    が動作しません。
+                    代わりに、プレイデータ欄へクリップボードのデータを貼り付けてください。
                 </p>
             </div>
             <div class="mt-2">
