@@ -46,9 +46,10 @@
                     }
 
                     document.querySelectorAll('.error-feedback-1').forEach(div => {
-                        if (div.classList.contains('d-none')) div.classList.add('d-none');
+                        if (!div.classList.contains('d-none')) div.classList.add('d-none');
                     })
 
+                    // プレイデータが空である旨を表示
                     document.querySelectorAll('#is-empty')[0].classList.remove('d-none');
 
                 } else {
@@ -56,7 +57,7 @@
                     const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/g;
                     const testResult = charts.map(chart => chart.match(searchPattern) == chart);
                     
-                    // プレイデータの書式に誤りがある場合
+                    // プレイデータの形式に誤りがある場合
                     if (!testResult.indexOf(false)){
                         isClear = false;
 
@@ -66,9 +67,10 @@
                         }
                         
                         document.querySelectorAll('.error-feedback-1').forEach(div => {
-                            if (div.classList.contains('d-none')) div.classList.add('d-none');
+                            if (!div.classList.contains('d-none')) div.classList.add('d-none');
                         })
 
+                        // プレイデータの形式に誤りがある旨を表示
                         document.querySelectorAll('#is-invalid')[0].classList.remove('d-none');
                     }
                 }
