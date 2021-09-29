@@ -40,11 +40,13 @@
                 if (playdata.value.length == 0){
                     isClear = false;
 
+                    // テキストエリアをエラー表示に変更
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
                         playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                     }
 
+                    // すべての警告文を非表示
                     document.querySelectorAll('.error-feedback-1').forEach(div => {
                         if (!div.classList.contains('d-none')) div.classList.add('d-none');
                     })
@@ -61,11 +63,13 @@
                     if (!testResult.indexOf(false)){
                         isClear = false;
 
+                        // テキストエリアをエラー表示に変更
                         if (!playdata.classList.contains('is-invalid')){
                             playdata.classList.add('is-invalid');
                             playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                         }
                         
+                        // すべての警告文を非表示
                         document.querySelectorAll('.error-feedback-1').forEach(div => {
                             if (!div.classList.contains('d-none')) div.classList.add('d-none');
                         })
@@ -77,6 +81,7 @@
 
                 if (isClear){
 
+                    // スコア情報の書き出し先を選択
                     const scoresTables = document.querySelectorAll('.scoresTable');
 
                     // 既に実行された形跡がある場合は内容を削除
@@ -98,6 +103,7 @@
                     // 譜面ごとに・・・
                     charts.forEach(chart => {
                         
+                        // カンマ区切り
                         // [0: 曲名, 1: 譜面レベル, 2: スコア]
                         const data = chart.split(',');
 
@@ -157,6 +163,7 @@
                     // [0: 新曲枠, 1: 旧曲枠]
                     const chartsLists = [chartsListNew, chartsListOld];
 
+                    // グラフとレーティングの各種数値を書き出す要素を選択
                     const statsGraphs = document.querySelectorAll('.statsGraph');
                     const singleRateLowers = document.querySelectorAll('.singleRateLower');
                     const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
@@ -216,6 +223,8 @@
                             // 特定スコアに到達した際の総合レーティング上昇量
                             // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
                             const increases = targetMultipliers.map(multiplier => {
+
+                                // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
                                 if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])){
                                     return '+' + ((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2);
                                 } else {
@@ -256,7 +265,7 @@
                             tableRow.innerHTML = code;
                         });
 
-
+                        // レーティングの各種数値を書き出し
                         singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
                         summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
                         summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
@@ -264,59 +273,18 @@
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
 
-                        // 統計グラフの挿入
-                        const statsGraphCode = `
-                            <div class="progress">    
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[0] / chartsCount * 100}%; background-color: var(--bs-gray);" aria-valuenow="${totalRatings[0]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[1] / chartsCount * 100}%; background-color: var(--bs-yellow);" aria-valuenow="${totalRatings[1]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[2] / chartsCount * 100}%; background-color: var(--bs-orange);" aria-valuenow="${totalRatings[2]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[3] / chartsCount * 100}%; background-color: var(--bs-red);" aria-valuenow="${totalRatings[3]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[4] / chartsCount * 100}%; background-color: var(--bs-purple);" aria-valuenow="${totalRatings[4]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                                <div class="progress-bar" role="progressbar" style="width: ${totalRatings[5] / chartsCount * 100}%; background-color: var(--bs-blue);" aria-valuenow="${totalRatings[5]}" aria-valuemin="0" aria-valuemax="${chartsCount}"></div>
-                            </div>
-                            <div class="progress" style="background-color: transparent;">
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-gray);">&lt;950k</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-yellow);">950k</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-orange);">960k</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-red);">970k</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-purple);">980k</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-blue);">990k</span>
-                                </div>
-                            </div>
-                            <div class="progress" style="background-color: transparent;">
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-gray);">(${(totalRatings[0] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-yellow);">(${(totalRatings[1] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-orange);">(${(totalRatings[2] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-red);">(${(totalRatings[3] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-purple);">(${(totalRatings[4] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                                <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                                    <span style="color: var(--bs-blue);">(${(totalRatings[5] / chartsCount * 100).toFixed(2)}%)</span>
-                                </div>
-                            </div>
-                        `;
+                        // グラフの棒を書き出し
+                        statsGraphs[listIndex].querySelectorAll('.graph-bar-1').forEach((div, index) => {
+                            const style = div.getAttribute('style').replace('width: 0%;', `width: ${totalRatings[index] / chartsCount * 100}%;`);
+                            div.setAttribute('style', style);
+                            div.setAttribute('aria-valuenow', totalRatings[index]);
+                            div.setAttribute('aria-valuemax', chartsCount);
+                        });
 
-                        statsGraphs[listIndex].innerHTML = statsGraphCode;
+                        // グラフのデータを書き出し
+                        statsGraphs[listIndex].querySelectorAll('.graph-ratio-1').forEach((div, index) => {
+                            div.innerHTML = `(${(totalRatings[0] / chartsCount * 100).toFixed(2)}%)`;
+                        });
                     });
 
                     // 無効にされているフォームをすべて有効化
@@ -860,6 +828,54 @@
                     </div>
                 </div>
                 <div class="statsGraph">
+                    <div class="progress">    
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #6C757D;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #FFC107;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #FD7E14;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #DC3545;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #6F42C1;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #0D6EFD;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress" style="background-color: transparent;">
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #6C757D;">&lt;950k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #FFC107;">950k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #FD7E14;">960k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #DC3545;">970k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #6F42C1;">980k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #0D6EFD;">990k</span>
+                        </div>
+                    </div>
+                    <div class="progress" style="background-color: transparent;">
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #6C757D;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #FFC107;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #FD7E14;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #DC3545;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #6F42C1;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #0D6EFD;">(0.00%)</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
@@ -914,6 +930,54 @@
                     </div>
                 </div>
                 <div class="statsGraph">
+                    <div class="progress">    
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #6C757D;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #FFC107;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #FD7E14;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #DC3545;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #6F42C1;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-1" role="progressbar" style="width: 0%; background-color: #0D6EFD;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="progress" style="background-color: transparent;">
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #6C757D;">&lt;950k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #FFC107;">950k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #FD7E14;">960k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #DC3545;">970k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #6F42C1;">980k</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span style="color: #0D6EFD;">990k</span>
+                        </div>
+                    </div>
+                    <div class="progress" style="background-color: transparent;">
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #6C757D;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #FFC107;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #FD7E14;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #DC3545;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #6F42C1;">(0.00%)</span>
+                        </div>
+                        <div class="progress-bar" role="progressbar" style="width: 16.666%; background-color: transparent;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                            <span class="graph-ratio-1" style="color: #0D6EFD;">(0.00%)</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-sm caption-top">
