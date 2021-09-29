@@ -283,7 +283,7 @@
 
                         // グラフのデータを書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-1').forEach((div, index) => {
-                            div.innerHTML = `(${(totalRatings[0] / chartsCount * 100).toFixed(2)}%)`;
+                            div.innerHTML = `(${(totalRatings[index] / chartsCount * 100).toFixed(2)}%)`;
                         });
                     });
 
