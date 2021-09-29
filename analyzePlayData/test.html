@@ -12,7 +12,7 @@
         <style>
             body {
                 -webkit-text-size-adjust: 100%;
-            };
+            }
         </style>
         <script>
             // 貼り付け()
@@ -24,7 +24,7 @@
                 
                 // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
                 navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
-            };
+            }
 
             // スコアの分析()
             function analyze(){
@@ -43,9 +43,13 @@
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
                         playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
-                    };
+                    }
 
-                    window.alert('データが空です！');
+                    document.querySelectorAll('error-feedback-1').forEach(div => {
+                        if (div.classList.contains('d-none')) div.classList.add('d-none');
+                    })
+
+                    document.querySelectorAll('#is-empty')[0].classList.remove('d-none');
 
                 } else {
                     // 譜面データの検証
@@ -59,11 +63,15 @@
                         if (!playdata.classList.contains('is-invalid')){
                             playdata.classList.add('is-invalid');
                             playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
-                        };
+                        }
                         
-                        window.alert('データが壊れています！');
-                    };
-                };
+                        document.querySelectorAll('error-feedback-1').forEach(div => {
+                            if (div.classList.contains('d-none')) div.classList.add('d-none');
+                        })
+
+                        document.querySelectorAll('#is-invalid')[0].classList.remove('d-none');
+                    }
+                }
 
                 if (isClear){
 
@@ -73,13 +81,13 @@
                     if (document.querySelectorAll('tr').length != 4){
                         scoresTables.forEach(table => table.innerHTML = '');
                         document.querySelector('#radio1-1').checked = true;
-                    };
+                    }
 
                     // テキストエリアが無効の表示である場合は解除
                     if (playdata.classList.contains('is-invalid')){
                         playdata.classList.remove('is-invalid');
                         playdata.setAttribute('style', 'height: 100px;');
-                    };
+                    }
 
                     // 譜面データを格納する配列を用意
                     let chartsListNew = [];
@@ -115,8 +123,8 @@
                             for (let i = 0; i < multipliers.length; i++){
                                 if (multiplier == 0){
                                     if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
-                                };
-                            };
+                                }
+                            }
 
                             // 倍数が上限値である場合に表示するアイコン
                             const maxBadgeCode = '<span class="badge bg-secondary">MAX</span>';
@@ -135,8 +143,8 @@
                                 chartsListNew.push(chartData);
                             } else {
                                 chartsListOld.push(chartData);
-                            };
-                        };
+                            }
+                        }
                     });
 
                     // 譜面データの配列を譜面別レーティングの降順で並び替え
@@ -201,7 +209,7 @@
 
                                 // 譜面別レーティングの小計に加算
                                 varSummedRateCurrents[listIndex] += Number(chart[6]);
-                            };
+                            }
 
                             // 特定スコアに到達した際の総合レーティング上昇量
                             // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
@@ -210,13 +218,13 @@
                                     return '+' + ((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2);
                                 } else {
                                     return '-';
-                                };
+                                }
                             });
 
                             // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
                             if (increases.filter(e => e == '-').length == increases.length && index >= targetsVolumes[listIndex]){
                                 tableRow.classList.add('all-clear');
-                            };
+                            }
 
                             // 挿入するHTMLのコードを生成
                             const code = `
@@ -314,21 +322,20 @@
 
                     // 再描画
                     document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
-
-                };
-            };
+                }
+            }
 
             // 表示と非表示を切り替え()
             function toggleDisplayState(){
                 if (document.querySelectorAll('tr').length != 4){
                     document.querySelectorAll('.all-clear').forEach(e => e.classList.toggle('d-none'));
                 }
-            };
+            }
 
             // 説明書を開く()
             function openEntrancePage(){
                 window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
-            };
+            }
 
             // スコアと倍数の対応表() => Array[[]]
             function getMultiplierTable(){
@@ -352,7 +359,7 @@
                     [100000, 0.1],
                     [0, 0]
                 ];
-            };
+            }
 
             // 定数を取得(曲名, レベル文字列) => 0.0
             // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
@@ -367,9 +374,9 @@
                         
                         // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
                         if( rating[i][4] == diffValue ) return rating[i][5].toFixed(1);
-                    };
-                };
-            };
+                    }
+                }
+            }
 
             // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
             // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
@@ -384,9 +391,9 @@
 
                         // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
                         if( rating[i][4] == diffValue ) return rating[i][6];
-                    };
-                };
-            };
+                    }
+                }
+            }
 
             // レーティング一覧表() => Array[[]]
             // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
@@ -723,7 +730,7 @@
                     ["Fight for the CORE feat. Daisuke","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
                     ["Shining Harmony","EXPERT 12",12.2,false,"INFERNO 0",0.0,]
                 ];
-            };
+            }
         </script>
     </head>
     <body>
@@ -747,8 +754,17 @@
                 譜面データ: <code>2021-09-22</code>
             </p>
             <div class="form-floating">
-                <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="「データを読込」を押してください"></textarea>
+                <textarea class="form-control is-invalid" id="playdata" style="height: 100px;" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
+                <div class="invalid-feedback error-feedback-1" id="is-empty">
+                    <span class="me-1 align-bottom">データが空です。</span>
+                    <span class="badge border border-danger text-danger align-middle ms-1 me-1">データを読込</span>
+                    <span class="me-1 align-bottom">を押してください。</span>
+                </div>
+                <div class="invalid-feedback error-feedback-1" id="is-invalid">
+                    <span class="me-1 align-bottom me-1">データの形式が不正です。</span>
+                    <span class="me-1 align-bottom me-1">ブックマークレットを実行するところからやり直してください。</span>
+                </div>
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
