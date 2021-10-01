@@ -13,6 +13,19 @@
             body {
                 -webkit-text-size-adjust: 100%;
             }
+            .is-invalid {
+                height: 6.25rem;
+                background-color: #F8D7DA;
+            }
+            .badge.difficulty {
+                width: 6.25rem;
+            }
+            .badge.expert {
+                background-color: #FA0C98;
+            }
+            .badge.inferno {
+                background-color: #4A004F;
+            }
         </style>
         <script>
             // 貼り付け()
@@ -43,7 +56,6 @@
                     // テキストエリアをエラー表示に変更
                     if (!playdata.classList.contains('is-invalid')){
                         playdata.classList.add('is-invalid');
-                        playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                     }
 
                     // すべての警告文を非表示
@@ -52,7 +64,7 @@
                     })
 
                     // プレイデータが空である旨を表示
-                    document.querySelectorAll('#is-empty')[0].classList.remove('d-none');
+                    document.querySelectorAll('#warning-empty')[0].classList.remove('d-none');
 
                 } else {
                     // 譜面データの検証
@@ -66,7 +78,6 @@
                         // テキストエリアをエラー表示に変更
                         if (!playdata.classList.contains('is-invalid')){
                             playdata.classList.add('is-invalid');
-                            playdata.setAttribute('style', 'height: 100px; background-color: #F8D7DA;')
                         }
                         
                         // すべての警告文を非表示
@@ -75,7 +86,7 @@
                         })
 
                         // プレイデータの形式に誤りがある旨を表示
-                        document.querySelectorAll('#is-invalid')[0].classList.remove('d-none');
+                        document.querySelectorAll('#warning-invalid')[0].classList.remove('d-none');
                     }
                 }
 
@@ -93,7 +104,6 @@
                     // テキストエリアが無効の表示である場合は解除
                     if (playdata.classList.contains('is-invalid')){
                         playdata.classList.remove('is-invalid');
-                        playdata.setAttribute('style', 'height: 100px;');
                     }
 
                     // 譜面データを格納する配列を用意
@@ -119,9 +129,9 @@
                         if ((level != 'INFERNO 0') && (rating != null)){
 
                             // 難易度に応じた色を設定
-                            let color = '';
-                            if (level.indexOf('EXPERT') == 0) color = '#FA0C98';
-                            if (level.indexOf('INFERNO') == 0) color = '#4A004F';
+                            let difficulty = '';
+                            if (level.indexOf('EXPERT') == 0) difficulty = 'expert';
+                            if (level.indexOf('INFERNO') == 0) difficulty = 'inferno';
 
                             // スコアに応じた譜面定数へ乗ずる値（倍数）
                             const multipliers = getMultiplierTable();
@@ -135,7 +145,7 @@
                             }
 
                             // 倍数が上限値である場合に表示するアイコン
-                            const maxBadgeCode = '<span class="badge bg-secondary">MAX</span>';
+                            const maxBadgeCode = '<span class="badge align-text-top bg-secondary">MAX</span>';
 
                             // 現在の譜面別レーティング
                             const adjustedRating = (multiplier * rating).toFixed(2);
@@ -144,7 +154,7 @@
                             const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
 
                             // 配列に入れるデータ
-                            const chartData = [title, color, level, score, rating, multiplier, adjustedRating, upperRating];
+                            const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
 
                             // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
                             if (checkChartIsNew(title, level)){
@@ -241,7 +251,7 @@
                             const code = `
                                 <td>${index + 1}</td>
                                 <td>${chart[0]}</td>
-                                <td><span class="badge" style="background-color: ${chart[1]}; width: 100px;">${chart[2]}</span></td>
+                                <td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>
                                 <td>${chart[3]}</td>
                                 <td>${chart[4]}</td>
                                 <td>${chart[5].toFixed(2)}</td>
@@ -726,14 +736,14 @@
             <div class="form-floating">
                 <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
-                <div class="invalid-feedback error-feedback-1 d-none" id="is-empty">
+                <div class="invalid-feedback error-feedback-1 d-none" id="warning-empty">
                     <p>
                         データが空です。
                         <span class="badge border border-danger text-danger align-bottom ms-1 me-1">データを読込</span>
                         を押してください。
                     </p>
                 </div>
-                <div class="invalid-feedback error-feedback-1 d-none" id="is-invalid">
+                <div class="invalid-feedback error-feedback-1 d-none" id="warning-invalid">
                     <p>
                         データの形式が不正です。
                         お手数ですが、マイページに戻って再度ブックマークレットを実行してください。
