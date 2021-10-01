@@ -13,8 +13,10 @@
             body {
                 -webkit-text-size-adjust: 100%;
             }
-            .is-invalid {
+            .form-control.playdata {
                 height: 6.25rem;
+            }
+            .form-control.is-invalid {
                 background-color: #F8D7DA;
             }
             .badge.difficulty {
@@ -734,7 +736,7 @@
                 譜面データ: <code>2021-09-22</code>
             </p>
             <div class="form-floating">
-                <textarea class="form-control" id="playdata" style="height: 100px;" placeholder="Paste your playdata here"></textarea>
+                <textarea class="form-control playdata" id="playdata" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
                 <div class="invalid-feedback error-feedback-1 d-none" id="warning-empty">
                     <p>
