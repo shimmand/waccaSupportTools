@@ -32,13 +32,13 @@
         <script>
             // 貼り付け()
             function paste(){
-                const pasteText = document.querySelector('#playdata');
+                const playdata = document.querySelector('#playdata');
                 
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
-                pasteText.focus();
+                playdata.focus();
                 
                 // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => pasteText.value = clipText);
+                navigator.clipboard.readText().then(clipText => playdata.value = clipText);
             }
 
             // スコアの分析()
