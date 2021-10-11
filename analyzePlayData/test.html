@@ -47,8 +47,14 @@
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 playdata.focus();
                 
-                // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => playdata.value = clipText, showDeniedWarning());
+                // ユーザーへクリップボードのアクセス許可を確認
+                const promise = navigator.clipboard.readText();
+
+                promise.then(clipText => {
+                    playdata.value = clipText;
+                }, reason => {
+                    showDeniedWarning();
+                });
             }
 
             // クリップボードへのアクセスが拒否された場合のメッセージを表示
