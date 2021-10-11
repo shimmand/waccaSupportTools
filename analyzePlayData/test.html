@@ -33,6 +33,16 @@
             // 貼り付け()
             function paste(){
                 const playdata = document.querySelector('#playdata');
+
+                // テキストエリアをエラー表示に変更
+                if (!playdata.classList.contains('is-invalid')){
+                    playdata.classList.add('is-invalid');
+                }
+                
+                // すべての警告文を非表示
+                document.querySelectorAll('.error-feedback-1').forEach(div => {
+                    if (!div.classList.contains('d-none')) div.classList.add('d-none');
+                })
                 
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 playdata.focus();
