@@ -35,8 +35,8 @@
                 const playdata = document.querySelector('#playdata');
 
                 // テキストエリアをエラー表示に変更
-                if (!playdata.classList.contains('is-invalid')){
-                    playdata.classList.add('is-invalid');
+                if (playdata.classList.contains('is-invalid')){
+                    playdata.classList.remove('is-invalid');
                 }
                 
                 // すべての警告文を非表示
@@ -48,11 +48,11 @@
                 playdata.focus();
                 
                 // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => playdata.value = clipText, showDeniedAlert());
+                navigator.clipboard.readText().then(clipText => playdata.value = clipText, showDeniedWarning());
             }
 
             // クリップボードへのアクセスが拒否された場合のメッセージを表示
-            function showDeniedAlert(){
+            function showDeniedWarning(){
                 const playdata = document.querySelector('#playdata');
 
                 // テキストエリアをエラー表示に変更
