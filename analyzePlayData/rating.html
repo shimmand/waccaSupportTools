@@ -33,12 +33,46 @@
             // 貼り付け()
             function paste(){
                 const playdata = document.querySelector('#playdata');
+
+                // テキストエリアをエラー表示に変更
+                if (playdata.classList.contains('is-invalid')){
+                    playdata.classList.remove('is-invalid');
+                }
+                
+                // すべての警告文を非表示
+                document.querySelectorAll('.error-feedback-1').forEach(div => {
+                    if (!div.classList.contains('d-none')) div.classList.add('d-none');
+                })
                 
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 playdata.focus();
                 
-                // ユーザーがクリップボードのアクセスを許可したら、テキストエリアへ転記する
-                navigator.clipboard.readText().then(clipText => playdata.value = clipText);
+                // ユーザーへクリップボードのアクセス許可を確認
+                const promise = navigator.clipboard.readText();
+
+                promise.then(clipText => {
+                    playdata.value = clipText;
+                }, reason => {
+                    showDeniedWarning();
+                });
+            }
+
+            // クリップボードへのアクセスが拒否された場合のメッセージを表示
+            function showDeniedWarning(){
+                const playdata = document.querySelector('#playdata');
+
+                // テキストエリアをエラー表示に変更
+                if (!playdata.classList.contains('is-invalid')){
+                    playdata.classList.add('is-invalid');
+                }
+                
+                // すべての警告文を非表示
+                document.querySelectorAll('.error-feedback-1').forEach(div => {
+                    if (!div.classList.contains('d-none')) div.classList.add('d-none');
+                })
+
+                // プレイデータの形式に誤りがある旨を表示
+                document.querySelectorAll('#warning-denied')[0].classList.remove('d-none');
             }
 
             // スコアの分析()
@@ -742,6 +776,15 @@
             <div class="form-floating mt-2">
                 <textarea class="form-control playdata" id="playdata" placeholder="Paste your playdata here"></textarea>
                 <label for="playdata">プレイデータ</label>
+                <div class="invalid-feedback error-feedback-1 d-none" id="warning-denied">
+                    <p>
+                        クリップボードへアクセスできません。
+                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">ペースト</span>
+                        または
+                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">許可</span>
+                        を押してください。
+                    </p>
+                </div>
                 <div class="invalid-feedback error-feedback-1 d-none" id="warning-empty">
                     <p>
                         データが空です。
