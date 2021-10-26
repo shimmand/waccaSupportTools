@@ -428,6 +428,7 @@
                     const maxRate = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
                     const remainingRate = (maxRate - varSummedRateCurrents.reduce((sum, e) => sum + e, 0)).toFixed(2);
                     varClassBorders[(varClassBorders.length - 2)] = maxRate;
+                    varClassBorders[(varClassBorders.length - 1)] = remainingRate;
 
                     // 総合グラフの棒を書き出し
                     rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
@@ -1003,7 +1004,7 @@
                         <div class="progress-bar graph-bar-rate bg-rainbow" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="w-100">
                             <div class="d-flex flex-row-reverse bd-highlight">
-                                <div class="progress-bar progress-bar-striped graph-bar-rate bg-dark opacity-50" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">　</div>
+                                <div class="progress-bar progress-bar-striped graph-bar-rate bg-dark opacity-50" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">　</div>
                             </div>
                         </div>
                     </div>
