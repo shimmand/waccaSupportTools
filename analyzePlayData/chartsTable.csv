@@ -1,4 +1,4 @@
-"0: 曲名", "1: EXPERTレベル", "2: EXPERT定数", "3: EXPERTは新曲枠?", "4: INFERNOレベル", "5: INFERNO定数", "6: INFERNOは新曲枠?"
+"0: song-title", "1: expert-chart-level", "2: expert-chart-const", "3: is-expert-chart-new, "4: inferno-chart-level", "5: expert-chart-const", "6: is-inferno-chart-new"
 "メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
 "叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
 "Fly to NEW WORLD","EXPERT 12",12.2,true,"INFERNO 0",0.0,
