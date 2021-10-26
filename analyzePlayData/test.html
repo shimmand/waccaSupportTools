@@ -425,17 +425,19 @@
                     });
 
                     // 総合グラフを書き出すための準備
-                    const maxRate = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
-                    const remainingRate = (maxRate - varSummedRateCurrents.reduce((sum, e) => sum + e, 0)).toFixed(2);
-                    varClassBorders[(varClassBorders.length - 2)] = maxRate;
+                    const maxValue = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
+                    const remainingRate = (maxValue - varSummedRateCurrents.reduce((sum, e) => sum + e, 0)).toFixed(2);
+                    varClassBorders[(varClassBorders.length - 2)] = maxValue;
                     varClassBorders[(varClassBorders.length - 1)] = remainingRate;
 
                     // 総合グラフの棒を書き出し
                     rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
-                        const style = `width: ${varClassBorders[index] / maxRate * 100}%;`;
+                        const borderValue = varClassBorders[index];
+                        const reduceValue = (( index == 0 ) ? 0 : ( varClassBorders[index] - 1 ));
+                        const style = `width: ${(borderValue - reduceValue) / maxValue * 100}%;`;
                         div.setAttribute('style', style);
-                        div.setAttribute('aria-valuenow', varClassBorders[index]);
-                        div.setAttribute('aria-valuemax', maxRate);
+                        div.setAttribute('aria-valuenow', (borderValue - reduceValue));
+                        div.setAttribute('aria-valuemax', maxValue);
                     });
 
                     // 無効にされているフォームをすべて有効化
