@@ -20,7 +20,7 @@
             }
             .form-control.is-invalid
             {
-                background-color: #F8D7DA;
+                background-color: #f8d7da;
             }
             .badge.difficulty
             {
@@ -28,11 +28,11 @@
             }
             .badge.expert
             {
-                background-color: #FA0C98;
+                background-color: #fa0c98;
             }
             .badge.inferno
             {
-                background-color: #4A004F;
+                background-color: #4a004f;
             }
             .bg-plain
             {
@@ -69,51 +69,51 @@
             }
             .bg-lt-950
             {
-                background-color: #6C757D;
+                background-color: #6c757d;
             }
             .bg-is-950
             {
-                background-color: #FFC107;
+                background-color: #ffc107;
             }
             .bg-is-960
             {
-                background-color: #FD7E14;
+                background-color: #fd7e14;
             }
             .bg-is-970
             {
-                background-color: #DC3545;
+                background-color: #dc3545;
             }
             .bg-is-980
             {
-                background-color: #6F42C1;
+                background-color: #6f42c1;
             }
             .bg-ge-990
             {
-                background-color: #0D6EFD;
+                background-color: #0d6efd;
             }
             .lt-950
             {
-                color: #6C757D;
+                color: #6c757d;
             }
             .is-950
             {
-                color: #FFC107;
+                color: #ffc107;
             }
             .is-960
             {
-                color: #FD7E14;
+                color: #fd7e14;
             }
             .is-970
             {
-                color: #DC3545;
+                color: #dc3545;
             }
             .is-980
             {
-                color: #6F42C1;
+                color: #6f42c1;
             }
             .ge-990
             {
-                color: #0D6EFD;
+                color: #0d6efd;
             }
         </style>
         <script>
@@ -298,6 +298,7 @@
 
                     // グラフとレーティングの各種数値を書き出す要素を選択
                     const statsGraphs = document.querySelectorAll('.statsGraph');
+                    const rateGraph = document.querySelector('.rateGraph');
                     const singleRateLowers = document.querySelectorAll('.singleRateLower');
                     const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
                     const summedRateUppers = document.querySelectorAll('.summedRateUpper');
@@ -317,6 +318,10 @@
                     // レーティング理論値
                     // [0: 新曲枠, 1: 旧曲枠]
                     let varSummedRateUppers = [0, 0];
+
+                    // クラス色のボーダー
+                    // [(*)0: plain, (*)1: navy, (*)2: yellow, (*)3: red, (*)4: purple, (*)5: blue, (*)6: silver, (*)7: gold, 8: rainbow, 9: 伸び代]
+                    let varClassBorders = [300, 600, 1000, 1300, 1600, 1900, 2200, 2500, 0, 0];
 
                     // 目標倍率（スコア）の一覧
                     // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
@@ -371,8 +376,8 @@
                             }
 
                             // 挿入するHTMLのコードを生成
-                            const code = `
-                                <td>${index + 1}</td>
+                            const code = 
+                                `<td>${index + 1}</td>
                                 <td>${chart[0]}</td>
                                 <td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>
                                 <td>${chart[3]}</td>
@@ -384,8 +389,7 @@
                                 <td>${increases[1]}</td>
                                 <td>${increases[2]}</td>
                                 <td>${increases[3]}</td>
-                                <td>${increases[4]}</td>
-                            `;
+                                <td>${increases[4]}</td>`;
 
                             if (chart[5] < 3.00) totalRatings[0] += 1;
                             if (chart[5] == 3.00) totalRatings[1] += 1;
@@ -405,10 +409,10 @@
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
-
+                        
                         // グラフの棒を書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
-                            const style = div.getAttribute('style').replace('width: 0%;', `width: ${totalRatings[index] / chartsCount * 100}%;`);
+                            const style = div.setAttribute('style', `width: ${totalRatings[index] / chartsCount * 100}%;`);
                             div.setAttribute('style', style);
                             div.setAttribute('aria-valuenow', totalRatings[index]);
                             div.setAttribute('aria-valuemax', chartsCount);
@@ -418,6 +422,19 @@
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
                             div.innerHTML = `(${(totalRatings[index] / chartsCount * 100).toFixed(2)}%)`;
                         });
+                    });
+
+                    // 総合グラフを書き出すための準備
+                    const remainingRate = varSummedRateCurrents.reduce((sum, e) => sum + e, 0);
+                    const maxRate = varSummedRateUppers.reduce((sum, e) => sum + e, 0);
+                    varClassBorders[(varClassBorders.length - 2)] = maxRate;
+
+                    // 総合グラフの棒を書き出し
+                    rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
+                        const style = div.setAttribute('style', `width: ${varClassBorders[index] / maxRate * 100}%;`);
+                        div.setAttribute('style', style);
+                        div.setAttribute('aria-valuenow', varClassBorders[index]);
+                        div.setAttribute('aria-valuemax', maxRate);
                     });
 
                     // 無効にされているフォームをすべて有効化
@@ -498,7 +515,7 @@
                 }
             }
 
-            // レーティング一覧表() => Array[[]]
+            // 譜面定数一覧表() => Array[[]]
             // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
             // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
             // !!! 関連要素: getRatingValue(), checkChartIsNew()
@@ -984,6 +1001,11 @@
                         <div class="progress-bar graph-bar-rate bg-silver" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-rate bg-gold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-rate bg-rainbow" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="position-absolute top-50 start-50 w-100 translate-middle">
+                            <div class="d-flex flex-row-reverse bd-highlight">
+                                <div class="progress-bar progress-bar-striped graph-bar-rate bg-dark opacity-50" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">　</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
