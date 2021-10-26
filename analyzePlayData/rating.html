@@ -494,6 +494,8 @@
                     document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
 
                     // 総合レーティングのグラフ上に表示する目印を表示（100ごとの目盛り）
+                    document.querySelectorAll('.scale-dot').forEach(div => div.remove());
+
                     for (let index = 0; index < scaleDotsVolume; index++) {
                         const dotLocation = (index + 1) * equalRange;
                         const insertCode = scaleDotCode.replace('left: 0%', `left: ${dotLocation}%`);
