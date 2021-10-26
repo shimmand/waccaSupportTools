@@ -473,8 +473,11 @@
                     });
                     
                     // 総合グラフを書き出すための準備
-                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
-                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(2);
+                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + Math.floor(e), 0);
+                    const totalRateUpperActually = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
+                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + Math.floor(e), 0);
+                    const totalRateCurrentActually = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(2);
+
                     const scaleDotsVolume = Math.floor(totalRateUpper / 100);
                     const extraRate = totalRateUpper - (scaleDotsVolume * 100);
                     const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
@@ -491,7 +494,9 @@
 
                     // 見出し部分に総合レーティングを書き出し
                     document.querySelector('.total-rate-current').innerHTML = totalRateCurrent;
+                    document.querySelector('.total-rate-current-actually small').innerHTML = `(${totalRateCurrentActually})`;
                     document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
+                    document.querySelector('.total-rate-upper-actually small').innerHTML = `(${totalRateUpperActually})`;
 
                     // 総合レーティングのグラフ上に表示する目印を表示（100ごとの目盛り）
                     document.querySelectorAll('.scale-dot').forEach(div => div.remove());
@@ -534,6 +539,11 @@
             // 説明書を開く()
             function openEntrancePage(){
                 window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/entrance.html');
+            }
+
+            // 譜面データを開く()
+            function openChartsData(){
+                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/chartsTable.csv');
             }
 
             // スコアと倍数の対応表() => Array[[]]
@@ -1017,6 +1027,12 @@
                         </svg>
                         ヘルプ
                     </button>
+                    <button type="button" class="btn btn-outline-primary" id="help" onclick="openChartsData()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                            <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+                        </svg>
+                        譜面データ
+                    </button>
                 </div>
                 <p class="text-muted">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
@@ -1071,9 +1087,18 @@
                     <div class="h6 mb-0 text-end">
                         <div class="pb-1">
                             <span class="badge border border-secondary text-dark align-middle me-1">合計</span>
-                            <span class="total-rate-current me-1 align-middle">0.00</span>
+                            <span class="total-rate-current me-1 align-middle">0</span>
+                            <span class="total-rate-current-actually me-1 align-middle"><small>(0.00)</small></span>
                             <span class="badge border border-secondary text-dark align-middle me-1">理論値</span>
-                            <span class="total-rate-upper align-middle">0.00</span>
+                            <span class="total-rate-upper align-middle">0</span>
+                            <span class="total-rate-upper-actually align-middle"><small>(0.00)</small></span>
+                        </div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                            </svg>
+                            <span class="align-middle">小数点以下は切り捨てられます</span>
                         </div>
                     </div>
                 </div>
