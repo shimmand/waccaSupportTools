@@ -409,6 +409,8 @@
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
+                        console.log(chartsCount);
+                        console.log(typeof chartsCount);
                         
                         // グラフの棒を書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
