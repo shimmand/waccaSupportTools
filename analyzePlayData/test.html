@@ -409,12 +409,10 @@
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
-                        console.log(chartsCount);
-                        console.log(typeof chartsCount);
                         
                         // グラフの棒を書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
-                            const style = div.setAttribute('style', `width: ${totalRatings[index] / chartsCount * 100}%;`);
+                            const style = `width: ${totalRatings[index] / chartsCount * 100}%;`;
                             div.setAttribute('style', style);
                             div.setAttribute('aria-valuenow', totalRatings[index]);
                             div.setAttribute('aria-valuemax', chartsCount);
@@ -434,7 +432,7 @@
 
                     // 総合グラフの棒を書き出し
                     rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
-                        const style = div.setAttribute('style', `width: ${varClassBorders[index] / maxRate * 100}%;`);
+                        const style = `width: ${varClassBorders[index] / maxRate * 100}%;`;
                         div.setAttribute('style', style);
                         div.setAttribute('aria-valuenow', varClassBorders[index]);
                         div.setAttribute('aria-valuemax', maxRate);
