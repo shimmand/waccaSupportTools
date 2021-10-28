@@ -59,8 +59,10 @@ export function main(){
         <p style="font-weight: bold; padding: 10px 0 10px;">WACCA RATING ANALYZER v1.00</p>
         <p>スコアの取得が完了しました。</p>
         <p>計算を開始するには、以下のボタンを押してください。</p>
+        <p>The web program is now ready to run.</p>
+        <p>To continue, press the button below.</p>
         <div style="padding: 10px 0 10px;">
-            <button onclick="${openMainPage}">ツールを開く</button>
+            <button onclick="${openMainPage}">ツールを開く / Open the Web Program</button>
         </div>
         <p>取得したデータ:</p>
         <textarea style="width: 100%; height: 100px;" id="scoresList" readonly>${scoresList.join('\n')}</textarea>
