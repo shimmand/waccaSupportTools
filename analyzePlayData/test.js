@@ -18,6 +18,10 @@ export function main(){
             throw new Error('invalid-directory');
         }
 
+        console.log('location.hostname != hostname', location.hostname != hostname);
+        console.log('location.pathname.indexOf(loginPagePath) == 0', location.pathname.indexOf(loginPagePath) == 0);
+        console.log('location.pathname.indexOf(playResultsPath) != 0', location.pathname.indexOf(playResultsPath) != 0);
+
         // #pushobj > section > div.contents-wrap > div.playdata__score-list > ul > li:nth-child(any)
         const songs = document.querySelectorAll('li.item');
         let scoresList = [];
@@ -92,7 +96,7 @@ export function main(){
         location.href = '#isNormal';
         
     } catch (error) {
-        switch (error) {
+        switch (error.message) {
             case 'invalid-hostname':
                 const invHostnameMsg = 'ここはWACCAのマイページではありません。\nWACCAのマイページへログインし、「プレイデータ」タブの中にある「楽曲スコア」ページで、改めて実行してください。\nThis is not WACCA\'s My Page.\nPlease log in to WACCA\'s My Page and run it again on the "Song Scores" page in the "Play Data" tab.';
                 const loginPageAddr = 'https://wacca.marv-games.jp/web/login';
