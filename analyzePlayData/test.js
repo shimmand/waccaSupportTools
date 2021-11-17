@@ -110,7 +110,7 @@ export function main(){
                 break;
         
             case 'invalid-directory':
-                const invDirectoryMsg = 'このページではブックマークレットを実行できません。このダイアログを閉じると「楽曲スコア」ページへ移動しますので、そこで改めて実行してください。\nThis bookmarklet cannot be run on this page. When you close this dialog, you will be redirected to the "Music Scores(楽曲スコア)" page, so please run it again there.';
+                const invDirectoryMsg = 'このページではブックマークレットを実行できません。このダイアログを閉じると「楽曲スコア」ページへ移動しますので、そこで改めて実行してください。\nThe bookmarklet cannot be run on this page. When you close this dialog, you will be redirected to the "Music Scores(楽曲スコア)" page, so please run it again there.';
                 const playResultsAddr = 'https://wacca.marv-games.jp/web/music';
                 window.alert(invDirectoryMsg);
                 location.href = playResultsAddr;
