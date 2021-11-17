@@ -92,28 +92,23 @@ export function main(){
         location.href = '#isNormal';
         
     } catch (error) {
-        switch (error) {
-            case 'invalid-hostname':
-                const invHostnameMsg = 'ここはWACCAのマイページではありません。\nWACCAのマイページへログインし、「プレイデータ」タブの中にある「楽曲スコア」ページで、改めて実行してください。\nThis is not WACCA\'s My Page.\nPlease log in to WACCA\'s My Page and run it again on the "Song Scores" page in the "Play Data" tab.';
-                const loginPageAddr = 'https://wacca.marv-games.jp/web/login';
-                window.alert(invHostnameMsg);
-                window.open(loginPageAddr);
-                break;
+        if (error == 'invalid-hostname') {
+            const invHostnameMsg = 'ここはWACCAのマイページではありません。\nWACCAのマイページへログインし、「プレイデータ」タブの中にある「楽曲スコア」ページで、改めて実行してください。\nThis is not WACCA\'s My Page.\nPlease log in to WACCA\'s My Page and run it again on the "Song Scores" page in the "Play Data" tab.',
+                  loginPageAddr = 'https://wacca.marv-games.jp/web/login';
+            window.alert(invHostnameMsg);
+            window.open(loginPageAddr);
+        }
 
-            case 'not-logged-in':
-                const loggedOutMsg = 'WACCAのマイページへログインしていないようです。\nWACCAのマイページへログインし、「プレイデータ」タブの中にある「楽曲スコア」ページで、改めて実行してください。\nIt seems that you have not logged in to WACCA\'s My Page.\nPlease log in to WACCA\'s My Page and run it again on the "Song Scores" page in the "Play Data" tab.';
-                window.alert(loggedOutMsg);
-                break;
+        if (error == 'not-logged-in') {
+            const loggedOutMsg = 'WACCAのマイページへログインしていないようです。\nWACCAのマイページへログインし、「プレイデータ」タブの中にある「楽曲スコア」ページで、改めて実行してください。\nIt seems that you have not logged in to WACCA\'s My Page.\nPlease log in to WACCA\'s My Page and run it again on the "Song Scores" page in the "Play Data" tab.';
+            window.alert(loggedOutMsg);
+        }
         
-            case 'invalid-directory':
-                const invDirectoryMsg = 'このページではブックマークレットを実行できません。このダイアログを閉じると「楽曲スコア」ページへリダイレクトしますので、そこで改めて実行してください。\nThis bookmarklet cannot be run on this page. When you close this dialog, you will be redirected to the "Music Scores(楽曲スコア)" page, so please run it again there.';
-                const playResultsAddr = 'https://wacca.marv-games.jp/web/music';
-                window.alert(invDirectoryMsg);
-                window.open(playResultsAddr);
-                break;
-                    
-            default:
-                break;
+        if (error == 'invalid-directory') {
+            const invDirectoryMsg = 'このページではブックマークレットを実行できません。このダイアログを閉じると「楽曲スコア」ページへリダイレクトしますので、そこで改めて実行してください。\nThis bookmarklet cannot be run on this page. When you close this dialog, you will be redirected to the "Music Scores(楽曲スコア)" page, so please run it again there.',
+                  playResultsAddr = 'https://wacca.marv-games.jp/web/music';
+            window.alert(invDirectoryMsg);
+            window.open(playResultsAddr);
         }
     }
 };
