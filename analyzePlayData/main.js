@@ -18,10 +18,6 @@ export function main(){
             throw new Error('invalid-directory');
         }
 
-        console.log('location.hostname != hostname', location.hostname != hostname);
-        console.log('location.pathname.indexOf(loginPagePath) == 0', location.pathname.indexOf(loginPagePath) == 0);
-        console.log('location.pathname.indexOf(playResultsPath) != 0', location.pathname.indexOf(playResultsPath) != 0);
-
         // #pushobj > section > div.contents-wrap > div.playdata__score-list > ul > li:nth-child(any)
         const songs = document.querySelectorAll('li.item');
         let scoresList = [];
