@@ -42,7 +42,7 @@ Add a new row in the same format as the row you added to the `getRatingTable()` 
 ## Translating to other languages
 ### rating.html
 This page is designed to make it easy to add new languages.  
-To add a new language, all you need to do is to add a `span` element inside a block element (ex. `div`) like the following, and add a button to display that language.  
+To add a new language, all you need to do is to add a `span` element inside a block element (ex. `div`) like the following, create a function to control the display state, and add a button to display that language.  
 This time, I used the `.lang-jpn` class for Japanese text and the `.lang-eng` class for English text.  
 
     <div>
