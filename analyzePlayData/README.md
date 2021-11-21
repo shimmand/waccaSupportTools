@@ -45,7 +45,7 @@ For example, the `switchToKorean()` function, looks like the following code:
     function switchToKorean() {
         hideLangTextElement('.lang-eng');
         hideLangTextElement('.lang-jpn');
-        showLangTextElement('.lang-kor'); // <- NEW!!
+        showLangTextElement('.lang-kor');
     }
 
 Once you have this function, add the button on the page and you are done.  
