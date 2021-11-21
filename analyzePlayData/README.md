@@ -1,4 +1,11 @@
 # README.md
+## File structure
+1. `launcher.js`: This is a launcher for `main.js`. It is used as a bookmarklet. (URI encoding is required.)
+2. `main.js`: Collects play scores from "Song Scores" Page in My Page. Called from `launcher.js`.
+3. `index.html`: This is the page to jump to `bit.ly`.　
+4. (`bit.ly`: Used for access analysis.)
+5. `rating.html`: The main unit of the web program.
+
 ## Translating to other languages
 ### rating.html
 This page is designed to make it easy to add new languages.  
