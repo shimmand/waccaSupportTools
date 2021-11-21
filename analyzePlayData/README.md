@@ -6,6 +6,39 @@
 4. (`bit.ly`: Used for access analysis.)
 5. `rating.html`: The main unit of the web program.
 
+- `entrance.html`: This is where the entrance to this program used to be. When you access it, you will jump to `rating.html`.
+- `example.html`: This is a page to show examples of program execution results. It can be accessed from the help modal of `rating.html`.
+
+## Sections that require continuous maintenance
+This program does not automatically analyze chart constants, but requires the player's help; when a new score is added to WACCA, it must quickly analyze the chart constants and update the program's code with this information.  
+Therefore, in order to maintain this program, you must be connected to a player who can analyze chart constants or you must be able to analyze chart constants.  
+The two files that need to be updated are as follows:  
+- Chart Constants Table on `rating.html` (*important*):  
+Add a new row to the array in the `getRatingTable()` function in the format described in the comments.
+```
+    // [0: song-title, 1: expert-level, 2: expert-const, 3: is-expert-new?, 4: inferno-level, 5: inferno-const, 6: is-inferno-new?]
+    function getRatingTable(){
+        return [
+            ["メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
+            ["叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
+            ...,
+            ["Fight for the CORE feat. Daisuke","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+            ["Shining Harmony","EXPERT 12",12.2,false,"INFERNO 0",0.0,]
+        ];
+    }
+```
+
+- Chart Dataset File as `chartsTable.csv`:  
+Add a new row in the same format as the row you added to the `getRatingTable()` function.
+```
+"0: song-title", "1: chart-expert-level", "2: chart-expert-const", "3: is-chart-expert-newer", "4: chart-inferno-level", "5: chart-inferno-const", "6: is-chart-inferno-newer"
+"メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
+"叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
+...
+"Fight for the CORE feat. Daisuke","EXPERT 12",12.6,false,"INFERNO 0",0.0,
+"Shining Harmony","EXPERT 12",12.2,false,"INFERNO 0",0.0,
+```
+
 ## Translating to other languages
 ### rating.html
 This page is designed to make it easy to add new languages.  
