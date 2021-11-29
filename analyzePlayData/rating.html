@@ -418,6 +418,14 @@
                                 }
                             });
 
+                            const increasesForFileRow = increases.map(data => {
+                                if (data != '-'){
+                                    return data.match(/\+[0-9]{1,2}\.[0-9]{2}/);
+                                } else {
+                                    return '-';
+                                }
+                            });
+
                             // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
                             if (increases.filter(e => e == '-').length == increases.length){
                                 tableRow.classList.add('all-clear');
@@ -456,7 +464,7 @@
                             const chartType = (listIndex == 0) ? 'New' : 'Old';
 
                             const maxRate = Number(4 * chart[4]).toFixed(2);
-                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increases[0]}","${increases[1]}","${increases[2]}","${increases[3]}","${increases[4]}"`;
+                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
                             tableRow.setAttribute('data-file-row', fileRow);
                         });
 
