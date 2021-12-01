@@ -10,136 +10,127 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
         <style>
+            /* 基本 */
             body {
                 -webkit-text-size-adjust: 100%;
             }
-            a {
-                color: #212529;
-            }
-            .form-control.playdata {
+            /* テキストエリア */
+            textarea.form-control.playdata {
                 height: 6.25rem;
             }
-            .form-control.is-invalid {
+            textarea.form-control.is-invalid {
                 background-color: #f8d7da;
             }
-            .badge.difficulty {
+            /* バッジ */
+            span.badge.difficulty {
                 width: 6.25rem;
             }
-            .badge.expert {
+            span.badge.expert {
                 background-color: #fa0c98;
             }
-            .badge.inferno {
+            span.badge.inferno {
                 background-color: #4a004f;
             }
-            .bg-plain {
+            /* レート背景色 */
+            div.bg-plain {
                 background-color: #959595;
+                color: #000000;
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
-            .bg-navy {
+            div.bg-navy {
                 background-color: #4023ec;
+                color: #ffffff;
+                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
             }
-            .bg-yellow {
+            div.bg-yellow {
                 background-color: #ffc800;
+                color: #ffffff;
+                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
             }
-            .bg-red {
+            div.bg-red {
                 background-color: #ff007d;
+                color: #ffffff;
+                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
             }
-            .bg-purple {
+            div.bg-purple {
                 background-color: #6610f2;
+                color: #ffffff;
+                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
             }
-            .bg-blue {
+            div.bg-blue {
                 background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
+                color: #000000;
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
-            .bg-silver {
-                background: linear-gradient(30deg, #eaffff, #95edf9, #eaffff);
+            div.bg-silver {
+                background: linear-gradient(30deg, #eaffff, #aaaaaa, #eaffff);
+                color: #000000;
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
-            .bg-gold {
+            div.bg-gold {
                 background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
+                color: #000000;
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
-            .bg-rainbow {
+            div.bg-rainbow {
                 background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
+                color: #000000;
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
-            .text-plain {
-                color: #959595;
-            }
-            .text-navy {
-                color: #4023ec;
-            }
-            .text-yellow {
-                color: #ffc800;
-            }
-            .text-red {
-                color: #ff007d;
-            }
-            .text-purple {
-                color: #6610f2;
-            }
-            .text-blue {
-                background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
-                color: #00beec;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .text-silver {
-                background: linear-gradient(30deg, #eaffff, #95edf9, #eaffff);
-                color: #95edf9;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .text-gold {
-                background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
-                color: #ffb100;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .text-rainbow {
-                background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
-                color: #00ffeb;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            .bg-lt-950 {
+            /* スコア帯背景 */
+            div.bg-lt-950 {
                 background-color: #6c757d;
             }
-            .bg-is-950 {
+            div.bg-is-950 {
                 background-color: #ffc107;
             }
-            .bg-is-960 {
+            div.bg-is-960 {
                 background-color: #fd7e14;
             }
-            .bg-is-970 {
+            div.bg-is-970 {
                 background-color: #dc3545;
             }
-            .bg-is-980 {
+            div.bg-is-980 {
                 background-color: #6f42c1;
             }
-            .bg-ge-990 {
+            div.bg-ge-990 {
                 background-color: #0d6efd;
             }
-            .lt-950 {
+            /* スコア帯文字色 */
+            span.lt-950 {
                 color: #6c757d;
             }
-            .is-950 {
+            span.is-950 {
                 color: #ffc107;
             }
-            .is-960 {
+            span.is-960 {
                 color: #fd7e14;
             }
-            .is-970 {
+            span.is-970 {
                 color: #dc3545;
             }
-            .is-980 {
+            span.is-980 {
                 color: #6f42c1;
             }
-            .ge-990 {
+            span.ge-990 {
                 color: #0d6efd;
             }
-            .table-custom-orange {
+            /* テーブルの色分け */
+            tr.table-custom-orange {
                 --bs-table-bg: #ffe5d0;
                 color: #000;
             }
-            .table-custom-dethrone {
+            tr.table-custom-dethrone {
                 --bs-table-bg: #d3d3d4;
                 color: #141619;
+            }
+            /* その他 */
+            a.rate-increase {
+                color: #212529;
+            }
+            a.multi-rate-selected {
+                color: #dc3545;
+                font-weight: bold;
             }
             .text-custom-primary-dark {
                 color: #084298;
@@ -148,14 +139,10 @@
                 background-color: #f8d7da;
                 color: #dc3545;
             }
-            .multi-rate-selected {
-                color: #dc3545;
-                font-weight: bold;
-            }
         </style>
-        <script>
+        <script defer>
             // 貼り付け()
-            function paste(){
+            function paste() {
                 const playdata = document.querySelector('#playdata');
 
                 // テキストエリアのエラー表示を解除
@@ -165,8 +152,10 @@
                 
                 // すべての警告文を非表示
                 document.querySelectorAll('.error-feedback-1').forEach(div => {
-                    if (!div.classList.contains('d-none')) div.classList.add('d-none');
-                })
+                    if (!div.classList.contains('d-none')) {
+                        div.classList.add('d-none')
+                    }
+                });
                 
                 // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
                 playdata.focus();
@@ -182,18 +171,20 @@
             }
 
             // クリップボードへのアクセスが拒否された場合のメッセージを表示
-            function showDeniedWarning(){
+            function showDeniedWarning() {
                 const playdata = document.querySelector('#playdata');
 
                 // テキストエリアをエラー表示に変更
-                if (!playdata.classList.contains('is-invalid')){
+                if (!playdata.classList.contains('is-invalid')) {
                     playdata.classList.add('is-invalid');
                 }
                 
                 // すべての警告文を非表示
                 document.querySelectorAll('.error-feedback-1').forEach(div => {
-                    if (!div.classList.contains('d-none')) div.classList.add('d-none');
-                })
+                    if (!div.classList.contains('d-none')) {
+                        div.classList.add('d-none')
+                    }
+                });
 
                 // プレイデータの形式に誤りがある旨を表示
                 document.querySelectorAll('#warning-denied')[0].classList.remove('d-none');
@@ -210,18 +201,20 @@
                 let isClear = true;
 
                 // プレイデータが空の場合
-                if (playdata.value.length == 0){
+                if (playdata.value.length == 0) {
                     isClear = false;
 
                     // テキストエリアをエラー表示に変更
-                    if (!playdata.classList.contains('is-invalid')){
+                    if (!playdata.classList.contains('is-invalid')) {
                         playdata.classList.add('is-invalid');
                     }
 
                     // すべての警告文を非表示
                     document.querySelectorAll('.error-feedback-1').forEach(div => {
-                        if (!div.classList.contains('d-none')) div.classList.add('d-none');
-                    })
+                        if (!div.classList.contains('d-none')) {
+                            div.classList.add('d-none')
+                        }
+                    });
 
                     // プレイデータが空である旨を表示
                     document.querySelectorAll('#warning-empty')[0].classList.remove('d-none');
@@ -242,8 +235,10 @@
                         
                         // すべての警告文を非表示
                         document.querySelectorAll('.error-feedback-1').forEach(div => {
-                            if (!div.classList.contains('d-none')) div.classList.add('d-none');
-                        })
+                            if (!div.classList.contains('d-none')){
+                                div.classList.add('d-none')
+                            }
+                        });
 
                         // プレイデータの形式に誤りがある旨を表示
                         document.querySelectorAll('#warning-invalid')[0].classList.remove('d-none');
@@ -256,13 +251,13 @@
                     const scoresTables = document.querySelectorAll('.scoresTable');
 
                     // 既に実行された形跡がある場合は内容を削除
-                    if (document.querySelectorAll('tr').length != 4){
+                    if (document.querySelectorAll('tr').length != 4) {
                         scoresTables.forEach(table => table.innerHTML = '');
                         document.querySelector('#radio1-1').checked = true;
                     }
 
                     // テキストエリアが無効の表示である場合は解除
-                    if (playdata.classList.contains('is-invalid')){
+                    if (playdata.classList.contains('is-invalid')) {
                         playdata.classList.remove('is-invalid');
                     }
 
@@ -286,7 +281,7 @@
                         const rating = getRatingValue(title, level);
 
                         // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
-                        if ((level != 'INFERNO 0') && (rating != null)){
+                        if ((level != 'INFERNO 0') && (rating != null)) {
 
                             // 難易度に応じた色を設定
                             let difficulty = '';
@@ -298,8 +293,8 @@
                             let multiplier = 0;
 
                             // スコアと照らし合わせて倍数を設定
-                            for (let i = 0; i < multipliers.length; i++){
-                                if (multiplier == 0){
+                            for (let i = 0; i < multipliers.length; i++) {
+                                if (multiplier == 0) {
                                     if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
                                 }
                             }
@@ -317,7 +312,7 @@
                             const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
 
                             // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
-                            if (checkChartIsNew(title, level)){
+                            if (checkChartIsNew(title, level)) {
                                 chartsListNew.push(chartData);
                             } else {
                                 chartsListOld.push(chartData);
@@ -326,8 +321,8 @@
                     });
 
                     // 譜面データの配列を譜面別レーティングの降順で並び替え
-                    chartsListNew.sort(function(a, b){return (b[6] - a[6])});
-                    chartsListOld.sort(function(a, b){return (b[6] - a[6])});
+                    chartsListNew.sort(function (a, b) { return (b[6] - a[6])} );
+                    chartsListOld.sort(function (a, b) { return (b[6] - a[6])} );
 
                     // 反復処理で扱いやすいようにこれまでの変数を配列化
                     // [0: 新曲枠, 1: 旧曲枠]
@@ -387,10 +382,10 @@
                             const tempRow = document.createElement('tr');
                             const tableRow = scoresTables[listIndex].appendChild(tempRow);
                             let headerElm = 'td';
-                            let rateDataElm = 'td';
+                            let rateDataElm = 'td class="normal-single-rate"';
 
                             // レーティング対象曲であれば・・・
-                            if (index < targetsVolumes[listIndex]){
+                            if (index < targetsVolumes[listIndex]) {
                                 // ヘッダーを参照
                                 headerElm = 'th scope="row"';
 
@@ -411,8 +406,8 @@
                             const increases = targetMultipliers.map(multiplier => {
 
                                 // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
-                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])){
-                                    return `<a href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(2)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2)}</a>`;
+                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])) {
+                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(2)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2)}</a>`;
                                 } else {
                                     return '-';
                                 }
@@ -427,27 +422,27 @@
                             });
 
                             // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
-                            if (increases.filter(e => e == '-').length == increases.length){
+                            if (increases.filter(e => e == '-').length == increases.length) {
                                 tableRow.classList.add('all-clear');
                             } else {
                                 tableRow.classList.add('table-custom-orange');
                             }
 
                             // 挿入するHTMLのコードを生成
-                            const code = 
-                                `<${headerElm}>${index + 1}</td>
-                                <td>${chart[0]}</td>
-                                <td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>
-                                <td>${chart[3]}</td>
-                                <td>${chart[4]}</td>
-                                <td>${chart[5].toFixed(2)}</td>
-                                <${rateDataElm}>${chart[6]}</td>
-                                <td>${chart[7]}</td>
-                                <td>${increases[0]}</td>
-                                <td>${increases[1]}</td>
-                                <td>${increases[2]}</td>
-                                <td>${increases[3]}</td>
-                                <td>${increases[4]}</td>`;
+                            const code = [
+                                `<${headerElm}>${index + 1}</td>`,
+                                `<td>${chart[0]}</td>`,
+                                `<td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>`,
+                                `<td>${chart[3]}</td>`,
+                                `<td>${chart[4]}</td>`,
+                                `<td>${chart[5].toFixed(2)}</td>`,
+                                `<${rateDataElm}>${chart[6]}</td>`,
+                                `<td>${chart[7]}</td>`,
+                                `<td>${increases[0]}</td>`,
+                                `<td>${increases[1]}</td>`,
+                                `<td>${increases[2]}</td>`,
+                                `<td>${increases[3]}</td>`,
+                                `<td>${increases[4]}</td>`].join('\n');
 
                             if (chart[5] < 3.00) totalRatings[0] += 1;
                             if (chart[5] == 3.00) totalRatings[1] += 1;
@@ -486,7 +481,7 @@
 
                         // 枠ごとにグラフのデータを書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
-                            div.innerHTML = `(${(totalRatings[index] / chartsCount * 100).toFixed(2)}%)`;
+                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
                         });
                     });
                     
@@ -498,12 +493,12 @@
                     const extraRate = totalRateUpper - (scaleDotsVolume * 100);
                     const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
 
-                    const scaleDotCode = 
-                        `<div class="position-absolute translate-middle scale-dot opacity-50" style="left: 0%!important; top: 40%!important;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
-                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-                            </svg>
-                        </div>`;
+                    const scaleDotCode = [
+                        `<div class="position-absolute translate-middle scale-dot opacity-50" style="left: 0%!important; top: 40%!important;">`,
+                        `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">`,
+                        `        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>`,
+                        `    </svg>`,
+                        `</div>`].join('\n');
 
                     // 虹レートの上限値を設定
                     varClassRanges[(varClassRanges.length - 1)] = (totalRateUpper - 2500);
@@ -511,6 +506,24 @@
                     // 見出し部分に総合レーティングを書き出し
                     document.querySelector('.total-rate-current').innerHTML = totalRateCurrent;
                     document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
+                    
+                    const targetDiv = document.querySelector('#total-rate-class');
+                    const classColors = ['bg-plain', 'bg-navy', 'bg-yellow', 'bg-red', 'bg-purple', 'bg-blue', 'bg-silver', 'bg-gold', 'bg-rainbow'];
+                    const classBorders = [0, 300, 600, 1000, 1300, 1600, 1900, 2200, 2500];
+
+                    classColors.forEach(color => {
+                        if (targetDiv.classList.contains(color)) {
+                            targetDiv.classList.remove(color);
+                        }
+                    });
+
+                    checkColor:
+                    for (let index = classBorders.length - 1; index > 0; index--) {
+                        if (totalRateCurrent >= classBorders[index]) {
+                            targetDiv.classList.add(classColors[index]);
+                            break checkColor;
+                        }
+                    }
 
                     // 総合レーティングのグラフ上に表示する目印を表示（100ごとの目盛り）
                     document.querySelectorAll('.scale-dot').forEach(div => div.remove());
@@ -545,42 +558,74 @@
                     document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
 
                     playdata.classList.add('is-valid');
+
+                    // 表示設定を復元
+                    switch (localStorage.getItem('rating-analyzer-disp')) {
+                        case 'all':
+                            changeDisplayState(0);
+                            console.log(0);
+                            break;
+
+                        case 'summarized':
+                            changeDisplayState(1);
+                            console.log(1);
+                            break;
+                        
+                        case 'focused':
+                            changeDisplayState(2);
+                            console.log(2);
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
             }
 
             // レーティングへ影響しない譜面の表示状態を変更()
-            function changeDisplayState(mode){
-                if (document.querySelectorAll('tr').length != 4){
+            function changeDisplayState(mode) {
+                if (document.querySelectorAll('tr').length != 4) {
                     document.querySelectorAll('.all-clear').forEach(tr => {
                         // 初期化
                         // mode == 0 : すべて表示する
-                        if (tr.classList.contains('d-none')){
+                        if (tr.classList.contains('d-none')) {
                             tr.classList.remove('d-none');
+                            localStorage.setItem('rating-analyzer-disp', 'all');
+                            document.querySelector('#radio1-1').checked = true;
                         }
 
                         // mode == 1 : レーティング対象は表示する
-                        if (mode == 1){
+                        if (mode == 1) {
                             if (!tr.classList.contains('table-primary')){
                                 tr.classList.add('d-none');
+                                localStorage.setItem('rating-analyzer-disp', 'summarized');
+                                document.querySelector('#radio1-2').checked = true;
                             }
                         }
 
                         // mode == 2 : すべて非表示にする
-                        if (mode == 2){
+                        if (mode == 2) {
                             tr.classList.add('d-none');
+                            localStorage.setItem('rating-analyzer-disp', 'focused');
+                            document.querySelector('#radio1-3').checked = true;
                         }
                     });
                 }
             }
 
             // Twitterを開く()
-            function openDevsTwitter(){
+            function openDevsTwitter() {
                 window.open('https://twitter.com/shimmand');
             }
 
             // 実行例を開く()
-            function openAnExample(){
+            function openAnExample() {
                 window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/example.html');
+            }
+
+            // プレイデータ欄をクリア
+            function clearPlaydata() {
+                document.querySelectorAll('#playdata')[0].value = '';
             }
             
             // ブックマークレットをコピー()
@@ -588,7 +633,7 @@
                 const copyTarget = document.getElementById("copyTarget");
                 const writeString = copyTarget.value;
 
-                if (navigator.clipboard == undefined){
+                if (navigator.clipboard == undefined) {
                     window.clipboardData.setData('Text', writeString);
                 } else {
                     navigator.clipboard.writeText(writeString);
@@ -603,7 +648,7 @@
             }
 
             // スコアと倍数の対応表() => Array[[]]
-            function getMultiplierTable(){
+            function getMultiplierTable() {
                 return [
                     [990000, 4],
                     [980000, 3.75],
@@ -628,46 +673,50 @@
 
             // 定数を取得(曲名, レベル文字列) => 0.0
             // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
-            function getRatingValue(songTitle, diffValue){
+            function getRatingValue(songTitle, diffValue) {
                 const rating = getRatingTable();
                 
-                for( let i = 0; i < rating.length; i++ ){
-                    if( rating[i][0] == songTitle ) {
-                        
+                for (let i = 0; i < rating.length; i++) {
+                    if (rating[i][0] == songTitle) {
                         // [..., 1: EXPERTレベル, 2: EXPERT定数, ...]
-                        if( rating[i][1] == diffValue ) return rating[i][2].toFixed(1);
-                        
+                        if (rating[i][1] == diffValue) {
+                            return rating[i][2].toFixed(1);
+                        }
+
                         // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
-                        if( rating[i][4] == diffValue ) return rating[i][5].toFixed(1);
+                        if (rating[i][4] == diffValue) {
+                            return rating[i][5].toFixed(1);
+                        }
                     }
                 }
             }
 
             // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
             // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
-            function checkChartIsNew(songTitle, diffValue){
+            function checkChartIsNew(songTitle, diffValue) {
                 const rating = getRatingTable();
                 
-                for( let i = 0; i < rating.length; i++ ){
-                    if( rating[i][0] == songTitle ) {
-
+                for (let i = 0; i < rating.length; i++) {
+                    if (rating[i][0] == songTitle) {
                         // [..., 1: EXPERTレベル, ..., 3: EXPERTは新曲枠?, ...]
-                        if( rating[i][1] == diffValue ) return rating[i][3];
+                        if (rating[i][1] == diffValue) {
+                            return rating[i][3];
+                        }
 
                         // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
-                        if( rating[i][4] == diffValue ) return rating[i][6];
+                        if (rating[i][4] == diffValue) {
+                            return rating[i][6];
+                        }
                     }
                 }
             }
 
             // 複数譜面のレーティング上昇値を計算するモードを終了
             function quitMultiRateMode(listtype) {
-                const alert = document.querySelector(`#multi-rate-alert-${listtype}`);
-                alert.classList.add('d-none');
-
                 const tables = document.querySelectorAll('.scoresTable');
                 const tableIndex = listtype == 'new' ? 0 : 1;
 
+                document.querySelector(`#multi-rate-alert-${listtype}`).classList.add('d-none');
                 tables[tableIndex].querySelectorAll('.multi-rate-selected').forEach(td => td.classList.remove('multi-rate-selected'));
                 tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
             }
@@ -675,22 +724,20 @@
             // 複数譜面のレーティング上昇値を計算するモードを開始
             function startMultiRateMode(element, listtype) {
                 const rateAlert = document.querySelector(`#multi-rate-alert-${listtype}`);
-                rateAlert.classList.remove('d-none');
 
-                if (element.classList.contains('multi-rate-selected')) {
-                    element.classList.remove('multi-rate-selected');
-                } else {
-                    element.classList.add('multi-rate-selected');
-                }
-                
+                rateAlert.classList.remove('d-none');
+                element.classList.toggle('multi-rate-selected');
+
                 const tables = document.querySelectorAll('.scoresTable');
                 const tableIndex = listtype == 'new' ? 0 : 1;
+                const topSingleRates = tables[tableIndex].querySelectorAll('td.top-single-rate');
+                const candSingleRates = tables[tableIndex].querySelectorAll('td.normal-single-rate');
 
-                const topSingleRates = tables[tableIndex].querySelectorAll('.top-single-rate');
                 let topSinleRatesArr = Array(topSingleRates.length);
                 for (let index = 0; index < topSinleRatesArr.length; index++) {
                     topSinleRatesArr[index] = Number(topSingleRates[index].innerHTML);
                 }
+
                 topSinleRatesArr = topSinleRatesArr.sort((a, b) => b - a);
 
                 const selectedRates = tables[tableIndex].querySelectorAll('.multi-rate-selected');
@@ -698,8 +745,8 @@
                 for (let index = 0; index < selectedRatesArr.length; index++) {
                     selectedRatesArr[index] = Number(selectedRates[index].dataset.rating);
                 }
+
                 selectedRatesArr = selectedRatesArr.sort((a, b) => b - a);
-                
 
                 let replaceRatesArr = Array(selectedRates.length);
                 for (let index = 0; index < selectedRatesArr.length; index++) {
@@ -710,6 +757,7 @@
 
                 for (let index = 0; index < replaceRatesArr.length; index++) {
                     const arrIndex = topSinleRatesArr.indexOf(replaceRatesArr[index]);
+
                     if (arrIndex != -1) {
                         topSinleRatesArr.splice(arrIndex, 1);
                     }
@@ -717,18 +765,22 @@
 
                 const newList = [...topSinleRatesArr, ...selectedRatesArr].sort((a, b) => b - a).splice(0, topSingleRates.length);
                 const newListTotal = newList.reduce((a, b) => a + b, 0);
-
                 const rateIncsease = newListTotal - oldListTotal;
+                const alreadyListedTotal = document.querySelectorAll('.table-primary .multi-rate-selected').length;
+
                 rateAlert.querySelector('.before').innerHTML = oldListTotal.toFixed(2);
                 rateAlert.querySelector('.after').innerHTML = newListTotal.toFixed(2);
                 rateAlert.querySelector('.increase').innerHTML = `(+${rateIncsease.toFixed(2)})`;
 
+                tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
+
                 for (let index = 0; index < selectedRatesArr.length; index++) {
-                    const fixedIndex = topSingleRates.length - index - 1;
+                    const fixedIndex = topSingleRates.length + alreadyListedTotal - index - 1;
                     const checkRow = tables[tableIndex].querySelectorAll('tr')[fixedIndex];
-                    if (!checkRow.classList.contains('table-custom-orange')) {
-                        checkRow.classList.add('table-custom-dethrone');    
-                    }   
+
+                    if (checkRow.querySelectorAll('.multi-rate-selected').length == 0) {
+                        checkRow.classList.add('table-custom-dethrone');
+                    }
                 }
             }
 
@@ -785,12 +837,14 @@
             function switchToJapanese() {
                 hideLangTextElement('.lang-eng');
                 showLangTextElement('.lang-jpn');
+                localStorage.setItem('rating-analyzer-lang', 'japanese');
             }
 
             // 英語に変更()
             function switchToEnglish() {
                 hideLangTextElement('.lang-jpn');
                 showLangTextElement('.lang-eng');
+                localStorage.setItem('rating-analyzer-lang', 'english');
             }
 
             // マイページを開く()
@@ -802,7 +856,7 @@
             // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
             // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
             // !!! 関連要素: getRatingValue(), checkChartIsNew()
-            function getRatingTable(){
+            function getRatingTable() {
                 return [
                     ["メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
                     ["叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
@@ -1148,15 +1202,59 @@
                     ["Shining Harmony","EXPERT 12",12.2,false,"INFERNO 0",0.0,]
                 ];
             }
+
+
+            // 特定の言語を表示()
+            function showLangTextElement(selector) {
+                const langElms = document.querySelectorAll(selector);
+                
+                langElms.forEach(e => {
+                    if (e.classList.contains('d-none')){
+                        e.classList.remove('d-none');
+                    }
+                });
+            }
+
+            // 特定の言語を非表示()
+            function hideLangTextElement(selector) {
+                const langElms = document.querySelectorAll(selector);
+                
+                langElms.forEach(e => {
+                    if (!e.classList.contains('d-none')){
+                        e.classList.add('d-none');
+                    }
+                });
+            }
+        
+            // ユーザー設定を復元
+            function loadUserPreference() {
+                try {
+                    // 言語設定を復元
+                    switch (localStorage.getItem('rating-analyzer-lang')) {
+                        case 'japanese':
+                            switchToJapanese();
+                            break;
+
+                        case 'english':
+                            switchToEnglish();
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                } catch (error) {
+                    return false;
+                }
+            }
         </script>
     </head>
-    <body>
+    <body onload="loadUserPreference(); return false;">
         <div class="container">
             <!-- ヘッダー -->
             <div class="bg-light border border-secondary rounded mt-2 shadow-sm">
                 <div class="d-flex flex-wrap m-2">
                     <div class="navbar-brand">WACCA RATING ANALYZER</div>
-                    <button type="button" class="btn btn-sm btn-outline-primary" id="twitter" onclick="openDevsTwitter()">
+                    <button type="button" class="btn btn-sm btn-outline-primary" id="twitter" onclick="openDevsTwitter(); return false;">
                         <small>DEV. BY</small>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                             <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
@@ -1226,7 +1324,7 @@
                     <span class="lang-eng d-none">Play Data</span>
                 </label>
                 <div class="position-absolute top-50 end-0 translate-middle-y">
-                    <button type="button" class="btn btn-outline-danger shadow-sm" onclick="javascript:document.querySelectorAll('#playdata')[0].value = ''">
+                    <button type="button" class="btn btn-outline-danger shadow-sm" onclick="clearPlaydata(); return false;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -1396,7 +1494,7 @@
             </div>
             <!-- 表示設定 -->
             <div class="mt-2">
-                <div class="navbar sticky-top refresh-target fade" style="opacity: 0.95; background-color: var(--bs-white);">
+                <div class="navbar bg-white sticky-top refresh-target">
                     <div class="h3 mb-0">
                         <span class="lang-jpn">設定</span>
                         <span class="lang-eng d-none">Settings</span>
@@ -1417,7 +1515,6 @@
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                             <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                                         </svg>
-                                        <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">DEFAULT</span>
                                         <span class="lang-jpn">すべて</span>
                                         <span class="lang-eng d-none">All</span>
                                     </label>
@@ -1473,28 +1570,40 @@
             </div>
             <!-- 概要 -->
             <div class="mt-2">
-                <div class="navbar sticky-top refresh-target fade" style="opacity: 0.95; background-color: var(--bs-white);">
+                <div class="navbar sticky-top bg-white refresh-target">
                     <div class="h3 mb-0">
                         <span class="lang-jpn">概要</span>
                         <span class="lang-eng d-none">Summary</span>
                     </div>
                     <div class="h6 mb-0 text-end">
-                        <div class="pb-1">
-                            <span class="badge border border-secondary text-dark align-middle me-1">
-                                <span class="lang-jpn">合計</span>
-                                <span class="lang-eng d-none">Total</span>
-                            </span>
-                            <span class="total-rate-current me-1 align-middle">0.00</span>
-                            <span class="badge border border-secondary text-dark align-middle me-1">
-                                <span class="lang-jpn">理論値</span>
-                                <span class="lang-eng d-none">Max</span>
-                            </span>
-                            <span class="total-rate-upper align-middle">0.00</span>
+                        <div class="d-flex pb-1">
+                            <div class="d-flex align-items-center ms-2">
+                                <div>
+                                    <span class="badge border border-secondary text-dark align-middle">
+                                        <span class="lang-jpn">合計</span>
+                                        <span class="lang-eng d-none">Total</span>
+                                    </span>
+                                </div>
+                                <div class="bg-plain px-2 ms-1 rounded" id="total-rate-class">
+                                    <span class="total-rate-current align-middle">0.00</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center ms-2">
+                                <div>
+                                    <span class="badge border border-secondary text-dark align-middle">
+                                        <span class="lang-jpn">理論値</span>
+                                        <span class="lang-eng d-none">Max</span>
+                                    </span>
+                                </div>
+                                <div class="px-0 ms-1">
+                                    <span class="total-rate-upper align-middle">0.00</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="rate-graph">
-                    <div class="position-relative graph-bar mx-4 my-2">
+                    <div class="position-relative graph-bar m-4">
                         <div class="progress shadow-sm">
                             <div class="progress-bar graph-bar-rate bg-plain bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-navy bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1521,37 +1630,53 @@
             </div>
             <!-- 新曲枠 -->
             <div class="mt-2">
-                <div class="sticky-top refresh-target fade" style="opacity: 0.9; background-color: var(--bs-white);">
+                <div class="justify-content-between sticky-top bg-white refresh-target">
                     <div class="d-flex justify-content-between align-items-center p-1">
                         <div class="h3 mb-0">
                             <span class="lang-jpn">新曲枠</span>
                             <span class="lang-eng d-none">Newer Charts</span>
                         </div>
-                        <div class="h6 mb-0 text-end">
-                            <div class="pb-1">
-                                <span class="badge border border-secondary text-dark align-middle me-1">
-                                    <span class="lang-jpn">小計</span>
-                                    <span class="lang-eng d-none">Subtotal</span>
-                                </span>
-                                <span class="summedRateCurrent me-1 align-middle">0.00</span>
-                                <span class="badge border border-secondary text-dark align-middle me-1">
-                                    <span class="lang-jpn">理論値</span>
-                                    <span class="lang-eng d-none">Max</span>
-                                </span>
-                                <span class="summedRateUpper align-middle">0.00</span>
+                        <div class="h6 mt-1 mb-0 text-end">
+                            <div class="d-flex pb-1">
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle">
+                                            <span class="lang-jpn">小計</span>
+                                            <span class="lang-eng d-none">Subtotal</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="summedRateCurrent align-middle">0.00</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle">
+                                            <span class="lang-jpn">理論値</span>
+                                            <span class="lang-eng d-none">Max</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="summedRateUpper align-middle">0.00</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <span class="badge border border-secondary text-dark align-middle me-1" style="background-color: #cfe2ff;">
-                                    <span class="lang-jpn">レーティング対象</span>
-                                    <span class="lang-eng d-none">Rate Baseline</span>
-                                </span>
-                                <span class="singleRateLower align-middle">0.00</span>
-                                <span class="align-middle">
-                                    <small>
-                                        <span class="lang-jpn">以上</span>
-                                        <span class="lang-eng d-none"></span>
-                                    </small>
-                                </span>
+                            <div class="d-flex justify-content-end pb-1">
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle" style="background-color: #cfe2ff;">
+                                            <span class="lang-jpn">レーティング対象</span>
+                                            <span class="lang-eng d-none">Rate Baseline</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="singleRateLower align-middle">0.00</span>
+                                        <span class="align-middle small">
+                                            <span class="lang-jpn">以上</span>
+                                            <span class="lang-eng d-none"></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1598,7 +1723,7 @@
                     </div>
                 </div>
                 <div class="stats-graph mt-2">
-                    <div class="progress shadow-sm mx-4">    
+                    <div class="progress shadow-sm mx-4">
                         <div class="progress-bar graph-bar-stats bg-lt-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-960" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1606,44 +1731,30 @@
                         <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="progress bg-transparent">
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                    <div class="d-flex justify-content-between mx-4">
+                        <div class="d-flex flex-column text-center">
                             <span class="lt-950">&lt;950k</span>
+                            <span class="graph-ratio-stats lt-950 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-950">950k</span>
+                            <span class="graph-ratio-stats is-950 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-960">960k</span>
+                            <span class="graph-ratio-stats is-960 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-970">970k</span>
+                            <span class="graph-ratio-stats is-970 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-980">980k</span>
+                            <span class="graph-ratio-stats is-980 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="ge-990">990k</span>
-                        </div>
-                    </div>
-                    <div class="progress bg-transparent">
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats lt-950">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-950">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-960">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-970">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-980">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats ge-990">(0.00%)</span>
+                            <span class="graph-ratio-stats ge-990 small">0.00%</span>
                         </div>
                     </div>
                 </div>
@@ -1658,23 +1769,17 @@
                         </caption>
                         <thead>
                             <tr>
-                                <th scope="col" colspan="4">
-                                    <small>
-                                        <span class="lang-jpn">基本情報</span>
-                                        <span class="lang-eng d-none">Play Results</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="4">
+                                    <span class="lang-jpn">プレイ成績</span>
+                                    <span class="lang-eng d-none">Play Results</span>
                                 </th>
-                                <th scope="col" colspan="4">
-                                    <small>
-                                        <span class="lang-jpn">譜面別Rate</span>
-                                        <span class="lang-eng d-none">Single Rate</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="4">
+                                    <span class="lang-jpn">譜面別Rate</span>
+                                    <span class="lang-eng d-none">Single Rate</span>
                                 </th>
-                                <th scope="col" colspan="5">
-                                    <small>
-                                        <span class="lang-jpn">スコア別上昇値</span>
-                                        <span class="lang-eng d-none">Rate Increases by Score</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="5">
+                                    <span class="lang-jpn">スコア別上昇値</span>
+                                    <span class="lang-eng d-none">Rate Increases by Score</span>
                                 </th>
                             </tr>
                             <tr>
@@ -1721,37 +1826,53 @@
             </div>
             <!-- 旧曲枠 -->
             <div class="mt-2">
-                <div class="sticky-top refresh-target fade" style="opacity: 0.95; background-color: var(--bs-white);">
+                <div class="justify-content-between sticky-top bg-white refresh-target">
                     <div class="d-flex justify-content-between align-items-center p-1">
                         <div class="h3 mb-0">
                             <span class="lang-jpn">旧曲枠</span>
                             <span class="lang-eng d-none">Older Charts</span>
                         </div>
-                        <div class="h6 mb-0 text-end">
-                            <div class="pb-1">
-                                <span class="badge border border-secondary text-dark align-middle me-1">
-                                    <span class="lang-jpn">小計</span>
-                                    <span class="lang-eng d-none">Subtotal</span>
-                                </span>
-                                <span class="summedRateCurrent me-1 align-middle">0.00</span>
-                                <span class="badge border border-secondary text-dark align-middle me-1">
-                                    <span class="lang-jpn">理論値</span>
-                                    <span class="lang-eng d-none">Max</span>
-                                </span>
-                                <span class="summedRateUpper align-middle">0.00</span>
+                        <div class="h6 mt-1 mb-0 text-end">
+                            <div class="d-flex pb-1">
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle">
+                                            <span class="lang-jpn">小計</span>
+                                            <span class="lang-eng d-none">Subtotal</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="summedRateCurrent align-middle">0.00</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle">
+                                            <span class="lang-jpn">理論値</span>
+                                            <span class="lang-eng d-none">Max</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="summedRateUpper align-middle">0.00</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <span class="badge border border-secondary text-dark align-middle me-1" style="background-color: #cfe2ff;">
-                                    <span class="lang-jpn">レーティング対象</span>
-                                    <span class="lang-eng d-none">Rate Baseline</span>
-                                </span>
-                                <span class="singleRateLower align-middle">0.00</span>
-                                <span class="align-middle">
-                                    <small>
-                                        <span class="lang-jpn">以上</span>
-                                        <span class="lang-eng d-none"></span>
-                                    </small>
-                                </span>
+                            <div class="d-flex justify-content-end pb-1">
+                                <div class="d-flex align-items-center ms-2">
+                                    <div>
+                                        <span class="badge border border-secondary text-dark align-middle" style="background-color: #cfe2ff;">
+                                            <span class="lang-jpn">レーティング対象</span>
+                                            <span class="lang-eng d-none">Rate Baseline</span>
+                                        </span>
+                                    </div>
+                                    <div class="px-0 ms-1">
+                                        <span class="singleRateLower align-middle">0.00</span>
+                                        <span class="align-middle small">
+                                            <span class="lang-jpn">以上</span>
+                                            <span class="lang-eng d-none"></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1806,44 +1927,30 @@
                         <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="progress bg-transparent">
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                    <div class="d-flex justify-content-between mx-4">
+                        <div class="d-flex flex-column text-center">
                             <span class="lt-950">&lt;950k</span>
+                            <span class="graph-ratio-stats lt-950 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-950">950k</span>
+                            <span class="graph-ratio-stats is-950 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-960">960k</span>
+                            <span class="graph-ratio-stats is-960 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-970">970k</span>
+                            <span class="graph-ratio-stats is-970 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="is-980">980k</span>
+                            <span class="graph-ratio-stats is-980 small">0.00%</span>
                         </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
+                        <div class="d-flex flex-column text-center">
                             <span class="ge-990">990k</span>
-                        </div>
-                    </div>
-                    <div class="progress bg-transparent">
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats lt-950">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-950">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-960">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-970">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats is-980">(0.00%)</span>
-                        </div>
-                        <div class="progress-bar bg-transparent" role="progressbar" style="width: 16.666%;" aria-valuenow="16.666" aria-valuemin="0" aria-valuemax="100">
-                            <span class="graph-ratio-stats ge-990">(0.00%)</span>
+                            <span class="graph-ratio-stats ge-990 small">0.00%</span>
                         </div>
                     </div>
                 </div>
@@ -1858,23 +1965,17 @@
                         </caption>
                         <thead>
                             <tr>
-                                <th scope="col" colspan="4">
-                                    <small>
-                                        <span class="lang-jpn">基本情報</span>
-                                        <span class="lang-eng d-none">Play Results</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="4">
+                                    <span class="lang-jpn">プレイ成績</span>
+                                    <span class="lang-eng d-none">Play Results</span>
                                 </th>
-                                <th scope="col" colspan="4">
-                                    <small>
-                                        <span class="lang-jpn">譜面別Rate</span>
-                                        <span class="lang-eng d-none">Single Rate</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="4">
+                                    <span class="lang-jpn">譜面別Rate</span>
+                                    <span class="lang-eng d-none">Single Rate</span>
                                 </th>
-                                <th scope="col" colspan="5">
-                                    <small>
-                                        <span class="lang-jpn">スコア別上昇値</span>
-                                        <span class="lang-eng d-none">Rate Increases by Score</span>
-                                    </small>
+                                <th class="small" scope="col" colspan="5">
+                                    <span class="lang-jpn">スコア別上昇値</span>
+                                    <span class="lang-eng d-none">Rate Increases by Score</span>
                                 </th>
                             </tr>
                             <tr>
@@ -1929,13 +2030,13 @@
                                 <span class="lang-eng d-none">Help</span>
                             </div>
                             <div class="btn-group ms-2" role="group">
-                                <button type="button" class="btn btn-outline-primary" id="btn-japanese" onclick="switchToJapanese()">
+                                <button type="button" class="btn btn-outline-primary" id="btn-japanese" onclick="switchToJapanese(); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                         <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                     </svg>
                                     Japanese
                                 </button>
-                                <button type="button" class="btn btn-outline-primary" id="btn-english" onclick="switchToEnglish()">
+                                <button type="button" class="btn btn-outline-primary" id="btn-english" onclick="switchToEnglish(); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                         <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                     </svg>
@@ -1964,7 +2065,7 @@
                                 </svg>
                                 <span class="lang-jpn">特徴</span>
                                 <span class="lang-eng d-none">Features</span>
-                                <button type="button" class="btn btn-outline-primary ms-2" id="btn-example" onclick="openAnExample()">
+                                <button type="button" class="btn btn-outline-primary ms-2" id="btn-example" onclick="openAnExample(); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
                                     </svg>
@@ -2088,7 +2189,7 @@
                                         <span class="lang-eng d-none">Copy the bookmarklet.</span>
                                         <div class="input-group m-2">
                                             <input type="text" class="form-control" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){let%20path='https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js';import(path).then((obj)=>obj.main())})();" readonly="">
-                                            <button class="btn btn-outline-primary" onclick="copyBookmarklet()" type="button" id="button-addon">
+                                            <button class="btn btn-outline-primary" onclick="copyBookmarklet(); return false;" type="button" id="button-addon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                                                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                                                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -2141,7 +2242,7 @@
                                         <span class="lang-jpn">WACCAのマイページへログインする</span>
                                         <span class="lang-eng d-none">Login to WACCA My Page.</span>
                                         <div class="m-2">
-                                            <button type="button" class="btn btn-outline-primary" id="help" onclick="openMyPage()">
+                                            <button type="button" class="btn btn-outline-primary" id="help" onclick="openMyPage(); return false;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
                                                 </svg>
