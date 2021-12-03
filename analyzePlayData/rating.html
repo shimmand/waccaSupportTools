@@ -1086,9 +1086,6 @@
                 const rateAlert = document.querySelector(`#multi-rate-alert-${listtype}`);
                 rateAlert.classList.remove('d-none');
 
-                const parentRow = element.parentNode.parentNode;
-                parentRow.querySelectorAll('.multi-rate-selected').forEach(a => a.classList.remove('multi-rate-selected'));
-
                 element.classList.toggle('multi-rate-selected');
 
                 const tables = document.querySelectorAll('.scoresTable');
