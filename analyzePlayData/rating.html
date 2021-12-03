@@ -1226,9 +1226,26 @@
                         default:
                             break;
                     }
+                    // ニュースの既読状態を確認
+                    switch (localStorage.getItem('rating-analyzer-last-visited')) {
+                        case '2021-12-04':
+                            document.querySelector('#news-badge').classList.add('d-none');
+                            document.querySelector('#news-toggle').removeAttribute('onclick');
+                            break;
+
+                        default:
+                            break;
+                    }
                 } catch (error) {
                     return false;
                 }
+            }
+
+            // ニュースを既読にする
+            function markAsRead(date) {
+                localStorage.setItem('rating-analyzer-last-visited', date);
+                document.querySelector('#news-badge').classList.add('d-none');
+                document.querySelector('#news-toggle').removeAttribute('onclick');
             }
         </script>
     </head>
@@ -1249,77 +1266,78 @@
                 <hr class="m-0">
                 <div class="m-2">
                     <span class="badge bg-secondary align-middle me-1">DATASET</span>
-                    <code class="me-1">2021-12-01</code>
-                    <!-- アラート -->
-                    <div class="accordion border border-primary rounded my-2" id="accordion-new-feature-1">
+                    <code class="me-1 text-black-50">2021-12-01</code>
+                    <!-- ニュース -->
+                    <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
-                            <div class="h2 accordion-header" id="accordion-new-feature-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-feature-1" aria-expanded="false" aria-controls="collapse-new-feature-1">
+                            <div class="h2 accordion-header" id="accordion-news-1">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-04'); return false;" id="news-toggle">
                                     <span class="me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-circle" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 10.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
-                                        </svg>
-                                    </span>
-                                    <span class="lang-jpn">
-                                        Rate上昇値を複数譜面で計算できるようになりました
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        Rate increase on multiple charts is now available.
-                                    </span>
-                                </button>
-                            </div>
-                            <div id="collapse-new-feature-1" class="accordion-collapse collapse" aria-labelledby="accordion-new-feature-1" data-bs-parent="#accordion-new-feature">
-                                <div class="accordion-body p-2">
-                                    <span class="lang-jpn">スコア別のRate上昇値をいくつかタップすることで、<strong>複数の譜面でスコアを上昇</strong>させた際のRateの上昇値を計算できるようになりました。</span>
-                                    <span class="lang-eng d-none">By tapping on some of the Rate increase values by score, you can now calculate the Rate increase value when <strong>you increase your score on multiple charts</strong>.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion border border-primary rounded my-2" id="accordion-new-feature-2">
-                        <div class="accordion-item">
-                            <div class="h2 accordion-header" id="accordion-new-feature-2">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-feature-2" aria-expanded="false" aria-controls="collapse-new-feature-2">
-                                    <span class="me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-                                            <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
-                                            <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                                        </svg>
-                                    </span>
-                                    <span class="lang-jpn">
-                                        設定を記憶するようになりました
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        Your browser now remembers your selections.
-                                    </span>
-                                </button>
-                            </div>
-                            <div id="collapse-new-feature-2" class="accordion-collapse collapse" aria-labelledby="accordion-new-feature-2" data-bs-parent="#accordion-new-feature">
-                                <div class="accordion-body p-2">
-                                    <span class="lang-jpn">ブラウザー内に「言語設定」および「表示する譜面の設定」の選択内容を記憶し、次回このページが読み込まれた際に<strong>設定を自動で復元</strong>するようになりました。</span>
-                                    <span class="lang-eng d-none">Your browser now remembers your selections for "Language" and "Charts to Dipslay" settings, and <strong>restores them automatically</strong> the next time this page is loaded.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion border border-primary rounded my-2 d-none" id="accordion-notice">
-                        <div class="accordion-item">
-                            <div class="h2 accordion-header" id="accordion-notice-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-notice-1" aria-expanded="false" aria-controls="collapse-notice-1">
-                                    <span class="me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond" viewBox="0 0 16 16">
-                                            <path d="M6.95.435c.58-.58 1.52-.58 2.1 0l6.515 6.516c.58.58.58 1.519 0 2.098L9.05 15.565c-.58.58-1.519.58-2.098 0L.435 9.05a1.482 1.482 0 0 1 0-2.098L6.95.435zm1.4.7a.495.495 0 0 0-.7 0L1.134 7.65a.495.495 0 0 0 0 .7l6.516 6.516a.495.495 0 0 0 .7 0l6.516-6.516a.495.495 0 0 0 0-.7L8.35 1.134z"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                                         </svg>
                                     </span>
-                                    <span class="lang-jpn"></span>
-                                    <span class="lang-eng d-none"></span>
+                                    <span class="lang-jpn">
+                                        お知らせ
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        News
+                                    </span>
+                                    <span class="badge bg-primary align-bottom ms-1 me-1" id="news-badge">
+                                        <span class="lang-jpn">
+                                            未読
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            UNREAD
+                                        </span>
+                                    </span>
                                 </button>
                             </div>
-                            <div id="collapse-notice-1" class="accordion-collapse collapse" aria-labelledby="accordion-notice-1" data-bs-parent="#accordion-notice">
+                            <div id="collapse-news-1" class="accordion-collapse collapse" aria-labelledby="accordion-news-1" data-bs-parent="#accordion-news">
                                 <div class="accordion-body p-2">
-                                    <span class="lang-jpn"></span>
-                                    <span class="lang-eng d-none"></span>
+                                    <p class="h6 text-primary">
+                                        <span class="lang-jpn">
+                                            CSVで保存する際の不具合を修正しました
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Fixed a bug in the Save as CSV
+                                        </span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="lang-jpn">Androidデバイスで「CSVで保存」を行うと、ファイル形式がプレーンテキストに変わる不具合を修正しました。</span>
+                                        <span class="lang-eng d-none">Fixed a bug that caused the file format to change to a plain text when using the "Save as CSV" on Android devices.</span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="lang-jpn">また、ファイル名に現在の時刻を含めるようにしました。（例：wacca-20190718-123456.csv）</span>
+                                        <span class="lang-eng d-none">Also, the filename now includes current time. (ex: wacca-20190718-123456.csv)</span>
+                                    </p>
+                                    <hr class="my-2">
+                                    <p class="h6">
+                                        <span class="lang-jpn">
+                                            Rate上昇値を複数の譜面で計算できるようになりました
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Rate increase on multiple charts is now available.
+                                        </span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="lang-jpn">スコア別のRate上昇値をいくつかタップすることで、複数の譜面でスコアを上昇させた際のRateの上昇値を計算できるようになりました。</span>
+                                        <span class="lang-eng d-none">By tapping on some of the Rate increase values by score, you can now calculate the Rate increase value when you increase your score on multiple charts.</span>
+                                    </p>
+                                    <hr class="my-2">
+                                    <p class="h6">
+                                        <span class="lang-jpn">
+                                            設定を記憶するようになりました
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Your browser now remembers your selections.
+                                        </span>
+                                    </p>
+                                    <p class="m-0">
+                                        <span class="lang-jpn">ブラウザー内に「言語設定」および「表示する譜面の設定」の選択内容を記憶し、次回このページが読み込まれた際に設定を自動で復元するようになりました。</span>
+                                        <span class="lang-eng d-none">Your browser now remembers your selections for "Language" and "Charts to Dipslay" settings, and restores them automatically the next time this page is loaded.</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
