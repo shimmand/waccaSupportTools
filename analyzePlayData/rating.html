@@ -1093,7 +1093,7 @@
                 const tableIndex = listtype == 'new' ? 0 : 1;
 
                 const topSingleRates = tables[tableIndex].querySelectorAll('td.top-single-rate');
-                const topSinleRatesArr = Array.from(topSingleRates).map(td => Number(td.innerHTML)).sort((a, b) => b - a);
+                let topSinleRatesArr = Array.from(topSingleRates).map(td => Number(td.innerHTML)).sort((a, b) => b - a);
 
                 const selectedRates = tables[tableIndex].querySelectorAll('a.multi-rate-selected');
                 const selectedRatesArr = Array.from(selectedRates).map(td => Number(td.dataset.rating)).sort((a, b) => b - a);
