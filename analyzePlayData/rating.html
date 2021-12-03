@@ -141,745 +141,6 @@
             }
         </style>
         <script defer>
-            // 貼り付け()
-            function paste() {
-                const playdata = document.querySelector('#playdata');
-
-                // テキストエリアのエラー表示を解除
-                if (playdata.classList.contains('is-invalid')){
-                    playdata.classList.remove('is-invalid');
-                }
-                
-                // すべての警告文を非表示
-                document.querySelectorAll('.error-feedback-1').forEach(div => {
-                    if (!div.classList.contains('d-none')) {
-                        div.classList.add('d-none')
-                    }
-                });
-                
-                // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
-                playdata.focus();
-                
-                // ユーザーへクリップボードのアクセス許可を確認
-                const promise = navigator.clipboard.readText();
-
-                promise.then(clipText => {
-                    playdata.value = clipText;
-                }, reason => {
-                    showDeniedWarning();
-                });
-            }
-
-            // クリップボードへのアクセスが拒否された場合のメッセージを表示
-            function showDeniedWarning() {
-                const playdata = document.querySelector('#playdata');
-
-                // テキストエリアをエラー表示に変更
-                if (!playdata.classList.contains('is-invalid')) {
-                    playdata.classList.add('is-invalid');
-                }
-                
-                // すべての警告文を非表示
-                document.querySelectorAll('.error-feedback-1').forEach(div => {
-                    if (!div.classList.contains('d-none')) {
-                        div.classList.add('d-none')
-                    }
-                });
-
-                // プレイデータの形式に誤りがある旨を表示
-                document.querySelectorAll('#warning-denied')[0].classList.remove('d-none');
-            }
-
-            // スコアの分析()
-            function analyze(){
-                
-                // 改行で区切って譜面を配列化
-                const playdata = document.querySelector('#playdata');
-                const charts = playdata.value.split('\n');
-
-                // エラー確認
-                let isClear = true;
-
-                // プレイデータが空の場合
-                if (playdata.value.length == 0) {
-                    isClear = false;
-
-                    // テキストエリアをエラー表示に変更
-                    if (!playdata.classList.contains('is-invalid')) {
-                        playdata.classList.add('is-invalid');
-                    }
-
-                    // すべての警告文を非表示
-                    document.querySelectorAll('.error-feedback-1').forEach(div => {
-                        if (!div.classList.contains('d-none')) {
-                            div.classList.add('d-none')
-                        }
-                    });
-
-                    // プレイデータが空である旨を表示
-                    document.querySelectorAll('#warning-empty')[0].classList.remove('d-none');
-
-                } else {
-                    // 譜面データの検証
-                    const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/g;
-                    const testResult = charts.map(chart => chart.match(searchPattern) == chart);
-                    
-                    // プレイデータの形式に誤りがある場合
-                    if (!testResult.indexOf(false)){
-                        isClear = false;
-
-                        // テキストエリアをエラー表示に変更
-                        if (!playdata.classList.contains('is-invalid')){
-                            playdata.classList.add('is-invalid');
-                        }
-                        
-                        // すべての警告文を非表示
-                        document.querySelectorAll('.error-feedback-1').forEach(div => {
-                            if (!div.classList.contains('d-none')){
-                                div.classList.add('d-none')
-                            }
-                        });
-
-                        // プレイデータの形式に誤りがある旨を表示
-                        document.querySelectorAll('#warning-invalid')[0].classList.remove('d-none');
-                    }
-                }
-
-                if (isClear){
-
-                    // スコア情報の書き出し先を選択
-                    const scoresTables = document.querySelectorAll('.scoresTable');
-
-                    // 既に実行された形跡がある場合は内容を削除
-                    if (document.querySelectorAll('tr').length != 4) {
-                        scoresTables.forEach(table => table.innerHTML = '');
-                        document.querySelector('#radio1-1').checked = true;
-                    }
-
-                    // テキストエリアが無効の表示である場合は解除
-                    if (playdata.classList.contains('is-invalid')) {
-                        playdata.classList.remove('is-invalid');
-                    }
-
-                    // 譜面データを格納する配列を用意
-                    let chartsListNew = [];
-                    let chartsListOld = [];
-
-                    // 譜面ごとに・・・
-                    charts.forEach(chart => {
-                        
-                        // カンマ区切り
-                        // [0: 曲名, 1: 譜面レベル, 2: スコア]
-                        const data = chart.split(',');
-
-                        // 取得時にエスケープしたカンマをここで元に戻す
-                        const title = data[0].replace('__', ',');
-                        const level = data[1];
-                        const score = data[2];
-
-                        // 曲名とレベルで譜面定数を取得
-                        const rating = getRatingValue(title, level);
-
-                        // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
-                        if ((level != 'INFERNO 0') && (rating != null)) {
-
-                            // 難易度に応じた色を設定
-                            let difficulty = '';
-                            if (level.indexOf('EXPERT') == 0) difficulty = 'expert';
-                            if (level.indexOf('INFERNO') == 0) difficulty = 'inferno';
-
-                            // スコアに応じた譜面定数へ乗ずる値（倍数）
-                            const multipliers = getMultiplierTable();
-                            let multiplier = 0;
-
-                            // スコアと照らし合わせて倍数を設定
-                            for (let i = 0; i < multipliers.length; i++) {
-                                if (multiplier == 0) {
-                                    if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
-                                }
-                            }
-
-                            // 倍数が上限値である場合に表示するアイコン
-                            const maxBadgeCode = '<span class="badge align-text-top bg-secondary">MAX</span>';
-
-                            // 現在の譜面別レーティング
-                            const adjustedRating = (multiplier * rating).toFixed(2);
-
-                            // 譜面別レーティングの上限値
-                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
-
-                            // 配列に入れるデータ
-                            const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
-
-                            // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
-                            if (checkChartIsNew(title, level)) {
-                                chartsListNew.push(chartData);
-                            } else {
-                                chartsListOld.push(chartData);
-                            }
-                        }
-                    });
-
-                    // 譜面データの配列を譜面別レーティングの降順で並び替え
-                    chartsListNew.sort(function (a, b) { return (b[6] - a[6])} );
-                    chartsListOld.sort(function (a, b) { return (b[6] - a[6])} );
-
-                    // 反復処理で扱いやすいようにこれまでの変数を配列化
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    const chartsLists = [chartsListNew, chartsListOld];
-
-                    // グラフとレーティングの各種数値を書き出す要素を選択
-                    const statsGraphs = document.querySelectorAll('.stats-graph');
-                    const rateGraph = document.querySelector('.rate-graph');
-                    const singleRateLowers = document.querySelectorAll('.singleRateLower');
-                    const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
-                    const summedRateUppers = document.querySelectorAll('.summedRateUpper');
-
-                    // 名前
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    const targetsName = ['new', 'old'];
-
-                    // レーティング対象曲の数
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    const targetsVolumes = [15, 35];
-
-                    // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    let varSingleRateLowers = [0, 0];
-
-                    // 現在のレーティング
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    let varSummedRateCurrents = [0, 0];
-
-                    // レーティング理論値
-                    // [0: 新曲枠, 1: 旧曲枠]
-                    let varSummedRateUppers = [0, 0];
-
-                    // クラス色のボーダー
-                    // [(*)0: plain, (*)1: navy, (*)2: yellow, (*)3: red, (*)4: purple, (*)5: blue, (*)6: silver, (*)7: gold, 8: rainbow]
-                    let varClassRanges = [300, 300, 400, 300, 300, 300, 300, 300, 0];
-
-                    // 目標倍率（スコア）の一覧
-                    // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
-                    // !!! 関連要素: tr > td[8-12]
-                    const targetMultipliers = [3.00, 3.25, 3.50, 3.75, 4.00];
-
-                    // 新曲枠 -> 旧曲枠の順に・・・
-                    chartsLists.forEach((chartsList, listIndex) => {
-
-                        // レーティング理論値を計算
-                        // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
-                        varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, targetsVolumes[listIndex]).reduce((sum, e) => sum + Number(e[4]), 0) * 4;
-
-                        // グラフ用の配列
-                        // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
-                        let totalRatings = [0, 0, 0, 0, 0, 0];
-
-                        // 譜面ごとに・・・
-                        chartsList.forEach((chart, index) => {
-
-                            // 新しい行を生成
-                            const tempRow = document.createElement('tr');
-                            const tableRow = scoresTables[listIndex].appendChild(tempRow);
-                            let headerElm = 'td';
-                            let rateDataElm = 'td class="normal-single-rate"';
-
-                            // レーティング対象曲であれば・・・
-                            if (index < targetsVolumes[listIndex]) {
-                                // ヘッダーを参照
-                                headerElm = 'th scope="row"';
-
-                                rateDataElm = 'td class="top-single-rate"';
-                                
-                                // 背景をハイライト
-                                tableRow.classList.add('table-primary');
-
-                                // 譜面別レーティングの下限値を更新
-                                varSingleRateLowers[listIndex] = Number(chart[6]);
-
-                                // 譜面別レーティングの小計に加算
-                                varSummedRateCurrents[listIndex] += Number(chart[6]);
-                            }
-
-                            // 特定スコアに到達した際の総合レーティング上昇量
-                            // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
-                            const increases = targetMultipliers.map(multiplier => {
-
-                                // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
-                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])) {
-                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(2)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2)}</a>`;
-                                } else {
-                                    return '-';
-                                }
-                            });
-
-                            const increasesForFileRow = increases.map(data => {
-                                if (data != '-'){
-                                    return data.match(/\+[0-9]{1,2}\.[0-9]{2}/);
-                                } else {
-                                    return '-';
-                                }
-                            });
-
-                            // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
-                            if (increases.filter(e => e == '-').length == increases.length) {
-                                tableRow.classList.add('all-clear');
-                            } else {
-                                tableRow.classList.add('table-custom-orange');
-                            }
-
-                            // 挿入するHTMLのコードを生成
-                            const code = [
-                                `<${headerElm}>${index + 1}</td>`,
-                                `<td>${chart[0]}</td>`,
-                                `<td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>`,
-                                `<td>${chart[3]}</td>`,
-                                `<td>${chart[4]}</td>`,
-                                `<td>${chart[5].toFixed(2)}</td>`,
-                                `<${rateDataElm}>${chart[6]}</td>`,
-                                `<td>${chart[7]}</td>`,
-                                `<td>${increases[0]}</td>`,
-                                `<td>${increases[1]}</td>`,
-                                `<td>${increases[2]}</td>`,
-                                `<td>${increases[3]}</td>`,
-                                `<td>${increases[4]}</td>`].join('\n');
-
-                            if (chart[5] < 3.00) totalRatings[0] += 1;
-                            if (chart[5] == 3.00) totalRatings[1] += 1;
-                            if (chart[5] == 3.25) totalRatings[2] += 1;
-                            if (chart[5] == 3.50) totalRatings[3] += 1;
-                            if (chart[5] == 3.75) totalRatings[4] += 1;
-                            if (chart[5] == 4.00) totalRatings[5] += 1;
-
-                            // コードを挿入
-                            tableRow.innerHTML = code;
-                            tableRow.setAttribute('data-index', index + 1);
-                            tableRow.setAttribute('data-const', chart[4]);
-                            tableRow.setAttribute('data-rate', chart[6]);
-                            const chartType = (listIndex == 0) ? 'New' : 'Old';
-
-                            const maxRate = Number(4 * chart[4]).toFixed(2);
-                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
-                            tableRow.setAttribute('data-file-row', fileRow);
-                        });
-
-                        // 枠ごとの見出しにレーティングの各種数値を書き出し
-                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
-                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
-                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
-
-                        // 譜面数の合計を計算
-                        const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
-                        
-                        // 枠ごとにグラフの棒を書き出し
-                        statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
-                            const style = `width: ${totalRatings[index] / chartsCount * 100}%;`;
-                            div.setAttribute('style', style);
-                            div.setAttribute('aria-valuenow', totalRatings[index]);
-                            div.setAttribute('aria-valuemax', chartsCount);
-                        });
-
-                        // 枠ごとにグラフのデータを書き出し
-                        statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
-                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
-                        });
-                    });
-                    
-                    // 総合グラフを書き出すための準備
-                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
-                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(2);
-
-                    const scaleDotsVolume = Math.floor(totalRateUpper / 100);
-                    const extraRate = totalRateUpper - (scaleDotsVolume * 100);
-                    const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
-
-                    const scaleDotCode = [
-                        `<div class="position-absolute translate-middle scale-dot opacity-50" style="left: 0%!important; top: 40%!important;">`,
-                        `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">`,
-                        `        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>`,
-                        `    </svg>`,
-                        `</div>`].join('\n');
-
-                    // 虹レートの上限値を設定
-                    varClassRanges[(varClassRanges.length - 1)] = (totalRateUpper - 2500);
-
-                    // 見出し部分に総合レーティングを書き出し
-                    document.querySelector('.total-rate-current').innerHTML = totalRateCurrent;
-                    document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
-                    
-                    const targetDiv = document.querySelector('#total-rate-class');
-                    const classColors = ['bg-plain', 'bg-navy', 'bg-yellow', 'bg-red', 'bg-purple', 'bg-blue', 'bg-silver', 'bg-gold', 'bg-rainbow'];
-                    const classBorders = [0, 300, 600, 1000, 1300, 1600, 1900, 2200, 2500];
-
-                    classColors.forEach(color => {
-                        if (targetDiv.classList.contains(color)) {
-                            targetDiv.classList.remove(color);
-                        }
-                    });
-
-                    checkColor:
-                    for (let index = classBorders.length - 1; index > 0; index--) {
-                        if (totalRateCurrent >= classBorders[index]) {
-                            targetDiv.classList.add(classColors[index]);
-                            break checkColor;
-                        }
-                    }
-
-                    // 総合レーティングのグラフ上に表示する目印を表示（100ごとの目盛り）
-                    document.querySelectorAll('.scale-dot').forEach(div => div.remove());
-
-                    for (let index = 0; index < scaleDotsVolume; index++) {
-                        const dotLocation = (index + 1) * equalRange;
-                        const insertCode = scaleDotCode.replace('left: 0%', `left: ${dotLocation}%`);
-                        document.querySelector('div.rate-graph div.graph-bar').insertAdjacentHTML('beforeend', insertCode);
-                    }
-                    // 総合レーティングのグラフ上に表示する目印を表示（現在のレーティングを指す三角）
-                    document.querySelectorAll('.current-loc').forEach(div => {
-                        const styleTextBefore = div.getAttribute('style');
-                        const findPattern = /left: [0-9.]+?%!important;/;
-                        const replaceText = `left: ${totalRateCurrent / totalRateUpper * 100}%!important;`;
-                        const styleTextAfter = styleTextBefore.replace(findPattern, replaceText);
-                        div.setAttribute('style', styleTextAfter);
-                    });
-
-                    // 総合レーティングのグラフを書き出し
-                    rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
-                        const borderValue = varClassRanges[index];
-                        const style = `width: ${borderValue / totalRateUpper * 100}%;`;
-                        div.setAttribute('style', style);
-                        div.setAttribute('aria-valuenow', borderValue);
-                        div.setAttribute('aria-valuemax', totalRateUpper);
-                    });
-
-                    // 無効にされているフォームをすべて有効化
-                    document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
-
-                    // 再描画
-                    document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
-
-                    playdata.classList.add('is-valid');
-
-                    // 表示設定を復元
-                    switch (localStorage.getItem('rating-analyzer-disp')) {
-                        case 'all':
-                            changeDisplayState(0);
-                            console.log(0);
-                            break;
-
-                        case 'summarized':
-                            changeDisplayState(1);
-                            console.log(1);
-                            break;
-                        
-                        case 'focused':
-                            changeDisplayState(2);
-                            console.log(2);
-                            break;
-
-                        default:
-                            break;
-                    }
-                }
-            }
-
-            // レーティングへ影響しない譜面の表示状態を変更()
-            function changeDisplayState(mode) {
-                if (document.querySelectorAll('tr').length != 4) {
-                    document.querySelectorAll('.all-clear').forEach(tr => {
-                        // 初期化
-                        // mode == 0 : すべて表示する
-                        if (tr.classList.contains('d-none')) {
-                            tr.classList.remove('d-none');
-                            localStorage.setItem('rating-analyzer-disp', 'all');
-                            document.querySelector('#radio1-1').checked = true;
-                        }
-
-                        // mode == 1 : レーティング対象は表示する
-                        if (mode == 1) {
-                            if (!tr.classList.contains('table-primary')){
-                                tr.classList.add('d-none');
-                                localStorage.setItem('rating-analyzer-disp', 'summarized');
-                                document.querySelector('#radio1-2').checked = true;
-                            }
-                        }
-
-                        // mode == 2 : すべて非表示にする
-                        if (mode == 2) {
-                            tr.classList.add('d-none');
-                            localStorage.setItem('rating-analyzer-disp', 'focused');
-                            document.querySelector('#radio1-3').checked = true;
-                        }
-                    });
-                }
-            }
-
-            // Twitterを開く()
-            function openDevsTwitter() {
-                window.open('https://twitter.com/shimmand');
-            }
-
-            // 実行例を開く()
-            function openAnExample() {
-                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/example.html');
-            }
-
-            // プレイデータ欄をクリア
-            function clearPlaydata() {
-                document.querySelectorAll('#playdata')[0].value = '';
-            }
-            
-            // ブックマークレットをコピー()
-            function copyBookmarklet() {
-                const copyTarget = document.getElementById("copyTarget");
-                const writeString = copyTarget.value;
-
-                if (navigator.clipboard == undefined) {
-                    window.clipboardData.setData('Text', writeString);
-                } else {
-                    navigator.clipboard.writeText(writeString);
-                };
-
-                alert("コピーしました！\nCopied!");
-            };
-
-            // 譜面データを開く()
-            function openChartsData(){
-                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/chartsTable.csv');
-            }
-
-            // スコアと倍数の対応表() => Array[[]]
-            function getMultiplierTable() {
-                return [
-                    [990000, 4],
-                    [980000, 3.75],
-                    [970000, 3.5],
-                    [960000, 3.25],
-                    [950000, 3],
-                    [940000, 2.75],
-                    [920000, 2.5],
-                    [900000, 2],
-                    [850000, 1],
-                    [800000, 0.8],
-                    [700000, 0.7],
-                    [600000, 0.6],
-                    [500000, 0.5],
-                    [400000, 0.4],
-                    [300000, 0.3],
-                    [200000, 0.2],
-                    [100000, 0.1],
-                    [0, 0]
-                ];
-            }
-
-            // 定数を取得(曲名, レベル文字列) => 0.0
-            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
-            function getRatingValue(songTitle, diffValue) {
-                const rating = getRatingTable();
-                
-                for (let i = 0; i < rating.length; i++) {
-                    if (rating[i][0] == songTitle) {
-                        // [..., 1: EXPERTレベル, 2: EXPERT定数, ...]
-                        if (rating[i][1] == diffValue) {
-                            return rating[i][2].toFixed(1);
-                        }
-
-                        // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
-                        if (rating[i][4] == diffValue) {
-                            return rating[i][5].toFixed(1);
-                        }
-                    }
-                }
-            }
-
-            // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
-            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
-            function checkChartIsNew(songTitle, diffValue) {
-                const rating = getRatingTable();
-                
-                for (let i = 0; i < rating.length; i++) {
-                    if (rating[i][0] == songTitle) {
-                        // [..., 1: EXPERTレベル, ..., 3: EXPERTは新曲枠?, ...]
-                        if (rating[i][1] == diffValue) {
-                            return rating[i][3];
-                        }
-
-                        // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
-                        if (rating[i][4] == diffValue) {
-                            return rating[i][6];
-                        }
-                    }
-                }
-            }
-
-            // 複数譜面のレーティング上昇値を計算するモードを終了
-            function quitMultiRateMode(listtype) {
-                const tables = document.querySelectorAll('.scoresTable');
-                const tableIndex = listtype == 'new' ? 0 : 1;
-
-                document.querySelector(`#multi-rate-alert-${listtype}`).classList.add('d-none');
-                tables[tableIndex].querySelectorAll('.multi-rate-selected').forEach(td => td.classList.remove('multi-rate-selected'));
-                tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
-            }
-
-            // 複数譜面のレーティング上昇値を計算するモードを開始
-            function startMultiRateMode(element, listtype) {
-                const rateAlert = document.querySelector(`#multi-rate-alert-${listtype}`);
-
-                rateAlert.classList.remove('d-none');
-                element.classList.toggle('multi-rate-selected');
-
-                const tables = document.querySelectorAll('.scoresTable');
-                const tableIndex = listtype == 'new' ? 0 : 1;
-                const topSingleRates = tables[tableIndex].querySelectorAll('td.top-single-rate');
-                const candSingleRates = tables[tableIndex].querySelectorAll('td.normal-single-rate');
-
-                let topSinleRatesArr = Array(topSingleRates.length);
-                for (let index = 0; index < topSinleRatesArr.length; index++) {
-                    topSinleRatesArr[index] = Number(topSingleRates[index].innerHTML);
-                }
-
-                topSinleRatesArr = topSinleRatesArr.sort((a, b) => b - a);
-
-                const selectedRates = tables[tableIndex].querySelectorAll('.multi-rate-selected');
-                let selectedRatesArr = Array(selectedRates.length);
-                for (let index = 0; index < selectedRatesArr.length; index++) {
-                    selectedRatesArr[index] = Number(selectedRates[index].dataset.rating);
-                }
-
-                selectedRatesArr = selectedRatesArr.sort((a, b) => b - a);
-
-                let replaceRatesArr = Array(selectedRates.length);
-                for (let index = 0; index < selectedRatesArr.length; index++) {
-                    replaceRatesArr[index] = Number(selectedRates[index].dataset.now);
-                }
-
-                const oldListTotal = topSinleRatesArr.reduce((a, b) => a + b, 0);
-
-                for (let index = 0; index < replaceRatesArr.length; index++) {
-                    const arrIndex = topSinleRatesArr.indexOf(replaceRatesArr[index]);
-
-                    if (arrIndex != -1) {
-                        topSinleRatesArr.splice(arrIndex, 1);
-                    }
-                }
-
-                const newList = [...topSinleRatesArr, ...selectedRatesArr].sort((a, b) => b - a).splice(0, topSingleRates.length);
-                const newListTotal = newList.reduce((a, b) => a + b, 0);
-                const rateIncsease = newListTotal - oldListTotal;
-                const alreadyListedTotal = document.querySelectorAll('.table-primary .multi-rate-selected').length;
-
-                rateAlert.querySelector('.before').innerHTML = oldListTotal.toFixed(2);
-                rateAlert.querySelector('.after').innerHTML = newListTotal.toFixed(2);
-                rateAlert.querySelector('.increase').innerHTML = `(+${rateIncsease.toFixed(2)})`;
-
-                tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
-
-                for (let index = 0; index < selectedRatesArr.length; index++) {
-                    const fixedIndex = topSingleRates.length + alreadyListedTotal - index - 1;
-                    const checkRow = tables[tableIndex].querySelectorAll('tr')[fixedIndex];
-
-                    if (checkRow.querySelectorAll('.multi-rate-selected').length == 0) {
-                        checkRow.classList.add('table-custom-dethrone');
-                    }
-                }
-            }
-
-            // CSVで保存()
-            function saveAsCSV() {
-                const dataTableRow = document.querySelectorAll('tr[data-index]');
-                const headerTextJpn = '"種別","#","曲名","レベル","スコア","定数","倍数","現在","上限","950k","960k","970k","980k","990k"\n';
-                const headerTextEng = '"Type","#","Song","Level","Score","Const","Modifier","Now","Max","950k","960k","970k","980k","990k"\n';
-                let dataTableText = (document.querySelectorAll('.lang-jpn.d-none').length == 0) ? headerTextJpn : headerTextEng;
-
-                dataTableRow.forEach((tr, index) => {
-                    if (index > 0) dataTableText += '\n';
-                    dataTableText += tr.dataset.fileRow;
-                });
-
-                const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
-                const blob = new Blob([bom, dataTableText], {type: 'text/csv'});
-                const date = new Date();
-                const today = (date) => {
-                    const formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-                    return formattedDate;
-                }
-
-                if (window.navigator.msSaveBlob) { 
-                    window.navigator.msSaveOrOpenBlob(blob, `playdata-${today}.csv`);
-                } else {
-                    window.open(window.URL.createObjectURL(blob));
-                }
-            }
-
-            // 特定の言語を表示()
-            function showLangTextElement(selector) {
-                const langElms = document.querySelectorAll(selector);
-                
-                langElms.forEach(e => {
-                    if (e.classList.contains('d-none')){
-                        e.classList.remove('d-none');
-                    }
-                });
-            }
-
-            // 特定の言語を非表示()
-            function hideLangTextElement(selector) {
-                const langElms = document.querySelectorAll(selector);
-                
-                langElms.forEach(e => {
-                    if (!e.classList.contains('d-none')){
-                        e.classList.add('d-none');
-                    }
-                });
-            }
-
-            // 日本語に変更()
-            function switchToJapanese() {
-                document.querySelectorAll('.lang-eng').forEach(e => {
-                    if (!e.classList.contains('d-none')){
-                        e.classList.add('d-none');
-                    }
-                });
-
-                document.querySelectorAll('.lang-jpn').forEach(e => {
-                    if (e.classList.contains('d-none')){
-                        e.classList.remove('d-none');
-                    }
-                });
-
-                document.querySelectorAll('.opt-lang-jpn').forEach(e => {
-                    e.checked = true;
-                });
-
-                localStorage.setItem('rating-analyzer-lang', 'japanese');
-            }
-
-            // 英語に変更()
-            function switchToEnglish() {
-                document.querySelectorAll('.lang-jpn').forEach(e => {
-                    if (!e.classList.contains('d-none')){
-                        e.classList.add('d-none');
-                    }
-                });
-
-                document.querySelectorAll('.lang-eng').forEach(e => {
-                    if (e.classList.contains('d-none')){
-                        e.classList.remove('d-none');
-                    }
-                });
-
-                document.querySelectorAll('.opt-lang-eng').forEach(e => {
-                    e.checked = true;
-                });
-
-                localStorage.setItem('rating-analyzer-lang', 'english');
-            }
-
-            // マイページを開く()
-            function openMyPage() {
-                window.open('https://wacca.marv-games.jp/web/top');
-            }
-
             // 譜面定数一覧表() => Array[[]]
             // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
             // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
@@ -1231,27 +492,715 @@
                 ];
             }
 
+            // 貼り付け()
+            function paste() {
+                const playdata = document.querySelector('#playdata');
 
-            // 特定の言語を表示()
-            function showLangTextElement(selector) {
-                const langElms = document.querySelectorAll(selector);
+                // テキストエリアのエラー表示を解除
+                if (playdata.classList.contains('is-invalid')){
+                    playdata.classList.remove('is-invalid');
+                }
                 
-                langElms.forEach(e => {
-                    if (e.classList.contains('d-none')){
-                        e.classList.remove('d-none');
+                // すべての警告文を非表示
+                document.querySelectorAll('.error-feedback-1').forEach(div => {
+                    if (!div.classList.contains('d-none')) {
+                        div.classList.add('d-none')
+                    }
+                });
+                
+                // テキストエリアへの操作であることを視覚的に表すためフォーカスを当てる
+                playdata.focus();
+                
+                // ユーザーへクリップボードのアクセス許可を確認
+                const promise = navigator.clipboard.readText();
+
+                promise.then(clipText => {
+                    playdata.value = clipText;
+                }, reason => {
+                    showDeniedWarning();
+                });
+            }
+
+            // クリップボードへのアクセスが拒否された場合のメッセージを表示
+            function showDeniedWarning() {
+                const playdata = document.querySelector('#playdata');
+
+                // テキストエリアをエラー表示に変更
+                if (!playdata.classList.contains('is-invalid')) {
+                    playdata.classList.add('is-invalid');
+                }
+                
+                // すべての警告文を非表示
+                document.querySelectorAll('.error-feedback-1').forEach(div => {
+                    if (!div.classList.contains('d-none')) {
+                        div.classList.add('d-none')
+                    }
+                });
+
+                // プレイデータの形式に誤りがある旨を表示
+                document.querySelectorAll('#warning-denied')[0].classList.remove('d-none');
+            }
+
+            // スコアの分析()
+            function analyze(){
+                
+                // 改行で区切って譜面を配列化
+                const playdata = document.querySelector('#playdata');
+                const charts = playdata.value.split('\n');
+
+                // エラー確認
+                let isClear = true;
+
+                // プレイデータが空の場合
+                if (playdata.value.length == 0) {
+                    isClear = false;
+
+                    // テキストエリアをエラー表示に変更
+                    if (!playdata.classList.contains('is-invalid')) {
+                        playdata.classList.add('is-invalid');
+                    }
+
+                    // すべての警告文を非表示
+                    document.querySelectorAll('.error-feedback-1').forEach(div => {
+                        if (!div.classList.contains('d-none')) {
+                            div.classList.add('d-none')
+                        }
+                    });
+
+                    // プレイデータが空である旨を表示
+                    document.querySelectorAll('#warning-empty')[0].classList.remove('d-none');
+
+                } else {
+                    // 譜面データの検証
+                    const searchPattern = /[^,]+,(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+?,[0-9]{1,7}/g;
+                    const testResult = charts.map(chart => chart.match(searchPattern) == chart);
+                    
+                    // プレイデータの形式に誤りがある場合
+                    if (!testResult.indexOf(false)){
+                        isClear = false;
+
+                        // テキストエリアをエラー表示に変更
+                        if (!playdata.classList.contains('is-invalid')){
+                            playdata.classList.add('is-invalid');
+                        }
+                        
+                        // すべての警告文を非表示
+                        document.querySelectorAll('.error-feedback-1').forEach(div => {
+                            if (!div.classList.contains('d-none')){
+                                div.classList.add('d-none')
+                            }
+                        });
+
+                        // プレイデータの形式に誤りがある旨を表示
+                        document.querySelectorAll('#warning-invalid')[0].classList.remove('d-none');
+                    }
+                }
+
+                if (isClear){
+
+                    // スコア情報の書き出し先を選択
+                    const scoresTables = document.querySelectorAll('.scoresTable');
+
+                    // 既に実行された形跡がある場合は内容を削除
+                    if (document.querySelectorAll('tr').length != 4) {
+                        scoresTables.forEach(table => table.innerHTML = '');
+                        document.querySelector('#radio1-1').checked = true;
+                    }
+
+                    // テキストエリアが無効の表示である場合は解除
+                    if (playdata.classList.contains('is-invalid')) {
+                        playdata.classList.remove('is-invalid');
+                    }
+
+                    // 譜面データを格納する配列を用意
+                    let chartsListNew = [];
+                    let chartsListOld = [];
+
+                    // 譜面ごとに・・・
+                    charts.forEach(chart => {
+                        
+                        // カンマ区切り
+                        // [0: 曲名, 1: 譜面レベル, 2: スコア]
+                        const data = chart.split(',');
+
+                        // 取得時にエスケープしたカンマをここで元に戻す
+                        const title = data[0].replace('__', ',');
+                        const level = data[1];
+                        const score = data[2];
+
+                        // 曲名とレベルで譜面定数を取得
+                        const rating = getRatingValue(title, level);
+
+                        // INFERNOが存在する && 譜面定数のデータが存在する場合・・・
+                        if ((level != 'INFERNO 0') && (rating != null)) {
+
+                            // 難易度に応じた色を設定
+                            let difficulty = '';
+                            if (level.indexOf('EXPERT') == 0) difficulty = 'expert';
+                            if (level.indexOf('INFERNO') == 0) difficulty = 'inferno';
+
+                            // スコアに応じた譜面定数へ乗ずる値（倍数）
+                            const multipliers = getMultiplierTable();
+                            let multiplier = 0;
+
+                            // スコアと照らし合わせて倍数を設定
+                            for (let i = 0; i < multipliers.length; i++) {
+                                if (multiplier == 0) {
+                                    if (multipliers[i][0] <= Number(score)) multiplier = multipliers[i][1];
+                                }
+                            }
+
+                            // 倍数が上限値である場合に表示するアイコン
+                            const maxBadgeCode = '<span class="badge align-text-top bg-secondary">MAX</span>';
+
+                            // 現在の譜面別レーティング
+                            const adjustedRating = (multiplier * rating).toFixed(2);
+
+                            // 譜面別レーティングの上限値
+                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
+
+                            // 配列に入れるデータ
+                            const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
+
+                            // 譜面が新曲枠であれば新曲枠の配列に、そうでなければ旧曲枠の配列にデータを追加
+                            if (checkChartIsNew(title, level)) {
+                                chartsListNew.push(chartData);
+                            } else {
+                                chartsListOld.push(chartData);
+                            }
+                        }
+                    });
+
+                    // 譜面データの配列を譜面別レーティングの降順で並び替え
+                    chartsListNew.sort(function (a, b) { return (b[6] - a[6])} );
+                    chartsListOld.sort(function (a, b) { return (b[6] - a[6])} );
+
+                    // 反復処理で扱いやすいようにこれまでの変数を配列化
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const chartsLists = [chartsListNew, chartsListOld];
+
+                    // グラフとレーティングの各種数値を書き出す要素を選択
+                    const statsGraphs = document.querySelectorAll('.stats-graph');
+                    const rateGraph = document.querySelector('.rate-graph');
+                    const singleRateLowers = document.querySelectorAll('.singleRateLower');
+                    const summedRateCurrents = document.querySelectorAll('.summedRateCurrent');
+                    const summedRateUppers = document.querySelectorAll('.summedRateUpper');
+
+                    // 名前
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const targetsName = ['new', 'old'];
+
+                    // レーティング対象曲の数
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    const targetsLength = [15, 35];
+
+                    // 総合レーティングが上昇する基準となる譜面別レーティング（レーティング対象曲の最下位）
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSingleRateLowers = [0, 0];
+
+                    // 現在のレーティング
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSummedRateCurrents = [0, 0];
+
+                    // レーティング理論値
+                    // [0: 新曲枠, 1: 旧曲枠]
+                    let varSummedRateUppers = [0, 0];
+
+                    // クラス色のボーダー
+                    // [(*)0: plain, (*)1: navy, (*)2: yellow, (*)3: red, (*)4: purple, (*)5: blue, (*)6: silver, (*)7: gold, 8: rainbow]
+                    let varClassRanges = [300, 300, 400, 300, 300, 300, 300, 300, 0];
+
+                    // 目標倍率（スコア）の一覧
+                    // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                    // !!! 関連要素: tr > td[8-12]
+                    const targetMultipliers = [3.00, 3.25, 3.50, 3.75, 4.00];
+
+                    // 新曲枠 -> 旧曲枠の順に・・・
+                    chartsLists.forEach((chartsList, listIndex) => {
+
+                        // レーティング理論値を計算
+                        // slice: 譜面リストを複製 -> sort: 譜面定数の降順にソート -> slice: レーティング対象曲の数だけ絞り込み -> reduce: 譜面定数を4倍したものを合計
+                        varSummedRateUppers[listIndex] = chartsList.slice().sort(function(a, b){return (b[4] - a[4])}).slice(0, targetsLength[listIndex]).reduce((sum, e) => sum + Number(e[4]), 0) * 4;
+
+                        // グラフ用の配列
+                        // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
+                        let totalRatings = [0, 0, 0, 0, 0, 0];
+
+                        // 譜面ごとに・・・
+                        chartsList.forEach((chart, index) => {
+
+                            // 新しい行を生成
+                            const tempRow = document.createElement('tr');
+                            const tableRow = scoresTables[listIndex].appendChild(tempRow);
+                            let headerElm = 'td';
+                            let rateDataElm = 'td class="normal-single-rate"';
+
+                            // レーティング対象曲であれば・・・
+                            if (index < targetsLength[listIndex]) {
+                                // ヘッダーを参照
+                                headerElm = 'th scope="row"';
+
+                                rateDataElm = 'td class="top-single-rate"';
+                                
+                                // 背景をハイライト
+                                tableRow.classList.add('table-primary');
+
+                                // 譜面別レーティングの下限値を更新
+                                varSingleRateLowers[listIndex] = Number(chart[6]);
+
+                                // 譜面別レーティングの小計に加算
+                                varSummedRateCurrents[listIndex] += Number(chart[6]);
+                            }
+
+                            // 特定スコアに到達した際の総合レーティング上昇量
+                            // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
+                            const increases = targetMultipliers.map(multiplier => {
+
+                                // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
+                                if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])) {
+                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(2)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2)}</a>`;
+                                } else {
+                                    return '-';
+                                }
+                            });
+
+                            const increasesForFileRow = increases.map(data => {
+                                if (data != '-'){
+                                    return data.match(/\+[0-9]{1,2}\.[0-9]{2}/);
+                                } else {
+                                    return '-';
+                                }
+                            });
+
+                            // 総合レーティングの上昇量がすべて「-」である場合は、行にその旨を示すクラスを追加
+                            if (increases.filter(e => e == '-').length == increases.length) {
+                                tableRow.classList.add('all-clear');
+                            } else {
+                                tableRow.classList.add('table-custom-orange');
+                            }
+
+                            // 挿入するHTMLのコードを生成
+                            const code = [
+                                `<${headerElm}>${index + 1}</td>`,
+                                `<td>${chart[0]}</td>`,
+                                `<td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>`,
+                                `<td>${chart[3]}</td>`,
+                                `<td>${chart[4]}</td>`,
+                                `<td>${chart[5].toFixed(2)}</td>`,
+                                `<${rateDataElm}>${chart[6]}</td>`,
+                                `<td>${chart[7]}</td>`,
+                                `<td>${increases[0]}</td>`,
+                                `<td>${increases[1]}</td>`,
+                                `<td>${increases[2]}</td>`,
+                                `<td>${increases[3]}</td>`,
+                                `<td>${increases[4]}</td>`].join('\n');
+
+                            if (chart[5] < 3.00) totalRatings[0] += 1;
+                            if (chart[5] == 3.00) totalRatings[1] += 1;
+                            if (chart[5] == 3.25) totalRatings[2] += 1;
+                            if (chart[5] == 3.50) totalRatings[3] += 1;
+                            if (chart[5] == 3.75) totalRatings[4] += 1;
+                            if (chart[5] == 4.00) totalRatings[5] += 1;
+
+                            // コードを挿入
+                            tableRow.innerHTML = code;
+                            tableRow.setAttribute('data-index', index + 1);
+                            tableRow.setAttribute('data-const', chart[4]);
+                            tableRow.setAttribute('data-rate', chart[6]);
+                            const chartType = (listIndex == 0) ? 'New' : 'Old';
+
+                            const maxRate = Number(4 * chart[4]).toFixed(2);
+                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
+                            tableRow.setAttribute('data-file-row', fileRow);
+                        });
+
+                        // 枠ごとの見出しにレーティングの各種数値を書き出し
+                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
+                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
+                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
+
+                        // 譜面数の合計を計算
+                        const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
+                        
+                        // 枠ごとにグラフの棒を書き出し
+                        statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
+                            const style = `width: ${totalRatings[index] / chartsCount * 100}%;`;
+                            div.setAttribute('style', style);
+                            div.setAttribute('aria-valuenow', totalRatings[index]);
+                            div.setAttribute('aria-valuemax', chartsCount);
+                        });
+
+                        // 枠ごとにグラフのデータを書き出し
+                        statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
+                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
+                        });
+                    });
+                    
+                    // 総合グラフを書き出すための準備
+                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
+                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(2);
+
+                    const scaleDotsVolume = Math.floor(totalRateUpper / 100);
+                    const extraRate = totalRateUpper - (scaleDotsVolume * 100);
+                    const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
+
+                    const scaleDotCode = [
+                        `<div class="position-absolute translate-middle scale-dot opacity-50" style="left: 0%!important; top: 40%!important;">`,
+                        `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">`,
+                        `        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>`,
+                        `    </svg>`,
+                        `</div>`].join('\n');
+
+                    // 虹レートの上限値を設定
+                    varClassRanges[(varClassRanges.length - 1)] = (totalRateUpper - 2500);
+
+                    // 見出し部分に総合レーティングを書き出し
+                    document.querySelector('.total-rate-current').innerHTML = totalRateCurrent;
+                    document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
+                    
+                    const targetDiv = document.querySelector('#total-rate-class');
+                    const classColors = ['bg-plain', 'bg-navy', 'bg-yellow', 'bg-red', 'bg-purple', 'bg-blue', 'bg-silver', 'bg-gold', 'bg-rainbow'];
+                    const classBorders = [0, 300, 600, 1000, 1300, 1600, 1900, 2200, 2500];
+
+                    classColors.forEach(color => {
+                        if (targetDiv.classList.contains(color)) {
+                            targetDiv.classList.remove(color);
+                        }
+                    });
+
+                    checkColor:
+                    for (let index = classBorders.length - 1; index > 0; index--) {
+                        if (totalRateCurrent >= classBorders[index]) {
+                            targetDiv.classList.add(classColors[index]);
+                            break checkColor;
+                        }
+                    }
+
+                    // 総合レーティングのグラフ上に表示する目印を表示（100ごとの目盛り）
+                    document.querySelectorAll('.scale-dot').forEach(div => div.remove());
+
+                    for (let index = 0; index < scaleDotsVolume; index++) {
+                        const dotLocation = (index + 1) * equalRange;
+                        const insertCode = scaleDotCode.replace('left: 0%', `left: ${dotLocation}%`);
+                        document.querySelector('div.rate-graph div.graph-bar').insertAdjacentHTML('beforeend', insertCode);
+                    }
+                    // 総合レーティングのグラフ上に表示する目印を表示（現在のレーティングを指す三角）
+                    document.querySelectorAll('.current-loc').forEach(div => {
+                        const styleTextBefore = div.getAttribute('style');
+                        const findPattern = /left: [0-9.]+?%!important;/;
+                        const replaceText = `left: ${totalRateCurrent / totalRateUpper * 100}%!important;`;
+                        const styleTextAfter = styleTextBefore.replace(findPattern, replaceText);
+                        div.setAttribute('style', styleTextAfter);
+                    });
+
+                    // 総合レーティングのグラフを書き出し
+                    rateGraph.querySelectorAll('.graph-bar-rate').forEach((div, index) => {
+                        const borderValue = varClassRanges[index];
+                        const style = `width: ${borderValue / totalRateUpper * 100}%;`;
+                        div.setAttribute('style', style);
+                        div.setAttribute('aria-valuenow', borderValue);
+                        div.setAttribute('aria-valuemax', totalRateUpper);
+                    });
+
+                    // 無効にされているフォームをすべて有効化
+                    document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
+
+                    // 再描画
+                    document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
+
+                    playdata.classList.add('is-valid');
+
+                    // 表示設定を復元
+                    switch (localStorage.getItem('rating-analyzer-disp')) {
+                        case 'all':
+                            changeDisplayState(0);
+                            break;
+
+                        case 'summarized':
+                            changeDisplayState(1);
+                            break;
+                        
+                        case 'focused':
+                            changeDisplayState(2);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            // レーティングへ影響しない譜面の表示状態を変更()
+            function changeDisplayState(mode) {
+                if (document.querySelectorAll('tr').length != 4) {
+                    document.querySelectorAll('.all-clear').forEach(tr => {
+                        // 初期化
+                        // mode == 0 : すべて表示する
+                        if (tr.classList.contains('d-none')) {
+                            tr.classList.remove('d-none');
+                            localStorage.setItem('rating-analyzer-disp', 'all');
+                            document.querySelector('#radio1-1').checked = true;
+                        }
+
+                        // mode == 1 : レーティング対象は表示する
+                        if (mode == 1) {
+                            if (!tr.classList.contains('table-primary')){
+                                tr.classList.add('d-none');
+                                localStorage.setItem('rating-analyzer-disp', 'summarized');
+                                document.querySelector('#radio1-2').checked = true;
+                            }
+                        }
+
+                        // mode == 2 : すべて非表示にする
+                        if (mode == 2) {
+                            tr.classList.add('d-none');
+                            localStorage.setItem('rating-analyzer-disp', 'focused');
+                            document.querySelector('#radio1-3').checked = true;
+                        }
+                    });
+                }
+            }
+
+            // Twitterを開く()
+            function openDevsTwitter() {
+                window.open('https://twitter.com/shimmand');
+            }
+
+            // 実行例を開く()
+            function openAnExample() {
+                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/example.html');
+            }
+
+            // プレイデータ欄をクリア
+            function clearPlaydata() {
+                document.querySelectorAll('#playdata')[0].value = '';
+            }
+            
+            // ブックマークレットをコピー()
+            function copyBookmarklet() {
+                const copyTarget = document.getElementById("copyTarget");
+                const writeString = copyTarget.value;
+
+                if (navigator.clipboard == undefined) {
+                    window.clipboardData.setData('Text', writeString);
+                } else {
+                    navigator.clipboard.writeText(writeString);
+                };
+
+                alert("コピーしました！\nCopied!");
+            };
+
+            // 譜面データを開く()
+            function openChartsData(){
+                window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/chartsTable.csv');
+            }
+
+            // スコアと倍数の対応表() => Array[[]]
+            function getMultiplierTable() {
+                return [
+                    [990000, 4],
+                    [980000, 3.75],
+                    [970000, 3.5],
+                    [960000, 3.25],
+                    [950000, 3],
+                    [940000, 2.75],
+                    [920000, 2.5],
+                    [900000, 2],
+                    [850000, 1],
+                    [800000, 0.8],
+                    [700000, 0.7],
+                    [600000, 0.6],
+                    [500000, 0.5],
+                    [400000, 0.4],
+                    [300000, 0.3],
+                    [200000, 0.2],
+                    [100000, 0.1],
+                    [0, 0]
+                ];
+            }
+
+            // 定数を取得(曲名, レベル文字列) => 0.0
+            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
+            function getRatingValue(songTitle, diffValue) {
+                const rating = getRatingTable();
+                
+                for (let i = 0; i < rating.length; i++) {
+                    if (rating[i][0] == songTitle) {
+                        // [..., 1: EXPERTレベル, 2: EXPERT定数, ...]
+                        if (rating[i][1] == diffValue) {
+                            return rating[i][2].toFixed(1);
+                        }
+
+                        // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
+                        if (rating[i][4] == diffValue) {
+                            return rating[i][5].toFixed(1);
+                        }
+                    }
+                }
+            }
+
+            // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
+            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
+            function checkChartIsNew(songTitle, diffValue) {
+                const rating = getRatingTable();
+                
+                for (let i = 0; i < rating.length; i++) {
+                    if (rating[i][0] == songTitle) {
+                        // [..., 1: EXPERTレベル, ..., 3: EXPERTは新曲枠?, ...]
+                        if (rating[i][1] == diffValue) {
+                            return rating[i][3];
+                        }
+
+                        // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
+                        if (rating[i][4] == diffValue) {
+                            return rating[i][6];
+                        }
+                    }
+                }
+            }
+
+            // 複数譜面のレーティング上昇値を計算するモードを終了
+            function quitMultiRateMode(listtype) {
+                if (listtype.match(/new|old/) == null) {
+                    return false;
+                }
+
+                const tables = document.querySelectorAll('.scoresTable');
+                const tableIndex = listtype == 'new' ? 0 : 1;
+
+                document.querySelector(`#multi-rate-alert-${listtype}`).classList.add('d-none');
+                tables[tableIndex].querySelectorAll('.multi-rate-selected').forEach(td => td.classList.remove('multi-rate-selected'));
+                tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
+            }
+
+            // 複数譜面のレーティング上昇値を計算するモードを開始
+            function startMultiRateMode(element, listtype) {
+                if (element.tagName != 'A') {
+                    return false;
+                }
+
+                if (listtype.match(/new|old/) == null) {
+                    return false;
+                }
+
+                const rateAlert = document.querySelector(`#multi-rate-alert-${listtype}`);
+                rateAlert.classList.remove('d-none');
+
+                element.classList.toggle('multi-rate-selected');
+
+                const tables = document.querySelectorAll('.scoresTable');
+                const tableIndex = listtype == 'new' ? 0 : 1;
+
+                const topSingleRates = tables[tableIndex].querySelectorAll('td.top-single-rate');
+                const topSinleRatesArr = Array.from(topSingleRates).map(td => Number(td.innerHTML)).sort((a, b) => b - a);
+
+                const selectedRates = tables[tableIndex].querySelectorAll('a.multi-rate-selected');
+                const selectedRatesArr = Array.from(selectedRates).map(td => Number(td.dataset.rating)).sort((a, b) => b - a);
+
+                const replaceRatesArr = Array.from(selectedRates).map(td => Number(td.dataset.now)).sort((a, b) => b - a);
+                const oldListTotal = topSinleRatesArr.reduce((a, b) => a + b, 0);
+
+                replaceRatesArr.forEach(value => {
+                    const arrIndex = topSinleRatesArr.indexOf(value);
+
+                    if (arrIndex != -1) {
+                        topSinleRatesArr.splice(arrIndex, 1);
+                    }
+                });
+
+                const newList = [...topSinleRatesArr, ...selectedRatesArr].sort((a, b) => b - a).splice(0, topSingleRates.length);
+                const newListTotal = newList.reduce((a, b) => a + b, 0);
+                const rateIncsease = newListTotal - oldListTotal;
+                const alreadyListed = tables[tableIndex].querySelectorAll('.table-primary .multi-rate-selected');
+
+                rateAlert.querySelector('.before').innerHTML = oldListTotal.toFixed(2);
+                rateAlert.querySelector('.after').innerHTML = newListTotal.toFixed(2);
+                rateAlert.querySelector('.increase').innerHTML = rateIncsease.toFixed(2);
+
+                tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
+
+                selectedRatesArr.forEach((value, index) => {
+                    const fixedIndex = topSingleRates.length + alreadyListed.length - index - 1;
+                    const checkRow = tables[tableIndex].querySelectorAll('tr')[fixedIndex];
+                    
+                    if ((checkRow.querySelectorAll('.multi-rate-selected').length == 0) && (fixedIndex <= topSingleRates.length - 1)) {
+                        checkRow.classList.add('table-custom-dethrone');
                     }
                 });
             }
 
-            // 特定の言語を非表示()
-            function hideLangTextElement(selector) {
-                const langElms = document.querySelectorAll(selector);
-                
-                langElms.forEach(e => {
+            // CSVで保存()
+            function saveAsCSV() {
+                const dataTableRow = document.querySelectorAll('tr[data-index]');
+                const headerTextJpn = '"種別","#","曲名","レベル","スコア","定数","倍数","現在","上限","950k","960k","970k","980k","990k"\n';
+                const headerTextEng = '"Type","#","Song","Level","Score","Const","Modifier","Now","Max","950k","960k","970k","980k","990k"\n';
+                let dataTableText = (document.querySelectorAll('.lang-jpn.d-none').length == 0) ? headerTextJpn : headerTextEng;
+
+                dataTableRow.forEach((tr, index) => {
+                    if (index > 0) dataTableText += '\n';
+                    dataTableText += tr.dataset.fileRow;
+                });
+
+                const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
+                const blob = new Blob([bom, dataTableText], {type: 'text/csv'});
+                const date = new Date();
+                const today = (date) => {
+                    const formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    return formattedDate;
+                }
+
+                if (window.navigator.msSaveBlob) { 
+                    window.navigator.msSaveOrOpenBlob(blob, `playdata-${today}.csv`);
+                } else {
+                    window.open(window.URL.createObjectURL(blob));
+                }
+            }
+
+            // 日本語に変更()
+            function switchToJapanese() {
+                document.querySelectorAll('.lang-eng').forEach(e => {
                     if (!e.classList.contains('d-none')){
                         e.classList.add('d-none');
                     }
                 });
+
+                document.querySelectorAll('.lang-jpn').forEach(e => {
+                    if (e.classList.contains('d-none')){
+                        e.classList.remove('d-none');
+                    }
+                });
+
+                document.querySelectorAll('.opt-lang-jpn').forEach(e => {
+                    e.checked = true;
+                });
+
+                localStorage.setItem('rating-analyzer-lang', 'japanese');
+            }
+
+            // 英語に変更()
+            function switchToEnglish() {
+                document.querySelectorAll('.lang-jpn').forEach(e => {
+                    if (!e.classList.contains('d-none')){
+                        e.classList.add('d-none');
+                    }
+                });
+
+                document.querySelectorAll('.lang-eng').forEach(e => {
+                    if (e.classList.contains('d-none')){
+                        e.classList.remove('d-none');
+                    }
+                });
+
+                document.querySelectorAll('.opt-lang-eng').forEach(e => {
+                    e.checked = true;
+                });
+
+                localStorage.setItem('rating-analyzer-lang', 'english');
+            }
+
+            // マイページを開く()
+            function openMyPage() {
+                window.open('https://wacca.marv-games.jp/web/top');
             }
         
             // ユーザー設定を復元
@@ -1774,7 +1723,7 @@
                                 </svg>
                             </div>
                             <div class="after h6 m-0 ms-1">0.00</div>
-                            <div class="increase h6 m-0 ms-1">(+0.00)</div>
+                            <div class="h6 m-0 ms-1">(+<span class="increase">0.00</span>)</div>
                         </div>
                     </div>
                 </div>
@@ -1970,7 +1919,7 @@
                                 </svg>
                             </div>
                             <div class="after h6 m-0 ms-1">0.00</div>
-                            <div class="increase h6 m-0 ms-1">(+0.00)</div>
+                            <div class="h6 m-0 ms-1">(+<span class="increase">0.00</span>)</div>
                         </div>
                     </div>
                 </div>
