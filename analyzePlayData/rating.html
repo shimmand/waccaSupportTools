@@ -1131,7 +1131,7 @@
             }
 
             // CSVで保存()
-            function saveAsCSV() {
+            function saveTableData() {
                 const dataTableRow = document.querySelectorAll('tr[data-index]');
                 const headerTextJpn = '"種別","#","曲名","レベル","スコア","定数","倍数","現在","上限","950k","960k","970k","980k","990k"\n';
                 const headerTextEng = '"Type","#","Song","Level","Score","Const","Modifier","Now","Max","950k","960k","970k","980k","990k"\n';
@@ -1142,19 +1142,25 @@
                     dataTableText += tr.dataset.fileRow;
                 });
 
-                const bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
-                const blob = new Blob([bom, dataTableText], {type: 'text/csv'});
+                const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+                const blob = new Blob([bom, dataTableText], {'type' : 'text/csv'});
                 const date = new Date();
-                const today = (date) => {
-                    const formattedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-                    return formattedDate;
-                }
+                const filename = [
+                    'wacca-',
+                    date.getFullYear(),
+                    ('0' + (date.getMonth() + 1)).slice(-2),
+                    ('0' + date.getDate()).slice(-2),
+                    '-',
+                    ('0' + date.getHours()).slice(-2),
+                    ('0' + date.getMinutes()).slice(-2),
+                    ('0' + date.getSeconds()).slice(-2),
+                ].join('');
 
-                if (window.navigator.msSaveBlob) { 
-                    window.navigator.msSaveOrOpenBlob(blob, `playdata-${today}.csv`);
-                } else {
-                    window.open(window.URL.createObjectURL(blob));
-                }
+                let downloadLink = document.createElement('a');
+                downloadLink.download = filename;
+                downloadLink.href = URL.createObjectURL(blob);
+                downloadLink.dataset.downloadurl = ['text/plain', downloadLink.download, downloadLink.href].join(':');
+                downloadLink.click();
             }
 
             // 日本語に変更()
@@ -1435,7 +1441,7 @@
                             <span class="lang-jpn">ヘルプ</span>
                             <span class="lang-eng d-none">Help</span>
                         </button>
-                        <button type="button" class="btn btn-outline-primary" id="save" onclick="saveAsCSV()">
+                        <button type="button" class="btn btn-outline-primary" id="save" onclick="saveTableData()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
                                 <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
                             </svg>
