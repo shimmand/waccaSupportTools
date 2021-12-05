@@ -654,10 +654,10 @@
                             const maxBadgeCode = '<span class="badge align-text-top bg-secondary">MAX</span>';
 
                             // 現在の譜面別レーティング
-                            const adjustedRating = (multiplier * rating).toFixed(2);
+                            const adjustedRating = (multiplier * rating).toFixed(3);
 
                             // 譜面別レーティングの上限値
-                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(2) : maxBadgeCode);
+                            const upperRating = (multiplier < 4 ? (4 * rating).toFixed(3) : maxBadgeCode);
 
                             // 配列に入れるデータ
                             const chartData = [title, difficulty, level, score, rating, multiplier, adjustedRating, upperRating];
@@ -758,7 +758,7 @@
 
                                 // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
                                 if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])) {
-                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(2)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(2)}</a>`;
+                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(3)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(3)}</a>`;
                                 } else {
                                     return '-';
                                 }
@@ -786,7 +786,7 @@
                                 `<td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>`,
                                 `<td>${chart[3]}</td>`,
                                 `<td>${chart[4]}</td>`,
-                                `<td>${chart[5].toFixed(2)}</td>`,
+                                `<td>${chart[5].toFixed(3)}</td>`,
                                 `<${rateDataElm}>${chart[6]}</td>`,
                                 `<td>${chart[7]}</td>`,
                                 `<td>${increases[0]}</td>`,
@@ -809,15 +809,15 @@
                             tableRow.setAttribute('data-rate', chart[6]);
                             const chartType = (listIndex == 0) ? 'New' : 'Old';
 
-                            const maxRate = Number(4 * chart[4]).toFixed(2);
-                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
+                            const maxRate = Number(4 * chart[4]).toFixed(3);
+                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(3)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
                             tableRow.setAttribute('data-file-row', fileRow);
                         });
 
                         // 枠ごとの見出しにレーティングの各種数値を書き出し
-                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(2);
-                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(2);
-                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(2);
+                        singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(3);
+                        summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(3);
+                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(3);
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
@@ -832,13 +832,13 @@
 
                         // 枠ごとにグラフのデータを書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
-                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
+                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(3)}%`;
                         });
                     });
                     
                     // 総合グラフを書き出すための準備
-                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(2);
-                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(2);
+                    const totalRateUpper = varSummedRateUppers.reduce((sum, e) => sum + e, 0).toFixed(3);
+                    const totalRateCurrent = varSummedRateCurrents.reduce((sum, e) => sum + e, 0).toFixed(3);
 
                     const scaleDotsVolume = Math.floor(totalRateUpper / 100);
                     const extraRate = totalRateUpper - (scaleDotsVolume * 100);
@@ -1114,9 +1114,9 @@
                 const rateIncsease = newListTotal - oldListTotal;
                 const alreadyListed = tables[tableIndex].querySelectorAll('.table-primary .multi-rate-selected');
 
-                rateAlert.querySelector('.before').innerHTML = oldListTotal.toFixed(2);
-                rateAlert.querySelector('.after').innerHTML = newListTotal.toFixed(2);
-                rateAlert.querySelector('.increase').innerHTML = rateIncsease.toFixed(2);
+                rateAlert.querySelector('.before').innerHTML = oldListTotal.toFixed(3);
+                rateAlert.querySelector('.after').innerHTML = newListTotal.toFixed(3);
+                rateAlert.querySelector('.increase').innerHTML = rateIncsease.toFixed(3);
 
                 tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
 
@@ -1228,7 +1228,7 @@
                     }
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2021-12-04':
+                        case '2021-12-05':
                             document.querySelector('#news-badge').classList.add('d-none');
                             document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
@@ -1271,7 +1271,7 @@
                     <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
                             <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-04'); return false;" id="news-toggle">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-05'); return false;" id="news-toggle">
                                     <span class="me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1298,45 +1298,15 @@
                                 <div class="accordion-body p-2">
                                     <p class="h6 text-primary">
                                         <span class="lang-jpn">
-                                            CSVで保存する際の不具合を修正しました
+                                            Rateの表記を変更
                                         </span>
                                         <span class="lang-eng d-none">
-                                            Fixed a bug in the Save as CSV
+                                            Changed the format of Rate
                                         </span>
                                     </p>
                                     <p class="m-0">
-                                        <span class="lang-jpn">Androidデバイスで「CSVで保存」を行うと、ファイル形式がプレーンテキストに変わる不具合を修正しました。</span>
-                                        <span class="lang-eng d-none">Fixed a bug that caused the file format to change to a plain text when using the "Save as CSV" on Android devices.</span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="lang-jpn">また、ファイル名に現在の時刻を含めるようにしました。（例：wacca-20190718-123456.csv）</span>
-                                        <span class="lang-eng d-none">Also, the filename now includes current time. (ex: wacca-20190718-123456.csv)</span>
-                                    </p>
-                                    <hr class="my-2">
-                                    <p class="h6">
-                                        <span class="lang-jpn">
-                                            Rate上昇値を複数の譜面で計算できるようになりました
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            Rate increase on multiple charts is now available.
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="lang-jpn">スコア別のRate上昇値をいくつかタップすることで、複数の譜面でスコアを上昇させた際のRateの上昇値を計算できるようになりました。</span>
-                                        <span class="lang-eng d-none">By tapping on some of the Rate increase values by score, you can now calculate the Rate increase value when you increase your score on multiple charts.</span>
-                                    </p>
-                                    <hr class="my-2">
-                                    <p class="h6">
-                                        <span class="lang-jpn">
-                                            設定を記憶するようになりました
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            Your browser now remembers your selections.
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="lang-jpn">ブラウザー内に「言語設定」および「表示する譜面の設定」の選択内容を記憶し、次回このページが読み込まれた際に設定を自動で復元するようになりました。</span>
-                                        <span class="lang-eng d-none">Your browser now remembers your selections for "Language" and "Charts to Dipslay" settings, and restores them automatically the next time this page is loaded.</span>
+                                        <span class="lang-jpn">Rateにおいて、小数部分の長さを3桁にしました。</span>
+                                        <span class="lang-eng d-none">The length of the fraction part of Rate is now 3 digits.</span>
                                     </p>
                                 </div>
                             </div>
@@ -1615,7 +1585,7 @@
                                     </span>
                                 </div>
                                 <div class="bg-plain px-2 ms-1 rounded" id="total-rate-class">
-                                    <span class="total-rate-current align-middle">0.00</span>
+                                    <span class="total-rate-current align-middle">0.000</span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center ms-2">
@@ -1626,7 +1596,7 @@
                                     </span>
                                 </div>
                                 <div class="px-0 ms-1">
-                                    <span class="total-rate-upper align-middle">0.00</span>
+                                    <span class="total-rate-upper align-middle">0.000</span>
                                 </div>
                             </div>
                         </div>
@@ -1676,7 +1646,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="summedRateCurrent align-middle">0.00</span>
+                                        <span class="summedRateCurrent align-middle">0.000</span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center ms-2">
@@ -1687,7 +1657,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="summedRateUpper align-middle">0.00</span>
+                                        <span class="summedRateUpper align-middle">0.000</span>
                                     </div>
                                 </div>
                             </div>
@@ -1700,7 +1670,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="singleRateLower align-middle">0.00</span>
+                                        <span class="singleRateLower align-middle">0.000</span>
                                         <span class="align-middle small">
                                             <span class="lang-jpn">以上</span>
                                             <span class="lang-eng d-none"></span>
@@ -1741,14 +1711,14 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 m-0">0.00</div>
+                            <div class="before h6 m-0">0.000</div>
                             <div class="symbol h6 m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 m-0 ms-1">0.00</div>
-                            <div class="h6 m-0 ms-1">(+<span class="increase">0.00</span>)</div>
+                            <div class="after h6 m-0 ms-1">0.000</div>
+                            <div class="h6 m-0 ms-1">(+<span class="increase">0.000</span>)</div>
                         </div>
                     </div>
                 </div>
@@ -1872,7 +1842,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="summedRateCurrent align-middle">0.00</span>
+                                        <span class="summedRateCurrent align-middle">0.000</span>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center ms-2">
@@ -1883,7 +1853,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="summedRateUpper align-middle">0.00</span>
+                                        <span class="summedRateUpper align-middle">0.000</span>
                                     </div>
                                 </div>
                             </div>
@@ -1896,7 +1866,7 @@
                                         </span>
                                     </div>
                                     <div class="px-0 ms-1">
-                                        <span class="singleRateLower align-middle">0.00</span>
+                                        <span class="singleRateLower align-middle">0.000</span>
                                         <span class="align-middle small">
                                             <span class="lang-jpn">以上</span>
                                             <span class="lang-eng d-none"></span>
@@ -1937,14 +1907,14 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 m-0">0.00</div>
+                            <div class="before h6 m-0">0.000</div>
                             <div class="symbol h6 m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 m-0 ms-1">0.00</div>
-                            <div class="h6 m-0 ms-1">(+<span class="increase">0.00</span>)</div>
+                            <div class="after h6 m-0 ms-1">0.000</div>
+                            <div class="h6 m-0 ms-1">(+<span class="increase">0.000</span>)</div>
                         </div>
                     </div>
                 </div>
