@@ -832,7 +832,7 @@
 
                         // 枠ごとにグラフのデータを書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
-                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(3)}%`;
+                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
                         });
                     });
                     
