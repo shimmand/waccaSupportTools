@@ -1229,7 +1229,7 @@
                     }
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2021-12-05':
+                        case '2021-12-08':
                             document.querySelector('#news-badge').classList.add('d-none');
                             document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
@@ -1267,12 +1267,12 @@
                 <hr class="m-0">
                 <div class="m-2">
                     <span class="badge bg-secondary align-middle me-1">DATASET</span>
-                    <code class="me-1 text-black-50">2021-12-01</code>
+                    <code class="me-1 text-black-50">2021-12-08</code>
                     <!-- ニュース -->
                     <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
                             <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-05'); return false;" id="news-toggle">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-08'); return false;" id="news-toggle">
                                     <span class="me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1297,6 +1297,27 @@
                             </div>
                             <div id="collapse-news-1" class="accordion-collapse collapse" aria-labelledby="accordion-news-1" data-bs-parent="#accordion-news">
                                 <div class="accordion-body p-2">
+                                    <p class="h6 text-primary">
+                                        <span class="lang-jpn">
+                                            新しい譜面へ対応
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            New chart support
+                                        </span>
+                                    </p>
+                                    <p class="m-0">
+                                        ヒトガタ
+                                        <span class="badge align-text-top difficulty expert">EXPERT 12</span>
+                                    </p>
+                                    <p class="m-0">
+                                        叩ケ 叩ケ 手ェ叩ケ
+                                        <span class="badge align-text-top difficulty expert">INFERNO 13+</span>
+                                    </p>
+                                    <p class="m-0">
+                                        うっせぇわ
+                                        <span class="badge align-text-top difficulty expert">INFERNO 13</span>
+                                    </p>
+                                    <hr class="m-0">
                                     <p class="h6 text-primary">
                                         <span class="lang-jpn">
                                             Rateの表記を変更
