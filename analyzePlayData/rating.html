@@ -1229,7 +1229,7 @@
                     }
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2021-12-08':
+                        case '2021-12-08-v2':
                             document.querySelector('#news-badge').classList.add('d-none');
                             document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
@@ -1272,7 +1272,7 @@
                     <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
                             <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-08'); return false;" id="news-toggle">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-08-v2'); return false;" id="news-toggle">
                                     <span class="me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1306,8 +1306,8 @@
                                         </span>
                                     </p>
                                     <p class="m-0">
-                                        <span class="lang-jpn">WACCAのv3.03.00において、レーティングの計算に不具合が発生しています。そのため、筐体やマイページで確認できるレーティングは、このプログラムで計算したものと異なります。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a></span>
-                                        <span class="lang-eng d-none">In WACCA v3.03.00, there is a problem with the calculation of ratings. Therefore, the ratings you can see in the machine and My Page are different from the ones calculated by this program. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a></span>
+                                        <span class="lang-jpn">WACCAのv3.03.00において、レーティングの計算に不具合が発生しています。そのため、筐体やマイページで確認できるレーティングは、このプログラムで計算したものと異なります。理論上、このプログラムが示したRateが正確な値です。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a></span>
+                                        <span class="lang-eng d-none">In WACCA v3.03.00, there is a problem with the calculation of ratings. Therefore, the ratings you can see in the machine and My Page are different from the ones calculated by this program. My theory is that the Rate indicated by this program is the exact value. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a></span>
                                     </p>
                                     <hr class="my-2">
                                     <p class="h6 text-primary">
