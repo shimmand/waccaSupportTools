@@ -34,48 +34,55 @@
             /* レート背景色 */
             div.bg-plain {
                 background-color: #959595;
-                color: #000000;
+                color: var(--bs-doby-color);
                 text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-navy {
-                background-color: #0848a8;
-                color: #ffffff;
-                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
+                background-color: #0d6efd;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-yellow {
                 background-color: #ffc800;
-                color: #ffffff;
-                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-red {
                 background-color: #ff007d;
-                color: #ffffff;
-                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-purple {
                 background-color: #6610f2;
-                color: #ffffff;
-                text-shadow: #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem, #000000 0 0 0.16rem;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-blue {
                 background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
-                color: #000000;
+                color: var(--bs-doby-color);
                 text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-silver {
                 background: linear-gradient(30deg, #eaffff, #aaaaaa, #eaffff);
-                color: #000000;
+                color: var(--bs-doby-color);
                 text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-gold {
                 background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
-                color: #000000;
+                color: var(--bs-doby-color);
                 text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
             }
             div.bg-rainbow {
                 background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
-                color: #000000;
+                color: var(--bs-doby-color);
                 text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+            }
+            /* Rate比率背景 */
+            div.bg-older {
+                background-color: #fd7e14;
+            }
+            div.bg-newer {
+                background-color: #0d6efd;
             }
             /* スコア帯背景 */
             div.bg-lt-950 {
@@ -787,7 +794,7 @@
                                 `<td><span class="badge align-text-top difficulty ${chart[1]}">${chart[2]}</span></td>`,
                                 `<td>${chart[3]}</td>`,
                                 `<td>${chart[4]}</td>`,
-                                `<td>${chart[5].toFixed(3)}</td>`,
+                                `<td>${chart[5].toFixed(2)}</td>`,
                                 `<${rateDataElm}>${chart[6]}</td>`,
                                 `<td>${chart[7]}</td>`,
                                 `<td>${increases[0]}</td>`,
@@ -811,7 +818,7 @@
                             const chartType = (listIndex == 0) ? 'New' : 'Old';
 
                             const maxRate = Number(4 * chart[4]).toFixed(3);
-                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(3)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
+                            const fileRow = `"${chartType}","${index + 1}","${chart[0]}","${chart[2]}","${chart[3]}","${chart[4]}","${chart[5].toFixed(2)}","${chart[6]}","${maxRate}","${increasesForFileRow[0]}","${increasesForFileRow[1]}","${increasesForFileRow[2]}","${increasesForFileRow[3]}","${increasesForFileRow[4]}"`;
                             tableRow.setAttribute('data-file-row', fileRow);
                         });
 
@@ -846,18 +853,19 @@
                     const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
 
                     const scaleDotCode = [
-                        `<div class="position-absolute translate-middle scale-dot opacity-50" style="left: 0%!important; top: 40%!important;">`,
+                        `<div class="position-absolute translate-middle scale-dot" style="left: 0%!important; top: 45%!important;">`,
                         `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">`,
                         `        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>`,
                         `    </svg>`,
-                        `</div>`].join('\n');
+                        `</div>`
+                    ].join('\n');
 
                     // 虹レートの上限値を設定
                     varClassRanges[(varClassRanges.length - 1)] = (totalRateUpper - 2500);
 
                     // 見出し部分に総合レーティングを書き出し
-                    document.querySelector('.total-rate-current').innerHTML = totalRateCurrent;
-                    document.querySelector('.total-rate-upper').innerHTML = totalRateUpper;
+                    document.querySelector('#total-rate-current').innerHTML = totalRateCurrent;
+                    document.querySelector('#total-rate-upper').innerHTML = totalRateUpper;
                     
                     const targetDiv = document.querySelector('#total-rate-class');
                     const classColors = ['bg-plain', 'bg-navy', 'bg-yellow', 'bg-red', 'bg-purple', 'bg-blue', 'bg-silver', 'bg-gold', 'bg-rainbow'];
@@ -882,7 +890,7 @@
 
                     for (let index = 0; index < scaleDotsVolume; index++) {
                         const dotLocation = (index + 1) * equalRange;
-                        const insertCode = scaleDotCode.replace('left: 0%', `left: ${dotLocation}%`);
+                        const insertCode = scaleDotCode.replaceAll('left: 0%', `left: ${dotLocation}%`);
                         document.querySelector('div.rate-graph div.graph-bar').insertAdjacentHTML('beforeend', insertCode);
                     }
                     // 総合レーティングのグラフ上に表示する目印を表示（現在のレーティングを指す三角）
@@ -903,11 +911,17 @@
                         div.setAttribute('aria-valuemax', totalRateUpper);
                     });
 
+                    // 旧曲枠と新曲枠の比率グラフを書き出し
+                    rateGraph.querySelectorAll('.graph-bar-rate-2').forEach((div, index) => {
+                        const borderValue = index ? varSummedRateCurrents[0] : varSummedRateCurrents[1];
+                        const style = `width: ${borderValue / totalRateUpper * 100}%;`;
+                        div.setAttribute('style', style);
+                        div.setAttribute('aria-valuenow', borderValue);
+                        div.setAttribute('aria-valuemax', totalRateUpper);
+                    });
+
                     // 無効にされているフォームをすべて有効化
                     document.querySelectorAll('input[disabled]').forEach(e => e.disabled = false);
-
-                    // 再描画
-                    document.querySelectorAll('.refresh-target').forEach(e => e.innerHTML = e.innerHTML);
 
                     playdata.classList.add('is-valid');
 
@@ -1253,7 +1267,7 @@
     <body onload="loadUserPreference(); return false;">
         <div class="container">
             <!-- ヘッダー -->
-            <div class="bg-light border border-secondary rounded mt-2 shadow-sm">
+            <div class="bg-light border border-secondary rounded-bottom shadow-sm">
                 <div class="d-flex flex-wrap m-2">
                     <div class="navbar-brand">WACCA RATING ANALYZER</div>
                     <button type="button" class="btn btn-sm btn-outline-primary" id="twitter" onclick="openDevsTwitter(); return false;">
@@ -1297,52 +1311,50 @@
                             </div>
                             <div id="collapse-news-1" class="accordion-collapse collapse" aria-labelledby="accordion-news-1" data-bs-parent="#accordion-news">
                                 <div class="accordion-body p-2">
-                                    <p class="h6 text-danger">
-                                        <span class="lang-jpn">
-                                            WACCAのレーティング計算システムに不具合
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            WACCA's rating calculation system is currently in trouble
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="lang-jpn">WACCAのv3.03.00において、レーティングの計算に不具合が発生しています。そのため、筐体やマイページで確認できるレーティングは、このプログラムで計算したものと異なります。理論上、このプログラムが示したRateが正確な値です。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a></span>
-                                        <span class="lang-eng d-none">In WACCA v3.03.00, there is a problem with the calculation of ratings. Therefore, the ratings you can see in the machine and My Page are different from the ones calculated by this program. My theory is that the Rate indicated by this program is the exact value. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a></span>
-                                    </p>
-                                    <hr class="my-2">
-                                    <p class="h6 text-primary">
-                                        <span class="lang-jpn">
-                                            新しい譜面へ対応
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            New chart support
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        ヒトガタ
-                                        <span class="badge align-text-top difficulty expert">EXPERT 12</span>
-                                    </p>
-                                    <p class="m-0">
-                                        叩ケ 叩ケ 手ェ叩ケ
-                                        <span class="badge align-text-top difficulty inferno">INFERNO 13+</span>
-                                    </p>
-                                    <p class="m-0">
-                                        うっせぇわ
-                                        <span class="badge align-text-top difficulty inferno">INFERNO 13</span>
-                                    </p>
-                                    <hr class="my-2">
-                                    <p class="h6 text-primary">
-                                        <span class="lang-jpn">
-                                            Rateの表記を変更
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            Changed the format of Rate
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        <span class="lang-jpn">Rateにおいて、小数部分の長さを3桁にしました。</span>
-                                        <span class="lang-eng d-none">The length of the fractional part of Rate is now 3 digits.</span>
-                                    </p>
+                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm p-2">
+                                        <p class="h6 px-1 pb-1 border-bottom text-danger">
+                                            <span class="badge bg-danger align-bottom" id="news-badge">
+                                                <span class="lang-jpn">
+                                                    重要
+                                                </span>
+                                                <span class="lang-eng d-none">
+                                                    IMPORTANT
+                                                </span>
+                                            </span>
+                                            <span class="lang-jpn">
+                                                WACCAのRate計算システムに不具合
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                WACCA's Rate calculation system is currently in trouble
+                                            </span>
+                                        </p>
+                                        <p class="mx-2 my-0">
+                                            <span class="lang-jpn">WACCAのv3.03.00において、Rateの計算に不具合が発生しています。そのため、筐体やマイページで確認できるRateは、このプログラムで計算したものと異なります。理論上、このプログラムが示したRateが正確な値です。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a></span>
+                                            <span class="lang-eng d-none">In WACCA v3.03.00, there is a problem with the calculation of Rate. Therefore, the Rate you can see in the machine and My Page are different from the ones calculated by this program. My theory is that the Rate indicated by this program is the exact value. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a></span>
+                                        </p>
+                                    </div>
+                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
+                                        <p class="h6 px-1 pb-1 border-bottom text-primary">
+                                            <span class="lang-jpn">
+                                                新しい譜面へ対応
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                New chart support
+                                            </span>
+                                        </p>
+                                        <p class="m-0">
+                                            ヒトガタ
+                                            <span class="badge align-text-top difficulty expert">EXPERT 12</span>
+                                        </p>
+                                        <p class="m-0">
+                                            叩ケ 叩ケ 手ェ叩ケ
+                                            <span class="badge align-text-top difficulty inferno">INFERNO 13+</span>
+                                        </p>
+                                        <p class="m-0">
+                                            うっせぇわ
+                                            <span class="badge align-text-top difficulty inferno">INFERNO 13</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1412,7 +1424,7 @@
                         を押してください。
                     </span>
                     <span class="lang-eng d-none">
-                        Text field (i.e. your playdata) is empty.
+                        Text field is empty.
                         If you haven't pressed
                         <span class="badge border border-danger text-danger align-bottom ms-1 me-1">Load Your Data</span>
                         yet, please do so first.
@@ -1434,94 +1446,96 @@
                 </div>
             </div>
             <!-- ボタングループ -->
-            <div class="mt-2">
-                <div class="btn-toolbar" role="toolbar">
-                    <div class="btn-group me-2" role="group">
-                        <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
-                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
-                            </svg>
-                            <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 1</span>
-                            <span class="lang-jpn">データを読込</span>
-                            <span class="lang-eng d-none">Load Your Data</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" id="analyze" onclick="analyze()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg>
-                            <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 2</span>
-                            <span class="lang-jpn">分析を実行</span>
-                            <span class="lang-eng d-none">Start Analysis</span>
-                        </button>
-                    </div>
-                    <div class="btn-group me-2" role="group">
-                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#helpModal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                            </svg>
-                            <span class="lang-jpn">ヘルプ</span>
-                            <span class="lang-eng d-none">Help</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" id="save" onclick="saveTableData()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
-                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
-                            </svg>
-                            <span class="lang-jpn">CSVで保存</span>
-                            <span class="lang-eng d-none">Save as CSV</span>
-                        </button>
-                        <button type="button" class="btn btn-outline-primary" id="help" onclick="openChartsData()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
-                                <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
-                            </svg>
-                            <span class="lang-jpn">譜面データ</span>
-                            <span class="lang-eng d-none">Charts Dataset</span>
-                        </button>
-                    </div>
-                    <div class="btn-group me-2" role="group">
-                        <input type="radio" class="btn-check opt-lang-jpn" name="radio-lang-1" id="radio-lang-1-1" autocomplete="off" onchange="switchToJapanese()">
-                        <label class="btn btn-outline-primary" for="radio-lang-1-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
-                                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
-                            </svg>
-                            Japanese
-                        </label>
-                        <input type="radio" class="btn-check opt-lang-eng" name="radio-lang-1" id="radio-lang-1-2" autocomplete="off" onchange="switchToEnglish()">
-                        <label class="btn btn-outline-primary" for="radio-lang-1-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
-                                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
-                            </svg>
-                            English
-                        </label>
-                    </div>
-                </div>
-                <div class="accordion border border-primary rounded my-2" id="accordion-if-doesnt-work">
-                    <div class="accordion-item">
-                        <div class="h2 accordion-header" id="accordion-if-doesnt-work-1">
-                            <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-if-doesnt-work-1" aria-expanded="false" aria-controls="collapse-if-doesnt-work-1">
-                                <span class="me-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                    </svg>
-                                </span>
-                                <span class="lang-jpn">
-                                    <span class="badge border border-primary text-primary align-bottom">データを読込</span> が動作しない場合
-                                </span>
-                                <span class="lang-eng d-none">
-                                    If <span class="badge border border-primary text-primary align-bottom">Load Your Data</span> does not work
-                                </span>
+            <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                <div class="m-2">
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group me-2" role="group">
+                            <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                </svg>
+                                <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 1</span>
+                                <span class="lang-jpn">データを読込</span>
+                                <span class="lang-eng d-none">Load Your Data</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary" id="analyze" onclick="analyze()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                                <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 2</span>
+                                <span class="lang-jpn">分析を実行</span>
+                                <span class="lang-eng d-none">Start Analysis</span>
                             </button>
                         </div>
-                        <div id="collapse-if-doesnt-work-1" class="accordion-collapse collapse" aria-labelledby="accordion-if-doesnt-work-1" data-bs-parent="#accordion-if-doesnt-work">
-                            <div class="accordion-body p-2">
-                                <span class="lang-jpn">
-                                    <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> が動作しない場合、代わりにプレイデータ欄へクリップボードの内容を貼り付け、そのまま <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押してください。
-                                </span>
-                                <span class="lang-eng d-none">
-                                    If nothing happens when you press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>, paste the clipboard contents into the Play Data field instead, and then press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
-                                </span>
+                        <div class="btn-group me-2" role="group">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#helpModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                                <span class="lang-jpn">ヘルプ</span>
+                                <span class="lang-eng d-none">Help</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary" id="save" onclick="saveTableData()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
+                                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+                                </svg>
+                                <span class="lang-jpn">CSVで保存</span>
+                                <span class="lang-eng d-none">Save as CSV</span>
+                            </button>
+                            <button type="button" class="btn btn-outline-primary" id="help" onclick="openChartsData()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                                    <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+                                </svg>
+                                <span class="lang-jpn">譜面データ</span>
+                                <span class="lang-eng d-none">Charts Dataset</span>
+                            </button>
+                        </div>
+                        <div class="btn-group me-2" role="group">
+                            <input type="radio" class="btn-check opt-lang-jpn" name="radio-lang-1" id="radio-lang-1-1" autocomplete="off" onchange="switchToJapanese()">
+                            <label class="btn btn-outline-primary" for="radio-lang-1-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                                </svg>
+                                Japanese
+                            </label>
+                            <input type="radio" class="btn-check opt-lang-eng" name="radio-lang-1" id="radio-lang-1-2" autocomplete="off" onchange="switchToEnglish()">
+                            <label class="btn btn-outline-primary" for="radio-lang-1-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+                                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
+                                </svg>
+                                English
+                            </label>
+                        </div>
+                    </div>
+                    <div class="accordion border border-primary rounded my-2" id="accordion-if-doesnt-work">
+                        <div class="accordion-item">
+                            <div class="h2 accordion-header" id="accordion-if-doesnt-work-1">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-if-doesnt-work-1" aria-expanded="false" aria-controls="collapse-if-doesnt-work-1">
+                                    <span class="me-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                    </span>
+                                    <span class="lang-jpn">
+                                        <span class="badge border border-primary text-primary align-bottom">データを読込</span> が動作しない場合
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        If <span class="badge border border-primary text-primary align-bottom">Load Your Data</span> does not work
+                                    </span>
+                                </button>
+                            </div>
+                            <div id="collapse-if-doesnt-work-1" class="accordion-collapse collapse" aria-labelledby="accordion-if-doesnt-work-1" data-bs-parent="#accordion-if-doesnt-work">
+                                <div class="accordion-body p-2">
+                                    <span class="lang-jpn">
+                                        <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> が動作しない場合、代わりにプレイデータ欄へクリップボードの内容を貼り付け、そのまま <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押してください。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        If nothing happens when you press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>, paste the clipboard contents into the Play Data field instead, and then press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1529,73 +1543,69 @@
             </div>
             <!-- 表示設定 -->
             <div class="mt-2">
-                <div class="navbar bg-white sticky-top refresh-target">
-                    <div class="h3 mb-0">
+                <div class="navbar bg-white sticky-top">
+                    <div class="h3 mb-0 ps-2 border-start border-3 border-secondary">
                         <span class="lang-jpn">設定</span>
                         <span class="lang-eng d-none">Settings</span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card shadow-sm">
-                            <div class="card-header">
-                                <span class="lang-jpn">表示する譜面</span>
-                                <span class="lang-eng d-none">Charts to Display</span>
-                            </div>
-                            <div class="card-body">
-                                <div class="btn-group" role="group">
-                                    <input type="radio" class="btn-check" name="radio1" id="radio1-1" autocomplete="off" onchange="changeDisplayState(0)" disabled checked>
-                                    <label class="btn btn-outline-primary" for="radio1-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
-                                        </svg>
-                                        <span class="lang-jpn">すべて</span>
-                                        <span class="lang-eng d-none">All</span>
-                                    </label>
-                                    <input type="radio" class="btn-check" name="radio1" id="radio1-2" autocomplete="off" onchange="changeDisplayState(1)" disabled>
-                                    <label class="btn btn-outline-primary" for="radio1-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                        </svg>
-                                        <span class="lang-jpn">対象と候補</span>
-                                        <span class="lang-eng d-none">Summarized</span>
-                                    </label>
-                                    <input type="radio" class="btn-check" name="radio1" id="radio1-3" autocomplete="off" onchange="changeDisplayState(2)" disabled>
-                                    <label class="btn btn-outline-primary" for="radio1-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                        </svg>
-                                        <span class="lang-jpn">候補のみ</span>
-                                        <span class="lang-eng d-none">Focused</span>
-                                    </label>
+                <div class="bg-light bg-opacity-50 border rounded shadow-sm">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">表示する譜面</span>
+                        <span class="lang-eng d-none">Charts to Display</span>
+                    </div>
+                    <div class="m-2">
+                        <div class="btn-group" role="group">
+                            <input type="radio" class="btn-check" name="radio1" id="radio1-1" autocomplete="off" onchange="changeDisplayState(0)" disabled checked>
+                            <label class="btn btn-outline-primary" for="radio1-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                                </svg>
+                                <span class="lang-jpn">すべて</span>
+                                <span class="lang-eng d-none">All</span>
+                            </label>
+                            <input type="radio" class="btn-check" name="radio1" id="radio1-2" autocomplete="off" onchange="changeDisplayState(1)" disabled>
+                            <label class="btn btn-outline-primary" for="radio1-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                </svg>
+                                <span class="lang-jpn">対象と候補</span>
+                                <span class="lang-eng d-none">Summarized</span>
+                            </label>
+                            <input type="radio" class="btn-check" name="radio1" id="radio1-3" autocomplete="off" onchange="changeDisplayState(2)" disabled>
+                            <label class="btn btn-outline-primary" for="radio1-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <span class="lang-jpn">候補のみ</span>
+                                <span class="lang-eng d-none">Focused</span>
+                            </label>
+                        </div>
+                        <div class="accordion border border-primary rounded my-2" id="accordion-display-option">
+                            <div class="accordion-item">
+                                <div class="h2 accordion-header" id="accordion-display-option-1">
+                                    <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-display-option-1" aria-expanded="false" aria-controls="collapse-display-option-1">
+                                        <span class="me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="lang-jpn">この設定について</span>
+                                        <span class="lang-eng d-none">About this section</span>
+                                    </button>
                                 </div>
-                                <div class="accordion border border-primary rounded my-2" id="accordion-display-option">
-                                    <div class="accordion-item">
-                                        <div class="h2 accordion-header" id="accordion-display-option-1">
-                                            <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-display-option-1" aria-expanded="false" aria-controls="collapse-display-option-1">
-                                                <span class="me-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                                    </svg>
-                                                </span>
-                                                <span class="lang-jpn">この設定について</span>
-                                                <span class="lang-eng d-none">About this section</span>
-                                            </button>
-                                        </div>
-                                        <div id="collapse-display-option-1" class="accordion-collapse collapse" aria-labelledby="accordion-display-option-1" data-bs-parent="#accordion-display-option">
-                                            <div class="accordion-body p-2">
-                                                <span class="lang-jpn">
-                                                    <span class="badge border border-secondary text-secondary align-bottom">候補のみ</span> は、レーティング候補の譜面のみを表示します。レーティングの上昇に影響しない譜面を表示したくない場合にご利用ください。 <span class="badge border border-secondary text-secondary align-bottom">対象と候補</span> は、レーティング候補の譜面およびレーティング対象の譜面を表示します。
-                                                </span>
-                                                <span class="lang-eng d-none">
-                                                    <span class="badge border border-secondary text-secondary align-bottom">Focused</span> will show only the Rating Candidates charts. Use this option if you do not want to show charts that do not affect the rating increase. <span class="badge border border-secondary text-secondary align-bottom">Summarized</span> will show the Rating Candidates charts and the Rating Target charts.
-                                                </span>
-                                            </div>
-                                        </div>
+                                <div id="collapse-display-option-1" class="accordion-collapse collapse" aria-labelledby="accordion-display-option-1" data-bs-parent="#accordion-display-option">
+                                    <div class="accordion-body p-2">
+                                        <span class="lang-jpn">
+                                            <span class="badge border border-secondary text-secondary align-bottom">候補のみ</span> は、レーティング候補の譜面のみを表示します。レーティングの上昇に影響しない譜面を表示したくない場合にご利用ください。 <span class="badge border border-secondary text-secondary align-bottom">対象と候補</span> は、レーティング候補の譜面およびレーティング対象の譜面を表示します。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            <span class="badge border border-secondary text-secondary align-bottom">Focused</span> will show only the Rating Candidates charts. Use this option if you do not want to show charts that do not affect the rating increase. <span class="badge border border-secondary text-secondary align-bottom">Summarized</span> will show the Rating Candidates charts and the Rating Target charts.
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -1605,41 +1615,36 @@
             </div>
             <!-- 概要 -->
             <div class="mt-2">
-                <div class="navbar sticky-top bg-white refresh-target">
-                    <div class="h3 mb-0">
+                <div class="navbar sticky-top bg-white">
+                    <div class="h3 mb-0 ps-2 border-start border-3 border-secondary">
                         <span class="lang-jpn">概要</span>
                         <span class="lang-eng d-none">Summary</span>
                     </div>
-                    <div class="h6 mb-0 text-end">
-                        <div class="d-flex pb-1">
-                            <div class="d-flex align-items-center ms-2">
-                                <div>
-                                    <span class="badge border border-secondary text-dark align-middle">
-                                        <span class="lang-jpn">合計</span>
-                                        <span class="lang-eng d-none">Total</span>
-                                    </span>
+                    <div class="mb-0">
+                        <div class="d-flex">
+                            <div class="d-flex ms-2">
+                                <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                    <span class="lang-jpn align-middle">合計</span>
+                                    <span class="lang-eng align-middle d-none">Total</span>
                                 </div>
-                                <div class="bg-plain px-2 ms-1 rounded" id="total-rate-class">
-                                    <span class="total-rate-current align-middle">0.000</span>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center ms-2">
-                                <div>
-                                    <span class="badge border border-secondary text-dark align-middle">
-                                        <span class="lang-jpn">理論値</span>
-                                        <span class="lang-eng d-none">Max</span>
-                                    </span>
-                                </div>
-                                <div class="px-0 ms-1">
-                                    <span class="total-rate-upper align-middle">0.000</span>
+                                <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6" id="total-rate-class">
+                                    <span class="align-middle" id="total-rate-current">0.000</span>
+                                    <div class="badge bg-white bg-opacity-50 text-dark">
+                                        MAX
+                                        <span class="align-middle" id="total-rate-upper">0.000</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="rate-graph">
-                    <div class="position-relative graph-bar m-4">
-                        <div class="progress shadow-sm">
+                <div class="rate-graph bg-light bg-opacity-50 border rounded shadow-sm">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">Rate帯</span>
+                        <span class="lang-eng d-none">Rate Class</span>
+                    </div>
+                    <div class="position-relative graph-bar border rounded m-4">
+                        <div class="progress rounded-0 rounded-top shadow-sm">
                             <div class="progress-bar graph-bar-rate bg-plain bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-navy bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-yellow bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -1650,63 +1655,63 @@
                             <div class="progress-bar graph-bar-rate bg-gold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-rainbow" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        <div class="progress rounded-0 rounded-bottom shadow-sm">
+                            <div class="progress-bar graph-bar-rate-2 bg-older bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <span class="lang-jpn">旧曲枠</span>
+                                <span class="lang-eng d-none">Older</span>
+                            </div>
+                            <div class="progress-bar graph-bar-rate-2 bg-newer bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                <span class="lang-jpn">新曲枠</span>
+                                <span class="lang-eng d-none">Newer</span>
+                            </div>
+                        </div>
                         <div class="position-absolute top-0 translate-middle current-loc" style="left: 0%!important;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                                 <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path>
                             </svg>
                         </div>
-                        <div class="position-absolute top-100 translate-middle current-loc" style="left: 0%!important; top: 75%!important;">
+                        <div class="position-absolute top-100 translate-middle current-loc" style="left: 0%!important; top: 85%!important;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
                                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"></path>
                             </svg>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <!-- 新曲枠 -->
             <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white refresh-target">
-                    <div class="d-flex justify-content-between align-items-center p-1">
-                        <div class="h3 mb-0">
+                <div class="justify-content-between sticky-top bg-white py-1">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 mb-0 ps-2 border-start border-3 border-secondary">
                             <span class="lang-jpn">新曲枠</span>
                             <span class="lang-eng d-none">Newer Charts</span>
                         </div>
-                        <div class="h6 mt-1 mb-0 text-end">
-                            <div class="d-flex pb-1">
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle">
-                                            <span class="lang-jpn">小計</span>
-                                            <span class="lang-eng d-none">Subtotal</span>
-                                        </span>
+                        <div class="mb-0">
+                            <div class="d-flex mb-1">
+                                <div class="d-flex ms-2">
+                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                        <span class="lang-jpn align-middle">小計</span>
+                                            <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="px-0 ms-1">
-                                        <span class="summedRateCurrent align-middle">0.000</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle">
-                                            <span class="lang-jpn">理論値</span>
-                                            <span class="lang-eng d-none">Max</span>
-                                        </span>
-                                    </div>
-                                    <div class="px-0 ms-1">
-                                        <span class="summedRateUpper align-middle">0.000</span>
+                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                        <span class="align-middle summedRateCurrent">0.000</span>
+                                        <div class="badge bg-white bg-opacity-50 text-dark">
+                                            MAX
+                                            <span class="align-middle summedRateUpper">0.000</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end pb-1">
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle" style="background-color: #cfe2ff;">
-                                            <span class="lang-jpn">レーティング対象</span>
-                                            <span class="lang-eng d-none">Rate Baseline</span>
-                                        </span>
+                            <div class="d-flex justify-content-end">
+                                <div class="d-flex ms-2">
+                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark">
+                                        <span class="lang-jpn">レーティング対象</span>
+                                        <span class="lang-eng d-none">Rate Baseline</span>
                                     </div>
-                                    <div class="px-0 ms-1">
+                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary">
                                         <span class="singleRateLower align-middle">0.000</span>
-                                        <span class="align-middle small">
+                                        <span class="align-middle">
                                             <span class="lang-jpn">以上</span>
                                             <span class="lang-eng d-none"></span>
                                         </span>
@@ -1715,19 +1720,18 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-new" class="alert alert-secondary p-2 m-0 d-none" role="alert">
+                    <div id="multi-rate-alert-new" class="alert alert-secondary p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
                                     <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
                                 </svg>
                             </div>
-                            <div>
+                            <div class="px-1">
                                 <p class="alert-heading h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
-                                <hr class="m-0">
                                 <p class="m-0">
                                     <span class="lang-jpn">合算したい譜面のスコア別上昇値を選択してください。</span>
                                     <span class="lang-eng d-none">Select the rate increase by score of the chart you want to sum up.</span>
@@ -1757,16 +1761,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="stats-graph mt-2">
-                    <div class="progress shadow-sm mx-4">
-                        <div class="progress-bar graph-bar-stats bg-lt-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-960" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-970" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="stats-graph bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">スコア帯別の割合</span>
+                        <span class="lang-eng d-none">Ratio by Score Range</span>
                     </div>
-                    <div class="d-flex justify-content-between mx-4">
+                    <div class="progress border shadow-sm mx-4 mt-3">
+                        <div class="progress-bar graph-bar-stats bg-lt-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-960 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-970 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-980 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-ge-990 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mx-4 mb-2">
                         <div class="d-flex flex-column text-center">
                             <span class="lt-950">&lt;950k</span>
                             <span class="graph-ratio-stats lt-950 small">0.00%</span>
@@ -1793,116 +1801,111 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive mt-2">
-                    <table class="table table-sm caption-top">
-                        <caption>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
-                            <span class="lang-jpn">この表は左右にスクロールできます</span>
-                            <span class="lang-eng d-none">This table is scrollable horizontally.</span>
-                        </caption>
-                        <thead>
-                            <tr>
-                                <th class="small" scope="col" colspan="4">
-                                    <span class="lang-jpn">プレイ成績</span>
-                                    <span class="lang-eng d-none">Play Results</span>
-                                </th>
-                                <th class="small" scope="col" colspan="4">
-                                    <span class="lang-jpn">譜面別Rate</span>
-                                    <span class="lang-eng d-none">Single Rate</span>
-                                </th>
-                                <th class="small" scope="col" colspan="5">
-                                    <span class="lang-jpn">スコア別上昇値</span>
-                                    <span class="lang-eng d-none">Rate Increase by Score</span>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">
-                                    <span class="lang-jpn">曲名</span>
-                                    <span class="lang-eng d-none">Song</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">レベル</span>
-                                    <span class="lang-eng d-none">Level</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">スコア</span>
-                                    <span class="lang-eng d-none">Score</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">定数</span>
-                                    <span class="lang-eng d-none">Const</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">倍数</span>
-                                    <span class="lang-eng d-none">Modifier</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">現在</span>
-                                    <span class="lang-eng d-none">Now</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">上限</span>
-                                    <span class="lang-eng d-none">Max</span>
-                                </th>
-                                <th scope="col">950k</th>
-                                <th scope="col">960k</th>
-                                <th scope="col">970k</th>
-                                <th scope="col">980k</th>
-                                <th scope="col">990k</th>
-                            </tr>
-                        </thead>
-                        <tbody class="scoresTable">
-                        </tbody>
-                    </table>
+                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">譜面一覧</span>
+                        <span class="lang-eng d-none">Chart List</span>
+                    </div>
+                    <div class="table-responsive mt-2 px-4">
+                        <table class="table table-sm caption-top">
+                            <caption class="p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                                <span class="lang-jpn">この表は左右にスクロールできます</span>
+                                <span class="lang-eng d-none">This table is scrollable horizontally.</span>
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th class="small" scope="col" colspan="4">
+                                        <span class="lang-jpn">プレイ成績</span>
+                                        <span class="lang-eng d-none">Play Results</span>
+                                    </th>
+                                    <th class="small" scope="col" colspan="4">
+                                        <span class="lang-jpn">譜面別Rate</span>
+                                        <span class="lang-eng d-none">Single Rate</span>
+                                    </th>
+                                    <th class="small" scope="col" colspan="5">
+                                        <span class="lang-jpn">スコア別上昇値</span>
+                                        <span class="lang-eng d-none">Rate Increase by Score</span>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">曲名</span>
+                                        <span class="lang-eng d-none">Song</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">レベル</span>
+                                        <span class="lang-eng d-none">Level</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">スコア</span>
+                                        <span class="lang-eng d-none">Score</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">定数</span>
+                                        <span class="lang-eng d-none">Const</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">倍数</span>
+                                        <span class="lang-eng d-none">Modifier</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">現在</span>
+                                        <span class="lang-eng d-none">Now</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">上限</span>
+                                        <span class="lang-eng d-none">Max</span>
+                                    </th>
+                                    <th scope="col">950k</th>
+                                    <th scope="col">960k</th>
+                                    <th scope="col">970k</th>
+                                    <th scope="col">980k</th>
+                                    <th scope="col">990k</th>
+                                </tr>
+                            </thead>
+                            <tbody class="scoresTable">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- 旧曲枠 -->
             <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white refresh-target">
-                    <div class="d-flex justify-content-between align-items-center p-1">
-                        <div class="h3 mb-0">
+                <div class="justify-content-between sticky-top bg-white py-1">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 mb-0 ps-2 border-start border-3 border-secondary">
                             <span class="lang-jpn">旧曲枠</span>
                             <span class="lang-eng d-none">Older Charts</span>
                         </div>
-                        <div class="h6 mt-1 mb-0 text-end">
-                            <div class="d-flex pb-1">
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle">
-                                            <span class="lang-jpn">小計</span>
-                                            <span class="lang-eng d-none">Subtotal</span>
-                                        </span>
+                        <div class="mb-0">
+                            <div class="d-flex mb-1">
+                                <div class="d-flex ms-2">
+                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                        <span class="lang-jpn align-middle">小計</span>
+                                            <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="px-0 ms-1">
-                                        <span class="summedRateCurrent align-middle">0.000</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle">
-                                            <span class="lang-jpn">理論値</span>
-                                            <span class="lang-eng d-none">Max</span>
-                                        </span>
-                                    </div>
-                                    <div class="px-0 ms-1">
-                                        <span class="summedRateUpper align-middle">0.000</span>
+                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                        <span class="align-middle summedRateCurrent">0.000</span>
+                                        <div class="badge bg-white bg-opacity-50 text-dark">
+                                            MAX
+                                            <span class="align-middle summedRateUpper">0.000</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end pb-1">
-                                <div class="d-flex align-items-center ms-2">
-                                    <div>
-                                        <span class="badge border border-secondary text-dark align-middle" style="background-color: #cfe2ff;">
-                                            <span class="lang-jpn">レーティング対象</span>
-                                            <span class="lang-eng d-none">Rate Baseline</span>
-                                        </span>
+                            <div class="d-flex justify-content-end">
+                                <div class="d-flex ms-2">
+                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark">
+                                        <span class="lang-jpn">レーティング対象</span>
+                                        <span class="lang-eng d-none">Rate Baseline</span>
                                     </div>
-                                    <div class="px-0 ms-1">
+                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary">
                                         <span class="singleRateLower align-middle">0.000</span>
-                                        <span class="align-middle small">
+                                        <span class="align-middle">
                                             <span class="lang-jpn">以上</span>
                                             <span class="lang-eng d-none"></span>
                                         </span>
@@ -1911,19 +1914,18 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-old" class="alert alert-secondary p-2 m-0 d-none" role="alert">
+                    <div id="multi-rate-alert-old" class="alert alert-secondary p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
                             <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
                                     <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
                                 </svg>
                             </div>
-                            <div>
+                            <div class="px-1">
                                 <p class="alert-heading h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
-                                <hr class="m-0">
                                 <p class="m-0">
                                     <span class="lang-jpn">合算したい譜面のスコア別上昇値を選択してください。</span>
                                     <span class="lang-eng d-none">Select the rate increase by score of the chart you want to sum up.</span>
@@ -1931,7 +1933,7 @@
                                 </p>
                             </div>
                             <div class="ms-auto">
-                                <button type="button" class="btn btn-outline-secondary" onclick="quitMultiRateMode('old'); return false;">
+                                <button type="button" class="btn btn-outline-secondary" onclick="quitMultiRateMode('new'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                                         <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
@@ -1953,16 +1955,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="stats-graph mt-2">
-                    <div class="progress shadow-sm mx-4">
-                        <div class="progress-bar graph-bar-stats bg-lt-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-960" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-970" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                        <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="stats-graph bg-light border rounded shadow-sm mt-2">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">スコア帯別の割合</span>
+                        <span class="lang-eng d-none">Ratio by Score Range</span>
                     </div>
-                    <div class="d-flex justify-content-between mx-4">
+                    <div class="progress border shadow-sm mx-4 mt-3">
+                        <div class="progress-bar graph-bar-stats bg-lt-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-960 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-970 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-is-980 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar graph-bar-stats bg-ge-990 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mx-4 mb-2">
                         <div class="d-flex flex-column text-center">
                             <span class="lt-950">&lt;950k</span>
                             <span class="graph-ratio-stats lt-950 small">0.00%</span>
@@ -1989,70 +1995,76 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive mt-2">
-                    <table class="table table-sm caption-top">
-                        <caption>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
-                            </svg>
-                            <span class="lang-jpn">この表は左右にスクロールできます</span>
-                            <span class="lang-eng d-none">This table is scrollable horizontally.</span>
-                        </caption>
-                        <thead>
-                            <tr>
-                                <th class="small" scope="col" colspan="4">
-                                    <span class="lang-jpn">プレイ成績</span>
-                                    <span class="lang-eng d-none">Play Results</span>
-                                </th>
-                                <th class="small" scope="col" colspan="4">
-                                    <span class="lang-jpn">譜面別Rate</span>
-                                    <span class="lang-eng d-none">Single Rate</span>
-                                </th>
-                                <th class="small" scope="col" colspan="5">
-                                    <span class="lang-jpn">スコア別上昇値</span>
-                                    <span class="lang-eng d-none">Rate Increase by Score</span>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">
-                                    <span class="lang-jpn">曲名</span>
-                                    <span class="lang-eng d-none">Song</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">レベル</span>
-                                    <span class="lang-eng d-none">Level</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">スコア</span>
-                                    <span class="lang-eng d-none">Score</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">定数</span>
-                                    <span class="lang-eng d-none">Const</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">倍数</span>
-                                    <span class="lang-eng d-none">Modifier</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">現在</span>
-                                    <span class="lang-eng d-none">Now</span>
-                                </th>
-                                <th scope="col">
-                                    <span class="lang-jpn">上限</span>
-                                    <span class="lang-eng d-none">Max</span>
-                                </th>
-                                <th scope="col">950k</th>
-                                <th scope="col">960k</th>
-                                <th scope="col">970k</th>
-                                <th scope="col">980k</th>
-                                <th scope="col">990k</th>
-                            </tr>
-                        </thead>
-                        <tbody class="scoresTable">
-                        </tbody>
-                    </table>
+                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                        <span class="lang-jpn">譜面一覧</span>
+                        <span class="lang-eng d-none">Chart List</span>
+                    </div>
+                    <div class="table-responsive mt-2 px-4">
+                        <table class="table table-sm caption-top">
+                            <caption class="p-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"/>
+                                </svg>
+                                <span class="lang-jpn">この表は左右にスクロールできます</span>
+                                <span class="lang-eng d-none">This table is scrollable horizontally.</span>
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th class="small" scope="col" colspan="4">
+                                        <span class="lang-jpn">プレイ成績</span>
+                                        <span class="lang-eng d-none">Play Results</span>
+                                    </th>
+                                    <th class="small" scope="col" colspan="4">
+                                        <span class="lang-jpn">譜面別Rate</span>
+                                        <span class="lang-eng d-none">Single Rate</span>
+                                    </th>
+                                    <th class="small" scope="col" colspan="5">
+                                        <span class="lang-jpn">スコア別上昇値</span>
+                                        <span class="lang-eng d-none">Rate Increase by Score</span>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">曲名</span>
+                                        <span class="lang-eng d-none">Song</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">レベル</span>
+                                        <span class="lang-eng d-none">Level</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">スコア</span>
+                                        <span class="lang-eng d-none">Score</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">定数</span>
+                                        <span class="lang-eng d-none">Const</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">倍数</span>
+                                        <span class="lang-eng d-none">Modifier</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">現在</span>
+                                        <span class="lang-eng d-none">Now</span>
+                                    </th>
+                                    <th scope="col">
+                                        <span class="lang-jpn">上限</span>
+                                        <span class="lang-eng d-none">Max</span>
+                                    </th>
+                                    <th scope="col">950k</th>
+                                    <th scope="col">960k</th>
+                                    <th scope="col">970k</th>
+                                    <th scope="col">980k</th>
+                                    <th scope="col">990k</th>
+                                </tr>
+                            </thead>
+                            <tbody class="scoresTable">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- ヘルプモーダル -->
