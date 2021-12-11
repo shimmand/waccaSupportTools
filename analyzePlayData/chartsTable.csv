@@ -1,9 +1,10 @@
 "0: song-title", "1: chart-expert-level", "2: chart-expert-const", "3: is-chart-expert-newer", "4: chart-inferno-level", "5: chart-inferno-const", "6: is-chart-inferno-newer"
+"ヒトガタ","EXPERT 12",12.6,true,"INFERNO 0",0.0,
 "メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
-"叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 0",0.0,
+"叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 13+",13.8,true
 "Fly to NEW WORLD","EXPERT 12",12.2,true,"INFERNO 0",0.0,
 "透明声彩","EXPERT 11+",11.8,true,"INFERNO 0",0.0,
-"うっせぇわ","EXPERT 12",12.2,true,"INFERNO 0",0.0,
+"うっせぇわ","EXPERT 12",12.2,true,"INFERNO 13",13.2,true
 "Fam☆Fam☆Time!","EXPERT 11+",11.9,true,"INFERNO 0",0.0,
 "cœur","EXPERT 12+",12.7,false,"INFERNO 0",0.0,
 "私はNo 1！","EXPERT 12",12.3,false,"INFERNO 0",0.0,
