@@ -151,6 +151,11 @@
                 background-color: #f8d7da;
                 color: #dc3545;
             }
+            .sticky-left:not(.sticky-disabled) {
+                position: sticky;
+                left: 0rem;
+                z-index: 2;
+            }
         </style>
         <script defer>
             // 譜面定数一覧表() => Array[[]]
@@ -797,7 +802,7 @@
                             // 挿入するHTMLのコードを生成
                             const code = [
                                 `<${headerElm}>${index + 1}</td>`,
-                                `<td>${chart[0]}</td>`,
+                                `<td class="sticky-left">${chart[0]}</td>`,
                                 `<td class="pt-half"><span class="badge bg-gradient border difficulty ${chart[1]}">${chart[2]}</span></td>`,
                                 `<td>${chart[3]}</td>`,
                                 `<td>${chart[4]}</td>`,
@@ -932,6 +937,10 @@
 
                     playdata.classList.add('is-valid');
 
+                    // 列の固定表示設定を反映
+                    const isTableSticky = (document.querySelector('#table-sticky-toggle').checked == true);
+                    toggleTableFixed(isTableSticky);
+
                     // 表示設定を復元
                     switch (localStorage.getItem('rating-analyzer-disp')) {
                         case 'all':
@@ -981,6 +990,22 @@
                         }
                     });
                 }
+            }
+
+            // 列の固定表示の切り替え
+            function toggleTableFixed(checked) {
+                const checkboxes = document.querySelectorAll('#table-sticky-toggle');
+                checkboxes.forEach(input => input.checked = checked);
+                localStorage.setItem('rating-analyzer-table-fixed', checked);
+
+                const stickyData = document.querySelectorAll('.sticky-left');
+                stickyData.forEach(data => {
+                    if (checked) {
+                        data.classList.remove('sticky-disabled');
+                    } else {
+                        data.classList.add('sticky-disabled');
+                    }
+                });
             }
 
             // Twitterを開く()
@@ -1235,6 +1260,8 @@
             // ユーザー設定を復元
             function loadUserPreference() {
                 try {
+                    const checkboxes = document.querySelectorAll('#table-sticky-toggle');
+
                     // 言語設定を復元
                     switch (localStorage.getItem('rating-analyzer-lang')) {
                         case 'japanese':
@@ -1248,6 +1275,21 @@
                         default:
                             break;
                     }
+
+                    // 列の固定表示設定を復元
+                    switch (localStorage.getItem('rating-analyzer-table-fixed')) {
+                        case 'true':
+                            checkboxes.forEach(input => input.checked = true);
+                            break;
+
+                        case 'false':
+                            checkboxes.forEach(input => input.checked = false);
+                            break;
+                    
+                        default:
+                            break;
+                    }
+
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
                         case '2021-12-08-v2':
@@ -1836,54 +1878,61 @@
                                 </caption>
                                 <thead>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0">
-                                        <th class="small" scope="col" colspan="4">
+                                        <th class="bg-light small" scope="col" colspan="4">
                                             <span class="lang-jpn">プレイ成績</span>
                                             <span class="lang-eng d-none">Play Results</span>
                                         </th>
-                                        <th class="small" scope="col" colspan="4">
+                                        <th class="bg-light small" scope="col" colspan="4">
                                             <span class="lang-jpn">譜面別Rate</span>
                                             <span class="lang-eng d-none">Single Rate</span>
                                         </th>
-                                        <th class="small" scope="col" colspan="5">
+                                        <th class="bg-light small" scope="col" colspan="5">
                                             <span class="lang-jpn">スコア別上昇値</span>
                                             <span class="lang-eng d-none">Rate Increase by Score</span>
                                         </th>
                                     </tr>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0 border-secondary">
-                                        <th scope="col">#</th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">#</th>
+                                        <th class="sticky-left bg-light" scope="col">
                                             <span class="lang-jpn">曲名</span>
                                             <span class="lang-eng d-none">Song</span>
+                                            <span class="badge bg-light border border-secondary text-secondary p-1">
+                                                <input class="form-check-input m-0" type="checkbox" value="" id="table-sticky-toggle" onchange="toggleTableFixed(this.checked)">
+                                                <label class="form-check-label" for="table-sticky-toggle">
+                                                    <span class="lang-jpn">固定</span>
+                                                    <span class="lang-eng d-none">Sticky</span>
+                                                </label>
+                                            </span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">レベル</span>
                                             <span class="lang-eng d-none">Level</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">スコア</span>
                                             <span class="lang-eng d-none">Score</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">定数</span>
                                             <span class="lang-eng d-none">Const</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">倍数</span>
                                             <span class="lang-eng d-none">Modifier</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">現在</span>
                                             <span class="lang-eng d-none">Now</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">上限</span>
                                             <span class="lang-eng d-none">Max</span>
                                         </th>
-                                        <th scope="col">950k</th>
-                                        <th scope="col">960k</th>
-                                        <th scope="col">970k</th>
-                                        <th scope="col">980k</th>
-                                        <th scope="col">990k</th>
+                                        <th class="bg-light" scope="col">950k</th>
+                                        <th class="bg-light" scope="col">960k</th>
+                                        <th class="bg-light" scope="col">970k</th>
+                                        <th class="bg-light" scope="col">980k</th>
+                                        <th class="bg-light" scope="col">990k</th>
                                     </tr>
                                 </thead>
                                 <tbody class="scoresTable">
@@ -2037,54 +2086,61 @@
                                 </caption>
                                 <thead>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0">
-                                        <th class="small" scope="col" colspan="4">
+                                        <th class="bg-light small" scope="col" colspan="4">
                                             <span class="lang-jpn">プレイ成績</span>
                                             <span class="lang-eng d-none">Play Results</span>
                                         </th>
-                                        <th class="small" scope="col" colspan="4">
+                                        <th class="bg-light small" scope="col" colspan="4">
                                             <span class="lang-jpn">譜面別Rate</span>
                                             <span class="lang-eng d-none">Single Rate</span>
                                         </th>
-                                        <th class="small" scope="col" colspan="5">
+                                        <th class="bg-light small" scope="col" colspan="5">
                                             <span class="lang-jpn">スコア別上昇値</span>
                                             <span class="lang-eng d-none">Rate Increase by Score</span>
                                         </th>
                                     </tr>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0 border-secondary">
-                                        <th scope="col">#</th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">#</th>
+                                        <th class="sticky-left bg-light" scope="col">
                                             <span class="lang-jpn">曲名</span>
                                             <span class="lang-eng d-none">Song</span>
+                                            <span class="badge bg-light border border-secondary text-secondary p-1">
+                                                <input class="form-check-input m-0" type="checkbox" value="" id="table-sticky-toggle" onchange="toggleTableFixed(this.checked)" checked>
+                                                <label class="form-check-label" for="table-sticky-toggle">
+                                                    <span class="lang-jpn">固定</span>
+                                                    <span class="lang-eng d-none">Sticky</span>
+                                                </label>
+                                            </span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">レベル</span>
                                             <span class="lang-eng d-none">Level</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">スコア</span>
                                             <span class="lang-eng d-none">Score</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">定数</span>
                                             <span class="lang-eng d-none">Const</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">倍数</span>
                                             <span class="lang-eng d-none">Modifier</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">現在</span>
                                             <span class="lang-eng d-none">Now</span>
                                         </th>
-                                        <th scope="col">
+                                        <th class="bg-light" scope="col">
                                             <span class="lang-jpn">上限</span>
                                             <span class="lang-eng d-none">Max</span>
                                         </th>
-                                        <th scope="col">950k</th>
-                                        <th scope="col">960k</th>
-                                        <th scope="col">970k</th>
-                                        <th scope="col">980k</th>
-                                        <th scope="col">990k</th>
+                                        <th class="bg-light" scope="col">950k</th>
+                                        <th class="bg-light" scope="col">960k</th>
+                                        <th class="bg-light" scope="col">970k</th>
+                                        <th class="bg-light" scope="col">980k</th>
+                                        <th class="bg-light" scope="col">990k</th>
                                     </tr>
                                 </thead>
                                 <tbody class="scoresTable">
