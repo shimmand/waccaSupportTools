@@ -1312,19 +1312,6 @@
             function loadUserPreference() {
                 try {
                     const checkboxes = document.querySelectorAll('#table-sticky-toggle');
-                    
-                    // 復元モードの確認
-                    switch (localStorage.getItem('rating-analyzer-restore-mode')) {
-                        case 'true':
-                            restorePrevData();
-                            break;
-
-                        case 'false':
-                            break;
-                    
-                        default:
-                            break;
-                    }
 
                     // 言語設定を復元
                     switch (localStorage.getItem('rating-analyzer-lang')) {
@@ -1362,6 +1349,19 @@
 
                         default:
                             document.querySelector('#news-badge').classList.remove('d-none');
+                            break;
+                    }
+
+                    // 復元モードの確認
+                    switch (localStorage.getItem('rating-analyzer-restore-mode')) {
+                        case 'true':
+                            restorePrevData();
+                            break;
+
+                        case 'false':
+                            break;
+                    
+                        default:
                             break;
                     }
                 } catch (error) {
