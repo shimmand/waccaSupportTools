@@ -802,6 +802,8 @@
 
                             tableRow.classList.add('border-3', 'border-top-0', 'border-end-0', 'border-start-0');
 
+                            const maxDataClass = (chart[7].match(/[0-9]{1,2}\.[0-9]{3}/) != null) ? '' : ' class="pt-half"';
+
                             // 挿入するHTMLのコードを生成
                             const code = [
                                 `<${headerElm}>${index + 1}</td>`,
@@ -811,7 +813,7 @@
                                 `<td>${chart[4]}</td>`,
                                 `<td>${chart[5].toFixed(2)}</td>`,
                                 `<${rateDataElm}>${chart[6]}</td>`,
-                                `<td>${chart[7]}</td>`,
+                                `<td${maxDataClass}>${chart[7]}</td>`,
                                 `<td>${increases[0]}</td>`,
                                 `<td>${increases[1]}</td>`,
                                 `<td>${increases[2]}</td>`,
