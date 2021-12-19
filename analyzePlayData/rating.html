@@ -1014,6 +1014,8 @@
                     }
 
                     // フィルターを適用
+                    updateChartVisibilityByType();
+                    updateChartVisibilityByDifficulty();
                     refreshChartVisibility();
                 }
             }
@@ -1033,7 +1035,7 @@
                     'tr[data-index].table-primary',
                     'tr[data-index].table-custom-orange',
                     'tr[data-index]:not(.table-primary):not(.table-custom-orange)'
-                ]
+                ];
 
                 const targetRows = document.querySelectorAll(selectors[types.indexOf(type)]);
                 targetRows.forEach(row => {
@@ -1045,6 +1047,29 @@
                 });
 
                 refreshChartVisibility();
+            }
+
+            function updateChartVisibilityByType() {
+                const types = ['targets', 'candidates', 'others'];
+                const selectors = [
+                        'tr[data-index].table-primary',
+                        'tr[data-index].table-custom-orange',
+                        'tr[data-index]:not(.table-primary):not(.table-custom-orange)'
+                    ];
+
+                types.forEach(type => {
+                    const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+                    const checked = checkboxes[0].checked;
+                    const targetRows = document.querySelectorAll(selectors[types.indexOf(type)]);
+
+                    targetRows.forEach(row => {
+                        if (checked) {
+                            row.classList.remove('type-hidden');
+                        } else {
+                            row.classList.add('type-hidden');
+                        }
+                    });
+                })
             }
 
             // 難易度別フィルター
@@ -1070,6 +1095,24 @@
                 });
 
                 refreshChartVisibility();
+            }
+
+            function updateChartVisibilityByDifficulty() {
+                const difficulties = ['normal', 'hard', 'expert', 'inferno'];
+                
+                difficulties.forEach(difficulty => {
+                    const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+                    const checked = checkboxes[0].checked;
+                    const targetRows = document.querySelectorAll(`.difficulty-${difficulty}`);
+
+                    targetRows.forEach(row => {
+                        if (checked) {
+                            row.classList.remove('difficulty-hidden');
+                        } else {
+                            row.classList.add('difficulty-hidden');
+                        }
+                    });
+                })
             }
 
             // 列の固定表示の切り替え
