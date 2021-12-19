@@ -25,57 +25,79 @@
             span.badge.difficulty {
                 width: 6.25rem;
             }
+            span.badge.normal {
+                background-color: #009de6;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            span.badge.hard {
+                background-color: #fed131;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
             span.badge.expert {
                 background-color: #fa0c98;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
             }
             span.badge.inferno {
                 background-color: #4a004f;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            span.badge.badge-max {
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            span.badge.filter-targets {
+                background-color: #cfe2ff;
+            }
+            span.badge.filter-candidates {
+                background-color: #ffe5d0;
+            }
+            span.badge.filter-others {
+                background-color: #f8f9fa;
             }
             /* レート背景色 */
             div.bg-plain {
                 background-color: #959595;
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-navy {
                 background-color: #0d6efd;
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-yellow {
                 background-color: #ffc800;
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-red {
                 background-color: #ff007d;
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-purple {
                 background-color: #6610f2;
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-blue {
                 background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-silver {
                 background: linear-gradient(30deg, #eaffff, #aaaaaa, #eaffff);
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-gold {
                 background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             div.bg-rainbow {
                 background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
                 color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem, #ffffff 0 0 0.16rem;
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
             /* Rate比率背景 */
             div.bg-older {
@@ -159,357 +181,359 @@
                 left: 0rem;
                 z-index: 2;
             }
+            .text-shadow-black {
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .text-shadow-white {
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
         </style>
         <script defer>
             // 譜面定数一覧表() => Array[[]]
-            // ブラウザーにキャッシュされたくないので、キャッシュ禁止のHTMLに直書きするという力技
-            // [0: 曲名, 1: EXPERTレベル, 2: EXPERT定数, 3: EXPERTは新曲枠?, 4: INFERNOレベル, 5: INFERNO定数, 6: INFERNOは新曲枠?]
-            // !!! 関連要素: getRatingValue(), checkChartIsNew()
-            function getRatingTable() {
+            // [0: 曲名, 1: NORMALレベル, 2: NORMAL定数, 3: NORMALは新曲枠?, 4: HARDレベル, 5: HARD定数, 6: HARDは新曲枠?, 7: EXPERTレベル, 8: EXPERT定数, 9: EXPERTは新曲枠?, 10: INFERNOレベル, 11: INFERNO定数, 12: INFERNOは新曲枠?]
+            function getChartTable() {
                 return [
-                    ["ヒトガタ","EXPERT 12",12.6,true,"INFERNO 0",0.0,],
-                    ["メニメニマニマニ","EXPERT 12",12.3,true,"INFERNO 0",0.0,],
-                    ["叩ケ 叩ケ 手ェ叩ケ","EXPERT 12",12.3,true,"INFERNO 13+",13.8,true],
-                    ["Fly to NEW WORLD","EXPERT 12",12.2,true,"INFERNO 0",0.0,],
-                    ["透明声彩","EXPERT 11+",11.8,true,"INFERNO 0",0.0,],
-                    ["うっせぇわ","EXPERT 12",12.2,true,"INFERNO 13",13.2,true],
-                    ["Fam☆Fam☆Time!","EXPERT 11+",11.9,true,"INFERNO 0",0.0,],
-                    ["cœur","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["私はNo 1！","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["ソロモン・ナイト","EXPERT 13",13.4,false,"INFERNO 0",0.0,],
-                    ["LOVE!HUG!GROOVY!!","EXPERT 12",12.4,false,"INFERNO 13",13.5,false],
-                    ["Dig Delight!","EXPERT 11",11.4,false,"INFERNO 0",0.0,],
-                    ["電乱★カウントダウン","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["Photon Melodies","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["ぐるぐるDJ TURN!!","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["sister's noise","EXPERT 10",10.1,false,"INFERNO 0",0.0,],
-                    ["なだめスかし Negotiation","EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
-                    ["サクリファイス","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["非実在系女子たちはどうすりゃいいですか？","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["ぺこみこ大戦争！！","EXPERT 11",11.2,false,"INFERNO 13",13.2,false],
-                    ["Say!ファンファーレ!","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["NEXT COLOR PLANET","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["夢見る空へ","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["お願いマッスル","EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
-                    ["マッチョアネーム？","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["HELLO to DREAM","EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
-                    ["over and over","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["トロピカッ☆バケーション","EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
-                    ["秒針を噛む","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
-                    ["ないものねだり","EXPERT 11",11.1,false,"INFERNO 0",0.0,],
-                    ["HOT LIMIT","EXPERT 10",10.0,false,"INFERNO 0",0.0,],
-                    ["キラメキライダー☆","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["ガヴリールドロップキック","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
-                    ["This game","EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
-                    ["RAGE OF DUST","EXPERT 9",9.6,false,"INFERNO 0",0.0,],
-                    ["Make it！","EXPERT 9",9.4,false,"INFERNO 0",0.0,],
-                    ["Make it！ (DJ Genki Remix)","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["キラッとスタート","EXPERT 10",10.2,false,"INFERNO 0",0.0,],
-                    ["キラッとスタート (USAO Remix)","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["ハート♥イロ♥トリドリ〜ム","EXPERT 10",10.1,false,"INFERNO 0",0.0,],
-                    ["ダダダダ天使","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["青空のラプソディ","EXPERT 9",9.3,false,"INFERNO 11",11.0,true],
-                    ["Bravely You","EXPERT 9",9.5,false,"INFERNO 0",0.0,],
-                    ["ぼなぺてぃーと♡S","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["デタラメなマイナスとプラスにおけるブレンド考","EXPERT 10",10.0,false,"INFERNO 0",0.0,],
-                    ["輪廻転生","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["ストライク・ザ・ブラッド","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["新宝島","EXPERT 9",9.4,false,"INFERNO 0",0.0,],
-                    ["U.S.A.","EXPERT 10",10.2,false,"INFERNO 0",0.0,],
-                    ["Shiny Smily Story","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["Dream☆Story","EXPERT 11",11.2,false,"INFERNO 0",0.0,],
-                    ["without U","EXPERT 10",10.2,false,"INFERNO 0",0.0,],
-                    ["シャルル","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["ドラマツルギー","EXPERT 10",10.1,false,"INFERNO 0",0.0,],
-                    ["オドループ","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["only my railgun","EXPERT 9",9.5,false,"INFERNO 0",0.0,],
-                    ["You Only Live Once","EXPERT 9",9.1,false,"INFERNO 0",0.0,],
-                    ["残酷な天使のテーゼ","EXPERT 9",9.3,false,"INFERNO 0",0.0,],
-                    ["ただ君に晴れ","EXPERT 9",9.6,false,"INFERNO 0",0.0,],
-                    ["The Light","EXPERT 12",12.1,false,"INFERNO 0",0.0,],
-                    ["AIAIAI (feat. 中田ヤスタカ)","EXPERT 9",9.4,false,"INFERNO 0",0.0,],
-                    ["Hello, Morning","EXPERT 11",11.2,false,"INFERNO 0",0.0,],
-                    ["Raise Your Heart!!","EXPERT 10",10.6,false,"INFERNO 0",0.0,],
-                    ["SHINY DAYS","EXPERT 9",9.0,false,"INFERNO 0",0.0,],
-                    ["EXCITE","EXPERT 10",10.0,false,"INFERNO 0",0.0,],
-                    ["シュガーソングとビターステップ","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["ファティマ","EXPERT 9",9.5,false,"INFERNO 0",0.0,],
-                    ["回レ！雪月花","EXPERT 11",11.0,false,"INFERNO 13+",13.8,true],
-                    ["ピースサイン","EXPERT 9+",9.8,false,"INFERNO 0",0.0,],
-                    ["徒花ネクロマンシー","EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
-                    ["ようこそジャパリパークへ","EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
-                    ["POP TEAM EPIC","EXPERT 11",11.4,false,"INFERNO 0",0.0,],
-                    ["ファッとして桃源郷","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["Nameless Story","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["TOMORROW","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["五等分の気持ち","EXPERT 9+",9.9,false,"INFERNO 0",0.0,],
-                    ["ギミチョコ!!","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["ウマーベラス","EXPERT 9+",9.8,false,"INFERNO 0",0.0,],
-                    ["ワールズエンド・ダンスホール","EXPERT 12",12.5,true,"INFERNO 0",0.0,],
-                    ["炉心融解","EXPERT 12",12.2,true,"INFERNO 0",0.0,],
-                    ["∞(2018Remake)","EXPERT 13+",13.8,true,"INFERNO 0",0.0,],
-                    ["ちがう!!!","EXPERT 12",12.4,true,"INFERNO 0",0.0,],
-                    ["おねがいダーリン","EXPERT 11",11.6,true,"INFERNO 0",0.0,],
-                    ["怪盗Fの台本（シナリオ）〜消えたダイヤの謎〜","EXPERT 13+",13.7,true,"INFERNO 0",0.0,],
-                    ["KING","EXPERT 11",11.6,true,"INFERNO 0",0.0,],
-                    ["ダーリンダンス","EXPERT 12+",12.8,true,"INFERNO 0",0.0,],
-                    ["トリノコシティ","EXPERT 12",12.2,true,"INFERNO 0",0.0,],
-                    ["サマータイムレコード","EXPERT 11+",11.9,,"INFERNO 0",0.0,],
-                    ["テレキャスタービーボーイ","EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
-                    ["フィクサー","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["バレリーコ","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["だれかの心臓になれたなら","EXPERT 12",12.1,false,"INFERNO 0",0.0,],
-                    ["六兆年と一夜物語","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["ワールドイズマイン","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["進捗どうですか！","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["ぼくらの16bit戦争","EXPERT 13",13.4,false,"INFERNO 0",0.0,],
-                    ["隔絶≡タナトス","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["アスノヨゾラ哨戒班","EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
-                    ["ヒビカセ","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["脳漿炸裂ガール","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["ポジティブ☆ダンスタイム","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["Gimme×Gimme feat. 初音ミク・鏡音リン","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["39みゅーじっく！","EXPERT 10+",10.9,false,"INFERNO 0",0.0,],
-                    ["ブリキノダンス","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["チュルリラ・チュルリラ・ダッダッダ！","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["おばけのウケねらい","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["ベノム","EXPERT 12",12.1,false,"INFERNO 0",0.0,],
-                    ["リアル初音ミクの消失","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["セツナトリップ","EXPERT 12",12.1,false,"INFERNO 0",0.0,],
-                    ["カゲロウデイズ","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["天ノ弱","EXPERT 10",10.1,false,"INFERNO 0",0.0,],
-                    ["ゴーストルール","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["ロストワンの号哭","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["いーあるふぁんくらぶ","EXPERT 10",10.0,false,"INFERNO 0",0.0,],
-                    ["初音ミクの消失","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["劣等上等","EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
-                    ["アカリがやってきたぞっ","EXPERT 11",11.2,false,"INFERNO 0",0.0,],
-                    ["太陽系デスコ","EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
-                    ["気まぐれメルシィ feat. 初音ミク","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["幸せになれる隠しコマンドがあるらしい","EXPERT 13",13.3,false,"INFERNO 0",0.0,],
-                    ["千本桜","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["エイリアンエイリアン","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["砂の惑星 feat. 初音ミク","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["マトリョシカ","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["Seyana. ～何でも言うことを聞いてくれるアカネチャン～","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["フラジール","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["ロキ","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["ウミユリ海底譚","EXPERT 10",10.2,false,"INFERNO 0",0.0,],
-                    ["スクランブル交際","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
-                    ["乙女解剖","EXPERT 9",9.2,false,"INFERNO 0",0.0,],
-                    ["Crime Wave","EXPERT 12+",12.7,true,"INFERNO 0",0.0,],
-                    ["チルノは覚醒サマーデイズ！","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["エピクロスの虹はもう見えない","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["ARROW RAIN feat.ayame","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["四次元跳躍機関","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Destructive Little Sister","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["物凄い勢いでけーねが物凄いうた","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["患部で止まってすぐ溶ける ～ 狂気の優曇華院","EXPERT 13",13.2,false,"INFERNO 0",0.0,],
-                    ["Scream out!","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["ホイホイ☆幻想ホロイズム","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Help me, ERINNNNNN!!","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["進捗どうですか？","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["Sweet Requiem","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["明星ロケット","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["ゆけむり魂温泉 II","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["Calamity Fortune","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["ケロ⑨Destiny","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["風に乗せた願い","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["LOVE EAST","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
-                    ["天狗の落とし文 feat. ytr","EXPERT 12",12.1,false,"INFERNO 0",0.0,],
-                    ["神寂","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["悪戯センセーション","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)","EXPERT 13",13.1,false,"INFERNO 0",0.0,],
-                    ["Mami Mami Zone","EXPERT 11",11.4,false,"INFERNO 0",0.0,],
-                    ["チルノのパーフェクトさんすう教室","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["待チ人ハ来ズ。","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["taboo tears you up 2017","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Bad Apple!! feat. nomico","EXPERT 9",9.3,false,"INFERNO 0",0.0,],
-                    ["ナイト・オブ・ナイツ","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["WARNING×WARNING×WARNING","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["シャカリキ・ファイト・ブンブン","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["ニュー・ウェーブ","EXPERT 9",9.3,false,"INFERNO 0",0.0,],
-                    ["ガンガン・ドンドン","EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
-                    ["スマイル・アンド・ティアズ","EXPERT 9",9.5,false,"INFERNO 0",0.0,],
-                    ["STILL HOT IN MY HEART","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["Over the sweat and tears","EXPERT 9",9.4,false,"INFERNO 0",0.0,],
-                    ["Singin'☆Shine！","EXPERT 9",9.6,false,"INFERNO 0",0.0,],
-                    ["花たちに希望を","EXPERT 12",12.4,true,"INFERNO 0",0.0,],
-                    ["NightTheater","EXPERT 13",13.0,true,"INFERNO 0",0.0,],
-                    ["恋のMoonlight","EXPERT 11+",11.8,true,"INFERNO 0",0.0,],
-                    ["Comet Coaster","EXPERT 13",13.3,true,"INFERNO 0",0.0,],
-                    ["XODUS","EXPERT 14",14.0,true,"INFERNO 0",0.0,],
-                    ["Lights of Muse","EXPERT 12",12.0,true,"INFERNO 0",0.0,],
-                    ["The 90's Decision","EXPERT 13",13.5,true,"INFERNO 0",0.0,],
-                    ["粉骨砕身カジノゥ","EXPERT 13",13.6,true,"INFERNO 0",0.0,],
-                    ["Avant Raze","EXPERT 12",12.6,true,"INFERNO 0",0.0,],
-                    ["#1f1e33","EXPERT 13+",13.9,true,"INFERNO 0",0.0,],
-                    ["Arcahv","EXPERT 13",13.6,true,"INFERNO 0",0.0,],
-                    ["最強STRONGER","EXPERT 14",14.0,true,"INFERNO 0",0.0,],
-                    ["Let you DIVE! (nitro rmx)","EXPERT 12+",12.8,true,"INFERNO 0",0.0,],
-                    ["Sheriruth (Laur Remix)","EXPERT 13",13.3,true,"INFERNO 0",0.0,],
-                    ["さんさーら！","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Night Club Junkie","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["PUPA","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["Destr0yer","EXPERT 13",13.0,false,"INFERNO 0",0.0,],
-                    ["もぺもぺ","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["MAGENTA POTION","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["進捗WARS feat．ビートまりお","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["Apocalypse","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["You are the Miserable","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["Stasis","EXPERT 13",13.6,false,"INFERNO 0",0.0,],
-                    ["Rainmaker","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["Weg","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["From Zero feat. 利香","EXPERT 11+",11.8,false,"INFERNO 0",0.0,],
-                    ["PRESS START!","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["TWISTSTEP","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Future Cαndy","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Fish Fight!","EXPERT 11",11.6,false,"INFERNO 0",0.0,],
-                    ["THERAPY","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["グルーヴ・ザ・ハート","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["Got more raves?","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["Good Night, Bad Luck.","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["Grayed Out-Antifront-","EXPERT 13",13.2,false,"INFERNO 0",0.0,],
-                    ["インドア系ならトラックメイカー","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["ダンシング☆サムライ","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["WHITE","EXPERT 10",10.5,false,"INFERNO 0",0.0,],
-                    ["Brain Power","EXPERT 13",13.0,false,"INFERNO 0",0.0,],
-                    ["聖者の鼓動","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["BUCHiGiRE Berserker","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["君のStarlight Road","EXPERT 10",10.3,false,"INFERNO 0",0.0,],
-                    ["FUJIN Rumble","EXPERT 13",13.6,false,"INFERNO 0",0.0,],
-                    ["Eyes on me feat. Such","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["GOODWORLD","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["Altale","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["ベースラインやってる？笑","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["EU over Progress","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["燐廻","EXPERT 11",11.1,false,"INFERNO 0",0.0,],
-                    ["『エキセントリック少年ボウイ』のテーマ","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["Jägermeister","EXPERT 11",11.2,false,"INFERNO 0",0.0,],
-                    ["What's this?","EXPERT 10",10.2,false,"INFERNO 0",0.0,],
-                    ["FREEDOM DiVE↓","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["Honey Panic!","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["Pixel Galaxy","EXPERT 10+",10.8,false,"INFERNO 0",0.0,],
-                    ["集結の華々","EXPERT 10+",10.9,false,"INFERNO 0",0.0,],
-                    ["conflict","EXPERT 13",13.4,false,"INFERNO 0",0.0,],
-                    ["こんにちは、ARuFaです。","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["ぼくの夢、メチャクソ無限湧き","EXPERT 12",12.6,false,"INFERNO 13+",13.8,false],
-                    ["ゲームオーバー (feat. TORIENA)","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["ルーンファクトリー４スペシャルより「この想いを乗せて」","EXPERT 9",9.0,false,"INFERNO 0",0.0,],
-                    ["Ouvertüre","EXPERT 13",13.3,true,"INFERNO 0",0.0,],
-                    ["Love Kills U","EXPERT 12",12.5,true,"INFERNO 0",0.0,],
-                    ["Kira☆Kira☆Night","EXPERT 12+",12.9,true,"INFERNO 0",0.0,],
-                    ["YOG","EXPERT 13+",13.8,true,"INFERNO 0",0.0,],
-                    ["Lost Illusion","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Cauliflower","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["Purple Skies","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Lhaksha","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["LIN NE KRO NE feat. lasah","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["フリーフォール","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["猫娘","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["QiXiN MAdN3ss 2153","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["ARTEMiS","EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
-                    ["with U","EXPERT 11+",11.8,false,"INFERNO 13",13.6,false],
-                    ["Tell Me","EXPERT 11+",11.8,false,"INFERNO 0",0.0,],
-                    ["LETHAL;WEAPON","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["THE MUZZLE FACING","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["GASHATT","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Demon's Rave","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["jacaranda","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["CHECKER FLAG","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["Stratoliner","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["Utopia feat. shully","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["Let you DIVE!","EXPERT 11+",11.8,false,"INFERNO 13",13.4,false],
-                    ["Break Through Myself feat. Risa Yuzuki","EXPERT 13",13.4,true,"INFERNO 0",0.0,],
-                    ["D3LTA QOMPLEX","EXPERT 13",13.1,true,"INFERNO 0",0.0,],
-                    ["Chobit Flavor","EXPERT 12",12.6,true,"INFERNO 0",0.0,],
-                    ["Machinery of Avoid","EXPERT 12+",12.7,true,"INFERNO 0",0.0,],
-                    ["Datamania (tpz Overheat Remix)","EXPERT 12",12.6,true,"INFERNO 0",0.0,],
-                    ["超MANJIラッシュ","EXPERT 13+",13.7,true,"INFERNO 0",0.0,],
-                    ["Meta-Mysteria","EXPERT 14",14.1,true,"INFERNO 0",0.0,],
-                    ["Eternal Ending","EXPERT 13",13.4,false,"INFERNO 0",0.0,],
-                    ["EVE","EXPERT 13",13.1,false,"INFERNO 0",0.0,],
-                    ["eden","EXPERT 13",13.3,false,"INFERNO 14",14.1,false],
-                    ["Silentphobia","EXPERT 13",13.6,false,"INFERNO 14",14.1,false],
-                    ["やけにインザレイン feat. 小林私","EXPERT 13",13.1,false,"INFERNO 0",0.0,],
-                    ["Traveller feat.moimoi","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["FLVSH OUT","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["BSCS","EXPERT 13",13.3,false,"INFERNO 0",0.0,],
-                    ["Popping Happiness!","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Madwing","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["TRICKL4SH 220","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["SHAKE!","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["DUAL BREAKER XX","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["Megaton Killer","EXPERT 13",13.6,false,"INFERNO 0",0.0,],
-                    ["ATAMA WARUI","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["Liberate","EXPERT 13",13.1,false,"INFERNO 0",0.0,],
-                    ["Animosity","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["Big Bang","EXPERT 14",14.0,false,"INFERNO 0",0.0,],
-                    ["恋メタル","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["はげしこの夜 -Psylent Crazy Night-","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["パニックポップ☆フェスティバル!!!","EXPERT 13",13.3,false,"INFERNO 0",0.0,],
-                    ["Stasis feat.motoko -WACCA EDiT-","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["RAV#GIRL","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["KALACAKLA","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["Poppin' Shower","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["While Shining feat.Yukacco","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["ALiVE","EXPERT 11",11.0,false,"INFERNO 0",0.0,],
-                    ["ONOMATO Pairing!!!","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["SUPER REACTOR","EXPERT 13",13.0,false,"INFERNO 0",0.0,],
-                    ["GENOCIDER","EXPERT 14",14.1,false,"INFERNO 0",0.0,],
-                    ["ツアー・ファイナル","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["Metamorphose","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["MAGiC4LG1RL M3GA S7R1KE!","EXPERT 13",13.1,false,"INFERNO 0",0.0,],
-                    ["METEOR BURST","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["XTREME","EXPERT 12+",12.9,false,"INFERNO 14",14.0,false],
-                    ["天使光輪","EXPERT 13",13.2,false,"INFERNO 14",14.1,false],
-                    ["Ultra Red","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["サイクルヒット","EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-                    ["Strange Bar","EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
-                    ["Murasaki","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Mazy Metroplex","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["LOSE CONTROL","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["†DOOF†SENC†","EXPERT 13",13.6,false,"INFERNO 0",0.0,],
-                    ["Shiny Memory feat.Yukacco","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["BLVST BEVT","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["JINGLE DEATH","EXPERT 13",13.2,false,"INFERNO 0",0.0,],
-                    ["Invisible Frenzy","EXPERT 14",14.0,false,"INFERNO 0",0.0,],
-                    ["VOX Diamond","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["Chariot","EXPERT 12",12.4,false,"INFERNO 0",0.0,],
-                    ["Akareram","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["Galaxy Friends","EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-                    ["13 Donkeys","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["ADAM","EXPERT 13",13.4,false,"INFERNO 0",0.0,],
-                    ["ATARAX1A","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["HiGHER","EXPERT 12",12.2,false,"INFERNO 0",0.0,],
-                    ["Source of Creation","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["Exitium","EXPERT 14",14.1,false,"INFERNO 0",0.0,],
-                    ["Blaze","EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
-                    ["GRiDGALAXY","EXPERT 11",11.5,false,"INFERNO 0",0.0,],
-                    ["Jingle","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["BATTLE NO.1","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
-                    ["LEVATEiN feat. 野宮あゆみ","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["BIG HEAD BANGING","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["Knight Rider","EXPERT 13",13.3,false,"INFERNO 0",0.0,],
-                    ["PARALLEL★PRISM","EXPERT 10+",10.8,false,"INFERNO 0",0.0,],
-                    ["Rainbow Dream","EXPERT 11",11.4,false,"INFERNO 0",0.0,],
-                    ["Quon","EXPERT 12+",12.8,false,"INFERNO 13+",13.9,false],
-                    ["Poseidon","EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
-                    ["HELL FLAME","EXPERT 12+",12.7,false,"INFERNO 13+",13.9,true],
-                    ["Gate One","EXPERT 12",12.0,false,"INFERNO 0",0.0,],
-                    ["Over My Hand","EXPERT 11",11.1,false,"INFERNO 0",0.0,],
-                    ["Are You Ready","EXPERT 12",12.5,false,"INFERNO 0",0.0,],
-                    ["MEMORiZE","EXPERT 10",10.0,false,"INFERNO 0",0.0,],
-                    ["illanai-assorted","EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
-                    ["Sunshine","EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-                    ["BOOM! BOOM!! BOOM!!!","EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-                    ["Ever Free(Raw Edit)","EXPERT 10",10.1,false,"INFERNO 0",0.0,],
-                    ["Try again","EXPERT 10",10.6,false,"INFERNO 0",0.0,],
-                    ["BLUE SKY feat. 野宮あゆみ","EXPERT 10",10.4,false,"INFERNO 0",0.0,],
-                    ["Sound Chimera","EXPERT 12+",12.8,false,"INFERNO 13+",13.9,false],
-                    ["Soldiers","EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
-                    ["Fight for the CORE feat. Daisuke","EXPERT 12",12.6,false,"INFERNO 0",0.0,],
-                    ["Shining Harmony","EXPERT 12",12.2,false,"INFERNO 0",0.0,]
+                    ["ヒトガタ","NORMAL 3",3.0,true,"HARD 9+",9.7,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
+                    ["メニメニマニマニ","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 12",12.3,true,"INFERNO 0",0.0,],
+                    ["叩ケ 叩ケ 手ェ叩ケ","NORMAL 2",2.0,true,"HARD 7",7.3,true,"EXPERT 12",12.3,true,"INFERNO 13+",13.8,true],
+                    ["Fly to NEW WORLD","NORMAL 3",3.0,true,"HARD 8",8.3,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,],
+                    ["透明声彩","NORMAL 3",3.0,true,"HARD 7",7.6,true,"EXPERT 11+",11.8,true,"INFERNO 0",0.0,],
+                    ["うっせぇわ","NORMAL 3",3.0,true,"HARD 9",9.6,true,"EXPERT 12",12.2,true,"INFERNO 13",13.2,true],
+                    ["Fam☆Fam☆Time!","NORMAL 3",3.0,true,"HARD 8",8.2,true,"EXPERT 11+",11.9,true,"INFERNO 0",0.0,],
+                    ["cœur","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["私はNo 1！","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["ソロモン・ナイト","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 13",13.4,false,"INFERNO 0",0.0,],
+                    ["LOVE!HUG!GROOVY!!","NORMAL 4",4.0,false,"HARD 8+",8.7,false,"EXPERT 12",12.4,false,"INFERNO 13",13.5,false],
+                    ["Dig Delight!","NORMAL 3",3.0,false,"HARD 8",8.3,false,"EXPERT 11",11.4,false,"INFERNO 0",0.0,],
+                    ["電乱★カウントダウン","NORMAL 4",4.0,false,"HARD 7+",7.8,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["Photon Melodies","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["ぐるぐるDJ TURN!!","NORMAL 4",4.0,false,"HARD 10",10.1,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["sister's noise","NORMAL 2",2.0,false,"HARD 6",6.0,false,"EXPERT 10",10.1,false,"INFERNO 0",0.0,],
+                    ["なだめスかし Negotiation","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
+                    ["サクリファイス","NORMAL 3",3.0,false,"HARD 9",9.1,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["非実在系女子たちはどうすりゃいいですか？","NORMAL 3",3.0,false,"HARD 8",8.5,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["ぺこみこ大戦争！！","NORMAL 4",4.0,false,"HARD 8",8.4,false,"EXPERT 11",11.2,false,"INFERNO 13",13.2,false],
+                    ["Say!ファンファーレ!","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["NEXT COLOR PLANET","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["夢見る空へ","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["お願いマッスル","NORMAL 1",1.0,false,"HARD 7+",7.7,false,"EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
+                    ["マッチョアネーム？","NORMAL 2",2.0,false,"HARD 6",6.6,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["HELLO to DREAM","NORMAL 1",1.0,false,"HARD 6",6.5,false,"EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
+                    ["over and over","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["トロピカッ☆バケーション","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
+                    ["秒針を噛む","NORMAL 2",2.0,false,"HARD 6+",6.8,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
+                    ["ないものねだり","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.1,false,"INFERNO 0",0.0,],
+                    ["HOT LIMIT","NORMAL 3",3.0,false,"HARD 7+",7.9,false,"EXPERT 10",10.0,false,"INFERNO 0",0.0,],
+                    ["キラメキライダー☆","NORMAL 2",2.0,false,"HARD 7",7.0,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["ガヴリールドロップキック","NORMAL 3",3.0,false,"HARD 6+",6.9,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
+                    ["This game","NORMAL 2",2.0,false,"HARD 7",7.6,false,"EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
+                    ["RAGE OF DUST","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 9",9.6,false,"INFERNO 0",0.0,],
+                    ["Make it！","NORMAL 1",1.0,false,"HARD 5",5.1,false,"EXPERT 9",9.4,false,"INFERNO 0",0.0,],
+                    ["Make it！ (DJ Genki Remix)","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["キラッとスタート","NORMAL 2",2.0,false,"HARD 7",7.4,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
+                    ["キラッとスタート (USAO Remix)","NORMAL 4",4.0,false,"HARD 8",8.2,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["ハート♥イロ♥トリドリ〜ム","NORMAL 1",1.0,false,"HARD 6",6.0,false,"EXPERT 10",10.1,false,"INFERNO 0",0.0,],
+                    ["ダダダダ天使","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["青空のラプソディ","NORMAL 2",2.0,false,"HARD 6+",6.8,false,"EXPERT 9",9.3,false,"INFERNO 11",11.0,true],
+                    ["Bravely You","NORMAL 1",1.0,false,"HARD 6",6.5,false,"EXPERT 9",9.5,false,"INFERNO 0",0.0,],
+                    ["ぼなぺてぃーと♡S","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["デタラメなマイナスとプラスにおけるブレンド考","NORMAL 2",2.0,false,"HARD 5+",5.7,false,"EXPERT 10",10.0,false,"INFERNO 0",0.0,],
+                    ["輪廻転生","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["ストライク・ザ・ブラッド","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["新宝島","NORMAL 1",1.0,false,"HARD 6",6.3,false,"EXPERT 9",9.4,false,"INFERNO 0",0.0,],
+                    ["U.S.A.","NORMAL 2",2.0,false,"HARD 7",7.1,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
+                    ["Shiny Smily Story","NORMAL 3",3.0,false,"HARD 6",6.5,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["Dream☆Story","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 11",11.2,false,"INFERNO 0",0.0,],
+                    ["without U","NORMAL 3",3.0,false,"HARD 7",7.2,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
+                    ["シャルル","NORMAL 3",3.0,false,"HARD 7",7.1,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["ドラマツルギー","NORMAL 2",2.0,false,"HARD 7",7.4,false,"EXPERT 10",10.1,false,"INFERNO 0",0.0,],
+                    ["オドループ","NORMAL 3",3.0,false,"HARD 7+",7.9,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["only my railgun","NORMAL 3",3.0,false,"HARD 6+",6.7,false,"EXPERT 9",9.5,false,"INFERNO 0",0.0,],
+                    ["You Only Live Once","NORMAL 1",1.0,false,"HARD 5",5.4,false,"EXPERT 9",9.1,false,"INFERNO 0",0.0,],
+                    ["残酷な天使のテーゼ","NORMAL 1",1.0,false,"HARD 5",5.3,false,"EXPERT 9",9.3,false,"INFERNO 0",0.0,],
+                    ["ただ君に晴れ","NORMAL 3",3.0,false,"HARD 7",7.0,false,"EXPERT 9",9.6,false,"INFERNO 0",0.0,],
+                    ["The Light","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
+                    ["AIAIAI (feat. 中田ヤスタカ)","NORMAL 1",1.0,false,"HARD 6",6.4,false,"EXPERT 9",9.4,false,"INFERNO 0",0.0,],
+                    ["Hello, Morning","NORMAL 2",2.0,false,"HARD 7",7.1,false,"EXPERT 11",11.2,false,"INFERNO 0",0.0,],
+                    ["Raise Your Heart!!","NORMAL 3",3.0,false,"HARD 7",7.4,false,"EXPERT 10",10.6,false,"INFERNO 0",0.0,],
+                    ["SHINY DAYS","NORMAL 1",1.0,false,"HARD 5",5.2,false,"EXPERT 9",9.0,false,"INFERNO 0",0.0,],
+                    ["EXCITE","NORMAL 1",1.0,false,"HARD 6",6.5,false,"EXPERT 10",10.0,false,"INFERNO 0",0.0,],
+                    ["ファティマ","NORMAL 2",2.0,false,"HARD 6+",6.8,false,"EXPERT 9",9.5,false,"INFERNO 0",0.0,],
+                    ["回レ！雪月花","NORMAL 2",2.0,false,"HARD 8",8.0,false,"EXPERT 11",11.0,false,"INFERNO 13+",13.8,true],
+                    ["ピースサイン","NORMAL 2",2.0,false,"HARD 6+",6.9,false,"EXPERT 9+",9.8,false,"INFERNO 0",0.0,],
+                    ["徒花ネクロマンシー","NORMAL 3",3.0,false,"HARD 6+",6.9,false,"EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
+                    ["ようこそジャパリパークへ","NORMAL 2",2.0,false,"HARD 7",7.6,false,"EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
+                    ["POP TEAM EPIC","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 11",11.4,false,"INFERNO 0",0.0,],
+                    ["ファッとして桃源郷","NORMAL 3",3.0,false,"HARD 9",9.3,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["Nameless Story","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["TOMORROW","NORMAL 3",3.0,false,"HARD 8",8.0,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["五等分の気持ち","NORMAL 2",2.0,false,"HARD 6",6.1,false,"EXPERT 9+",9.9,false,"INFERNO 0",0.0,],
+                    ["ギミチョコ!!","NORMAL 4",4.0,false,"HARD 10",10.3,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["ウマーベラス","NORMAL 1",1.0,false,"HARD 6+",6.8,false,"EXPERT 9+",9.8,false,"INFERNO 0",0.0,],
+                    ["ワールズエンド・ダンスホール","NORMAL 3",3.0,true,"HARD 8",8.6,true,"EXPERT 12",12.5,true,"INFERNO 0",0.0,],
+                    ["炉心融解","NORMAL 2",2.0,true,"HARD 8",8.6,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,],
+                    ["∞(2018Remake)","NORMAL 3",3.0,true,"HARD 8+",8.7,true,"EXPERT 13+",13.8,true,"INFERNO 0",0.0,],
+                    ["ちがう!!!","NORMAL 4",4.0,true,"HARD 9+",9.7,true,"EXPERT 12",12.4,true,"INFERNO 0",0.0,],
+                    ["おねがいダーリン","NORMAL 4",4.0,true,"HARD 9",9.3,true,"EXPERT 11",11.6,true,"INFERNO 0",0.0,],
+                    ["怪盗Fの台本（シナリオ）〜消えたダイヤの謎〜","NORMAL 3",3.0,true,"HARD 9",9.1,true,"EXPERT 13+",13.7,true,"INFERNO 0",0.0,],
+                    ["KING","NORMAL 2",2.0,true,"HARD 8",8.0,true,"EXPERT 11",11.6,true,"INFERNO 0",0.0,],
+                    ["ダーリンダンス","NORMAL 2",2.0,true,"HARD 8+",8.7,true,"EXPERT 12+",12.8,true,"INFERNO 0",0.0,],
+                    ["トリノコシティ","NORMAL 3",3.0,true,"HARD 7+",7.7,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,],
+                    ["サマータイムレコード","NORMAL 3",3.0,,"HARD 7+",7.8,,"EXPERT 11+",11.9,,"INFERNO 0",0.0,],
+                    ["テレキャスタービーボーイ","NORMAL 3",3.0,false,"HARD 8+",8.9,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
+                    ["フィクサー","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["バレリーコ","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["だれかの心臓になれたなら","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
+                    ["六兆年と一夜物語","NORMAL 4",4.0,false,"HARD 8+",8.9,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["ワールドイズマイン","NORMAL 3",3.0,false,"HARD 8",8.3,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["進捗どうですか！","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["ぼくらの16bit戦争","NORMAL 4",4.0,false,"HARD 9",9.1,false,"EXPERT 13",13.4,false,"INFERNO 0",0.0,],
+                    ["隔絶≡タナトス","NORMAL 4",4.0,false,"HARD 8",8.5,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["アスノヨゾラ哨戒班","NORMAL 3",3.0,false,"HARD 7",7.6,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
+                    ["ヒビカセ","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["脳漿炸裂ガール","NORMAL 5",5.0,false,"HARD 9",9.5,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["ポジティブ☆ダンスタイム","NORMAL 3",3.0,false,"HARD 8+",8.9,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["Gimme×Gimme feat. 初音ミク・鏡音リン","NORMAL 2",2.0,false,"HARD 8",8.1,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["39みゅーじっく！","NORMAL 2",2.0,false,"HARD 7",7.4,false,"EXPERT 10+",10.9,false,"INFERNO 0",0.0,],
+                    ["ブリキノダンス","NORMAL 3",3.0,false,"HARD 7+",7.9,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["チュルリラ・チュルリラ・ダッダッダ！","NORMAL 4",4.0,false,"HARD 8",8.3,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["おばけのウケねらい","NORMAL 3",3.0,false,"HARD 8",8.0,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["ベノム","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
+                    ["リアル初音ミクの消失","NORMAL 6",6.0,false,"HARD 10",10.2,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["セツナトリップ","NORMAL 3",3.0,false,"HARD 9",9.0,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
+                    ["カゲロウデイズ","NORMAL 4",4.0,false,"HARD 9",9.5,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["天ノ弱","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 10",10.1,false,"INFERNO 0",0.0,],
+                    ["ゴーストルール","NORMAL 3",3.0,false,"HARD 9",9.0,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["ロストワンの号哭","NORMAL 4",4.0,false,"HARD 8",8.3,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["いーあるふぁんくらぶ","NORMAL 2",2.0,false,"HARD 6",6.5,false,"EXPERT 10",10.0,false,"INFERNO 0",0.0,],
+                    ["初音ミクの消失","NORMAL 5",5.0,false,"HARD 10",10.6,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["劣等上等","NORMAL 3",3.0,false,"HARD 8",8.0,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
+                    ["アカリがやってきたぞっ","NORMAL 3",3.0,false,"HARD 8",8.5,false,"EXPERT 11",11.2,false,"INFERNO 0",0.0,],
+                    ["太陽系デスコ","NORMAL 2",2.0,false,"HARD 7",7.4,false,"EXPERT 10+",10.7,false,"INFERNO 0",0.0,],
+                    ["気まぐれメルシィ feat. 初音ミク","NORMAL 3",3.0,false,"HARD 7",7.4,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["幸せになれる隠しコマンドがあるらしい","NORMAL 5",5.0,false,"HARD 10",10.5,false,"EXPERT 13",13.3,false,"INFERNO 0",0.0,],
+                    ["千本桜","NORMAL 2",2.0,false,"HARD 7+",7.9,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["エイリアンエイリアン","NORMAL 2",2.0,false,"HARD 6+",6.7,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["砂の惑星 feat. 初音ミク","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["マトリョシカ","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["Seyana. ～何でも言うことを聞いてくれるアカネチャン～","NORMAL 2",2.0,false,"HARD 9",9.3,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["フラジール","NORMAL 1",1.0,false,"HARD 7",7.0,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["ロキ","NORMAL 4",4.0,false,"HARD 9",9.4,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["ウミユリ海底譚","NORMAL 1",1.0,false,"HARD 7",7.1,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
+                    ["スクランブル交際","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
+                    ["乙女解剖","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 9",9.2,false,"INFERNO 0",0.0,],
+                    ["Crime Wave","NORMAL 3",3.0,true,"HARD 8",8.1,true,"EXPERT 12+",12.7,true,"INFERNO 0",0.0,],
+                    ["チルノは覚醒サマーデイズ！","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["エピクロスの虹はもう見えない","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["ARROW RAIN feat.ayame","NORMAL 5",5.0,false,"HARD 9",9.2,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["四次元跳躍機関","NORMAL 2",2.0,false,"HARD 9",9.1,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Destructive Little Sister","NORMAL 5",5.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["物凄い勢いでけーねが物凄いうた","NORMAL 4",4.0,false,"HARD 9+",9.9,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["患部で止まってすぐ溶ける ～ 狂気の優曇華院","NORMAL 3",3.0,false,"HARD 9+",9.8,false,"EXPERT 13",13.2,false,"INFERNO 0",0.0,],
+                    ["Scream out!","NORMAL 4",4.0,false,"HARD 8",8.1,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["ホイホイ☆幻想ホロイズム","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Help me, ERINNNNNN!!","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["進捗どうですか？","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["Sweet Requiem","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["明星ロケット","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["ゆけむり魂温泉 II","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["Calamity Fortune","NORMAL 4",4.0,false,"HARD 10",10.0,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["ケロ⑨Destiny","NORMAL 2",2.0,false,"HARD 6",6.2,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["風に乗せた願い","NORMAL 3",3.0,false,"HARD 7",7.1,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["LOVE EAST","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
+                    ["天狗の落とし文 feat. ytr","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
+                    ["神寂","NORMAL 4",4.0,false,"HARD 10+",10.8,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["悪戯センセーション","NORMAL 2",2.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)","NORMAL 5",5.0,false,"HARD 10",10.5,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+                    ["Mami Mami Zone","NORMAL 4",4.0,false,"HARD 9",9.2,false,"EXPERT 11",11.4,false,"INFERNO 0",0.0,],
+                    ["チルノのパーフェクトさんすう教室","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["待チ人ハ来ズ。","NORMAL 2",2.0,false,"HARD 6",6.4,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["taboo tears you up 2017","NORMAL 4",4.0,false,"HARD 9+",9.8,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Bad Apple!! feat. nomico","NORMAL 1",1.0,false,"HARD 5",5.5,false,"EXPERT 9",9.3,false,"INFERNO 0",0.0,],
+                    ["ナイト・オブ・ナイツ","NORMAL 3",3.0,false,"HARD 9",9.0,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["WARNING×WARNING×WARNING","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["シャカリキ・ファイト・ブンブン","NORMAL 3",3.0,false,"HARD 6+",6.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["ニュー・ウェーブ","NORMAL 2",2.0,false,"HARD 6",6.1,false,"EXPERT 9",9.3,false,"INFERNO 0",0.0,],
+                    ["ガンガン・ドンドン","NORMAL 2",2.0,false,"HARD 6",6.0,false,"EXPERT 9+",9.7,false,"INFERNO 0",0.0,],
+                    ["スマイル・アンド・ティアズ","NORMAL 2",2.0,false,"HARD 6",6.1,false,"EXPERT 9",9.5,false,"INFERNO 0",0.0,],
+                    ["STILL HOT IN MY HEART","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["Over the sweat and tears","NORMAL 1",1.0,false,"HARD 5",5.6,false,"EXPERT 9",9.4,false,"INFERNO 0",0.0,],
+                    ["花たちに希望を","NORMAL 3",3.0,true,"HARD 9+",9.8,true,"EXPERT 12",12.4,true,"INFERNO 0",0.0,],
+                    ["NightTheater","NORMAL 3",3.0,true,"HARD 10",10.0,true,"EXPERT 13",13.0,true,"INFERNO 0",0.0,],
+                    ["恋のMoonlight","NORMAL 2",2.0,true,"HARD 8",8.0,true,"EXPERT 11+",11.8,true,"INFERNO 0",0.0,],
+                    ["Comet Coaster","NORMAL 5",5.0,true,"HARD 9+",9.9,true,"EXPERT 13",13.3,true,"INFERNO 0",0.0,],
+                    ["XODUS","NORMAL 5",5.0,true,"HARD 11",11.0,true,"EXPERT 14",14.0,true,"INFERNO 0",0.0,],
+                    ["Lights of Muse","NORMAL 3",3.0,true,"HARD 9+",9.9,true,"EXPERT 12",12.0,true,"INFERNO 0",0.0,],
+                    ["The 90's Decision","NORMAL 4",4.0,true,"HARD 9",9.5,true,"EXPERT 13",13.5,true,"INFERNO 0",0.0,],
+                    ["粉骨砕身カジノゥ","NORMAL 3",3.0,true,"HARD 8",8.1,true,"EXPERT 13",13.6,true,"INFERNO 0",0.0,],
+                    ["Avant Raze","NORMAL 3",3.0,true,"HARD 8",8.0,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
+                    ["#1f1e33","NORMAL 3",3.0,true,"HARD 10+",10.9,true,"EXPERT 13+",13.9,true,"INFERNO 0",0.0,],
+                    ["Arcahv","NORMAL 3",3.0,true,"HARD 10",10.5,true,"EXPERT 13",13.6,true,"INFERNO 0",0.0,],
+                    ["最強STRONGER","NORMAL 5",5.0,true,"HARD 10",10.6,true,"EXPERT 14",14.0,true,"INFERNO 0",0.0,],
+                    ["Let you DIVE! (nitro rmx)","NORMAL 4",4.0,true,"HARD 8+",8.7,true,"EXPERT 12+",12.8,true,"INFERNO 0",0.0,],
+                    ["Sheriruth (Laur Remix)","NORMAL 4",4.0,true,"HARD 10",10.3,true,"EXPERT 13",13.3,true,"INFERNO 0",0.0,],
+                    ["さんさーら！","NORMAL 2",2.0,false,"HARD 7+",7.9,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Night Club Junkie","NORMAL 2",2.0,false,"HARD 6+",6.8,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["PUPA","NORMAL 4",4.0,false,"HARD 8",8.6,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["Destr0yer","NORMAL 5",5.0,false,"HARD 8+",8.7,false,"EXPERT 13",13.0,false,"INFERNO 0",0.0,],
+                    ["もぺもぺ","NORMAL 4",4.0,false,"HARD 8",8.2,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["MAGENTA POTION","NORMAL 4",4.0,false,"HARD 8",8.1,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["進捗WARS feat．ビートまりお","NORMAL 3",3.0,false,"HARD 7",7.0,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["Apocalypse","NORMAL 2",2.0,false,"HARD 7",7.6,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["You are the Miserable","NORMAL 3",3.0,false,"HARD 10",10.0,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["Stasis","NORMAL 3",3.0,false,"HARD 10",10.2,false,"EXPERT 13",13.6,false,"INFERNO 0",0.0,],
+                    ["Rainmaker","NORMAL 4",4.0,false,"HARD 9+",9.9,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["Weg","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["From Zero feat. 利香","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11+",11.8,false,"INFERNO 0",0.0,],
+                    ["PRESS START!","NORMAL 4",4.0,false,"HARD 8+",8.7,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["TWISTSTEP","NORMAL 3",3.0,false,"HARD 8+",8.8,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Future Cαndy","NORMAL 3",3.0,false,"HARD 9",9.1,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Fish Fight!","NORMAL 4",4.0,false,"HARD 9",9.0,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
+                    ["THERAPY","NORMAL 4",4.0,false,"HARD 9",9.1,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["グルーヴ・ザ・ハート","NORMAL 4",4.0,false,"HARD 8",8.5,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["Got more raves?","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["Good Night, Bad Luck.","NORMAL 5",5.0,13.7,"HARD 10+",10.7,13.7,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["Grayed Out-Antifront-","NORMAL 3",3.0,false,"HARD 9",9.6,false,"EXPERT 13",13.2,false,"INFERNO 0",0.0,],
+                    ["インドア系ならトラックメイカー","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["ダンシング☆サムライ","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["WHITE","NORMAL 3",3.0,false,"HARD 8",8.0,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
+                    ["Brain Power","NORMAL 4",4.0,false,"HARD 9+",9.7,false,"EXPERT 13",13.0,false,"INFERNO 0",0.0,],
+                    ["聖者の鼓動","NORMAL 2",2.0,false,"HARD 7",7.6,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["BUCHiGiRE Berserker","NORMAL 4",4.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["君のStarlight Road","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
+                    ["FUJIN Rumble","NORMAL 5",5.0,false,"HARD 10+",10.8,false,"EXPERT 13",13.6,false,"INFERNO 0",0.0,],
+                    ["Eyes on me feat. Such","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["GOODWORLD","NORMAL 2",2.0,false,"HARD 9",9.1,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["Altale","NORMAL 4",4.0,false,"HARD 9",9.3,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["ベースラインやってる？笑","NORMAL 4",4.0,false,"HARD 9+",9.9,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["EU over Progress","NORMAL 6",6.0,false,"HARD 10+",10.7,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["燐廻","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.1,false,"INFERNO 0",0.0,],
+                    ["『エキセントリック少年ボウイ』のテーマ","NORMAL 1",1.0,false,"HARD 5+",5.7,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["Jägermeister","NORMAL 3",3.0,false,"HARD 8+",8.8,false,"EXPERT 11",11.2,false,"INFERNO 0",0.0,],
+                    ["What's this?","NORMAL 3",3.0,false,"HARD 6",6.3,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
+                    ["FREEDOM DiVE↓","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["Honey Panic!","NORMAL 3",3.0,false,"HARD 9",9.4,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["Pixel Galaxy","NORMAL 2",2.0,false,"HARD 7",7.2,false,"EXPERT 10+",10.8,false,"INFERNO 0",0.0,],
+                    ["集結の華々","NORMAL 2",2.0,false,"HARD 6",6.3,false,"EXPERT 10+",10.9,false,"INFERNO 0",0.0,],
+                    ["conflict","NORMAL 5",5.0,false,"HARD 10",10.3,false,"EXPERT 13",13.4,false,"INFERNO 0",0.0,],
+                    ["こんにちは、ARuFaです。","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["ぼくの夢、メチャクソ無限湧き","NORMAL 4",4.0,false,"HARD 9",9.6,false,"EXPERT 12",12.6,false,"INFERNO 13+",13.8,false],
+                    ["ゲームオーバー (feat. TORIENA)","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["ルーンファクトリー４スペシャルより「この想いを乗せて」","NORMAL 1",1.0,false,"HARD 5",5.6,false,"EXPERT 9",9.0,false,"INFERNO 0",0.0,],
+                    ["Ouvertüre","NORMAL 3",3.0,true,"HARD 9",9.6,true,"EXPERT 13",13.3,true,"INFERNO 0",0.0,],
+                    ["Love Kills U","NORMAL 4",4.0,true,"HARD 8",8.4,true,"EXPERT 12",12.5,true,"INFERNO 0",0.0,],
+                    ["Kira☆Kira☆Night","NORMAL 5",5.0,true,"HARD 9",9.6,true,"EXPERT 12+",12.9,true,"INFERNO 0",0.0,],
+                    ["YOG","NORMAL 4",4.0,true,"HARD 9+",9.7,true,"EXPERT 13+",13.8,true,"INFERNO 0",0.0,],
+                    ["Lost Illusion","NORMAL 4",4.0,false,"HARD 10+",10.7,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Cauliflower","NORMAL 4",4.0,false,"HARD 8+",8.7,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["Purple Skies","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Lhaksha","NORMAL 3",3.0,false,"HARD 9",9.6,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["LIN NE KRO NE feat. lasah","NORMAL 4",4.0,false,"HARD 9",9.0,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["フリーフォール","NORMAL 4",4.0,false,"HARD 8+",8.8,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["猫娘","NORMAL 6",6.0,false,"HARD 10",10.6,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["QiXiN MAdN3ss 2153","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["ARTEMiS","NORMAL 4",4.0,false,"HARD 10",10.6,false,"EXPERT 13+",13.9,false,"INFERNO 0",0.0,],
+                    ["with U","NORMAL 3",3.0,false,"HARD 7+",7.9,false,"EXPERT 11+",11.8,false,"INFERNO 13",13.6,false],
+                    ["Tell Me","NORMAL 3",3.0,false,"HARD 7+",7.9,false,"EXPERT 11+",11.8,false,"INFERNO 0",0.0,],
+                    ["LETHAL;WEAPON","NORMAL 3",3.0,false,"HARD 8",8.0,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["THE MUZZLE FACING","NORMAL 4",4.0,false,"HARD 9+",9.8,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["GASHATT","NORMAL 4",4.0,false,"HARD 10",10.1,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Demon's Rave","NORMAL 5",5.0,false,"HARD 10",10.0,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["jacaranda","NORMAL 4",4.0,false,"HARD 9",9.3,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["CHECKER FLAG","NORMAL 3",3.0,false,"HARD 7",7.2,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["Stratoliner","NORMAL 4",4.0,false,"HARD 9+",9.8,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["Utopia feat. shully","NORMAL 5",5.0,false,"HARD 9",9.4,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["Let you DIVE!","NORMAL 3",3.0,false,"HARD 9+",9.7,false,"EXPERT 11+",11.8,false,"INFERNO 13",13.4,false],
+                    ["Break Through Myself feat. Risa Yuzuki","NORMAL 4",4.0,true,"HARD 10",10.2,true,"EXPERT 13",13.4,true,"INFERNO 0",0.0,],
+                    ["D3LTA QOMPLEX","NORMAL 4",4.0,true,"HARD 9+",9.9,true,"EXPERT 13",13.1,true,"INFERNO 0",0.0,],
+                    ["Chobit Flavor","NORMAL 3",3.0,true,"HARD 9",9.2,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
+                    ["Machinery of Avoid","NORMAL 4",4.0,true,"HARD 8",8.5,true,"EXPERT 12+",12.7,true,"INFERNO 0",0.0,],
+                    ["Datamania (tpz Overheat Remix)","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
+                    ["超MANJIラッシュ","NORMAL 5",5.0,true,"HARD 9+",9.7,true,"EXPERT 13+",13.7,true,"INFERNO 0",0.0,],
+                    ["Meta-Mysteria","NORMAL 6",6.0,true,"HARD 11",11.0,true,"EXPERT 14",14.1,true,"INFERNO 0",0.0,],
+                    ["Eternal Ending","NORMAL 5",5.0,false,"HARD 10+",10.9,false,"EXPERT 13",13.4,false,"INFERNO 0",0.0,],
+                    ["EVE","NORMAL 4",4.0,false,"HARD 9",9.2,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+                    ["eden","NORMAL 4",4.0,false,"HARD 10",10.5,false,"EXPERT 13",13.3,false,"INFERNO 14",14.1,false],
+                    ["Silentphobia","NORMAL 4",4.0,false,"HARD 10",10.3,false,"EXPERT 13",13.6,false,"INFERNO 14",14.1,false],
+                    ["やけにインザレイン feat. 小林私","NORMAL 3",3.0,false,"HARD 10",10.3,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+                    ["Traveller feat.moimoi","NORMAL 2",2.0,false,"HARD 8",8.4,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["FLVSH OUT","NORMAL 4",4.0,false,"HARD 9+",9.8,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["BSCS","NORMAL 4",4.0,false,"HARD 8+",8.8,false,"EXPERT 13",13.3,false,"INFERNO 0",0.0,],
+                    ["Popping Happiness!","NORMAL 4",4.0,false,"HARD 8",8.5,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Madwing","NORMAL 5",5.0,false,"HARD 9+",9.9,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["TRICKL4SH 220","NORMAL 4",4.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["SHAKE!","NORMAL 4",4.0,false,"HARD 9",9.5,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["DUAL BREAKER XX","NORMAL 6",6.0,false,"HARD 10+",10.8,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["Megaton Killer","NORMAL 5",5.0,false,"HARD 10",10.0,false,"EXPERT 13",13.6,false,"INFERNO 0",0.0,],
+                    ["ATAMA WARUI","NORMAL 5",5.0,false,"HARD 9",9.1,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["Liberate","NORMAL 4",4.0,false,"HARD 9",9.5,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+                    ["Animosity","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["Big Bang","NORMAL 7",7.0,false,"HARD 11",11.0,false,"EXPERT 14",14.0,false,"INFERNO 0",0.0,],
+                    ["恋メタル","NORMAL 3",3.0,false,"HARD 8+",8.8,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["はげしこの夜 -Psylent Crazy Night-","NORMAL 4",4.0,false,"HARD 8+",8.8,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["パニックポップ☆フェスティバル!!!","NORMAL 5",5.0,false,"HARD 10",10.0,false,"EXPERT 13",13.3,false,"INFERNO 0",0.0,],
+                    ["Stasis feat.motoko -WACCA EDiT-","NORMAL 4",4.0,false,"HARD 7+",7.9,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["RAV#GIRL","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["KALACAKLA","NORMAL 4",4.0,false,"HARD 8",8.0,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["Poppin' Shower","NORMAL 3",3.0,false,"HARD 9+",9.8,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["While Shining feat.Yukacco","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["ALiVE","NORMAL 3",3.0,false,"HARD 7+",7.8,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
+                    ["ONOMATO Pairing!!!","NORMAL 2",2.0,false,"HARD 8",8.5,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["SUPER REACTOR","NORMAL 4",4.0,false,"HARD 8",8.2,false,"EXPERT 13",13.0,false,"INFERNO 0",0.0,],
+                    ["GENOCIDER","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 14",14.1,false,"INFERNO 0",0.0,],
+                    ["ツアー・ファイナル","NORMAL 3",3.0,false,"HARD 9",9.4,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["Metamorphose","NORMAL 4",4.0,false,"HARD 10",10.3,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["MAGiC4LG1RL M3GA S7R1KE!","NORMAL 4",4.0,false,"HARD 10",10.0,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+                    ["METEOR BURST","NORMAL 5",5.0,false,"HARD 10+",10.9,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["XTREME","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 12+",12.9,false,"INFERNO 14",14.0,false],
+                    ["天使光輪","NORMAL 7",7.0,false,"HARD 11",11.0,false,"EXPERT 13",13.2,false,"INFERNO 14",14.1,false],
+                    ["Ultra Red","NORMAL 3",3.0,false,"HARD 9",9.6,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["サイクルヒット","NORMAL 5",5.0,false,"HARD 10",10.5,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
+                    ["Strange Bar","NORMAL 3",3.0,false,"HARD 10",10.2,false,"EXPERT 12+",12.8,false,"INFERNO 0",0.0,],
+                    ["Murasaki","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Mazy Metroplex","NORMAL 4",4.0,false,"HARD 10+",10.8,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["LOSE CONTROL","NORMAL 3",3.0,false,"HARD 8",8.1,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["†DOOF†SENC†","NORMAL 6",6.0,false,"HARD 10",10.4,false,"EXPERT 13",13.6,false,"INFERNO 0",0.0,],
+                    ["Shiny Memory feat.Yukacco","NORMAL 3",3.0,false,"HARD 9+",9.8,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["BLVST BEVT","NORMAL 4",4.0,false,"HARD 10",10.0,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["JINGLE DEATH","NORMAL 4",4.0,false,"HARD 10",10.4,false,"EXPERT 13",13.2,false,"INFERNO 0",0.0,],
+                    ["Invisible Frenzy","NORMAL 7",7.0,false,"HARD 11",11.0,false,"EXPERT 14",14.0,false,"INFERNO 0",0.0,],
+                    ["VOX Diamond","NORMAL 4",4.0,false,"HARD 7+",7.9,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["Chariot","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.4,false,"INFERNO 0",0.0,],
+                    ["Akareram","NORMAL 3",3.0,false,"HARD 8",8.5,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["Galaxy Friends","NORMAL 4",4.0,false,"HARD 8+",8.9,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
+                    ["13 Donkeys","NORMAL 2",2.0,false,"HARD 8",8.4,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["ADAM","NORMAL 5",5.0,false,"HARD 10",10.2,false,"EXPERT 13",13.4,false,"INFERNO 0",0.0,],
+                    ["ATARAX1A","NORMAL 4",4.0,false,"HARD 8",8.6,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["HiGHER","NORMAL 3",3.0,false,"HARD 8",8.5,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,],
+                    ["Source of Creation","NORMAL 3",3.0,false,"HARD 8",8.1,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["Exitium","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 14",14.1,false,"INFERNO 0",0.0,],
+                    ["Blaze","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+                    ["GRiDGALAXY","NORMAL 4",4.0,false,"HARD 8",8.3,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
+                    ["Jingle","NORMAL 4",4.0,false,"HARD 9+",9.7,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["BATTLE NO.1","NORMAL 6",6.0,false,"HARD 10",10.5,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+                    ["LEVATEiN feat. 野宮あゆみ","NORMAL 4",4.0,false,"HARD 9",9.1,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["BIG HEAD BANGING","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["Knight Rider","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13",13.3,false,"INFERNO 0",0.0,],
+                    ["PARALLEL★PRISM","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 10+",10.8,false,"INFERNO 0",0.0,],
+                    ["Rainbow Dream","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 11",11.4,false,"INFERNO 0",0.0,],
+                    ["Quon","NORMAL 5",5.0,false,"HARD 10",10.6,false,"EXPERT 12+",12.8,false,"INFERNO 13+",13.9,false],
+                    ["Poseidon","NORMAL 5",5.0,false,"HARD 9+",9.9,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
+                    ["HELL FLAME","NORMAL 5",5.0,false,"HARD 10",10.4,false,"EXPERT 12+",12.7,false,"INFERNO 13+",13.9,true],
+                    ["Gate One","NORMAL 4",4.0,false,"HARD 9",9.5,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
+                    ["Over My Hand","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 11",11.1,false,"INFERNO 0",0.0,],
+                    ["Are You Ready","NORMAL 4",4.0,false,"HARD 10",10.1,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
+                    ["MEMORiZE","NORMAL 3",3.0,false,"HARD 8",8.1,false,"EXPERT 10",10.0,false,"INFERNO 0",0.0,],
+                    ["illanai-assorted","NORMAL 4",4.0,false,"HARD 8+",8.9,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
+                    ["Sunshine","NORMAL 4",4.0,false,"HARD 8",8.2,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
+                    ["BOOM! BOOM!! BOOM!!!","NORMAL 4",4.0,false,"HARD 10",10.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
+                    ["Ever Free(Raw Edit)","NORMAL 3",3.0,false,"HARD 8",8.3,false,"EXPERT 10",10.1,false,"INFERNO 0",0.0,],
+                    ["Try again","NORMAL 4",4.0,false,"HARD 8+",8.8,false,"EXPERT 10",10.6,false,"INFERNO 0",0.0,],
+                    ["BLUE SKY feat. 野宮あゆみ","NORMAL 3",3.0,false,"HARD 7",7.6,false,"EXPERT 10",10.4,false,"INFERNO 0",0.0,],
+                    ["Sound Chimera","NORMAL 5",5.0,false,"HARD 10+",10.8,false,"EXPERT 12+",12.8,false,"INFERNO 13+",13.9,false],
+                    ["Soldiers","NORMAL 4",4.0,false,"HARD 8+",8.8,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
+                    ["Fight for the CORE feat. Daisuke","NORMAL 4",4.0,false,"HARD 10+",10.7,false,"EXPERT 12",12.6,false,"INFERNO 0",0.0,],
+                    ["Shining Harmony","NORMAL 4",4.0,false,"HARD 9",9.6,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,]
                 ];
             }
 
@@ -657,6 +681,8 @@
 
                             // 難易度に応じた色を設定
                             let difficulty = '';
+                            if (level.indexOf('NORMAL') == 0) difficulty = 'normal';
+                            if (level.indexOf('HARD') == 0) difficulty = 'hard';
                             if (level.indexOf('EXPERT') == 0) difficulty = 'expert';
                             if (level.indexOf('INFERNO') == 0) difficulty = 'inferno';
 
@@ -672,7 +698,7 @@
                             }
 
                             // 倍数が上限値である場合に表示するアイコン
-                            const maxBadgeCode = '<span class="badge border align-text-top bg-secondary bg-gradient">MAX</span>';
+                            const maxBadgeCode = '<span class="badge-max badge border align-text-top bg-secondary bg-gradient">MAX</span>';
 
                             // 現在の譜面別レーティング
                             const adjustedRating = (multiplier * rating).toFixed(3);
@@ -773,6 +799,28 @@
                                 varSummedRateCurrents[listIndex] += Number(chart[6]);
                             }
 
+                            // 行に難易度に応じたクラスを追加
+                            switch (chart[1]) {
+                                case 'normal':
+                                    tableRow.classList.add('difficulty-normal');
+                                    break;
+
+                                case 'hard':
+                                    tableRow.classList.add('difficulty-hard');
+                                    break;
+
+                                case 'expert':
+                                    tableRow.classList.add('difficulty-expert');
+                                    break;
+
+                                case 'inferno':
+                                    tableRow.classList.add('difficulty-inferno');
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+
                             // 特定スコアに到達した際の総合レーティング上昇量
                             // [0: 950k, 1: 960k, 2: 970k, 3: 980k, 4: 990k]
                             const increases = targetMultipliers.map(multiplier => {
@@ -842,7 +890,7 @@
                         // 枠ごとの見出しにレーティングの各種数値を書き出し
                         singleRateLowers[listIndex].innerHTML = varSingleRateLowers[listIndex].toFixed(3);
                         summedRateCurrents[listIndex].innerHTML = varSummedRateCurrents[listIndex].toFixed(3);
-                        summedRateUppers[listIndex].innerHTML = varSummedRateUppers[listIndex].toFixed(3);
+                        summedRateUppers[listIndex].innerHTML = `MAX ${varSummedRateUppers[listIndex].toFixed(3)}`;
 
                         // 譜面数の合計を計算
                         const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
@@ -882,7 +930,7 @@
 
                     // 見出し部分に総合レーティングを書き出し
                     document.querySelector('#total-rate-current').innerHTML = totalRateCurrent;
-                    document.querySelector('#total-rate-upper').innerHTML = totalRateUpper;
+                    document.querySelector('#total-rate-upper').innerHTML = `MAX ${totalRateUpper}`;
                     
                     const targetDiv = document.querySelector('#total-rate-class');
                     const classColors = ['bg-plain', 'bg-navy', 'bg-yellow', 'bg-red', 'bg-purple', 'bg-blue', 'bg-silver', 'bg-gold', 'bg-rainbow'];
@@ -965,55 +1013,63 @@
                         localStorage.setItem('rating-analyzer-prev-date', formattedDate);
                     }
 
-                    // 表示設定を復元
-                    switch (localStorage.getItem('rating-analyzer-disp')) {
-                        case 'all':
-                            changeDisplayState(0);
-                            break;
-
-                        case 'summarized':
-                            changeDisplayState(1);
-                            break;
-                        
-                        case 'focused':
-                            changeDisplayState(2);
-                            break;
-
-                        default:
-                            break;
-                    }
+                    // フィルターを適用
+                    refreshChartVisibility();
                 }
             }
 
-            // レーティングへ影響しない譜面の表示状態を変更()
-            function changeDisplayState(mode) {
-                if (document.querySelectorAll('tr').length != 4) {
-                    document.querySelectorAll('.all-clear').forEach(tr => {
-                        // 初期化
-                        // mode == 0 : すべて表示する
-                        if (tr.classList.contains('d-none')) {
-                            tr.classList.remove('d-none');
-                            localStorage.setItem('rating-analyzer-disp', 'all');
-                            document.querySelector('#radio1-1').checked = true;
-                        }
-
-                        // mode == 1 : レーティング対象は表示する
-                        if (mode == 1) {
-                            if (!tr.classList.contains('table-primary')){
-                                tr.classList.add('d-none');
-                                localStorage.setItem('rating-analyzer-disp', 'summarized');
-                                document.querySelector('#radio1-2').checked = true;
-                            }
-                        }
-
-                        // mode == 2 : すべて非表示にする
-                        if (mode == 2) {
-                            tr.classList.add('d-none');
-                            localStorage.setItem('rating-analyzer-disp', 'focused');
-                            document.querySelector('#radio1-3').checked = true;
-                        }
-                    });
+            // 種類別フィルター
+            function toggleChartVisibilityByType(type, checked) {
+                const types = ['targets', 'candidates', 'others'];
+                if (types.includes(type) === false) {
+                    return false;
                 }
+
+                const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+                checkboxes.forEach(input => input.checked = checked);
+                localStorage.setItem(`rating-analyzer-filter-type-${type}`, checked);
+
+                const selectors = [
+                    'tr[data-index].table-primary',
+                    'tr[data-index].table-custom-orange',
+                    'tr[data-index]:not(.table-primary):not(.table-custom-orange)'
+                ]
+
+                const targetRows = document.querySelectorAll(selectors[types.indexOf(type)]);
+                targetRows.forEach(row => {
+                    if (checked) {
+                        row.classList.remove('type-hidden');
+                    } else {
+                        row.classList.add('type-hidden');
+                    }
+                });
+
+                refreshChartVisibility();
+            }
+
+            // 難易度別フィルター
+            function toggleChartVisibilityByDifficulty(difficulty, checked) {
+                const difficulties = ['normal', 'hard', 'expert', 'inferno'];
+
+                if (difficulties.includes(difficulty) === false) {
+                    return false;
+                }
+
+                const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+
+                checkboxes.forEach(input => input.checked = checked);
+                localStorage.setItem(`rating-analyzer-filter-difficulty-${difficulty}`, checked);
+
+                const targetRows = document.querySelectorAll(`.difficulty-${difficulty}`);
+                targetRows.forEach(row => {
+                    if (checked) {
+                        row.classList.remove('difficulty-hidden');
+                    } else {
+                        row.classList.add('difficulty-hidden');
+                    }
+                });
+
+                refreshChartVisibility();
             }
 
             // 列の固定表示の切り替え
@@ -1028,6 +1084,18 @@
                         data.classList.remove('sticky-disabled');
                     } else {
                         data.classList.add('sticky-disabled');
+                    }
+                });
+            }
+
+            // フィルターを更新
+            function refreshChartVisibility() {
+                const rows = document.querySelectorAll('tr[data-index]');
+                rows.forEach(row => {
+                    if (row.classList.contains('type-hidden') || row.classList.contains('difficulty-hidden')) {
+                        row.classList.add('d-none');
+                    } else {
+                        row.classList.remove('d-none');
                     }
                 });
             }
@@ -1121,40 +1189,58 @@
             }
 
             // 定数を取得(曲名, レベル文字列) => 0.0
-            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
             function getRatingValue(songTitle, diffValue) {
-                const rating = getRatingTable();
+                const rating = getChartTable();
                 
                 for (let i = 0; i < rating.length; i++) {
                     if (rating[i][0] == songTitle) {
-                        // [..., 1: EXPERTレベル, 2: EXPERT定数, ...]
+                        // [..., 1: NORMALレベル, 2: NORMAL定数, ...]
                         if (rating[i][1] == diffValue) {
                             return rating[i][2].toFixed(1);
                         }
 
-                        // [..., 4: INFERNOレベル, 5: INFERNO定数, ...]
+                        // [..., 4: HARDレベル, 5: HARD定数, ...]
                         if (rating[i][4] == diffValue) {
                             return rating[i][5].toFixed(1);
+                        }
+
+                        // [..., 7: EXPERTレベル, 8: EXPERT定数, ...]
+                        if (rating[i][7] == diffValue) {
+                            return rating[i][8].toFixed(1);
+                        }
+
+                        // [..., 10: INFERNOレベル, 11: INFERNO定数, ...]
+                        if (rating[i][10] == diffValue) {
+                            return rating[i][11].toFixed(1);
                         }
                     }
                 }
             }
 
             // 新曲枠か否かを確認(曲名, レベル文字列) => Boolean
-            // !!! 注意事項: 定数表の長さを変更した場合は、この関数内のインデックス値に変更の必要がないか確認すること
             function checkChartIsNew(songTitle, diffValue) {
-                const rating = getRatingTable();
+                const rating = getChartTable();
                 
                 for (let i = 0; i < rating.length; i++) {
                     if (rating[i][0] == songTitle) {
-                        // [..., 1: EXPERTレベル, ..., 3: EXPERTは新曲枠?, ...]
+                        // [..., 1: NORMALレベル, ..., 3: NORMALは新曲枠?, ...]
                         if (rating[i][1] == diffValue) {
                             return rating[i][3];
                         }
 
-                        // [..., 4: INFERNOレベル, ..., 6: INFERNOは新曲枠?]
+                        // [..., 4: HARDレベル, ..., 6: HARDは新曲枠?, ...]
                         if (rating[i][4] == diffValue) {
                             return rating[i][6];
+                        }
+
+                        // [..., 7: EXPERTレベル, ..., 9: EXPERTは新曲枠?, ...]
+                        if (rating[i][7] == diffValue) {
+                            return rating[i][9];
+                        }
+
+                        // [..., 10: INFERNOレベル, ..., 12: INFERNOは新曲枠?]
+                        if (rating[i][10] == diffValue) {
+                            return rating[i][12];
                         }
                     }
                 }
@@ -1313,7 +1399,6 @@
             // ユーザー設定を復元
             function loadUserPreference() {
                 try {
-                    const checkboxes = document.querySelectorAll('#table-sticky-toggle');
 
                     // 言語設定を復元
                     switch (localStorage.getItem('rating-analyzer-lang')) {
@@ -1330,7 +1415,26 @@
                     }
 
                     // 列の固定表示設定を復元
+                    const stickyCheckboxes = document.querySelectorAll('#table-sticky-toggle');
                     switch (localStorage.getItem('rating-analyzer-table-fixed')) {
+                        case 'true':
+                            stickyCheckboxes.forEach(input => input.checked = true);
+                            break;
+
+                        case 'false':
+                            stickyCheckboxes.forEach(input => input.checked = false);
+                            break;
+                    
+                        default:
+                            break;
+                    }
+
+                    // 種類別フィルターを復元
+                    const types = ['targets', 'candidates', 'others'];
+                    types.forEach(type => {
+                        const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+
+                        switch (localStorage.getItem(`rating-analyzer-filter-type-${type}`)) {
                         case 'true':
                             checkboxes.forEach(input => input.checked = true);
                             break;
@@ -1341,11 +1445,31 @@
                     
                         default:
                             break;
-                    }
+                        }
+                    })
+                    
+                    // 難易度別フィルターを復元
+                    const difficulties = ['normal', 'hard', 'expert', 'inferno'];
+                    difficulties.forEach(difficulty => {
+                        const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+
+                        switch (localStorage.getItem(`rating-analyzer-filter-difficulty-${difficulty}`)) {
+                        case 'true':
+                            checkboxes.forEach(input => input.checked = true);
+                            break;
+
+                        case 'false':
+                            checkboxes.forEach(input => input.checked = false);
+                            break;
+                    
+                        default:
+                            break;
+                        }
+                    })
 
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2021-12-14':
+                        case '2021-12-20':
                             document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
 
@@ -1401,7 +1525,7 @@
                     <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
                             <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-14'); return false;" id="news-toggle">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-20'); return false;" id="news-toggle">
                                     <span class="me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1428,13 +1552,7 @@
                                 <div class="accordion-body p-2">
                                     <div class="bg-light bg-opacity-50 border rounded shadow-sm p-2">
                                         <p class="h6 px-1 pb-1 border-bottom text-danger">
-                                            <span class="badge bg-danger align-bottom" id="news-badge">
-                                                <span class="lang-jpn">
-                                                    重要
-                                                </span>
-                                                <span class="lang-eng d-none">
-                                                    IMPORTANT
-                                                </span>
+                                            <span class="badge bg-danger align-bottom">IMPORTANT</span>
                                             </span>
                                             <span class="lang-jpn">
                                                 WACCAのRate計算システムに不具合
@@ -1443,26 +1561,92 @@
                                                 WACCA's Rate calculation system is currently in trouble
                                             </span>
                                         </p>
-                                        <p class="mx-2 my-0">
-                                            <span class="lang-jpn">WACCAのv3.03.00において、Rateの計算に不具合が発生しています。そのため、筐体やマイページで確認できるRateは、このプログラムで計算したものと異なります。理論上、このプログラムが示したRateが正確な値です。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a></span>
-                                            <span class="lang-eng d-none">In WACCA v3.03.00, there is a problem with the calculation of Rate. Therefore, the Rate you can see in the machine and My Page are different from the ones calculated by this program. My theory is that the Rate indicated by this program is the exact value. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a></span>
-                                        </p>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                WACCAのv3.03.00において、Rateの計算に不具合が発生しています。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                In WACCA v3.03.00, there is a problem with the calculation of Rate.
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                そのため、筐体やマイページで確認できるRateは、このプログラムで計算したものと異なります。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                Therefore, the Rate you can see in the machine and My Page are different from the ones calculated by this program.
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                理論上、このプログラムが示したRateが正確な値です。<a href="https://info-wacca.marv.jp/article/13637">詳細はこちら...</a>
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                My theory is that the Rate indicated by this program is the exact value. <a href="https://info-wacca.marv.jp/article/13637">Learn more...</a>
+                                            </span>
+                                        </div>
                                     </div>
                                     <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
                                         <div class="h6 px-1 pb-1 border-bottom text-primary">
-                                            <span class="badge bg-primary align-bottom" id="news-badge">
-                                                <span class="lang-jpn">
-                                                    新機能
-                                                </span>
-                                                <span class="lang-eng d-none">
-                                                    NEW
-                                                </span>
-                                            </span>
+                                            <span class="badge bg-primary align-bottom">NEW</span>
                                             <span class="lang-jpn">
-                                                プレイデータの復元機能
+                                                NORMALとHARDへ対応
                                             </span>
                                             <span class="lang-eng d-none">
-                                                Play data restoration function
+                                                Now supports NORMAL and HARD
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                NORMAL譜面とHARD譜面へ対応し、これらが計算に含まれるようになりました。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                NORMAL and HARD charts are now supported, and these charts are now included in the calculations.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
+                                        <div class="h6 px-1 pb-1 border-bottom text-primary">
+                                            <span class="badge bg-primary align-bottom">NEW</span>
+                                            <span class="lang-jpn">
+                                                フィルター機能を改良
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                Improved filter function
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                譜面一覧で使用できるフィルター機能が新しくなりました。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                The filter function available in the chart list has been improved.
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                新しい機能では、譜面を種類および難易度ごとに絞り込むことができます。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                This new feature will filter the charts by type and difficulty.
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                今回のアップデートでNORMAL譜面とHARD譜面へ対応したため譜面一覧が縦に長くなりますが、この機能を使えば従来と同じようにこれらを非表示にすることもできます。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                Today's update supports NORMAL and HARD charts, so the chart list will be longer, but you can still hide them by using this feature.
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
+                                        <div class="h6 px-1 pb-1 border-bottom text-primary">
+                                            <span class="lang-jpn">
+                                                プレイデータの復元機能を追加
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                Play Data restoration function added
                                             </span>
                                         </div>
                                         <div class="mx-2 my-0">
@@ -1718,77 +1902,6 @@
                     </div>
                 </div>
             </div>
-            <!-- 表示設定 -->
-            <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white py-1">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="h3 mb-0 ps-2 border-start border-3 border-secondary">
-                            <span class="lang-jpn">設定</span>
-                            <span class="lang-eng d-none">Settings</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
-                        <span class="lang-jpn">表示する譜面</span>
-                        <span class="lang-eng d-none">Charts to Display</span>
-                    </div>
-                    <div class="m-2">
-                        <div class="btn-group" role="group">
-                            <input type="radio" class="btn-check" name="radio1" id="radio1-1" autocomplete="off" onchange="changeDisplayState(0)" disabled checked>
-                            <label class="btn btn-outline-primary" for="radio1-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-union" viewBox="0 0 16 16">
-                                    <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2z"/>
-                                </svg>
-                                <span class="lang-jpn">すべて</span>
-                                <span class="lang-eng d-none">All</span>
-                            </label>
-                            <input type="radio" class="btn-check" name="radio1" id="radio1-2" autocomplete="off" onchange="changeDisplayState(1)" disabled>
-                            <label class="btn btn-outline-primary" for="radio1-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-front" viewBox="0 0 16 16">
-                                    <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2H5z"/>
-                                </svg>
-                                <span class="lang-jpn">対象と候補</span>
-                                <span class="lang-eng d-none">Summarized</span>
-                            </label>
-                            <input type="radio" class="btn-check" name="radio1" id="radio1-3" autocomplete="off" onchange="changeDisplayState(2)" disabled>
-                            <label class="btn btn-outline-primary" for="radio1-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-intersect" viewBox="0 0 16 16">
-                                    <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2H5zm6-8V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2V6a2 2 0 0 1 2-2h5z"/>
-                                </svg>
-                                <span class="lang-jpn">候補のみ</span>
-                                <span class="lang-eng d-none">Focused</span>
-                            </label>
-                        </div>
-                        <div class="accordion border border-primary rounded my-2" id="accordion-display-option">
-                            <div class="accordion-item">
-                                <div class="h2 accordion-header" id="accordion-display-option-1">
-                                    <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-display-option-1" aria-expanded="false" aria-controls="collapse-display-option-1">
-                                        <span class="me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                            </svg>
-                                        </span>
-                                        <span class="lang-jpn">この設定について</span>
-                                        <span class="lang-eng d-none">About this section</span>
-                                    </button>
-                                </div>
-                                <div id="collapse-display-option-1" class="accordion-collapse collapse" aria-labelledby="accordion-display-option-1" data-bs-parent="#accordion-display-option">
-                                    <div class="accordion-body p-2">
-                                        <span class="lang-jpn">
-                                            <span class="badge border border-secondary text-secondary align-bottom">候補のみ</span> は、レーティング候補の譜面のみを表示します。レーティングの上昇に影響しない譜面を表示したくない場合にご利用ください。 <span class="badge border border-secondary text-secondary align-bottom">対象と候補</span> は、レーティング候補の譜面およびレーティング対象の譜面を表示します。
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            <span class="badge border border-secondary text-secondary align-bottom">Focused</span> will show only the Rating Candidates charts. Use this option if you do not want to show charts that do not affect the rating increase. <span class="badge border border-secondary text-secondary align-bottom">Summarized</span> will show the Rating Candidates charts and the Rating Target charts.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- 概要 -->
             <div class="mt-2">
                 <div class="justify-content-between sticky-top bg-white py-1">
@@ -1806,9 +1919,8 @@
                                     </div>
                                     <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6" id="total-rate-class">
                                         <span class="align-middle" id="total-rate-current">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark">
-                                            MAX
-                                            <span class="align-middle" id="total-rate-upper">0.000</span>
+                                        <div class="badge bg-white bg-opacity-50 text-dark" id="total-rate-upper">
+                                            MAX 0.000
                                         </div>
                                     </div>
                                 </div>
@@ -1834,11 +1946,11 @@
                             <div class="progress-bar graph-bar-rate bg-rainbow" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div class="progress rounded-0 rounded-bottom">
-                            <div class="progress-bar graph-bar-rate-2 bg-older bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar graph-bar-rate-2 text-shadow-black bg-older bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                 <span class="lang-jpn">旧曲枠</span>
                                 <span class="lang-eng d-none">Older</span>
                             </div>
-                            <div class="progress-bar graph-bar-rate-2 bg-newer bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar graph-bar-rate-2 text-shadow-black bg-newer bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                 <span class="lang-jpn">新曲枠</span>
                                 <span class="lang-eng d-none">Newer</span>
                             </div>
@@ -1854,7 +1966,6 @@
                             </svg>
                         </div>
                     </div>
-                    
                 </div>
             </div>
             <!-- 新曲枠 -->
@@ -1874,9 +1985,8 @@
                                     </div>
                                     <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
                                         <span class="align-middle summedRateCurrent">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark">
-                                            MAX
-                                            <span class="align-middle summedRateUpper">0.000</span>
+                                        <div class="badge bg-white bg-opacity-50 text-dark summedRateUpper">
+                                            MAX 0.000
                                         </div>
                                     </div>
                                 </div>
@@ -1954,27 +2064,27 @@
                     </div>
                     <div class="d-flex justify-content-between mx-4 m-2 flex-wrap">
                         <div class="d-flex flex-column text-center">
-                            <span class="lt-950 bg-lt-950 badge border bg-gradient text-white p-1">&lt;950k</span>
+                            <span class="lt-950 bg-lt-950 text-shadow-black badge border bg-gradient text-white p-1">&lt;950k</span>
                             <span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-950 badge border bg-gradient text-white p-1">950k</span>
+                            <span class="is-950 bg-is-950 text-shadow-black badge border bg-gradient text-white p-1">950k</span>
                             <span class="graph-ratio-stats is-950 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-960 badge border bg-gradient text-white p-1">960k</span>
+                            <span class="is-950 bg-is-960 text-shadow-black badge border bg-gradient text-white p-1">960k</span>
                             <span class="graph-ratio-stats is-960 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-970 badge border bg-gradient text-white p-1">970k</span>
+                            <span class="is-950 bg-is-970 text-shadow-black badge border bg-gradient text-white p-1">970k</span>
                             <span class="graph-ratio-stats is-970 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-980 badge border bg-gradient text-white p-1">980k</span>
+                            <span class="is-950 bg-is-980 text-shadow-black badge border bg-gradient text-white p-1">980k</span>
                             <span class="graph-ratio-stats is-980 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="ge-950 bg-ge-990 badge border bg-gradient text-white p-1">990k</span>
+                            <span class="ge-950 bg-ge-990 text-shadow-black badge border bg-gradient text-white p-1">990k</span>
                             <span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span>
                         </div>
                     </div>
@@ -1983,6 +2093,61 @@
                     <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
                         <span class="lang-jpn">譜面一覧</span>
                         <span class="lang-eng d-none">Chart List</span>
+                    </div>
+                    <div class="bg-light border rounded-top shadow-sm mt-3 mx-2 p-2">
+                        <div class="h6 text-secondary m-0">
+                            <span class="lang-jpn">フィルター</span>
+                            <span class="lang-eng d-none">Filter</span>
+                        </div>
+                    </div>
+                    <div class="bg-light border border-top-0 shadow-sm mx-2 p-2">
+                        <div class="h6 small text-secondary m-0">
+                            <span class="lang-jpn">種類</span>
+                            <span class="lang-eng d-none">Type</span>
+                        </div>
+                        <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-targets-toggle" onchange="toggleChartVisibilityByType('targets', this.checked)" checked>
+                            <label class="form-check-label" for="rating-targets-toggle">
+                                <span class="lang-jpn">レーティング対象</span>
+                                <span class="lang-eng d-none">Rating Targets</span>
+                            </label>
+                        </span>
+                        <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-candidates-toggle" onchange="toggleChartVisibilityByType('candidates', this.checked)" checked>
+                            <label class="form-check-label" for="rating-candidates-toggle">
+                                <span class="lang-jpn">レーティング候補</span>
+                                <span class="lang-eng d-none">Rating Candidates</span>
+                            </label>
+                        </span>
+                        <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-others-toggle" onchange="toggleChartVisibilityByType('others', this.checked)" checked>
+                            <label class="form-check-label" for="ating-others-toggle">
+                                <span class="lang-jpn">その他</span>
+                                <span class="lang-eng d-none">Others</span>
+                            </label>
+                        </span>
+                    </div>
+                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
+                        <div class="h6 small text-secondary m-0">
+                            <span class="lang-jpn">難易度</span>
+                            <span class="lang-eng d-none">Difficulty</span>
+                        </div>
+                        <span class="badge border bg-gradient normal">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-normal-toggle" onchange="toggleChartVisibilityByDifficulty('normal', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-normal-toggle">NORMAL</label>
+                        </span>
+                        <span class="badge border bg-gradient hard">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-hard-toggle" onchange="toggleChartVisibilityByDifficulty('hard', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-hard-toggle">HARD</label>
+                        </span>
+                        <span class="badge border bg-gradient expert">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-expert-toggle" onchange="toggleChartVisibilityByDifficulty('expert', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-expert-toggle">EXPERT</label>
+                        </span>
+                        <span class="badge border bg-gradient inferno">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-inferno-toggle" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-inferno-toggle">INFERNO</label>
+                        </span>
                     </div>
                     <div class="bg-light border rounded shadow-sm my-3 mx-2 p-2">
                         <div class="table-responsive">
@@ -2081,9 +2246,8 @@
                                     </div>
                                     <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
                                         <span class="align-middle summedRateCurrent">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark">
-                                            MAX
-                                            <span class="align-middle summedRateUpper">0.000</span>
+                                        <div class="badge bg-white bg-opacity-50 text-dark summedRateUpper">
+                                            MAX 0.000
                                         </div>
                                     </div>
                                 </div>
@@ -2161,27 +2325,27 @@
                     </div>
                     <div class="d-flex justify-content-between mx-4 m-2 flex-wrap">
                         <div class="d-flex flex-column text-center">
-                            <span class="lt-950 bg-lt-950 badge bg-gradient border text-white p-1">&lt;950k</span>
+                            <span class="lt-950 bg-lt-950 text-shadow-black badge bg-gradient border text-white p-1">&lt;950k</span>
                             <span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-950 badge bg-gradient border text-white p-1">950k</span>
+                            <span class="is-950 bg-is-950 text-shadow-black badge bg-gradient border text-white p-1">950k</span>
                             <span class="graph-ratio-stats is-950 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-960 badge bg-gradient border text-white p-1">960k</span>
+                            <span class="is-950 bg-is-960 text-shadow-black badge bg-gradient border text-white p-1">960k</span>
                             <span class="graph-ratio-stats is-960 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-970 badge bg-gradient border text-white p-1">970k</span>
+                            <span class="is-950 bg-is-970 text-shadow-black badge bg-gradient border text-white p-1">970k</span>
                             <span class="graph-ratio-stats is-970 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-980 badge bg-gradient border text-white p-1">980k</span>
+                            <span class="is-950 bg-is-980 text-shadow-black badge bg-gradient border text-white p-1">980k</span>
                             <span class="graph-ratio-stats is-980 fw-bold small">0.00%</span>
                         </div>
                         <div class="d-flex flex-column text-center">
-                            <span class="ge-950 bg-ge-990 badge bg-gradient border text-white p-1">990k</span>
+                            <span class="ge-950 bg-ge-990 text-shadow-black badge bg-gradient border text-white p-1">990k</span>
                             <span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span>
                         </div>
                     </div>
@@ -2190,6 +2354,61 @@
                     <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
                         <span class="lang-jpn">譜面一覧</span>
                         <span class="lang-eng d-none">Chart List</span>
+                    </div>
+                    <div class="bg-light border rounded-top shadow-sm mt-3 mx-2 p-2">
+                        <div class="h6 text-secondary m-0">
+                            <span class="lang-jpn">フィルター</span>
+                            <span class="lang-eng d-none">Filter</span>
+                        </div>
+                    </div>
+                    <div class="bg-light border border-top-0 shadow-sm mx-2 p-2">
+                        <div class="h6 small text-secondary m-0">
+                            <span class="lang-jpn">種類</span>
+                            <span class="lang-eng d-none">Type</span>
+                        </div>
+                        <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-targets-toggle" onchange="toggleChartVisibilityByType('targets', this.checked)" checked>
+                            <label class="form-check-label" for="rating-targets-toggle">
+                                <span class="lang-jpn">レーティング対象</span>
+                                <span class="lang-eng d-none">Rating Targets</span>
+                            </label>
+                        </span>
+                        <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-candidates-toggle" onchange="toggleChartVisibilityByType('candidates', this.checked)" checked>
+                            <label class="form-check-label" for="rating-candidates-toggle">
+                                <span class="lang-jpn">レーティング候補</span>
+                                <span class="lang-eng d-none">Rating Candidates</span>
+                            </label>
+                        </span>
+                        <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-others-toggle" onchange="toggleChartVisibilityByType('others', this.checked)" checked>
+                            <label class="form-check-label" for="ating-others-toggle">
+                                <span class="lang-jpn">その他</span>
+                                <span class="lang-eng d-none">Others</span>
+                            </label>
+                        </span>
+                    </div>
+                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
+                        <div class="h6 small text-secondary m-0">
+                            <span class="lang-jpn">難易度</span>
+                            <span class="lang-eng d-none">Difficulty</span>
+                        </div>
+                        <span class="badge border bg-gradient normal">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-normal-toggle" onchange="toggleChartVisibilityByDifficulty('normal', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-normal-toggle">NORMAL</label>
+                        </span>
+                        <span class="badge border bg-gradient hard">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-hard-toggle" onchange="toggleChartVisibilityByDifficulty('hard', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-hard-toggle">HARD</label>
+                        </span>
+                        <span class="badge border bg-gradient expert">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-expert-toggle" onchange="toggleChartVisibilityByDifficulty('expert', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-expert-toggle">EXPERT</label>
+                        </span>
+                        <span class="badge border bg-gradient inferno">
+                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-inferno-toggle" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked)" checked>
+                            <label class="form-check-label" for="difficulty-inferno-toggle">INFERNO</label>
+                        </span>
                     </div>
                     <div class="bg-light border rounded shadow-sm my-3 mx-2 p-2">
                         <div class="table-responsive">
@@ -2299,97 +2518,103 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <div class="h5 border-start border-3 border-secondary mb-2 ps-2 py-1">
-                                <span class="lang-jpn">ようこそ</span>
-                                <span class="lang-eng d-none">Welcome</span>
+                            <div class="mt-2">
+                                <div class="justify-content-between bg-white py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h3 border-start border-3 border-secondary mb-0 ps-2">
+                                            <span class="lang-jpn">ようこそ</span>
+                                            <span class="lang-eng d-none">Welcome</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn"><strong>WACCA RATING ANALYZER</strong> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるツールです。</span>
+                                        <span class="lang-eng d-none">The <strong>WACCA RATING ANALYZER</strong> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <span class="lang-jpn"><strong>WACCA RATING ANALYZER</strong> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるツールです。</span>
-                                <span class="lang-eng d-none">The <strong>WACCA RATING ANALYZER</strong> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
+                            <div class="mt-2">
+                                <div class="justify-content-between bg-white py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h3 border-start border-3 border-secondary mb-0 ps-2">
+                                            <span class="lang-jpn">特徴</span>
+                                            <span class="lang-eng d-none">Features</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                        <span class="lang-jpn">データ収集なし</span>
+                                        <span class="lang-eng d-none">No data collection</span>
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">このツールはブラウザー上で動作し、あなたのプレイ成績がサーバーへ送信されることはありません。</span>
+                                        <span class="lang-eng d-none">This program runs in your browser and does not send your play results to the server.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                        <span class="lang-jpn">レーティング候補譜面の上限数なし</span>
+                                        <span class="lang-eng d-none">Show more 'Rating Candidate Charts'</span>
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">レーティング候補譜面をはじめ、レーティングを上げるために便利なデータをすべての譜面で見ることができます。</span>
+                                        <span class="lang-eng d-none">You can see 'Rating Candidate Charts' and other useful data for increasing your rating on all charts.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                        <span class="lang-jpn">レーティング上昇量が詳細に分かる</span>
+                                        <span class="lang-eng d-none">Detailed rating increase</span>
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">所定のスコアへ到達した際のレーティングの上昇量が、譜面ごとに分かります。</span>
+                                        <span class="lang-eng d-none">You can see the amount of increase in your rating when you reach a certain score for each chart.</span>
+                                    </div>
+                                </div>
                             </div>
-                            <hr>
-                            <div class="h5 border-start border-3 border-secondary mb-2 ps-2">
-                                <span class="lang-jpn">特徴</span>
-                                <span class="lang-eng d-none">Features</span>
-                                <button type="button" class="btn btn-outline-primary ms-2" id="btn-example" onclick="openAnExample(); return false;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
-                                    </svg>
-                                    <span class="lang-jpn">実行例を開く</span>
-                                    <span class="lang-eng d-none">Open an Example</span>
-                                </button>
+                            <div class="mt-2">
+                                <div class="justify-content-between bg-white py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h3 border-start border-3 border-danger mb-0 ps-2">
+                                            <span class="lang-jpn">注意</span>
+                                            <span class="lang-eng d-none">Caution</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">ブラウザーが<strong>プライベートモード</strong>である場合、タブを閉じると<strong>分析されたデータは失われます</strong>。なお再度ツールを実行することで、同じ結果を得られます。</span>
+                                        <span class="lang-eng d-none">If your browser is in <strong>private mode</strong>, closing a tab will cause the <strong>analyzed data to be lost</strong>. But don't worry. Just run the program again and you will get the same result.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">譜面定数はあくまで推測された値であるため、<strong>公式の値とは異なる可能性</strong>があります。</span>
+                                        <span class="lang-eng d-none">The chart constants are only guessed values and <strong>may be different from the official values</strong>.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">このプログラムは暇つぶしを目的に作成されているため、<strong>品質は保証されておりません</strong>。<span class="text-muted">役に立たなかったらごめんなさい。</span></span>
+                                        <span class="lang-eng d-none">The quality of this program is <strong>not guaranteed</strong>, as it was created as a way to pass the time. <span class="text-muted">I'm sorry if this program did not help you...</span></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="fw-bold">
-                                            <span class="lang-jpn">データ収集なし</span>
-                                            <span class="lang-eng d-none">No data collection</span>
+                            <div class="mt-2">
+                                <div class="justify-content-between bg-white py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h3 border-start border-3 border-secondary mb-0 ps-2">
+                                            <span class="lang-jpn">準備</span>
+                                            <span class="lang-eng d-none">Getting Started</span>
                                         </div>
-                                        <div>
-                                            <span class="lang-jpn">このツールはブラウザー上で動作し、あなたのプレイ成績がサーバーへ送信されることはありません。</span>
-                                            <span class="lang-eng d-none">This program runs in your browser and does not send your play results to the server.</span>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="fw-bold">
-                                            <span class="lang-jpn">レーティング候補譜面の上限数なし</span>
-                                            <span class="lang-eng d-none">Show more 'Rating Candidate Charts'</span>
-                                        </div>
-                                        <div>
-                                            <span class="lang-jpn">レーティング候補譜面をはじめ、レーティングを上げるために便利なデータを難易度EXPERT以上のすべての譜面で見ることができます。</span>
-                                            <span class="lang-eng d-none">You can see 'Rating Candidate Charts' and other useful data for increasing your rating on all charts of difficulty EXPERT and higher.</span>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="fw-bold">
-                                            <span class="lang-jpn">レーティング上昇量が詳細に分かる</span>
-                                            <span class="lang-eng d-none">Detailed rating increase</span>
-                                        </div>
-                                        <div>
-                                            <span class="lang-jpn">所定のスコアへ到達した際のレーティングの上昇量が、譜面ごとに分かります。</span>
-                                            <span class="lang-eng d-none">You can see the amount of increase in your rating when you reach a certain score for each chart.</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="h5 border-start border-3 border-secondary mb-2 ps-2 py-1">
-                                <span class="lang-jpn">注意</span>
-                                <span class="lang-eng d-none">Caution</span>
-                            </div>
-                            <div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div>
-                                            <span class="lang-jpn">ブラウザーのタブを閉じると、<strong>分析されたデータは失われます</strong>。なお再度ツールを実行することで、同じ結果を得られます。</span>
-                                            <span class="lang-eng d-none">When you close the tab in your browser, <strong>the analyzed data will be lost</strong>. But don't worry. Just run the program again and you will get the same result.</span>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <span class="lang-jpn">譜面定数はあくまで推測された値であるため、<strong>公式の値とは異なる可能性</strong>があります。</span>
-                                            <span class="lang-eng d-none">The chart constants are only guessed values and <strong>may be different from the official values</strong>.</span>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div>
-                                            <span class="lang-jpn">このプログラムは暇つぶしを目的に作成されているため、<strong>品質は保証されておりません</strong>。<span class="text-muted">役に立たなかったらごめんなさい。</span></span>
-                                            <span class="lang-eng d-none">The quality of this program is <strong>not guaranteed</strong>, as it was created as a way to pass the time. <span class="text-muted">I'm sorry if this program did not help you...</span></span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <hr>
-                            <div class="h5 border-start border-3 border-secondary mb-2 ps-2 py-1">
-                                <span class="lang-jpn">準備</span>
-                                <span class="lang-eng d-none">Getting Started</span>
-                            </div>
-                            <div>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item">
-                                        <span class="lang-jpn">このページをブックマークする</span>
-                                        <span class="lang-eng d-none">Bookmark this page.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">1. このページをブックマークする</span>
+                                        <span class="lang-eng d-none">1. Bookmark this page.</span>
                                         <div class="text-muted">
                                             <span class="lang-jpn">ブックマークの名前の変更は任意です。</span>
                                             <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
@@ -2421,10 +2646,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="lang-jpn">ブックマークレットをコピーする</span>
-                                        <span class="lang-eng d-none">Copy the bookmarklet.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">2. ブックマークレットをコピーする</span>
+                                        <span class="lang-eng d-none">2. Copy the bookmarklet.</span>
                                         <div class="input-group m-2">
                                             <input type="text" class="form-control" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){let%20path='https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js';import(path).then((obj)=>obj.main())})();" readonly="">
                                             <button class="btn btn-outline-primary" onclick="copyBookmarklet(); return false;" type="button" id="button-addon">
@@ -2458,23 +2685,28 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="lang-jpn">ステップ1で作成したブックマークのアドレスを、ステップ2でコピーした文字列に書き換えて保存する</span>
-                                        <span class="lang-eng d-none">Rewrite the address of the bookmark created in step 1 to the string copied in step 2 and save it.</span>
-                                    </li>
-                                </ol>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">3. ステップ1で作成したブックマークのアドレスを、ステップ2でコピーした文字列に書き換えて保存する</span>
+                                        <span class="lang-eng d-none">3. Rewrite the address of the bookmark created in step 1 to the string copied in step 2 and save it.</span>
+                                    </div>
+                                </div>
                             </div>
-                            <hr>
-                            <div class="h5 border-start border-3 border-secondary mb-2 ps-2 py-1">
-                                <span class="lang-jpn">使い方</span>
-                                <span class="lang-eng d-none">How to Use</span>
-                            </div>
-                            <div>
-                                <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item">
-                                        <span class="lang-jpn">WACCAのマイページへログインする</span>
-                                        <span class="lang-eng d-none">Login to WACCA My Page.</span>
+                            <div class="mt-2">
+                                <div class="justify-content-between bg-white py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h3 border-start border-3 border-secondary mb-0 ps-2">
+                                            <span class="lang-jpn">使い方</span>
+                                            <span class="lang-eng d-none">How to Use</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">1. WACCAのマイページへログインする</span>
+                                        <span class="lang-eng d-none">1. Login to WACCA My Page.</span>
                                         <div class="m-2">
                                             <button type="button" class="btn btn-outline-primary" id="help" onclick="openMyPage(); return false;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
@@ -2484,22 +2716,26 @@
                                                 <span class="lang-eng d-none">Open My Page</span>
                                             </button>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item">
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            <span class="badge border border-secondary text-secondary align-bottom">プレイデータ</span> を押す
+                                            2. <span class="badge border border-secondary text-secondary align-bottom">プレイデータ</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            Press <span class="badge border border-secondary text-secondary align-bottom">プレイデータ (Play Data)</span>
+                                            2. Press <span class="badge border border-secondary text-secondary align-bottom">プレイデータ (Play Data)</span>
                                         </span>
                                         <div class="text-muted">
                                             <span class="lang-jpn"></span>
                                             <span class="lang-eng d-none">*Of the six buttons at the top, press the top left button.</span>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <span class="lang-jpn">ブックマークレットを実行する</span>
-                                        <span class="lang-eng d-none">Run the bookmarklet.</span>
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">3. ブックマークレットを実行する</span>
+                                        <span class="lang-eng d-none">3. Run the bookmarklet.</span>
                                         <div class="accordion border border-primary rounded m-2" id="accordion-how-to-run">
                                             <div class="accordion-item">
                                                 <div class="h2 accordion-header" id="accordion-how-to-run-1">
@@ -2546,40 +2782,51 @@
                                             <span class="lang-jpn">ブックマークレットを実行する手順は、端末の環境により異なる場合があります。</span>
                                             <span class="lang-eng d-none">*The steps for executing the bookmarklet may vary depending on the device environment.</span>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item">
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-secondary text-secondary align-bottom">ツールを開く</span> を押す
+                                            4. ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-secondary text-secondary align-bottom">ツールを開く</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            When you see the message on the page that the bookmarklet has been processed, press <span class="badge border border-secondary text-secondary align-bottom">Open the Web Program</span>.
+                                            4. When you see the message on the page that the bookmarklet has been processed, press <span class="badge border border-secondary text-secondary align-bottom">Open the Web Program</span>.
                                         </span>
-                                    </li>
-                                    <li class="list-group-item">
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> を押す
+                                            5. <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            Press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>.
+                                            5. Press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>.
                                         </span>
-                                    </li>
-                                    <li class="list-group-item">
+                                    </div>
+                                </div>
+                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押す
+                                            6. <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            Press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
+                                            6. Press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
                                         </span>
-                                    </li>
-                                    <li class="list-group-item text-custom-primary-dark bg-primary bg-opacity-25">
+                                    </div>
+                                </div>
+                                <div class="bg-primary bg-opacity-50 border rounded shadow-sm mt-2">
+                                    <div class="m-2 px-1">
                                         <span class="lang-jpn">完了！</span>
                                         <span class="lang-eng d-none">Complete!</span>
-                                    </li>
-                                </ol>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
                         </div>
                     </div>
                 </div>
