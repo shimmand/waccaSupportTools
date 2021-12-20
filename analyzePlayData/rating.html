@@ -1027,7 +1027,7 @@
                     return false;
                 }
 
-                const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+                const checkboxes = document.querySelectorAll(`.rating-${type}-toggle`);
                 checkboxes.forEach(input => input.checked = checked);
                 localStorage.setItem(`rating-analyzer-filter-type-${type}`, checked);
 
@@ -1058,7 +1058,7 @@
                     ];
 
                 types.forEach(type => {
-                    const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+                    const checkboxes = document.querySelectorAll(`.rating-${type}-toggle`);
                     const checked = checkboxes[0].checked;
                     const targetRows = document.querySelectorAll(selectors[types.indexOf(type)]);
 
@@ -1080,7 +1080,7 @@
                     return false;
                 }
 
-                const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+                const checkboxes = document.querySelectorAll(`.difficulty-${difficulty}-toggle`);
 
                 checkboxes.forEach(input => input.checked = checked);
                 localStorage.setItem(`rating-analyzer-filter-difficulty-${difficulty}`, checked);
@@ -1101,7 +1101,7 @@
                 const difficulties = ['normal', 'hard', 'expert', 'inferno'];
                 
                 difficulties.forEach(difficulty => {
-                    const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+                    const checkboxes = document.querySelectorAll(`.difficulty-${difficulty}-toggle`);
                     const checked = checkboxes[0].checked;
                     const targetRows = document.querySelectorAll(`.difficulty-${difficulty}`);
 
@@ -1113,6 +1113,19 @@
                         }
                     });
                 })
+            }
+
+            function convertRemToPixels(rem) {    
+                return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+            }
+
+            function scrollToListTop(list) {
+                const header = document.querySelector(`#header-${list}`);
+                const headerHeight = header.getBoundingClientRect().height;
+                const listarea = document.querySelector(`#list-${list}`);
+                const listareaTop = listarea.getBoundingClientRect().top;
+
+                window.scrollTo(0, (window.scrollY + listareaTop - headerHeight - convertRemToPixels(0.5)));
             }
 
             // 列の固定表示の切り替え
@@ -1475,7 +1488,7 @@
                     // 種類別フィルターを復元
                     const types = ['targets', 'candidates', 'others'];
                     types.forEach(type => {
-                        const checkboxes = document.querySelectorAll(`#rating-${type}-toggle`);
+                        const checkboxes = document.querySelectorAll(`.rating-${type}-toggle`);
 
                         switch (localStorage.getItem(`rating-analyzer-filter-type-${type}`)) {
                         case 'true':
@@ -1494,7 +1507,7 @@
                     // 難易度別フィルターを復元
                     const difficulties = ['normal', 'hard', 'expert', 'inferno'];
                     difficulties.forEach(difficulty => {
-                        const checkboxes = document.querySelectorAll(`#difficulty-${difficulty}-toggle`);
+                        const checkboxes = document.querySelectorAll(`.difficulty-${difficulty}-toggle`);
 
                         switch (localStorage.getItem(`rating-analyzer-filter-difficulty-${difficulty}`)) {
                         case 'true':
@@ -2014,7 +2027,7 @@
             <!-- 新曲枠 -->
             <div class="mt-2">
                 <div class="justify-content-between sticky-top bg-white py-1">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center" id="header-newer">
                         <div class="h3 border-start border-3 border-primary mb-0 ps-2">
                             <span class="lang-jpn">新曲枠</span>
                             <span class="lang-eng d-none">Newer Charts</span>
@@ -2132,7 +2145,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2" id="list-newer">
                     <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
                         <span class="lang-jpn">譜面一覧</span>
                         <span class="lang-eng d-none">Chart List</span>
@@ -2149,22 +2162,22 @@
                             <span class="lang-eng d-none">Type</span>
                         </div>
                         <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-targets-toggle" onchange="toggleChartVisibilityByType('targets', this.checked)" checked>
-                            <label class="form-check-label" for="rating-targets-toggle">
+                            <input class="form-check-input m-0 rating-targets-toggle" type="checkbox" value="" id="rating-targets-toggle-newer" onchange="toggleChartVisibilityByType('targets', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="rating-targets-toggle-newer">
                                 <span class="lang-jpn">レーティング対象</span>
                                 <span class="lang-eng d-none">Rating Targets</span>
                             </label>
                         </span>
                         <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-candidates-toggle" onchange="toggleChartVisibilityByType('candidates', this.checked)" checked>
-                            <label class="form-check-label" for="rating-candidates-toggle">
+                            <input class="form-check-input m-0 rating-candidates-toggle" type="checkbox" value="" id="rating-candidates-toggle-newer" onchange="toggleChartVisibilityByType('candidates', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="rating-candidates-toggle-newer">
                                 <span class="lang-jpn">レーティング候補</span>
                                 <span class="lang-eng d-none">Rating Candidates</span>
                             </label>
                         </span>
                         <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-others-toggle" onchange="toggleChartVisibilityByType('others', this.checked)" checked>
-                            <label class="form-check-label" for="rating-others-toggle">
+                            <input class="form-check-input m-0 rating-others-toggle" type="checkbox" value="" id="rating-others-toggle-newer" onchange="toggleChartVisibilityByType('others', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="rating-others-toggle-newer">
                                 <span class="lang-jpn">その他</span>
                                 <span class="lang-eng d-none">Others</span>
                             </label>
@@ -2176,20 +2189,20 @@
                             <span class="lang-eng d-none">Difficulty</span>
                         </div>
                         <span class="badge border bg-gradient normal">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-normal-toggle" onchange="toggleChartVisibilityByDifficulty('normal', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-normal-toggle">NORMAL</label>
+                            <input class="form-check-input m-0 difficulty-normal-toggle" type="checkbox" value="" id="difficulty-normal-toggle-newer" onchange="toggleChartVisibilityByDifficulty('normal', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="difficulty-normal-toggle-newer">NORMAL</label>
                         </span>
                         <span class="badge border bg-gradient hard">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-hard-toggle" onchange="toggleChartVisibilityByDifficulty('hard', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-hard-toggle">HARD</label>
+                            <input class="form-check-input m-0 difficulty-hard-toggle" type="checkbox" value="" id="difficulty-hard-toggle-newer" onchange="toggleChartVisibilityByDifficulty('hard', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="difficulty-hard-toggle-newer">HARD</label>
                         </span>
                         <span class="badge border bg-gradient expert">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-expert-toggle" onchange="toggleChartVisibilityByDifficulty('expert', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-expert-toggle">EXPERT</label>
+                            <input class="form-check-input m-0 difficulty-expert-toggle" type="checkbox" value="" id="difficulty-expert-toggle-newer" onchange="toggleChartVisibilityByDifficulty('expert', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="difficulty-expert-toggle-newer">EXPERT</label>
                         </span>
                         <span class="badge border bg-gradient inferno">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-inferno-toggle" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-inferno-toggle">INFERNO</label>
+                            <input class="form-check-input m-0 difficulty-inferno-toggle" type="checkbox" value="" id="difficulty-inferno-toggle-newer" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked); scrollToListTop('newer');" checked>
+                            <label class="form-check-label" for="difficulty-inferno-toggle-newer">INFERNO</label>
                         </span>
                     </div>
                     <div class="bg-light border rounded shadow-sm my-3 mx-2 p-2">
@@ -2275,7 +2288,7 @@
             <!-- 旧曲枠 -->
             <div class="mt-2">
                 <div class="justify-content-between sticky-top bg-white py-1">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center" id="header-older">
                         <div class="h3 border-start border-3 border-secondary mb-0 ps-2" style="border-color: var(--bs-orange)!important;">
                             <span class="lang-jpn">旧曲枠</span>
                             <span class="lang-eng d-none">Older Charts</span>
@@ -2393,7 +2406,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 mb-3">
+                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 mb-3" id="list-older">
                     <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
                         <span class="lang-jpn">譜面一覧</span>
                         <span class="lang-eng d-none">Chart List</span>
@@ -2410,22 +2423,22 @@
                             <span class="lang-eng d-none">Type</span>
                         </div>
                         <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-targets-toggle" onchange="toggleChartVisibilityByType('targets', this.checked)" checked>
-                            <label class="form-check-label" for="rating-targets-toggle">
+                            <input class="form-check-input m-0 rating-targets-toggle" type="checkbox" value="" id="rating-targets-toggle-older" onchange="toggleChartVisibilityByType('targets', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="rating-targets-toggle-older">
                                 <span class="lang-jpn">レーティング対象</span>
                                 <span class="lang-eng d-none">Rating Targets</span>
                             </label>
                         </span>
                         <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-candidates-toggle" onchange="toggleChartVisibilityByType('candidates', this.checked)" checked>
-                            <label class="form-check-label" for="rating-candidates-toggle">
+                            <input class="form-check-input m-0 rating-candidates-toggle" type="checkbox" value="" id="rating-candidates-toggle-older" onchange="toggleChartVisibilityByType('candidates', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="rating-candidates-toggle-older">
                                 <span class="lang-jpn">レーティング候補</span>
                                 <span class="lang-eng d-none">Rating Candidates</span>
                             </label>
                         </span>
                         <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="rating-others-toggle" onchange="toggleChartVisibilityByType('others', this.checked)" checked>
-                            <label class="form-check-label" for="rating-others-toggle">
+                            <input class="form-check-input m-0 rating-others-toggle" type="checkbox" value="" id="rating-others-toggle-older" onchange="toggleChartVisibilityByType('others', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="rating-others-toggle-older">
                                 <span class="lang-jpn">その他</span>
                                 <span class="lang-eng d-none">Others</span>
                             </label>
@@ -2437,20 +2450,20 @@
                             <span class="lang-eng d-none">Difficulty</span>
                         </div>
                         <span class="badge border bg-gradient normal">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-normal-toggle" onchange="toggleChartVisibilityByDifficulty('normal', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-normal-toggle">NORMAL</label>
+                            <input class="form-check-input m-0 difficulty-normal-toggle" type="checkbox" value="" id="difficulty-normal-toggle-older" onchange="toggleChartVisibilityByDifficulty('normal', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="difficulty-normal-toggle-older">NORMAL</label>
                         </span>
                         <span class="badge border bg-gradient hard">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-hard-toggle" onchange="toggleChartVisibilityByDifficulty('hard', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-hard-toggle">HARD</label>
+                            <input class="form-check-input m-0 difficulty-hard-toggle" type="checkbox" value="" id="difficulty-hard-toggle-older" onchange="toggleChartVisibilityByDifficulty('hard', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="difficulty-hard-toggle-older">HARD</label>
                         </span>
                         <span class="badge border bg-gradient expert">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-expert-toggle" onchange="toggleChartVisibilityByDifficulty('expert', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-expert-toggle">EXPERT</label>
+                            <input class="form-check-input m-0 difficulty-expert-toggle" type="checkbox" value="" id="difficulty-expert-toggle-older" onchange="toggleChartVisibilityByDifficulty('expert', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="difficulty-expert-toggle-older">EXPERT</label>
                         </span>
                         <span class="badge border bg-gradient inferno">
-                            <input class="form-check-input m-0" type="checkbox" value="" id="difficulty-inferno-toggle" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked)" checked>
-                            <label class="form-check-label" for="difficulty-inferno-toggle">INFERNO</label>
+                            <input class="form-check-input m-0 difficulty-inferno-toggle" type="checkbox" value="" id="difficulty-inferno-toggle-older" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked); scrollToListTop('older');" checked>
+                            <label class="form-check-label" for="difficulty-inferno-toggle-older">INFERNO</label>
                         </span>
                     </div>
                     <div class="bg-light border rounded shadow-sm my-3 mx-2 p-2">
