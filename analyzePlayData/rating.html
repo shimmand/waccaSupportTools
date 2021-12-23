@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" class="fs-100">
     <head>
         <title>WACCA RATING ANALYZER</title>
         <meta charset="utf-8"/>
@@ -11,6 +11,24 @@
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
         <style>
             /* 基本 */
+            html.fs-100 {
+                font-size: 100%;
+            }
+            html.fs-90 {
+                font-size: 90%;
+            }
+            html.fs-80 {
+                font-size: 80%;
+            }
+            html.fs-70 {
+                font-size: 70%;
+            }
+            html.fs-60 {
+                font-size: 60%;
+            }
+            html.fs-50 {
+                font-size: 50%;
+            }
             body {
                 -webkit-text-size-adjust: 100%;
             }
@@ -23,7 +41,7 @@
             }
             /* バッジ */
             span.badge.difficulty {
-                width: 6.25rem;
+                width: 100%;
             }
             span.badge.normal {
                 background-color: #009de6;
@@ -159,6 +177,10 @@
                 color: #141619;
             }
             /* その他 */
+            .badge {
+                padding: .2rem .4rem;
+                font-size: .75rem;
+            }
             .pt-half {
                 padding-top: .125rem!important;
             }
@@ -1204,6 +1226,22 @@
                 document.querySelector('#last-update').innerHTML = prevDataDate;
                 document.querySelector('#btn-restored-modal').click();
             }
+
+            // 表示倍率の変更()
+            function changeDisplayScale() {
+                const root = document.querySelector('html');
+                const scale = document.querySelector('#select-disp-scale');
+                const scaleList = ['fs-100', 'fs-90', 'fs-80', 'fs-70', 'fs-60', 'fs-50'];
+
+                scaleList.forEach(e => {
+                    if (root.classList.contains(e)) {
+                        root.classList.remove(e);
+                    }
+                });
+
+                root.classList.add(`fs-${scale.value}`);
+                localStorage.setItem('rating-analyzer-display-scale', scale.value);
+            }
             
             // ブックマークレットをコピー()
             function copyBookmarklet() {
@@ -1527,9 +1565,14 @@
                         }
                     })
 
+                    // ページの表示倍率を復元
+                    const scale = document.querySelector('#select-disp-scale');
+                    scale.value = localStorage.getItem('rating-analyzer-display-scale');
+                    changeDisplayScale();
+
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2021-12-23':
+                        case '2021-12-24':
                             document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
 
@@ -1585,7 +1628,7 @@
                     <div class="accordion border border-primary rounded my-2" id="accordion-news">
                         <div class="accordion-item">
                             <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-23'); return false;" id="news-toggle">
+                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-24'); return false;" id="news-toggle">
                                     <span class="me-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -1617,37 +1660,90 @@
                                                 新しい譜面へ対応
                                             </span>
                                             <span class="lang-eng d-none">
-                                                New chart support
+                                                New charts are supported
                                             </span>
                                         </div>
                                         <div class="mx-2 my-0">
-                                            <div class="mb-2">
-                                                DANGEROOOOUS JUNGLE
-                                                <span class="badge border difficulty normal">NORMAL 3</span>
-                                                <span class="badge border difficulty hard">HARD 10</span>
-                                                <span class="badge border difficulty expert">EXPERT 13</span>
-                                                <span class="badge border difficulty inferno">INFERNO 14</span>
-                                            </div>
-                                            <div class="mb-2">
-                                                Dimension Hacker
-                                                <span class="badge border difficulty normal">NORMAL 4</span>
-                                                <span class="badge border difficulty hard">HARD 10+</span>
-                                                <span class="badge border difficulty expert">EXPERT 13</span>
-                                                <span class="badge border difficulty inferno">INFERNO 14</span>
-                                            </div>
-                                            <div class="mb-2">
-                                                EPHMR
-                                                <span class="badge border difficulty normal">NORMAL 4</span>
-                                                <span class="badge border difficulty hard">HARD 10+</span>
-                                                <span class="badge border difficulty expert">EXPERT 13</span>
-                                                <span class="badge border difficulty inferno">INFERNO 14</span>
-                                            </div>
                                             <div>
-                                                クリムゾン帝王
-                                                <span class="badge border difficulty normal">NORMAL 8</span>
-                                                <span class="badge border difficulty expert">EXPERT 13+</span>
-                                                <span class="badge border difficulty inferno">INFERNO 14</span>
+                                                <div>DANGEROOOOUS JUNGLE</div>
+                                                <div>
+                                                    <span class="badge border normal">NORMAL 3</span>
+                                                    <span class="badge border hard">HARD 10</span>
+                                                    <span class="badge border expert">EXPERT 13</span>
+                                                    <span class="badge border inferno">INFERNO 14</span>
+                                                </div>
                                             </div>
+                                            <div class="mt-2">
+                                                <div>Dimension Hacker</div>
+                                                <div>
+                                                    <span class="badge border normal">NORMAL 4</span>
+                                                    <span class="badge border hard">HARD 10+</span>
+                                                    <span class="badge border expert">EXPERT 13</span>
+                                                    <span class="badge border inferno">INFERNO 14</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <div>EPHMR</div>
+                                                <div>
+                                                    <span class="badge border normal">NORMAL 4</span>
+                                                    <span class="badge border hard">HARD 10+</span>
+                                                    <span class="badge border expert">EXPERT 13</span>
+                                                    <span class="badge border inferno">INFERNO 14</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <div>
+                                                    クリムゾン帝王
+                                                </div>
+                                                <div>
+                                                    <span class="badge border normal">NORMAL 8</span>
+                                                    <span class="badge border expert">EXPERT 13+</span>
+                                                    <span class="badge border inferno">INFERNO 14</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <div class="d-flex bg-danger bg-opacity-10 border border-danger rounded text-danger px-2 py-1">
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="ms-2">
+                                                        クリムゾン帝王
+                                                        <span class="badge border hard">HARD 11+</span>
+                                                        <span class="lang-jpn">は、定数の特定が難航しているため現時点では対応していません。</span>
+                                                        <span class="lang-eng d-none">is not supported at now due to the difficulty in identifying the constant.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
+                                        <div class="h6 px-1 pb-1 border-bottom text-primary">
+                                            <span class="badge bg-primary align-bottom">NEW</span>
+                                            <span class="lang-jpn">
+                                                表示倍率の変更機能を追加
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                Display scale adjustment feature added
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                画面の小さな端末でもより多くのデータを確認できるよう、画面の表示倍率を変更できるようにしました。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                The screen display scale can be changed so that more data can be checked even on devices with small screens.
+                                            </span>
+                                        </div>
+                                        <div class="mx-2 my-0">
+                                            <span class="lang-jpn">
+                                                なお、パソコンやiPhone/iPadをお使いの場合は、ブラウザーの標準機能で表示倍率を変更することが可能です。お好きな方をどうぞ。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                If you are using a PC, iPhone, or iPad, you can change the display scale by using the browser features. Please choose the one you prefer.
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1755,8 +1851,8 @@
                                 <span class="lang-eng d-none">Load Your Data</span>
                             </button>
                             <button type="button" class="btn btn-outline-primary" id="analyze" onclick="analyze()">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                                    <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"/>
                                 </svg>
                                 <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 2</span>
                                 <span class="lang-jpn">分析を実行</span>
@@ -1812,6 +1908,23 @@
                                 English
                             </label>
                         </div>
+                        <div class="input-group me-2" role="group">
+                            <label class="input-group-text" for="select-disp-scale">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search me-1" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                                <span class="lang-jpn">表示倍率</span>
+                                <span class="lang-eng d-none">Display Scale</span>
+                            </label>
+                            <select class="form-select border-primary text-primary" id="select-disp-scale" onchange="changeDisplayScale(); return false;">
+                              <option value="100" selected>100%</option>
+                              <option value="90">90%</option>
+                              <option value="80">80%</option>
+                              <option value="70">70%</option>
+                              <option value="60">60%</option>
+                              <option value="50">50%</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="accordion border border-primary rounded my-2" id="accordion-if-doesnt-work">
                         <div class="accordion-item">
@@ -1860,10 +1973,12 @@
                                         <span class="lang-jpn align-middle">合計</span>
                                         <span class="lang-eng align-middle d-none">Total</span>
                                     </div>
-                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6" id="total-rate-class">
-                                        <span class="align-middle" id="total-rate-current">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark" id="total-rate-upper">
-                                            MAX 0.000
+                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6" id="total-rate-class">
+                                        <div>
+                                            <span class="align-middle" id="total-rate-current">0.000</span>
+                                        </div>
+                                        <div class="ms-1">
+                                            <span class="badge bg-white bg-opacity-50 text-dark" id="total-rate-upper">MAX 0.000</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1924,12 +2039,14 @@
                                 <div class="d-flex ms-2">
                                     <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
                                         <span class="lang-jpn align-middle">小計</span>
-                                            <span class="lang-eng align-middle d-none">Subtotal</span>
+                                        <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
-                                        <span class="align-middle summedRateCurrent">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark summedRateUpper">
-                                            MAX 0.000
+                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                        <div>
+                                            <span class="align-middle summedRateCurrent">0.000</span>
+                                        </div>
+                                        <div class="ms-1">
+                                            <span class="badge bg-white bg-opacity-50 text-dark summedRateUpper">MAX 0.000</span>
                                         </div>
                                     </div>
                                 </div>
@@ -2181,10 +2298,12 @@
                                         <span class="lang-jpn align-middle">小計</span>
                                             <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
-                                        <span class="align-middle summedRateCurrent">0.000</span>
-                                        <div class="badge bg-white bg-opacity-50 text-dark summedRateUpper">
-                                            MAX 0.000
+                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                        <div>
+                                            <span class="align-middle summedRateCurrent">0.000</span>
+                                        </div>
+                                        <div>
+                                            <span class="badge bg-white bg-opacity-50 text-dark summedRateUpper">MAX 0.000</span>
                                         </div>
                                     </div>
                                 </div>
