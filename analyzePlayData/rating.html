@@ -35,6 +35,196 @@
             .h1, .h2, .h3, .h4, .h5, .h6 {
                 color: #ffffff;
             }
+            /* テキストエリア */
+            .form-control.playdata {
+                height: 6.25rem;
+            }
+            .form-control.is-invalid {
+                background-color: #f8d7da;
+            }
+            /* バッジ */
+            .badge.difficulty {
+                width: 100%;
+            }
+            .badge.normal {
+                background-color: #009de6;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .badge.hard {
+                background-color: #fed131;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .badge.expert {
+                background-color: #fa0c98;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .badge.inferno {
+                background-color: #4a004f;
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .badge.badge-max {
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .badge.filter-targets {
+                background-color: #055160;
+            }
+            .badge.filter-candidates {
+                background-color: #561435;
+            }
+            .badge.filter-others {
+                background-color: #6c757d;
+            }
+            /* レート背景色 */
+            .bg-plain {
+                background-color: #adb5bd;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-navy {
+                background-color: #0d6efd;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-yellow {
+                background-color: #ffc107;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-red {
+                background-color: #d63384;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-purple {
+                background-color: #6f42c1;
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-blue {
+                background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-silver {
+                background: linear-gradient(30deg, #eaffff, #aaaaaa, #eaffff);
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-gold {
+                background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            .bg-rainbow {
+                background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
+                color: var(--bs-doby-color);
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+            /* Rate比率背景 */
+            .bg-older {
+                background-color: #fd7e14;
+            }
+            .bg-newer {
+                background-color: #0d6efd;
+            }
+            /* スコア帯背景 */
+            .bg-lt-950 {
+                background-color: #6c757d;
+            }
+            .bg-is-950 {
+                background-color: #ffc107;
+            }
+            .bg-is-960 {
+                background-color: #fd7e14;
+            }
+            .bg-is-970 {
+                background-color: #dc3545;
+            }
+            .bg-is-980 {
+                background-color: #6f42c1;
+            }
+            .bg-ge-990 {
+                background-color: #0d6efd;
+            }
+            /* スコア帯文字色 */
+            .lt-950 {
+                color: #6c757d;
+            }
+            .is-950 {
+                color: #ffc107;
+            }
+            .is-960 {
+                color: #fd7e14;
+            }
+            .is-970 {
+                color: #dc3545;
+            }
+            .is-980 {
+                color: #6f42c1;
+            }
+            .ge-990 {
+                color: #0d6efd;
+            }
+            /* テーブルの色分け */
+            tr {
+                --bs-table-bg: #000000;
+            }
+            tr.table-primary {
+                --bs-table-bg: #055160;
+                border-color: #087990;
+                color: #ffffff;
+            }
+            tr.table-custom-magenta {
+                --bs-table-bg: #561435;
+                border-color: #801f4f;
+            }
+            tr.table-custom-dethrone {
+                --bs-table-bg: #6c757d;
+                --bs-table-striped-bg: #6c757d;
+            }
+            /* その他 */
+            .badge {
+                padding: .2rem .4rem;
+                font-size: .75rem;
+                border-radius: 0;
+                vertical-align: middle;
+            }
+            .pt-half {
+                padding-top: .125rem!important;
+            }
+            a.rate-increase {
+                background-color: #0dcaf0;
+                color: #000000;
+                text-decoration-line: none;
+            }
+            a.multi-rate-selected {
+                font-size: 0;
+                color: #000000;
+                background-color: #d63384;
+                text-decoration-line: none;
+            }
+            a.multi-rate-selected::before {
+                content: 'REMOVE';
+                font-size: 0.75rem;
+            }
+            .text-custom-primary-dark {
+                color: #084298;
+            }
+            .accordion-button-custom-danger:not(.collapsed) {
+                background-color: #f8d7da;
+                color: #dc3545;
+            }
+            .sticky-left:not(.sticky-disabled) {
+                position: sticky;
+                left: 0rem;
+                z-index: 2;
+            }
+            .text-shadow-black {
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .text-shadow-white {
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
             .heading {
                 transform: skew(-10deg);
                 color: #ffffff;
@@ -102,186 +292,8 @@
             .accordion-button:not(.collapsed)::after {
                 background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
             }
-            /* テキストエリア */
-            textarea.form-control.playdata {
-                height: 6.25rem;
-            }
-            textarea.form-control.is-invalid {
-                background-color: #f8d7da;
-            }
-            /* バッジ */
-            span.badge.difficulty {
-                width: 100%;
-            }
-            span.badge.normal {
-                background-color: #009de6;
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            span.badge.hard {
-                background-color: #fed131;
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            span.badge.expert {
-                background-color: #fa0c98;
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            span.badge.inferno {
-                background-color: #4a004f;
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            span.badge.badge-max {
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            span.badge.filter-targets {
-                background-color: #052c65;
-            }
-            span.badge.filter-candidates {
-                background-color: #653208;
-            }
-            span.badge.filter-others {
-                background-color: #6c757d;
-            }
-            /* レート背景色 */
-            div.bg-plain {
-                background-color: #adb5bd;
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-navy {
-                background-color: #0d6efd;
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-yellow {
-                background-color: #ffc107;
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-red {
-                background-color: #d63384;
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-purple {
-                background-color: #6f42c1;
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-blue {
-                background: linear-gradient(30deg, #c0feff, #00beec, #c0feff);
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-silver {
-                background: linear-gradient(30deg, #eaffff, #aaaaaa, #eaffff);
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-gold {
-                background: linear-gradient(30deg, #eee100, #ffb100, #eee100);
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            div.bg-rainbow {
-                background: linear-gradient(30deg, #ff008a, #d2e717, #00ffeb);
-                color: var(--bs-doby-color);
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
-            }
-            /* Rate比率背景 */
-            div.bg-older {
-                background-color: #fd7e14;
-            }
-            div.bg-newer {
-                background-color: #0d6efd;
-            }
-            /* スコア帯背景 */
-            .bg-lt-950 {
-                background-color: #6c757d;
-            }
-            .bg-is-950 {
-                background-color: #ffc107;
-            }
-            .bg-is-960 {
-                background-color: #fd7e14;
-            }
-            .bg-is-970 {
-                background-color: #dc3545;
-            }
-            .bg-is-980 {
-                background-color: #6f42c1;
-            }
-            .bg-ge-990 {
-                background-color: #0d6efd;
-            }
-            /* スコア帯文字色 */
-            .lt-950 {
-                color: #6c757d;
-            }
-            .is-950 {
-                color: #ffc107;
-            }
-            .is-960 {
-                color: #fd7e14;
-            }
-            .is-970 {
-                color: #dc3545;
-            }
-            .is-980 {
-                color: #6f42c1;
-            }
-            .ge-990 {
-                color: #0d6efd;
-            }
-            /* テーブルの色分け */
-            tr {
-                --bs-table-bg: #000000;
-            }
-            tr.table-primary {
-                --bs-table-bg: #052c65;
-                border-color: #031633;
-                color: #ffffff;
-            }
-            tr.table-custom-orange {
-                --bs-table-bg: #653208;
-                border-color: #331904;
-            }
-            tr.table-custom-dethrone {
-                --bs-table-bg: #6c757d;
-                --bs-table-striped-bg: #6c757d;
-            }
-            /* その他 */
-            .badge {
-                padding: .2rem .4rem;
-                font-size: .75rem;
-                border-radius: 0;
-            }
-            .pt-half {
-                padding-top: .125rem!important;
-            }
-            a.rate-increase {
-                color: #0dcaf0;
-            }
-            a.multi-rate-selected {
-                color: #d63384;
-                font-weight: bold;
-            }
-            .text-custom-primary-dark {
-                color: #084298;
-            }
-            .accordion-button-custom-danger:not(.collapsed) {
-                background-color: #f8d7da;
-                color: #dc3545;
-            }
-            .sticky-left:not(.sticky-disabled) {
-                position: sticky;
-                left: 0rem;
-                z-index: 2;
-            }
-            .text-shadow-black {
-                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
-            }
-            .text-shadow-white {
-                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            .btn-check:active+.btn-info, .btn-check:checked+.btn-info, .btn-info.active, .btn-info:active, .show>.btn-info.dropdown-toggle {
+                border-color: #055160;
             }
         </style>
         <script defer>
@@ -798,7 +810,7 @@
                             }
 
                             // 倍数が上限値である場合に表示するアイコン
-                            const maxBadgeCode = '<span class="badge-max badge border align-text-top bg-secondary bg-gradient">MAX</span>';
+                            const maxBadgeCode = '<div class="badge badge-max border bg-secondary">MAX</div>';
 
                             // 現在の譜面別レーティング
                             const adjustedRating = (multiplier * rating).toFixed(3);
@@ -885,7 +897,7 @@
                             // レーティング対象曲であれば・・・
                             if (index < targetsLength[listIndex]) {
                                 // ヘッダーを参照
-                                headerElm = 'th scope="row"';
+                                headerElm = 'th scope="row" class="text-chromatic"';
 
                                 rateDataElm = 'td class="top-single-rate"';
                                 
@@ -927,7 +939,7 @@
 
                                 // 未到達のスコア帯かつレーティングが上昇する場合は数値を返す
                                 if ((chart[5] < multiplier) && ((chart[4] * multiplier) > varSingleRateLowers[listIndex])) {
-                                    return `<a class="rate-increase" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(3)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(3)}</a>`;
+                                    return `<a class="badge rate-increase rounded-0 border-2 box-shadow-black fw-bold skew-10 m-1" href="#" onclick="startMultiRateMode(this, '${targetsName[listIndex]}'); return false;" data-rating="${(chart[4] * multiplier).toFixed(3)}" data-now="${chart[6]}">+${((chart[4] * multiplier) - varSingleRateLowers[listIndex]).toFixed(3)}</a>`;
                                 } else {
                                     return '-';
                                 }
@@ -945,7 +957,7 @@
                             if (increases.filter(e => e == '-').length == increases.length) {
                                 tableRow.classList.add('all-clear');
                             } else {
-                                tableRow.classList.add('table-custom-orange');
+                                tableRow.classList.add('table-custom-magenta');
                             }
 
                             tableRow.classList.add('border-3', 'border-top-0', 'border-end-0', 'border-start-0');
@@ -956,7 +968,7 @@
                             const code = [
                                 `<${headerElm}>${index + 1}</td>`,
                                 `<td class="sticky-left">${chart[0]}</td>`,
-                                `<td class="pt-half"><span class="badge bg-gradient border difficulty ${chart[1]}">${chart[2]}</span></td>`,
+                                `<td class="pt-half"><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>`,
                                 `<td>${chart[3]}</td>`,
                                 `<td>${chart[4]}</td>`,
                                 `<td>${chart[5].toFixed(2)}</td>`,
@@ -1133,8 +1145,8 @@
 
                 const selectors = [
                     'tr[data-index].table-primary',
-                    'tr[data-index].table-custom-orange',
-                    'tr[data-index]:not(.table-primary):not(.table-custom-orange)'
+                    'tr[data-index].table-custom-magenta',
+                    'tr[data-index]:not(.table-primary):not(.table-custom-magenta)'
                 ];
 
                 const targetRows = document.querySelectorAll(selectors[types.indexOf(type)]);
@@ -1153,8 +1165,8 @@
                 const types = ['targets', 'candidates', 'others'];
                 const selectors = [
                         'tr[data-index].table-primary',
-                        'tr[data-index].table-custom-orange',
-                        'tr[data-index]:not(.table-primary):not(.table-custom-orange)'
+                        'tr[data-index].table-custom-magenta',
+                        'tr[data-index]:not(.table-primary):not(.table-custom-magenta)'
                     ];
 
                 types.forEach(type => {
@@ -1682,9 +1694,17 @@
         <div class="container bg-black">
             <!-- ヘッダー -->
             <div class="py-2">
-                <div class="">
-                    <div class="h3 mb-0 ps-2">
-                        <div class="heading navbar-brand px-2">WACCA RATING ANALYZER</div>
+                <div class="h3 heading navbar-brand px-2 m-0">
+                    WACCA RATING ANALYZER
+                </div>
+                <div class="d-flex skew-10 mt-2">
+                    <div class="d-flex border border-info me-1">
+                        <div class="badge rounded-0 bg-info text-black">DATASET</div>
+                        <div class="badge rounded-0 bg-black text-info">2021-12-23</div>
+                    </div>
+                    <div class="d-flex border border-info">
+                        <div class="badge rounded-0 bg-info text-black">VERSION</div>
+                        <div class="badge rounded-0 bg-black text-info">1.50</div>
                     </div>
                 </div>
                 <div class="btn-toolbar mt-2" role="toolbar">
@@ -1717,10 +1737,6 @@
                         <div class="position-absolute top-0 start-50 translate-middle badge rounded-0 skew-10 bg-info box-shadow-black text-black">DEV. BY</div>
                         @shimmand
                     </button>
-                </div>
-                <div class="d-flex skew-10">
-                    <div><span class="badge rounded-0 bg-info text-black me-1">DATASET</span></div>
-                    <div><span class="badge rounded-0 bg-black text-info me-1">2021-12-23</span></div>
                 </div>
             </div>
             <!-- プレイデータのテキストエリア -->
@@ -2014,7 +2030,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-new" class="alert bg-dark rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
+                    <div id="multi-rate-alert-new" class="alert rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
                             <div class="text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
@@ -2022,7 +2038,7 @@
                                 </svg>
                             </div>
                             <div class="px-1">
-                                <p class="alert-heading h6 m-0">
+                                <p class="alert-heading text-chromatic h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
@@ -2042,15 +2058,15 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 text-black m-0">0.000</div>
-                            <div class="symbol h6 text-black m-0 ms-1">
+                        <div class="d-flex justify-content-center align-items-center border border-white skew-10">
+                            <div class="before h6 m-0">0.000</div>
+                            <div class="symbol h6 m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 text-black m-0 ms-1">0.000</div>
-                            <div class="h6 text-magenta m-0 ms-1">(+<span class="increase">0.000</span>)</div>
+                            <div class="after h6 m-0 ms-1">0.000</div>
+                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1">+<span class="increase">0.000</span></div>
                         </div>
                     </div>
                 </div>
@@ -2274,7 +2290,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-old" class="alert bg-dark rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
+                    <div id="multi-rate-alert-old" class="alert rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
                             <div class="text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
@@ -2282,7 +2298,7 @@
                                 </svg>
                             </div>
                             <div class="px-1">
-                                <p class="alert-heading h6 m-0">
+                                <p class="alert-heading text-chromatic h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
@@ -2302,15 +2318,15 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 text-black m-0">0.000</div>
-                            <div class="symbol h6 text-black m-0 ms-1">
+                        <div class="d-flex justify-content-center align-items-center border border-white skew-10">
+                            <div class="before h6 m-0">0.000</div>
+                            <div class="symbol h6 m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 text-black m-0 ms-1">0.000</div>
-                            <div class="h6 text-magenta m-0 ms-1">(+<span class="increase">0.000</span>)</div>
+                            <div class="after h6 m-0 ms-1">0.000</div>
+                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1">+<span class="increase">0.000</span></div>
                         </div>
                     </div>
                 </div>
@@ -2908,14 +2924,45 @@
                         </div>
                         <div class="modal-body text-white">
                             <div class="mt-2 p-2">
-                                <div class="h6 px-1 pb-1 border-bottom border-info text-info">
-                                    <span class="badge bg-info align-bottom text-black">NEW</span>
+                                <div class="d-flex h6 px-1 pb-1 border-bottom">
+                                    <div class="badge bg-info align-bottom text-black skew-10 me-2">NEW</div>
+                                    <div class="text-chromatic">
+                                        <span class="lang-jpn">
+                                            デザインを一新！
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Brand new design!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mx-2 my-0">
                                     <span class="lang-jpn">
-                                        新しい譜面へ対応
+                                        店内の照明が暗いゲームセンターでも見やすいよう、今までの白基調のデザインから変更しました。
                                     </span>
                                     <span class="lang-eng d-none">
-                                        New charts are supported
+                                        To make it easier to see in arcade with dark interior lighting, I changed the design from the previous white based design.
                                     </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        サイバー調にしたのは私の好みです。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        I made the design cyber-like, which is my favorite.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-2 p-2">
+                                <div class="d-flex h6 px-1 pb-1 border-bottom">
+                                    <div class="d-none badge bg-info align-bottom text-black skew-10 me-2">NEW</div>
+                                    <div class="text-chromatic">
+                                        <span class="lang-jpn">
+                                            新しい譜面へ対応
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            New charts are supported
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="mx-2 my-0">
                                     <div>
@@ -2956,64 +3003,6 @@
                                             <span class="badge inferno">INFERNO 14</span>
                                         </div>
                                     </div>
-                                    <div class="mt-2">
-                                        <div class="d-flex bg-opacity-10 border border-magenta text-magenta px-2 py-1">
-                                            <div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                                </svg>
-                                            </div>
-                                            <div class="ms-2">
-                                                <div class="text-secondary">
-                                                    <del>
-                                                        クリムゾン帝王
-                                                        <span class="badge bg-secondary"><del>HARD 11+</del></span>
-                                                        <span class="lang-jpn">は、定数の特定が難航しているため現時点では対応していません。</span>
-                                                        <span class="lang-eng d-none">is not supported at now due to the difficulty in identifying the constant.</span>
-                                                    </del>
-                                                </div>
-                                                <div>
-                                                    <div>
-                                                        <span class="badge bg-info text-black">UPDATE</span>
-                                                    </div>
-                                                    <div>
-                                                        クリムゾン帝王
-                                                        <span class="badge hard">HARD 11+</span>
-                                                        <span class="lang-jpn">についても対応しました。</span>
-                                                        <span class="lang-eng d-none">has also been supported.</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-2 p-2">
-                                <div class="h6 px-1 pb-1 border-bottom border-info text-info">
-                                    <span class="badge bg-info align-bottom text-black">NEW</span>
-                                    <span class="lang-jpn">
-                                        表示倍率の変更機能を追加
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        Display scale adjustment feature added
-                                    </span>
-                                </div>
-                                <div class="mx-2 my-0">
-                                    <span class="lang-jpn">
-                                        画面の小さな端末でもより多くのデータを確認できるよう、画面の表示倍率を変更できるようにしました。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        The screen display scale can be changed so that more data can be checked even on devices with small screens.
-                                    </span>
-                                </div>
-                                <div class="mx-2 my-0">
-                                    <span class="lang-jpn">
-                                        なお、パソコンやiPhone/iPadをお使いの場合は、ブラウザーの標準機能で表示倍率を変更することが可能です。お好きな方をどうぞ。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        If you are using a PC, iPhone, or iPad, you can change the display scale by using the browser features. Please choose the one you prefer.
-                                    </span>
                                 </div>
                             </div>
                         </div>
