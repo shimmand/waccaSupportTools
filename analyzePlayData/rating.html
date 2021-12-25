@@ -310,6 +310,9 @@
             .btn-check:active+.btn-info, .btn-check:checked+.btn-info, .btn-info.active, .btn-info:active, .show>.btn-info.dropdown-toggle {
                 border-color: #055160;
             }
+            .increase::before {
+                content: '+';
+            }
         </style>
         <script defer>
             // 譜面定数一覧表() => Array[[]]
@@ -2086,7 +2089,7 @@
                                 </svg>
                             </div>
                             <div class="after h6 m-0 ms-1">0.000</div>
-                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1">+<span class="increase">0.000</span></div>
+                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1"><span class="increase h6">0.000</span></div>
                         </div>
                     </div>
                 </div>
@@ -2346,7 +2349,7 @@
                                 </svg>
                             </div>
                             <div class="after h6 m-0 ms-1">0.000</div>
-                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1">+<span class="increase">0.000</span></div>
+                            <div class="badge bg-magenta border border-magenta text-black m-0 ms-1"><span class="increase h6">0.000</span></div>
                         </div>
                     </div>
                 </div>
