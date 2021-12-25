@@ -32,6 +32,76 @@
             body {
                 -webkit-text-size-adjust: 100%;
             }
+            .h1, .h2, .h3, .h4, .h5, .h6 {
+                color: #ffffff;
+            }
+            .heading {
+                transform: skew(-10deg);
+                color: #ffffff;
+                text-shadow: #0dcaf0 -0.1rem -0.1rem, #d63384 0.2rem 0;
+                background-color: #000000;
+                box-shadow: -0.2rem -0.1rem #0dcaf0, 0.2rem 0.1rem #d63384;
+            }
+            .text-chromatic {
+                text-shadow: #0dcaf0 -0.1rem -0.1rem, #d63384 0.25rem 0;
+            }
+            .skew-10 {
+                transform: skew(-10deg);
+            }
+            .box-shadow-chromatic {
+                box-shadow: -0.25rem -0.25rem #0dcaf0, 0.25rem 0.25rem #d63384;
+            }
+            .box-shadow-black {
+                box-shadow: 0.1rem 0.1rem #000000;
+            }
+            .text-magenta {
+                --bs-text-opacity: 1;
+                color: rgba(214,51,132,var(--bs-text-opacity))!important;
+            }
+            .bg-magenta {
+                background-color: #d63384!important;
+            }
+            .border-magenta {
+                border-color: #d63384!important;
+            }
+            .btn-magenta {
+                color: #000;
+                background-color: #d63384;
+                border-color: #d63384;
+            }
+            .btn-close {
+                background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+            }
+            .form-control:focus {
+                border-color: #0dcaf0;
+                box-shadow: 0 0 0 .25rem #0dcaf0;
+            }
+            .form-control.is-invalid, .was-validated .form-control:invalid {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23d63384'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23d63384' stroke='none'/%3e%3c/svg%3e");
+            }
+            .form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+                border-color: #d63384;
+                box-shadow: 0 0 0 .25rem #d63384;
+            }
+            .invalid-feedback {
+                color: #d63384;
+            }
+            .form-control.is-valid, .was-validated .form-control:valid {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%230dcaf0' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+            }
+            .form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+                border-color: #0dcaf0;
+                box-shadow: 0 0 0 .25rem #0dcaf0;
+            }
+            .valid-feedback {
+                color: #0dcaf0;
+            }
+            .accordion-button::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            }
+            .accordion-button:not(.collapsed)::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            }
             /* テキストエリア */
             textarea.form-control.playdata {
                 height: 6.25rem;
@@ -63,13 +133,13 @@
                 text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
             }
             span.badge.filter-targets {
-                background-color: #cfe2ff;
+                background-color: #052c65;
             }
             span.badge.filter-candidates {
-                background-color: #ffe5d0;
+                background-color: #653208;
             }
             span.badge.filter-others {
-                background-color: #f8f9fa;
+                background-color: #6c757d;
             }
             /* レート背景色 */
             div.bg-plain {
@@ -164,31 +234,35 @@
             }
             /* テーブルの色分け */
             tr {
-                --bs-table-bg: #f8f9fa;
+                --bs-table-bg: #000000;
+            }
+            tr.table-primary {
+                --bs-table-bg: #052c65;
+                border-color: #031633;
+                color: #ffffff;
             }
             tr.table-custom-orange {
-                --bs-table-bg: #ffe5d0;
-                border-color: #e5cebb;
-                color: #000000;
+                --bs-table-bg: #653208;
+                border-color: #331904;
             }
             tr.table-custom-dethrone {
-                --bs-table-bg: #d3d3d4;
-                --bs-table-striped-bg: #bebebf;
-                color: #141619;
+                --bs-table-bg: #6c757d;
+                --bs-table-striped-bg: #6c757d;
             }
             /* その他 */
             .badge {
                 padding: .2rem .4rem;
                 font-size: .75rem;
+                border-radius: 0;
             }
             .pt-half {
                 padding-top: .125rem!important;
             }
             a.rate-increase {
-                color: #212529;
+                color: #0dcaf0;
             }
             a.multi-rate-selected {
-                color: #dc3545;
+                color: #d63384;
                 font-weight: bold;
             }
             .text-custom-primary-dark {
@@ -469,7 +543,7 @@
                     ["DANGEROOOOUS JUNGLE","NORMAL 3",3.0,true,"HARD 10",10.6,true,"EXPERT 13",13.4,true,"INFERNO 14",14.1,true],
                     ["Dimension Hacker","NORMAL 4",4.0,true,"HARD 10+",10.8,true,"EXPERT 13",13.4,true,"INFERNO 14",14.1,true],
                     ["EPHMR","NORMAL 4",4.0,true,"HARD 10+",10.7,true,"EXPERT 13",13.2,true,"INFERNO 14",14.1,true],
-                    ["クリムゾン帝王","NORMAL 8",8.0,true,"HARD 0",0.0,true,"EXPERT 13+",13.7,true,"INFERNO 14",14.2,true],
+                    ["クリムゾン帝王","NORMAL 8",8.0,true,"HARD 11+",11.7,true,"EXPERT 13+",13.7,true,"INFERNO 14",14.2,true],
                     ["Break Through Myself feat. Risa Yuzuki","NORMAL 4",4.0,true,"HARD 10",10.2,true,"EXPERT 13",13.4,true,"INFERNO 0",0.0,],
                     ["D3LTA QOMPLEX","NORMAL 4",4.0,true,"HARD 9+",9.9,true,"EXPERT 13",13.1,true,"INFERNO 0",0.0,],
                     ["Chobit Flavor","NORMAL 3",3.0,true,"HARD 9",9.2,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
@@ -1203,7 +1277,6 @@
                 const prevData = localStorage.getItem('rating-analyzer-prev');
                 const textarea = document.querySelector('#playdata');
 
-                console.log(prevData);
                 if (prevData === null) {
                     document.querySelector('#btn-restore-fail-modal').click();
                     return false;
@@ -1567,13 +1640,13 @@
 
                     // ページの表示倍率を復元
                     const scale = document.querySelector('#select-disp-scale');
-                    scale.value = localStorage.getItem('rating-analyzer-display-scale');
+
+                    scale.value = localStorage.getItem('rating-analyzer-display-scale') || '100';
                     changeDisplayScale();
 
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
                         case '2021-12-24':
-                            document.querySelector('#news-toggle').removeAttribute('onclick');
                             break;
 
                         default:
@@ -1602,165 +1675,65 @@
             function markAsRead(date) {
                 localStorage.setItem('rating-analyzer-last-visited', date);
                 document.querySelector('#news-badge').classList.add('d-none');
-                document.querySelector('#news-toggle').removeAttribute('onclick');
             }
         </script>
     </head>
     <body onload="loadUserPreference(); return false;">
-        <div class="container">
+        <div class="container bg-black">
             <!-- ヘッダー -->
-            <div class="bg-light border border-secondary rounded-bottom shadow-sm">
-                <div class="d-flex flex-wrap m-2">
-                    <div class="navbar-brand">WACCA RATING ANALYZER</div>
-                    <button type="button" class="btn btn-sm btn-outline-primary" id="twitter" onclick="openDevsTwitter(); return false;">
-                        <small>DEV. BY</small>
+            <div class="py-2">
+                <div class="">
+                    <div class="h3 mb-0 ps-2">
+                        <div class="heading navbar-brand px-2">WACCA RATING ANALYZER</div>
+                    </div>
+                </div>
+                <div class="btn-toolbar mt-2" role="toolbar">
+                    <button type="button" class="btn btn-info rounded-0 border-2 fw-bold box-shadow-black skew-10 m-1" id="news" onclick="markAsRead('2021-12-24'); document.querySelector('#btn-news-modal').click();" id="news-button">
+                        <span class="me-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                            </svg>
+                        </span>
+                        <span class="lang-jpn">
+                            お知らせ
+                        </span>
+                        <span class="lang-eng d-none">
+                            News
+                        </span>
+                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-0 skew-10 bg-magenta box-shadow-black text-black d-none" id="news-badge">
+                            <span class="lang-jpn">
+                                未読
+                            </span>
+                            <span class="lang-eng d-none">
+                                UNREAD
+                            </span>
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-info rounded-0 border-2 fw-bold box-shadow-black skew-10 m-1" id="twitter" onclick="openDevsTwitter(); return false;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                             <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
                         </svg>
+                        <div class="position-absolute top-0 start-50 translate-middle badge rounded-0 skew-10 bg-info box-shadow-black text-black">DEV. BY</div>
                         @shimmand
                     </button>
                 </div>
-                <hr class="m-0">
-                <div class="m-2">
-                    <span class="badge bg-secondary align-middle me-1">DATASET</span>
-                    <code class="me-1 text-black-50">2021-12-23 (1 chart missing)</code>
-                    <!-- ニュース -->
-                    <div class="accordion border border-primary rounded my-2" id="accordion-news">
-                        <div class="accordion-item">
-                            <div class="h2 accordion-header" id="accordion-news-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-news-1" aria-expanded="false" aria-controls="collapse-news-1" onclick="markAsRead('2021-12-24'); return false;" id="news-toggle">
-                                    <span class="me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                        </svg>
-                                    </span>
-                                    <span class="lang-jpn">
-                                        お知らせ
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        News
-                                    </span>
-                                    <span class="badge bg-primary align-bottom ms-1 me-1 d-none" id="news-badge">
-                                        <span class="lang-jpn">
-                                            未読
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            UNREAD
-                                        </span>
-                                    </span>
-                                </button>
-                            </div>
-                            <div id="collapse-news-1" class="accordion-collapse collapse" aria-labelledby="accordion-news-1" data-bs-parent="#accordion-news">
-                                <div class="accordion-body p-2">
-                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
-                                        <div class="h6 px-1 pb-1 border-bottom text-primary">
-                                            <span class="badge bg-primary align-bottom">NEW</span>
-                                            <span class="lang-jpn">
-                                                新しい譜面へ対応
-                                            </span>
-                                            <span class="lang-eng d-none">
-                                                New charts are supported
-                                            </span>
-                                        </div>
-                                        <div class="mx-2 my-0">
-                                            <div>
-                                                <div>DANGEROOOOUS JUNGLE</div>
-                                                <div>
-                                                    <span class="badge border normal">NORMAL 3</span>
-                                                    <span class="badge border hard">HARD 10</span>
-                                                    <span class="badge border expert">EXPERT 13</span>
-                                                    <span class="badge border inferno">INFERNO 14</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <div>Dimension Hacker</div>
-                                                <div>
-                                                    <span class="badge border normal">NORMAL 4</span>
-                                                    <span class="badge border hard">HARD 10+</span>
-                                                    <span class="badge border expert">EXPERT 13</span>
-                                                    <span class="badge border inferno">INFERNO 14</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <div>EPHMR</div>
-                                                <div>
-                                                    <span class="badge border normal">NORMAL 4</span>
-                                                    <span class="badge border hard">HARD 10+</span>
-                                                    <span class="badge border expert">EXPERT 13</span>
-                                                    <span class="badge border inferno">INFERNO 14</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <div>
-                                                    クリムゾン帝王
-                                                </div>
-                                                <div>
-                                                    <span class="badge border normal">NORMAL 8</span>
-                                                    <span class="badge border expert">EXPERT 13+</span>
-                                                    <span class="badge border inferno">INFERNO 14</span>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <div class="d-flex bg-danger bg-opacity-10 border border-danger rounded text-danger px-2 py-1">
-                                                    <div>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                                                        </svg>
-                                                    </div>
-                                                    <div class="ms-2">
-                                                        クリムゾン帝王
-                                                        <span class="badge border hard">HARD 11+</span>
-                                                        <span class="lang-jpn">は、定数の特定が難航しているため現時点では対応していません。</span>
-                                                        <span class="lang-eng d-none">is not supported at now due to the difficulty in identifying the constant.</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 p-2">
-                                        <div class="h6 px-1 pb-1 border-bottom text-primary">
-                                            <span class="badge bg-primary align-bottom">NEW</span>
-                                            <span class="lang-jpn">
-                                                表示倍率の変更機能を追加
-                                            </span>
-                                            <span class="lang-eng d-none">
-                                                Display scale adjustment feature added
-                                            </span>
-                                        </div>
-                                        <div class="mx-2 my-0">
-                                            <span class="lang-jpn">
-                                                画面の小さな端末でもより多くのデータを確認できるよう、画面の表示倍率を変更できるようにしました。
-                                            </span>
-                                            <span class="lang-eng d-none">
-                                                The screen display scale can be changed so that more data can be checked even on devices with small screens.
-                                            </span>
-                                        </div>
-                                        <div class="mx-2 my-0">
-                                            <span class="lang-jpn">
-                                                なお、パソコンやiPhone/iPadをお使いの場合は、ブラウザーの標準機能で表示倍率を変更することが可能です。お好きな方をどうぞ。
-                                            </span>
-                                            <span class="lang-eng d-none">
-                                                If you are using a PC, iPhone, or iPad, you can change the display scale by using the browser features. Please choose the one you prefer.
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="d-flex skew-10">
+                    <div><span class="badge rounded-0 bg-info text-black me-1">DATASET</span></div>
+                    <div><span class="badge rounded-0 bg-black text-info me-1">2021-12-23</span></div>
                 </div>
             </div>
             <!-- プレイデータのテキストエリア -->
             <div class="form-floating mt-2">
-                <textarea class="form-control playdata shadow-sm" id="playdata" placeholder="Paste your playdata here"></textarea>
+                <textarea class="form-control playdata box-shadow-chromatic border-0 bg-black rounded-0 text-white skew-10" id="playdata"></textarea>
                 <label for="playdata">
-                    <span class="lang-jpn">プレイデータ</span>
-                    <span class="lang-eng d-none">Play Data</span>
+                    <div class="text-info fw-bold skew-10">
+                        <span class="lang-jpn">プレイデータ</span>
+                        <span class="lang-eng d-none">Play Data</span>
+                    </div>
                 </label>
                 <div class="position-absolute top-50 end-0 translate-middle-y">
-                    <button type="button" class="btn btn-outline-danger shadow-sm" onclick="clearPlaydata(); return false;">
+                    <button type="button" class="btn btn-magenta rounded-0 border-2 fw-bold skew-10 m-1" onclick="clearPlaydata(); return false;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -1769,7 +1742,7 @@
                         <span class="lang-eng d-none">Clear</span>
                     </button>
                 </div>
-                <div class="valid-feedback">
+                <div class="valid-feedback fw-bold skew-10 mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
@@ -1781,51 +1754,39 @@
                         Analysis complete!
                     </span>
                 </div>
-                <div class="invalid-feedback error-feedback-1 d-none" id="warning-denied">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                    </svg>
+                <div class="invalid-feedback error-feedback-1 fw-bold skew-10 mt-2 d-none" id="warning-denied">
                     <span class="lang-jpn">
                         クリップボードへアクセスできません。
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">ペースト</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">ペースト</span>
                         または
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">許可</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">許可</span>
                         を押してください。
                     </span>
                     <span class="lang-eng d-none">
                         Allow your browser to access the clipboard.
                         After pressing
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">Load Your Data</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">Load Your Data</span>
                         , please press
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">Paste</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">Paste</span>
                         or
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">Allow</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">Allow</span>
                         .
                     </span>
                 </div>
-                <div class="invalid-feedback error-feedback-1 d-none" id="warning-empty">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                    </svg>
+                <div class="invalid-feedback error-feedback-1 fw-bold skew-10 mt-2 d-none" id="warning-empty">
                     <span class="lang-jpn">
                         データが空です。
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">データを読込</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">データを読込</span>
                         を押してください。
                     </span>
                     <span class="lang-eng d-none">
                         Text field is empty.
                         If you haven't pressed
-                        <span class="badge border border-danger text-danger align-bottom ms-1 me-1">Load Your Data</span>
+                        <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">Load Your Data</span>
                         yet, please do so first.
                     </span>
                 </div>
-                <div class="invalid-feedback error-feedback-1 d-none" id="warning-invalid">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                    </svg>
+                <div class="invalid-feedback error-feedback-1 fw-bold skew-10 mt-2 d-none" id="warning-invalid">
                     <span class="lang-jpn">
                         データの形式が不正です。
                         お手数ですが、マイページに戻って再度ブックマークレットを実行してください。
@@ -1837,28 +1798,28 @@
                 </div>
             </div>
             <!-- ボタングループ -->
-            <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+            <div class="bg-black mt-2 py-2">
                 <div class="m-2">
                     <div class="btn-toolbar" role="toolbar">
                         <div class="btn-group me-2" role="group">
-                            <button type="button" class="btn btn-outline-primary" id="paste" onclick="paste()">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" id="paste" onclick="paste()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                     <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                                     <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                                 </svg>
-                                <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 1</span>
+                                <div class="position-absolute top-0 start-50 translate-middle badge rounded-0 skew-10 bg-info box-shadow-black text-black">STEP 1</div>
                                 <span class="lang-jpn">データを読込</span>
                                 <span class="lang-eng d-none">Load Your Data</span>
                             </button>
-                            <button type="button" class="btn btn-outline-primary" id="analyze" onclick="analyze()">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" id="analyze" onclick="analyze()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
                                     <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"/>
                                 </svg>
-                                <span class="position-absolute top-0 start-50 translate-middle badge rounded bg-primary">STEP 2</span>
+                                <div class="position-absolute top-0 start-50 translate-middle badge rounded-0 skew-10 bg-info box-shadow-black text-black">STEP 2</div>
                                 <span class="lang-jpn">分析を実行</span>
                                 <span class="lang-eng d-none">Start Analysis</span>
                             </button>
-                            <button type="button" class="btn btn-outline-danger" id="analyze" onclick="activateRestoreMode()">
+                            <button type="button" class="btn btn-magenta rounded-0 border-2 fw-bold skew-10 m-1" id="analyze" onclick="activateRestoreMode()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
                                     <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
                                     <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
@@ -1869,7 +1830,7 @@
                             </button>
                         </div>
                         <div class="btn-group me-2" role="group">
-                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#helpModal">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-toggle="modal" data-bs-target="#helpModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
@@ -1877,14 +1838,14 @@
                                 <span class="lang-jpn">ヘルプ</span>
                                 <span class="lang-eng d-none">Help</span>
                             </button>
-                            <button type="button" class="btn btn-outline-primary" id="save" onclick="saveTableData()">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" id="save" onclick="saveTableData()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
                                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
                                 </svg>
                                 <span class="lang-jpn">CSVで保存</span>
                                 <span class="lang-eng d-none">Save as CSV</span>
                             </button>
-                            <button type="button" class="btn btn-outline-primary" id="help" onclick="openChartsData()">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" id="help" onclick="openChartsData()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
                                     <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
                                 </svg>
@@ -1894,14 +1855,14 @@
                         </div>
                         <div class="btn-group me-2" role="group">
                             <input type="radio" class="btn-check opt-lang-jpn" name="radio-lang-1" id="radio-lang-1-1" autocomplete="off" onchange="switchToJapanese()">
-                            <label class="btn btn-outline-primary" for="radio-lang-1-1">
+                            <label class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" for="radio-lang-1-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                 </svg>
                                 Japanese
                             </label>
                             <input type="radio" class="btn-check opt-lang-eng" name="radio-lang-1" id="radio-lang-1-2" autocomplete="off" onchange="switchToEnglish()">
-                            <label class="btn btn-outline-primary" for="radio-lang-1-2">
+                            <label class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" for="radio-lang-1-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                     <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                 </svg>
@@ -1909,14 +1870,7 @@
                             </label>
                         </div>
                         <div class="input-group me-2" role="group">
-                            <label class="input-group-text" for="select-disp-scale">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search me-1" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                                <span class="lang-jpn">表示倍率</span>
-                                <span class="lang-eng d-none">Display Scale</span>
-                            </label>
-                            <select class="form-select border-primary text-primary" id="select-disp-scale" onchange="changeDisplayScale(); return false;">
+                            <select class="form-select border-info bg-info rounded-0 border-2 fw-bold skew-10 me-1" id="select-disp-scale" onchange="changeDisplayScale(); return false;">
                               <option value="100" selected>100%</option>
                               <option value="90">90%</option>
                               <option value="80">80%</option>
@@ -1926,54 +1880,40 @@
                             </select>
                         </div>
                     </div>
-                    <div class="accordion border border-primary rounded my-2" id="accordion-if-doesnt-work">
-                        <div class="accordion-item">
-                            <div class="h2 accordion-header" id="accordion-if-doesnt-work-1">
-                                <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-if-doesnt-work-1" aria-expanded="false" aria-controls="collapse-if-doesnt-work-1">
-                                    <span class="me-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                        </svg>
-                                    </span>
-                                    <span class="lang-jpn">
-                                        <span class="badge border border-primary text-primary align-bottom">データを読込</span> が動作しない場合
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        If <span class="badge border border-primary text-primary align-bottom">Load Your Data</span> does not work
-                                    </span>
-                                </button>
-                            </div>
-                            <div id="collapse-if-doesnt-work-1" class="accordion-collapse collapse" aria-labelledby="accordion-if-doesnt-work-1" data-bs-parent="#accordion-if-doesnt-work">
-                                <div class="accordion-body p-2">
-                                    <span class="lang-jpn">
-                                        <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> が動作しない場合、代わりにプレイデータ欄へクリップボードの内容を貼り付け、そのまま <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押してください。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        If nothing happens when you press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>, paste the clipboard contents into the Play Data field instead, and then press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button type="button" class="btn btn-info rounded-0 border-2 fw-bold box-shadow-black skew-10 m-1" id="news" onclick="document.querySelector('#btn-does-not-work-modal').click();" id="does-not-work-button">
+                        <span class="me-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                            </svg>
+                        </span>
+                        <span class="lang-jpn">
+                            <span class="badge border border-dark text-black align-bottom">データを読込</span> が動作しない場合
+                        </span>
+                        <span class="lang-eng d-none">
+                            If <span class="badge border border-dark text-black align-bottom">Load Your Data</span> does not work
+                        </span>
+                    </button>
                 </div>
             </div>
             <!-- 概要 -->
             <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white py-1">
+                <div class="justify-content-between bg-black bg-opacity-75 sticky-top py-1">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="h3 mb-0 ps-2 border-start border-5 border-secondary rounded-start">
-                            <span class="lang-jpn">概要</span>
-                            <span class="lang-eng d-none">Summary</span>
+                        <div class="h3 mb-0 ps-2">
+                            <div class="heading px-2">
+                                <span class="lang-jpn">概要</span>
+                                <span class="lang-eng d-none">Summary</span>
+                            </div>
                         </div>
                         <div class="mb-0">
                             <div class="d-flex">
-                                <div class="d-flex ms-2">
-                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                <div class="d-flex ms-2 box-shadow-chromatic skew-10">
+                                    <div class="badge bg-black border text-white fs-6">
                                         <span class="lang-jpn align-middle">合計</span>
                                         <span class="lang-eng align-middle d-none">Total</span>
                                     </div>
-                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6" id="total-rate-class">
+                                    <div class="d-flex badge bg-plain border border-start-0 border-white fs-6" id="total-rate-class">
                                         <div>
                                             <span class="align-middle" id="total-rate-current">0.000</span>
                                         </div>
@@ -1986,13 +1926,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="rate-graph bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                    <div class="m-2 px-1 pb-1 h6 border-bottom text-secondary">
+                <div class="rate-graph mt-2">
+                    <div class="m-2 px-1 pb-1 h6 border-bottom text-chromatic">
                         <span class="lang-jpn">Rate帯</span>
                         <span class="lang-eng d-none">Rate Class</span>
                     </div>
-                    <div class="position-relative graph-bar border rounded shadow-sm mx-4 my-3">
-                        <div class="progress rounded-0 rounded-top">
+                    <div class="position-relative graph-bar border mx-4 my-3">
+                        <div class="progress rounded-0">
                             <div class="progress-bar graph-bar-rate bg-plain bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-navy bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-yellow bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2003,22 +1943,26 @@
                             <div class="progress-bar graph-bar-rate bg-gold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-rate bg-rainbow" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="progress rounded-0 rounded-bottom">
+                        <div class="progress rounded-0">
                             <div class="progress-bar graph-bar-rate-2 text-shadow-black bg-older bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <span class="lang-jpn">旧曲枠</span>
-                                <span class="lang-eng d-none">Older</span>
+                                <div class="skew-10">
+                                    <span class="lang-jpn">旧曲枠</span>
+                                    <span class="lang-eng d-none">Older</span>
+                                </div>
                             </div>
                             <div class="progress-bar graph-bar-rate-2 text-shadow-black bg-newer bg-gradient fw-bold" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <span class="lang-jpn">新曲枠</span>
-                                <span class="lang-eng d-none">Newer</span>
+                                <div class="skew-10">
+                                    <span class="lang-jpn">新曲枠</span>
+                                    <span class="lang-eng d-none">Newer</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="position-absolute top-0 translate-middle current-loc" style="left: 0%!important; top: 4%!important;">
+                        <div class="position-absolute top-0 translate-middle current-loc text-info" style="left: 0%!important; top: -24%!important;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
                                 <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"></path>
                             </svg>
                         </div>
-                        <div class="position-absolute top-100 translate-middle current-loc" style="left: 0%!important; top: 84%!important;">
+                        <div class="position-absolute top-100 translate-middle current-loc text-magenta" style="left: 0%!important; top: 114%!important;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
                                 <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"></path>
                             </svg>
@@ -2028,20 +1972,22 @@
             </div>
             <!-- 新曲枠 -->
             <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white py-1">
+                <div class="justify-content-between bg-black bg-opacity-75 sticky-top py-1">
                     <div class="d-flex justify-content-between align-items-center" id="header-newer">
-                        <div class="h3 border-start border-5 border-primary rounded-start mb-0 ps-2">
-                            <span class="lang-jpn">新曲枠</span>
-                            <span class="lang-eng d-none">Newer Charts</span>
+                        <div class="h3 mb-0 ps-2">
+                            <div class="heading px-2">
+                                <span class="lang-jpn">新曲枠</span>
+                                <span class="lang-eng d-none">Newer Charts</span>
+                            </div>
                         </div>
                         <div class="mb-0">
                             <div class="d-flex mb-1">
-                                <div class="d-flex ms-2">
-                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                <div class="d-flex ms-2 skew-10">
+                                    <div class="badge bg-black border text-white fs-6">
                                         <span class="lang-jpn align-middle">小計</span>
                                         <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                    <div class="d-flex badge bg-plain border border-start-0 border-white fs-6" id="total-rate-class">
                                         <div>
                                             <span class="align-middle summedRateCurrent">0.000</span>
                                         </div>
@@ -2052,12 +1998,12 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <div class="d-flex ms-2">
-                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark">
+                                <div class="d-flex ms-2 skew-10">
+                                    <div class="badge bg-black border text-white">
                                         <span class="lang-jpn">レーティング対象</span>
                                         <span class="lang-eng d-none">Rate Baseline</span>
                                     </div>
-                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary">
+                                    <div class="d-flex badge bg-plain border border-start-0 border-white" id="total-rate-class">
                                         <span class="singleRateLower align-middle">0.000</span>
                                         <span class="align-middle">
                                             <span class="lang-jpn">以上</span>
@@ -2068,9 +2014,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-new" class="alert alert-secondary shadow p-2 mb-0 mt-1 d-none" role="alert">
+                    <div id="multi-rate-alert-new" class="alert bg-dark rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
-                            <div>
+                            <div class="text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
                                     <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
                                 </svg>
@@ -2080,14 +2026,13 @@
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
-                                <p class="m-0">
+                                <p class="m-0 text-white">
                                     <span class="lang-jpn">合算したい譜面のスコア別上昇値を選択してください。</span>
                                     <span class="lang-eng d-none">Select the rate increase by score of the chart you want to sum up.</span>
-                                    
                                 </p>
                             </div>
                             <div class="ms-auto">
-                                <button type="button" class="btn btn-outline-danger" onclick="quitMultiRateMode('new'); return false;">
+                                <button type="button" class="btn btn-magenta rounded-0 border-2 fw-bold skew-10 m-1" onclick="quitMultiRateMode('new'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                                         <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
@@ -2098,23 +2043,25 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 m-0">0.000</div>
-                            <div class="symbol h6 m-0 ms-1">
+                            <div class="before h6 text-black m-0">0.000</div>
+                            <div class="symbol h6 text-black m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 m-0 ms-1">0.000</div>
-                            <div class="h6 text-danger m-0 ms-1">(+<span class="increase">0.000</span>)</div>
+                            <div class="after h6 text-black m-0 ms-1">0.000</div>
+                            <div class="h6 text-magenta m-0 ms-1">(+<span class="increase">0.000</span>)</div>
                         </div>
                     </div>
                 </div>
-                <div class="stats-graph bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                    <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
-                        <span class="lang-jpn">スコア帯別の割合</span>
-                        <span class="lang-eng d-none">Ratio by Score Range</span>
+                <div class="stats-graph bg-black mt-2">
+                    <div class="h6 border-bottom text-white m-2 px-1 pb-1">
+                        <div class="text-chromatic">
+                            <span class="lang-jpn">スコア帯別の割合</span>
+                            <span class="lang-eng d-none">Ratio by Score Range</span>
+                        </div>
                     </div>
-                    <div class="progress border shadow-sm mx-4 mt-3">
+                    <div class="progress border rounded-0 mx-4 mt-3">
                         <div class="progress-bar graph-bar-stats bg-lt-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-960 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2122,58 +2069,60 @@
                         <div class="progress-bar graph-bar-stats bg-is-980 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-ge-990 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="d-flex justify-content-between mx-4 m-2 flex-wrap">
-                        <div class="d-flex flex-column text-center">
-                            <span class="lt-950 bg-lt-950 text-shadow-black badge border bg-gradient text-white p-1">&lt;950k</span>
-                            <span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span>
+                    <div class="d-flex justify-content-between text-center mx-4 m-2 flex-wrap">
+                        <div>
+                            <div><span class="lt-950 bg-lt-950 text-shadow-black badge border bg-gradient text-white p-1">&lt;950k</span></div>
+                            <div><span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-950 text-shadow-black badge border bg-gradient text-white p-1">950k</span>
-                            <span class="graph-ratio-stats is-950 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-950 text-shadow-black badge border bg-gradient text-white p-1">950k</span></div>
+                            <div><span class="graph-ratio-stats is-950 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-960 text-shadow-black badge border bg-gradient text-white p-1">960k</span>
-                            <span class="graph-ratio-stats is-960 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-960 text-shadow-black badge border bg-gradient text-white p-1">960k</span></div>
+                            <div><span class="graph-ratio-stats is-960 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-970 text-shadow-black badge border bg-gradient text-white p-1">970k</span>
-                            <span class="graph-ratio-stats is-970 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-970 text-shadow-black badge border bg-gradient text-white p-1">970k</span></div>
+                            <div><span class="graph-ratio-stats is-970 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-980 text-shadow-black badge border bg-gradient text-white p-1">980k</span>
-                            <span class="graph-ratio-stats is-980 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-980 text-shadow-black badge border bg-gradient text-white p-1">980k</span></div>
+                            <div><span class="graph-ratio-stats is-980 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="ge-950 bg-ge-990 text-shadow-black badge border bg-gradient text-white p-1">990k</span>
-                            <span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="ge-950 bg-ge-990 text-shadow-black badge border bg-gradient text-white p-1">990k</span></div>
+                            <div><span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2" id="list-newer">
-                    <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
-                        <span class="lang-jpn">譜面一覧</span>
-                        <span class="lang-eng d-none">Chart List</span>
+                <div class="mt-2" id="list-newer">
+                    <div class="h6 border-bottom text-white m-2 px-1 pb-1">
+                        <div class="text-chromatic">
+                            <span class="lang-jpn">譜面一覧</span>
+                            <span class="lang-eng d-none">Chart List</span>
+                        </div>
                     </div>
-                    <div class="bg-light border rounded-top shadow-sm mx-2 p-2">
-                        <div class="h6 small text-secondary m-0">
+                    <div class="rounded-top mx-2 p-2">
+                        <div class="h6 small m-0">
                             <span class="lang-jpn">種類</span>
                             <span class="lang-eng d-none">Type</span>
                         </div>
-                        <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
+                        <span class="badge border filter-targets text-shadow-black bg-gradient">
                             <input class="form-check-input m-0 rating-targets-toggle" type="checkbox" value="" id="rating-targets-toggle-newer" onchange="toggleChartVisibilityByType('targets', this.checked);" checked>
                             <label class="form-check-label" for="rating-targets-toggle-newer">
                                 <span class="lang-jpn">レーティング対象</span>
                                 <span class="lang-eng d-none">Rating Targets</span>
                             </label>
                         </span>
-                        <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
+                        <span class="badge border filter-candidates text-shadow-black bg-gradient">
                             <input class="form-check-input m-0 rating-candidates-toggle" type="checkbox" value="" id="rating-candidates-toggle-newer" onchange="toggleChartVisibilityByType('candidates', this.checked);" checked>
                             <label class="form-check-label" for="rating-candidates-toggle-newer">
                                 <span class="lang-jpn">レーティング候補</span>
                                 <span class="lang-eng d-none">Rating Candidates</span>
                             </label>
                         </span>
-                        <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
+                        <span class="badge border filter-others text-shadow-black bg-gradient">
                             <input class="form-check-input m-0 rating-others-toggle" type="checkbox" value="" id="rating-others-toggle-newer" onchange="toggleChartVisibilityByType('others', this.checked);" checked>
                             <label class="form-check-label" for="rating-others-toggle-newer">
                                 <span class="lang-jpn">その他</span>
@@ -2181,8 +2130,8 @@
                             </label>
                         </span>
                     </div>
-                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
-                        <div class="h6 small text-secondary m-0">
+                    <div class="rounded-bottom mx-2 p-2">
+                        <div class="h6 small m-0">
                             <span class="lang-jpn">難易度</span>
                             <span class="lang-eng d-none">Difficulty</span>
                         </div>
@@ -2203,41 +2152,39 @@
                             <label class="form-check-label" for="difficulty-inferno-toggle-newer">INFERNO</label>
                         </span>
                     </div>
-                    <div class="bg-light border rounded-top shadow-sm mx-2 p-2">
-                        <div class="bg-dark bg-opacity-10 border border-secondary border-5 border-top-0 border-bottom-0 rounded h6 small text-secondary m-0 px-2 py-1">
-                            <span class="lang-jpn">左右にスクロールできます</span>
-                            <span class="lang-eng d-none">Scrollable Horizontally</span>
+                    <div class="mx-2 p-2">
+                        <div class="h6 small text-secondary m-0 py-1">
+                            <span class="lang-jpn">左右にスクロールできます。</span>
+                            <span class="lang-eng d-none">Scrollable Horizontally.</span>
                         </div>
-                    </div>
-                    <div class="bg-light border border-top-0 shadow-sm mx-2 p-2">
-                        <div class="bg-dark bg-opacity-10 border border-secondary border-5 border-top-0 border-bottom-0 rounded h6 small text-secondary m-0 px-2 py-1">
+                        <div class="h6 small text-secondary m-0 py-1">
                             <span class="lang-jpn">複数選択モードを有効にするには、「スコア別上昇値」の任意の値をクリックします。</span>
                             <span class="lang-eng d-none">To activate the Multi Select Mode, click any value in the "Rate Increase by Score".</span>
                         </div>
                     </div>
-                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
+                    <div class="border mb-3 mx-2 p-2">
                         <div class="table-responsive">
-                            <table class="table table-sm">
+                            <table class="table table-dark table-sm">
                                 <thead>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0">
-                                        <th class="bg-light small" scope="col"></th>
-                                        <th class="sticky-left bg-light small" scope="col"></th>
-                                        <th class="bg-light small" scope="col" colspan="2"></th>
-                                        <th class="bg-light small" scope="col" colspan="4">
+                                        <th class="small" scope="col"></th>
+                                        <th class="sticky-left small" scope="col"></th>
+                                        <th class="small" scope="col" colspan="2"></th>
+                                        <th class="small" scope="col" colspan="4">
                                             <span class="lang-jpn">譜面別Rate</span>
                                             <span class="lang-eng d-none">Single Rate</span>
                                         </th>
-                                        <th class="bg-light small" scope="col" colspan="5">
+                                        <th class="small" scope="col" colspan="5">
                                             <span class="lang-jpn">スコア別上昇値</span>
                                             <span class="lang-eng d-none">Rate Increase by Score</span>
                                         </th>
                                     </tr>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0 border-secondary">
-                                        <th class="bg-light" scope="col">#</th>
-                                        <th class="sticky-left bg-light" scope="col">
+                                        <th scope="col">#</th>
+                                        <th class="sticky-left" scope="col">
                                             <span class="lang-jpn">曲名</span>
                                             <span class="lang-eng d-none">Song</span>
-                                            <span class="badge bg-light border border-secondary text-secondary p-1">
+                                            <span class="badge border border-secondary text-white p-1">
                                                 <input class="form-check-input m-0" type="checkbox" value="" id="table-sticky-toggle" onchange="toggleTableFixed(this.checked)">
                                                 <label class="form-check-label" for="table-sticky-toggle">
                                                     <span class="lang-jpn">固定</span>
@@ -2245,35 +2192,35 @@
                                                 </label>
                                             </span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">レベル</span>
                                             <span class="lang-eng d-none">Level</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">スコア</span>
                                             <span class="lang-eng d-none">Score</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">定数</span>
                                             <span class="lang-eng d-none">Const</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">倍数</span>
                                             <span class="lang-eng d-none">Modifier</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">現在</span>
                                             <span class="lang-eng d-none">Now</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">上限</span>
                                             <span class="lang-eng d-none">Max</span>
                                         </th>
-                                        <th class="bg-light" scope="col">950k</th>
-                                        <th class="bg-light" scope="col">960k</th>
-                                        <th class="bg-light" scope="col">970k</th>
-                                        <th class="bg-light" scope="col">980k</th>
-                                        <th class="bg-light" scope="col">990k</th>
+                                        <th scope="col">950k</th>
+                                        <th scope="col">960k</th>
+                                        <th scope="col">970k</th>
+                                        <th scope="col">980k</th>
+                                        <th scope="col">990k</th>
                                     </tr>
                                 </thead>
                                 <tbody class="scoresTable">
@@ -2284,37 +2231,39 @@
                 </div>
             </div>
             <!-- 旧曲枠 -->
-            <div class="mt-2">
-                <div class="justify-content-between sticky-top bg-white py-1">
+            <div class="mt-2 pb-5">
+                <div class="justify-content-between bg-black bg-opacity-75 sticky-top py-1">
                     <div class="d-flex justify-content-between align-items-center" id="header-older">
-                        <div class="h3 border-start border-5 border-secondary rounded-start mb-0 ps-2" style="border-color: var(--bs-orange)!important;">
-                            <span class="lang-jpn">旧曲枠</span>
-                            <span class="lang-eng d-none">Older Charts</span>
+                        <div class="h3 mb-0 ps-2" style="border-color: var(--bs-orange)!important;">
+                            <div class="heading px-2">
+                                <span class="lang-jpn">旧曲枠</span>
+                                <span class="lang-eng d-none">Older Charts</span>
+                            </div>
                         </div>
                         <div class="mb-0">
                             <div class="d-flex mb-1">
-                                <div class="d-flex ms-2">
-                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark fs-6">
+                                <div class="d-flex ms-2 skew-10">
+                                    <div class="badge bg-black border text-white fs-6">
                                         <span class="lang-jpn align-middle">小計</span>
-                                            <span class="lang-eng align-middle d-none">Subtotal</span>
+                                        <span class="lang-eng align-middle d-none">Subtotal</span>
                                     </div>
-                                    <div class="d-flex badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary fs-6">
+                                    <div class="d-flex badge bg-plain border border-start-0 border-white fs-6" id="total-rate-class">
                                         <div>
                                             <span class="align-middle summedRateCurrent">0.000</span>
                                         </div>
-                                        <div>
+                                        <div class="ms-1">
                                             <span class="badge bg-white bg-opacity-50 text-dark summedRateUpper">MAX 0.000</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <div class="d-flex ms-2">
-                                    <div class="badge rounded-0 rounded-start border border-secondary text-dark">
+                                <div class="d-flex ms-2 skew-10">
+                                    <div class="badge bg-black border text-white">
                                         <span class="lang-jpn">レーティング対象</span>
                                         <span class="lang-eng d-none">Rate Baseline</span>
                                     </div>
-                                    <div class="badge bg-plain rounded-0 rounded-end border border-start-0 border-secondary">
+                                    <div class="d-flex badge bg-plain border border-start-0 border-white" id="total-rate-class">
                                         <span class="singleRateLower align-middle">0.000</span>
                                         <span class="align-middle">
                                             <span class="lang-jpn">以上</span>
@@ -2325,9 +2274,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="multi-rate-alert-old" class="alert alert-secondary shadow p-2 mb-0 mt-1 d-none" role="alert">
+                    <div id="multi-rate-alert-old" class="alert bg-dark rounded-0 shadow p-2 mb-0 mt-1 d-none" role="alert">
                         <div class="d-flex align-items-center">
-                            <div>
+                            <div class="text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-index-thumb me-2" viewBox="0 0 16 16">
                                     <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
                                 </svg>
@@ -2337,14 +2286,13 @@
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </p>
-                                <p class="m-0">
+                                <p class="m-0 text-white">
                                     <span class="lang-jpn">合算したい譜面のスコア別上昇値を選択してください。</span>
                                     <span class="lang-eng d-none">Select the rate increase by score of the chart you want to sum up.</span>
-                                    
                                 </p>
                             </div>
                             <div class="ms-auto">
-                                <button type="button" class="btn btn-outline-danger" onclick="quitMultiRateMode('old'); return false;">
+                                <button type="button" class="btn btn-magenta rounded-0 border-2 fw-bold skew-10 m-1" onclick="quitMultiRateMode('old'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
                                         <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
@@ -2355,23 +2303,25 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center border border-light bg-light rounded">
-                            <div class="before h6 m-0">0.000</div>
-                            <div class="symbol h6 m-0 ms-1">
+                            <div class="before h6 text-black m-0">0.000</div>
+                            <div class="symbol h6 text-black m-0 ms-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                     <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                                 </svg>
                             </div>
-                            <div class="after h6 m-0 ms-1">0.000</div>
-                            <div class="h6 text-danger m-0 ms-1">(+<span class="increase">0.000</span>)</div>
+                            <div class="after h6 text-black m-0 ms-1">0.000</div>
+                            <div class="h6 text-magenta m-0 ms-1">(+<span class="increase">0.000</span>)</div>
                         </div>
                     </div>
                 </div>
-                <div class="stats-graph bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                    <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
-                        <span class="lang-jpn">スコア帯別の割合</span>
-                        <span class="lang-eng d-none">Ratio by Score Range</span>
+                <div class="stats-graph bg-black mt-2">
+                    <div class="h6 border-bottom text-white m-2 px-1 pb-1">
+                        <div class="text-chromatic">
+                            <span class="lang-jpn">スコア帯別の割合</span>
+                            <span class="lang-eng d-none">Ratio by Score Range</span>
+                        </div>
                     </div>
-                    <div class="progress border shadow-sm mx-4 mt-3">
+                    <div class="progress border rounded-0 mx-4 mt-3">
                         <div class="progress-bar graph-bar-stats bg-lt-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-950 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-is-960 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2379,122 +2329,122 @@
                         <div class="progress-bar graph-bar-stats bg-is-980 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar graph-bar-stats bg-ge-990 bg-gradient" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    <div class="d-flex justify-content-between mx-4 m-2 flex-wrap">
-                        <div class="d-flex flex-column text-center">
-                            <span class="lt-950 bg-lt-950 text-shadow-black badge bg-gradient border text-white p-1">&lt;950k</span>
-                            <span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span>
+                    <div class="d-flex justify-content-between text-center mx-4 m-2 flex-wrap">
+                        <div>
+                            <div><span class="lt-950 bg-lt-950 text-shadow-black badge border bg-gradient text-white p-1">&lt;950k</span></div>
+                            <div><span class="graph-ratio-stats lt-950 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-950 text-shadow-black badge bg-gradient border text-white p-1">950k</span>
-                            <span class="graph-ratio-stats is-950 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-950 text-shadow-black badge border bg-gradient text-white p-1">950k</span></div>
+                            <div><span class="graph-ratio-stats is-950 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-960 text-shadow-black badge bg-gradient border text-white p-1">960k</span>
-                            <span class="graph-ratio-stats is-960 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-960 text-shadow-black badge border bg-gradient text-white p-1">960k</span></div>
+                            <div><span class="graph-ratio-stats is-960 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-970 text-shadow-black badge bg-gradient border text-white p-1">970k</span>
-                            <span class="graph-ratio-stats is-970 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-970 text-shadow-black badge border bg-gradient text-white p-1">970k</span></div>
+                            <div><span class="graph-ratio-stats is-970 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="is-950 bg-is-980 text-shadow-black badge bg-gradient border text-white p-1">980k</span>
-                            <span class="graph-ratio-stats is-980 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="is-950 bg-is-980 text-shadow-black badge border bg-gradient text-white p-1">980k</span></div>
+                            <div><span class="graph-ratio-stats is-980 fw-bold small">0.00%</span></div>
                         </div>
-                        <div class="d-flex flex-column text-center">
-                            <span class="ge-950 bg-ge-990 text-shadow-black badge bg-gradient border text-white p-1">990k</span>
-                            <span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span>
+                        <div>
+                            <div><span class="ge-950 bg-ge-990 text-shadow-black badge border bg-gradient text-white p-1">990k</span></div>
+                            <div><span class="graph-ratio-stats ge-990 fw-bold small">0.00%</span></div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2 mb-3" id="list-older">
-                    <div class="h6 border-bottom text-secondary m-2 px-1 pb-1">
-                        <span class="lang-jpn">譜面一覧</span>
-                        <span class="lang-eng d-none">Chart List</span>
+                <div class="mt-2" id="list-older">
+                    <div class="h6 border-bottom text-white m-2 px-1 pb-1">
+                        <div class="text-chromatic">
+                            <span class="lang-jpn">譜面一覧</span>
+                            <span class="lang-eng d-none">Chart List</span>
+                        </div>
                     </div>
-                    <div class="bg-light border rounded-top shadow-sm mx-2 p-2">
-                        <div class="h6 small text-secondary m-0">
+                    <div class="rounded-top mx-2 p-2">
+                        <div class="h6 small m-0">
                             <span class="lang-jpn">種類</span>
                             <span class="lang-eng d-none">Type</span>
                         </div>
-                        <span class="badge border border-secondary filter-targets text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0 rating-targets-toggle" type="checkbox" value="" id="rating-targets-toggle-older" onchange="toggleChartVisibilityByType('targets', this.checked); scrollToListTop('older');" checked>
+                        <span class="badge border filter-targets text-shadow-black bg-gradient">
+                            <input class="form-check-input m-0 rating-targets-toggle" type="checkbox" value="" id="rating-targets-toggle-older" onchange="toggleChartVisibilityByType('targets', this.checked);" checked>
                             <label class="form-check-label" for="rating-targets-toggle-older">
                                 <span class="lang-jpn">レーティング対象</span>
                                 <span class="lang-eng d-none">Rating Targets</span>
                             </label>
                         </span>
-                        <span class="badge border border-secondary filter-candidates text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0 rating-candidates-toggle" type="checkbox" value="" id="rating-candidates-toggle-older" onchange="toggleChartVisibilityByType('candidates', this.checked); scrollToListTop('older');" checked>
+                        <span class="badge border filter-candidates text-shadow-black bg-gradient">
+                            <input class="form-check-input m-0 rating-candidates-toggle" type="checkbox" value="" id="rating-candidates-toggle-older" onchange="toggleChartVisibilityByType('candidates', this.checked);" checked>
                             <label class="form-check-label" for="rating-candidates-toggle-older">
                                 <span class="lang-jpn">レーティング候補</span>
                                 <span class="lang-eng d-none">Rating Candidates</span>
                             </label>
                         </span>
-                        <span class="badge border border-secondary filter-others text-secondary text-shadow-white bg-gradient">
-                            <input class="form-check-input m-0 rating-others-toggle" type="checkbox" value="" id="rating-others-toggle-older" onchange="toggleChartVisibilityByType('others', this.checked); scrollToListTop('older');" checked>
+                        <span class="badge border filter-others text-shadow-black bg-gradient">
+                            <input class="form-check-input m-0 rating-others-toggle" type="checkbox" value="" id="rating-others-toggle-older" onchange="toggleChartVisibilityByType('others', this.checked);" checked>
                             <label class="form-check-label" for="rating-others-toggle-older">
                                 <span class="lang-jpn">その他</span>
                                 <span class="lang-eng d-none">Others</span>
                             </label>
                         </span>
                     </div>
-                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
-                        <div class="h6 small text-secondary m-0">
+                    <div class="rounded-bottom mx-2 p-2">
+                        <div class="h6 small m-0">
                             <span class="lang-jpn">難易度</span>
                             <span class="lang-eng d-none">Difficulty</span>
                         </div>
                         <span class="badge border bg-gradient normal">
-                            <input class="form-check-input m-0 difficulty-normal-toggle" type="checkbox" value="" id="difficulty-normal-toggle-older" onchange="toggleChartVisibilityByDifficulty('normal', this.checked); scrollToListTop('older');" checked>
+                            <input class="form-check-input m-0 difficulty-normal-toggle" type="checkbox" value="" id="difficulty-normal-toggle-older" onchange="toggleChartVisibilityByDifficulty('normal', this.checked);" checked>
                             <label class="form-check-label" for="difficulty-normal-toggle-older">NORMAL</label>
                         </span>
                         <span class="badge border bg-gradient hard">
-                            <input class="form-check-input m-0 difficulty-hard-toggle" type="checkbox" value="" id="difficulty-hard-toggle-older" onchange="toggleChartVisibilityByDifficulty('hard', this.checked); scrollToListTop('older');" checked>
+                            <input class="form-check-input m-0 difficulty-hard-toggle" type="checkbox" value="" id="difficulty-hard-toggle-older" onchange="toggleChartVisibilityByDifficulty('hard', this.checked);" checked>
                             <label class="form-check-label" for="difficulty-hard-toggle-older">HARD</label>
                         </span>
                         <span class="badge border bg-gradient expert">
-                            <input class="form-check-input m-0 difficulty-expert-toggle" type="checkbox" value="" id="difficulty-expert-toggle-older" onchange="toggleChartVisibilityByDifficulty('expert', this.checked); scrollToListTop('older');" checked>
+                            <input class="form-check-input m-0 difficulty-expert-toggle" type="checkbox" value="" id="difficulty-expert-toggle-older" onchange="toggleChartVisibilityByDifficulty('expert', this.checked);" checked>
                             <label class="form-check-label" for="difficulty-expert-toggle-older">EXPERT</label>
                         </span>
                         <span class="badge border bg-gradient inferno">
-                            <input class="form-check-input m-0 difficulty-inferno-toggle" type="checkbox" value="" id="difficulty-inferno-toggle-older" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked); scrollToListTop('older');" checked>
+                            <input class="form-check-input m-0 difficulty-inferno-toggle" type="checkbox" value="" id="difficulty-inferno-toggle-older" onchange="toggleChartVisibilityByDifficulty('inferno', this.checked);" checked>
                             <label class="form-check-label" for="difficulty-inferno-toggle-older">INFERNO</label>
                         </span>
                     </div>
-                    <div class="bg-light border rounded-top shadow-sm mx-2 p-2">
-                        <div class="bg-dark bg-opacity-10 border border-secondary border-5 border-top-0 border-bottom-0 rounded h6 small text-secondary m-0 px-2 py-1">
-                            <span class="lang-jpn">左右にスクロールできます</span>
-                            <span class="lang-eng d-none">Scrollable Horizontally</span>
+                    <div class="mx-2 p-2">
+                        <div class="h6 small text-secondary m-0 py-1">
+                            <span class="lang-jpn">左右にスクロールできます。</span>
+                            <span class="lang-eng d-none">Scrollable Horizontally.</span>
                         </div>
-                    </div>
-                    <div class="bg-light border border-top-0 shadow-sm mx-2 p-2">
-                        <div class="bg-dark bg-opacity-10 border border-secondary border-5 border-top-0 border-bottom-0 rounded h6 small text-secondary m-0 px-2 py-1">
+                        <div class="h6 small text-secondary m-0 py-1">
                             <span class="lang-jpn">複数選択モードを有効にするには、「スコア別上昇値」の任意の値をクリックします。</span>
                             <span class="lang-eng d-none">To activate the Multi Select Mode, click any value in the "Rate Increase by Score".</span>
                         </div>
                     </div>
-                    <div class="bg-light border border-top-0 rounded-bottom shadow-sm mb-3 mx-2 p-2">
+                    <div class="border mx-2 p-2">
                         <div class="table-responsive">
-                            <table class="table table-sm">
+                            <table class="table table-dark table-sm">
                                 <thead>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0">
-                                        <th class="bg-light small" scope="col"></th>
-                                        <th class="sticky-left bg-light small" scope="col"></th>
-                                        <th class="bg-light small" scope="col" colspan="2"></th>
-                                        <th class="bg-light small" scope="col" colspan="4">
+                                        <th class="small" scope="col"></th>
+                                        <th class="sticky-left small" scope="col"></th>
+                                        <th class="small" scope="col" colspan="2"></th>
+                                        <th class="small" scope="col" colspan="4">
                                             <span class="lang-jpn">譜面別Rate</span>
                                             <span class="lang-eng d-none">Single Rate</span>
                                         </th>
-                                        <th class="bg-light small" scope="col" colspan="5">
+                                        <th class="small" scope="col" colspan="5">
                                             <span class="lang-jpn">スコア別上昇値</span>
                                             <span class="lang-eng d-none">Rate Increase by Score</span>
                                         </th>
                                     </tr>
                                     <tr class="border-3 border-top-0 border-end-0 border-start-0 border-secondary">
-                                        <th class="bg-light" scope="col">#</th>
-                                        <th class="sticky-left bg-light" scope="col">
+                                        <th scope="col">#</th>
+                                        <th class="sticky-left" scope="col">
                                             <span class="lang-jpn">曲名</span>
                                             <span class="lang-eng d-none">Song</span>
-                                            <span class="badge bg-light border border-secondary text-secondary p-1">
+                                            <span class="badge border border-secondary text-white p-1">
                                                 <input class="form-check-input m-0" type="checkbox" value="" id="table-sticky-toggle" onchange="toggleTableFixed(this.checked)">
                                                 <label class="form-check-label" for="table-sticky-toggle">
                                                     <span class="lang-jpn">固定</span>
@@ -2502,35 +2452,35 @@
                                                 </label>
                                             </span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">レベル</span>
                                             <span class="lang-eng d-none">Level</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">スコア</span>
                                             <span class="lang-eng d-none">Score</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">定数</span>
                                             <span class="lang-eng d-none">Const</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">倍数</span>
                                             <span class="lang-eng d-none">Modifier</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">現在</span>
                                             <span class="lang-eng d-none">Now</span>
                                         </th>
-                                        <th class="bg-light" scope="col">
+                                        <th scope="col">
                                             <span class="lang-jpn">上限</span>
                                             <span class="lang-eng d-none">Max</span>
                                         </th>
-                                        <th class="bg-light" scope="col">950k</th>
-                                        <th class="bg-light" scope="col">960k</th>
-                                        <th class="bg-light" scope="col">970k</th>
-                                        <th class="bg-light" scope="col">980k</th>
-                                        <th class="bg-light" scope="col">990k</th>
+                                        <th scope="col">950k</th>
+                                        <th scope="col">960k</th>
+                                        <th scope="col">970k</th>
+                                        <th scope="col">980k</th>
+                                        <th scope="col">990k</th>
                                     </tr>
                                 </thead>
                                 <tbody class="scoresTable">
@@ -2541,12 +2491,12 @@
                 </div>
             </div>
             <!-- ヘルプモーダル -->
-            <div class="modal fade" id="helpModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+            <div class="modal fade" id="helpModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content rounded-0 border-0 bg-black box-shadow-chromatic">
                         <div class="modal-header d-flex">
                             <div class="modal-title h3" id="helpModalLabel">
-                                <div class="h3 border-start border-5 border-secondary rounded-start mb-0 ps-2">
+                                <div class="modal-title h3 mb-0 px-2 heading">
                                     <span class="lang-jpn">ヘルプ</span>
                                     <span class="lang-eng d-none">Help</span>
                                 </div>
@@ -2554,14 +2504,14 @@
                             <div class="d-flex align-items-center">
                                 <div class="btn-group me-2" role="group">
                                     <input type="radio" class="btn-check opt-lang-jpn" name="radio-lang-2" id="radio-lang-2-1" autocomplete="off" onchange="switchToJapanese()">
-                                    <label class="btn btn-outline-primary" for="radio-lang-2-1">
+                                    <label class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" for="radio-lang-1-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                             <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                         </svg>
                                         Japanese
                                     </label>
                                     <input type="radio" class="btn-check opt-lang-eng" name="radio-lang-2" id="radio-lang-2-2" autocomplete="off" onchange="switchToEnglish()">
-                                    <label class="btn btn-outline-primary" for="radio-lang-2-2">
+                                    <label class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" for="radio-lang-1-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
                                             <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/>
                                         </svg>
@@ -2571,34 +2521,34 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-white">
                             <div class="mt-2">
-                                <div class="justify-content-between bg-white py-1">
+                                <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 border-start border-5 border-secondary rounded-start mb-0 ps-2">
+                                        <div class="h5 mb-0 ps-2 text-chromatic">
                                             <span class="lang-jpn">ようこそ</span>
                                             <span class="lang-eng d-none">Welcome</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn"><strong>WACCA RATING ANALYZER</strong> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるツールです。</span>
-                                        <span class="lang-eng d-none">The <strong>WACCA RATING ANALYZER</strong> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
+                                        <span class="lang-jpn"><span class="text-info"><strong>WACCA RATING ANALYZER</strong></span> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるツールです。</span>
+                                        <span class="lang-eng d-none">The <span class="text-info"><strong>WACCA RATING ANALYZER</strong></span> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <div class="justify-content-between bg-white py-1">
+                                <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 border-start border-5 border-secondary rounded-start mb-0 ps-2">
+                                        <div class="h5 mb-0 ps-2 text-chromatic">
                                             <span class="lang-jpn">特徴</span>
                                             <span class="lang-eng d-none">Features</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-info m-2 px-1 pb-1 text-info">
                                         <span class="lang-jpn">データ収集なし</span>
                                         <span class="lang-eng d-none">No data collection</span>
                                     </div>
@@ -2607,8 +2557,8 @@
                                         <span class="lang-eng d-none">This program runs in your browser and does not send your play results to the server.</span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-info m-2 px-1 pb-1 text-info">
                                         <span class="lang-jpn">レーティング候補譜面の上限数なし</span>
                                         <span class="lang-eng d-none">Show more 'Rating Candidate Charts'</span>
                                     </div>
@@ -2617,8 +2567,8 @@
                                         <span class="lang-eng d-none">You can see 'Rating Candidate Charts' and other useful data for increasing your rating on all charts.</span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
-                                    <div class="h6 border-bottom m-2 px-1 pb-1">
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-info m-2 px-1 pb-1 text-info">
                                         <span class="lang-jpn">レーティング上昇量が詳細に分かる</span>
                                         <span class="lang-eng d-none">Detailed rating increase</span>
                                     </div>
@@ -2629,27 +2579,27 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <div class="justify-content-between bg-white py-1">
+                                <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 border-start border-5 border-danger rounded-start mb-0 ps-2">
+                                        <div class="h5 mb-0 ps-2 text-chromatic">
                                             <span class="lang-jpn">注意</span>
                                             <span class="lang-eng d-none">Caution</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">ブラウザーが<strong>プライベートモード</strong>である場合、タブを閉じると<strong>分析されたデータは失われます</strong>。なお再度ツールを実行することで、同じ結果を得られます。</span>
                                         <span class="lang-eng d-none">If your browser is in <strong>private mode</strong>, closing a tab will cause the <strong>analyzed data to be lost</strong>. But don't worry. Just run the program again and you will get the same result.</span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">譜面定数はあくまで推測された値であるため、<strong>公式の値とは異なる可能性</strong>があります。</span>
                                         <span class="lang-eng d-none">The chart constants are only guessed values and <strong>may be different from the official values</strong>.</span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">このプログラムは暇つぶしを目的に作成されているため、<strong>品質は保証されておりません</strong>。<span class="text-muted">役に立たなかったらごめんなさい。</span></span>
                                         <span class="lang-eng d-none">The quality of this program is <strong>not guaranteed</strong>, as it was created as a way to pass the time. <span class="text-muted">I'm sorry if this program did not help you...</span></span>
@@ -2657,15 +2607,15 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <div class="justify-content-between bg-white py-1">
+                                <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 border-start border-5 border-secondary rounded-start mb-0 ps-2">
+                                        <div class="h5 mb-0 ps-2 text-chromatic">
                                             <span class="lang-jpn">準備</span>
                                             <span class="lang-eng d-none">Getting Started</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">1. このページをブックマークする</span>
                                         <span class="lang-eng d-none">1. Bookmark this page.</span>
@@ -2673,10 +2623,10 @@
                                             <span class="lang-jpn">ブックマークの名前の変更は任意です。</span>
                                             <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
                                         </div>
-                                        <div class="accordion border border-danger rounded m-2" id="accordion-android-user">
-                                            <div class="accordion-item">
+                                        <div class="accordion border border-magenta skew-10 m-2" id="accordion-android-user">
+                                            <div class="accordion-item border-0">
                                                 <div class="h2 accordion-header" id="accordion-android-user-1">
-                                                    <button class="accordion-button accordion-button-custom-danger collapsed text-danger p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-android-user-1" aria-expanded="false" aria-controls="collapse-android-user-1">
+                                                    <button class="accordion-button collapsed bg-magenta text-black fw-bold p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-android-user-1" aria-expanded="false" aria-controls="collapse-android-user-1">
                                                         <span class="me-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -2688,12 +2638,11 @@
                                                     </button>
                                                 </div>
                                                 <div id="collapse-android-user-1" class="accordion-collapse collapse" aria-labelledby="accordion-android-user-1" data-bs-parent="#accordion-android-user">
-                                                    <div class="accordion-body p-2">
+                                                    <div class="accordion-body bg-black p-2">
                                                         <span class="lang-jpn">環境によっては、当ツールは動作しない場合があります。まずお使いのブラウザーで動作確認を行い、動作しない場合は<strong>Firefox</strong>に切り替えてみてください。Chromeでは動作しなかったという報告があります。</span>
                                                         <span class="lang-eng d-none">This program may not work on some devices. So please try to see if this program works in your current browser, and if not, switch to <strong>Firefox</strong>. We have received reports that this program did not work on Chrome.</span>
                                                     </div>
-                                                    <hr class="m-0">
-                                                    <div class="accordion-body p-2">
+                                                    <div class="accordion-body bg-black p-2">
                                                         <span class="lang-jpn">ブックマークの名前の変更は任意ですが、Android端末をご利用の場合は、当プログラムを実行する際にブックマークの名前を入力する必要がありますので、<strong>入力が容易な名前に変更</strong>してください。</span>
                                                         <span class="lang-eng d-none">Renaming your bookmarks is optional, but if your device is an Android device, you will need to enter the name of the bookmark when you run this program, we recommends that you <strong>change the name to one that is easy to enter</strong>.</span>
                                                     </div>
@@ -2702,13 +2651,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">2. ブックマークレットをコピーする</span>
                                         <span class="lang-eng d-none">2. Copy the bookmarklet.</span>
                                         <div class="input-group m-2">
-                                            <input type="text" class="form-control" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){let%20path='https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js';import(path).then((obj)=>obj.main())})();" readonly="">
-                                            <button class="btn btn-outline-primary" onclick="copyBookmarklet(); return false;" type="button" id="button-addon">
+                                            <input type="text" class="form-control bg-black text-info rounded-0 skew-10" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){let%20path='https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js';import(path).then((obj)=>obj.main())})();" readonly="">
+                                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" onclick="copyBookmarklet(); return false;" type="button" id="button-addon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                                                     <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                                                     <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
@@ -2717,10 +2666,10 @@
                                                 <span class="lang-eng d-none">Copy</span>
                                             </button>
                                         </div>
-                                        <div class="accordion border border-primary rounded m-2" id="accordion-what-is-bookmarklet">
-                                            <div class="accordion-item">
+                                        <div class="accordion border border-info skew-10 m-2" id="accordion-what-is-bookmarklet">
+                                            <div class="accordion-item border-0">
                                                 <div class="h2 accordion-header" id="accordion-what-is-bookmarklet-1">
-                                                    <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-what-is-bookmarklet-1" aria-expanded="false" aria-controls="collapse-what-is-bookmarklet-1">
+                                                    <button class="accordion-button collapsed bg-info text-black fw-bold p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-what-is-bookmarklet-1" aria-expanded="false" aria-controls="collapse-what-is-bookmarklet-1">
                                                         <span class="me-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -2732,7 +2681,7 @@
                                                     </button>
                                                 </div>
                                                 <div id="collapse-what-is-bookmarklet-1" class="accordion-collapse collapse" aria-labelledby="accordion-what-is-bookmarklet-1" data-bs-parent="#accordion-what-is-bookmarklet">
-                                                    <div class="accordion-body p-2">
+                                                    <div class="accordion-body bg-black p-2">
                                                         <span class="lang-jpn">ブックマークレットとは、任意のタイミングでブックマークを開くことで実行できるJavaScriptで書かれたスクリプトのことです。ここで保存したブックマークレットをマイページで実行すると、ブラウザーがあなたのプレイ成績を収集します。</span>
                                                         <span class="lang-eng d-none">A bookmarklet is a JavaScript script that you can run by opening your bookmarks. If you run the bookmarklet you saved here on My Page, the browser will collect your play scores.</span>
                                                     </div>
@@ -2741,7 +2690,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">3. ステップ1で作成したブックマークのアドレスを、ステップ2でコピーした文字列に書き換えて保存する</span>
                                         <span class="lang-eng d-none">3. Rewrite the address of the bookmark created in step 1 to the string copied in step 2 and save it.</span>
@@ -2749,20 +2698,20 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <div class="justify-content-between bg-white py-1">
+                                <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 border-start border-5 border-secondary rounded-start mb-0 ps-2">
+                                        <div class="h5 mb-0 ps-2 text-chromatic">
                                             <span class="lang-jpn">使い方</span>
                                             <span class="lang-eng d-none">How to Use</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">1. WACCAのマイページへログインする</span>
                                         <span class="lang-eng d-none">1. Login to WACCA My Page.</span>
                                         <div class="m-2">
-                                            <button type="button" class="btn btn-outline-primary" id="help" onclick="openMyPage(); return false;">
+                                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1"  id="help" onclick="openMyPage(); return false;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
                                                 </svg>
@@ -2772,13 +2721,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            2. <span class="badge border border-secondary text-secondary align-bottom">プレイデータ</span> を押す
+                                            2. <span class="badge border border-info text-info align-bottom">プレイデータ</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            2. Press <span class="badge border border-secondary text-secondary align-bottom">プレイデータ (Play Data)</span>
+                                            2. Press <span class="badge border border-info text-info align-bottom">プレイデータ (Play Data)</span>
                                         </span>
                                         <div class="text-muted">
                                             <span class="lang-jpn"></span>
@@ -2786,14 +2735,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">3. ブックマークレットを実行する</span>
                                         <span class="lang-eng d-none">3. Run the bookmarklet.</span>
-                                        <div class="accordion border border-primary rounded m-2" id="accordion-how-to-run">
-                                            <div class="accordion-item">
+                                        <div class="accordion border border-info skew-10 m-2" id="accordion-how-to-run">
+                                            <div class="accordion-item border-0">
                                                 <div class="h2 accordion-header" id="accordion-how-to-run-1">
-                                                    <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-how-to-run-1" aria-expanded="false" aria-controls="collapse-how-to-run-1">
+                                                    <button class="accordion-button collapsed bg-info text-black fw-bold p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-how-to-run-1" aria-expanded="false" aria-controls="collapse-how-to-run-1">
                                                         <span class="me-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square" viewBox="0 0 16 16">
                                                                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -2805,15 +2754,15 @@
                                                     </button>
                                                 </div>
                                                 <div id="collapse-how-to-run-1" class="accordion-collapse collapse" aria-labelledby="accordion-how-to-run-1" data-bs-parent="#accordion-how-to-run">
-                                                    <div class="accordion-body p-2">
+                                                    <div class="accordion-body bg-black p-2">
                                                         <span class="lang-jpn">ブックマークの一覧からブックマークレットを押してください。</span>
                                                         <span class="lang-eng d-none">Open the list of bookmarks and press the bookmarklet.</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="accordion-item">
+                                            <div class="accordion-item border-0">
                                                 <div class="h2 accordion-header" id="accordion-how-to-run-2">
-                                                    <button class="accordion-button collapsed text-primary p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-how-to-run-2" aria-expanded="false" aria-controls="collapse-how-to-run-2">
+                                                    <button class="accordion-button collapsed bg-info text-black fw-bold p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-how-to-run-2" aria-expanded="false" aria-controls="collapse-how-to-run-2">
                                                         <span class="me-1">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-square" viewBox="0 0 16 16">
                                                                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -2825,7 +2774,7 @@
                                                     </button>
                                                 </div>
                                                 <div id="collapse-how-to-run-2" class="accordion-collapse collapse" aria-labelledby="accordion-how-to-run-2" data-bs-parent="#accordion-how-to-run">
-                                                    <div class="accordion-body p-2">
+                                                    <div class="accordion-body bg-black p-2">
                                                         <span class="lang-jpn">アドレスバーにブックマークレットの名前を入力し、表示された候補の中からブックマークレットを押してください。</span>
                                                         <span class="lang-eng d-none">Type the name of the bookmarklet in the address bar and press the bookmarklet from the list of suggestions.</span>
                                                     </div>
@@ -2838,37 +2787,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            4. ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-secondary text-secondary align-bottom">ツールを開く</span> を押す
+                                            4. ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-info text-info align-bottom">ツールを開く</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            4. When you see the message on the page that the bookmarklet has been processed, press <span class="badge border border-secondary text-secondary align-bottom">Open the Web Program</span>.
+                                            4. When you see the message on the page that the bookmarklet has been processed, press <span class="badge border border-info text-info align-bottom">Open the Web Program</span>.
                                         </span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            5. <span class="badge border border-secondary text-secondary align-bottom">データを読込</span> を押す
+                                            5. <span class="badge border border-info text-info align-bottom">データを読込</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            5. Press <span class="badge border border-secondary text-secondary align-bottom">Load Your Data</span>.
+                                            5. Press <span class="badge border border-info text-info align-bottom">Load Your Data</span>.
                                         </span>
                                     </div>
                                 </div>
-                                <div class="bg-light bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            6. <span class="badge border border-secondary text-secondary align-bottom">分析を実行</span> を押す
+                                            6. <span class="badge border border-info text-info align-bottom">分析を実行</span> を押す
                                         </span>
                                         <span class="lang-eng d-none">
-                                            6. Press <span class="badge border border-secondary text-secondary align-bottom">Start Analysis</span>.
+                                            6. Press <span class="badge border border-info text-info align-bottom">Start Analysis</span>.
                                         </span>
                                     </div>
                                 </div>
-                                <div class="bg-primary bg-opacity-50 border rounded shadow-sm mt-2">
+                                <div class="border border-info text-info fw-bold mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">完了！</span>
                                         <span class="lang-eng d-none">Complete!</span>
@@ -2877,7 +2826,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-dismiss="modal">
                                 <span class="lang-jpn">閉じる</span>
                                 <span class="lang-eng d-none">Close</span>
                             </button>
@@ -2888,15 +2837,15 @@
             <button id="btn-restore-fail-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#restore-fail-modal"></button>
             <div class="modal fade" id="restore-fail-modal" tabindex="-1">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content rounded-0 border-0 bg-black box-shadow-chromatic">
                         <div class="modal-header">
-                            <div class="modal-title h3 mb-0 ps-2 border-start border-5 border-danger rounded-start">
+                            <div class="modal-title h3 mb-0 px-2 heading">
                                 <span class="lang-jpn">復元できません</span>
                                 <span class="lang-eng d-none">Unable to Restore</span>
                             </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-white">
                             <p class="m-0">
                                 <span class="lang-jpn">プレイデータがブラウザーへ保存されていないため、復元できません。</span>
                                 <span class="lang-eng d-none">Your play data is not saved in the browser, cannot be restored.</span>
@@ -2907,7 +2856,7 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-dismiss="modal">
                                 <span class="lang-jpn">閉じる</span>
                                 <span class="lang-eng d-none">Close</span>
                             </button>
@@ -2918,15 +2867,15 @@
             <button id="btn-restored-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#restored-modal"></button>
             <div class="modal fade" id="restored-modal" tabindex="-1">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content rounded-0 border-0 bg-black box-shadow-chromatic">
                         <div class="modal-header">
-                            <div class="modal-title h3 mb-0 ps-2 border-start border-5 border-primary rounded-start">
+                            <div class="modal-title h3 mb-0 px-2 heading">
                                 <span class="lang-jpn">復元完了</span>
                                 <span class="lang-eng d-none">Restore Complete</span>
                             </div>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body text-white">
                             <p class="m-0">
                                 <span class="lang-jpn">プレイデータの復元に成功しました。</span>
                                 <span class="lang-eng d-none">Your play data has been successfully restored.</span>
@@ -2938,7 +2887,166 @@
                             </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="btn-news-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#news-modal"></button>
+            <div class="modal fade" id="news-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0 border-0 bg-black box-shadow-chromatic">
+                        <div class="modal-header">
+                            <div class="modal-title h3 mb-0 px-2 heading">
+                                <span class="lang-jpn">お知らせ</span>
+                                <span class="lang-eng d-none">News</span>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-white">
+                            <div class="mt-2 p-2">
+                                <div class="h6 px-1 pb-1 border-bottom border-info text-info">
+                                    <span class="badge bg-info align-bottom text-black">NEW</span>
+                                    <span class="lang-jpn">
+                                        新しい譜面へ対応
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        New charts are supported
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <div>
+                                        <div>DANGEROOOOUS JUNGLE</div>
+                                        <div>
+                                            <span class="badge normal">NORMAL 3</span>
+                                            <span class="badge hard">HARD 10</span>
+                                            <span class="badge expert">EXPERT 13</span>
+                                            <span class="badge inferno">INFERNO 14</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div>Dimension Hacker</div>
+                                        <div>
+                                            <span class="badge normal">NORMAL 4</span>
+                                            <span class="badge hard">HARD 10+</span>
+                                            <span class="badge expert">EXPERT 13</span>
+                                            <span class="badge inferno">INFERNO 14</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div>EPHMR</div>
+                                        <div>
+                                            <span class="badge normal">NORMAL 4</span>
+                                            <span class="badge hard">HARD 10+</span>
+                                            <span class="badge expert">EXPERT 13</span>
+                                            <span class="badge inferno">INFERNO 14</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div>
+                                            クリムゾン帝王
+                                        </div>
+                                        <div>
+                                            <span class="badge normal">NORMAL 8</span>
+                                            <span class="badge hard">HARD 11+</span>
+                                            <span class="badge expert">EXPERT 13+</span>
+                                            <span class="badge inferno">INFERNO 14</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="d-flex bg-opacity-10 border border-magenta text-magenta px-2 py-1">
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                                </svg>
+                                            </div>
+                                            <div class="ms-2">
+                                                <div class="text-secondary">
+                                                    <del>
+                                                        クリムゾン帝王
+                                                        <span class="badge bg-secondary"><del>HARD 11+</del></span>
+                                                        <span class="lang-jpn">は、定数の特定が難航しているため現時点では対応していません。</span>
+                                                        <span class="lang-eng d-none">is not supported at now due to the difficulty in identifying the constant.</span>
+                                                    </del>
+                                                </div>
+                                                <div>
+                                                    <div>
+                                                        <span class="badge bg-info text-black">UPDATE</span>
+                                                    </div>
+                                                    <div>
+                                                        クリムゾン帝王
+                                                        <span class="badge hard">HARD 11+</span>
+                                                        <span class="lang-jpn">についても対応しました。</span>
+                                                        <span class="lang-eng d-none">has also been supported.</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 p-2">
+                                <div class="h6 px-1 pb-1 border-bottom border-info text-info">
+                                    <span class="badge bg-info align-bottom text-black">NEW</span>
+                                    <span class="lang-jpn">
+                                        表示倍率の変更機能を追加
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        Display scale adjustment feature added
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        画面の小さな端末でもより多くのデータを確認できるよう、画面の表示倍率を変更できるようにしました。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        The screen display scale can be changed so that more data can be checked even on devices with small screens.
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        なお、パソコンやiPhone/iPadをお使いの場合は、ブラウザーの標準機能で表示倍率を変更することが可能です。お好きな方をどうぞ。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        If you are using a PC, iPhone, or iPad, you can change the display scale by using the browser features. Please choose the one you prefer.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="btn-does-not-work-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#does-not-work-modal"></button>
+            <div class="modal fade" id="does-not-work-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0 border-0 bg-black box-shadow-chromatic">
+                        <div class="modal-header">
+                            <div class="modal-title h3 mb-0 px-2 heading">
+                                <span class="lang-jpn">ヘルプ</span>
+                                <span class="lang-eng d-none">Help</span>
+                            </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-white">
+                            <span class="lang-jpn">
+                                <span class="badge border border-info text-info align-bottom">データを読込</span> が動作しない場合、代わりにプレイデータ欄へクリップボードの内容を貼り付け、そのまま <span class="badge border border-info text-info align-bottom">分析を実行</span> を押してください。
+                            </span>
+                            <span class="lang-eng d-none">
+                                If nothing happens when you press <span class="badge border border-info text-info align-bottom">Load Your Data</span>, paste the clipboard contents into the Play Data field instead, and then press <span class="badge border border-info text-info align-bottom">Start Analysis</span>.
+                            </span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info rounded-0 border-2 fw-bold skew-10 m-1" data-bs-dismiss="modal">
                                 <span class="lang-jpn">閉じる</span>
                                 <span class="lang-eng d-none">Close</span>
                             </button>
