@@ -1,1 +1,0 @@
-javascript:(function(){const path = 'https://shimmand.github.io/rhythm-game-utilities/tetoconne-song-filter.js'; const element = document.createElement("script"); element.src = path; document.body.appendChild(element);})();
