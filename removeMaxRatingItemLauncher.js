@@ -1,1 +1,1 @@
-javascript:(function(){ let path = 'https://shimmand.github.io/waccaSupportTools/removeMaxRatingItem.js'; import(path).then((obj) => obj.main())})();
+javascript:(function(){const path = 'https://shimmand.github.io/rhythm-game-utilities/tetoconne-song-filter.js'; const element = document.createElement("script"); element.src = path; document.body.appendChild(element);})();
