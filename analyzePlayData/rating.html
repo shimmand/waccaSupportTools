@@ -561,6 +561,7 @@
                     ["スマイル・アンド・ティアズ","NORMAL 2",2.0,false,"HARD 6",6.1,false,"EXPERT 9",9.5,false,"INFERNO 0",0.0,],
                     ["STILL HOT IN MY HEART","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 10",10.3,false,"INFERNO 0",0.0,],
                     ["Over the sweat and tears","NORMAL 1",1.0,false,"HARD 5",5.6,false,"EXPERT 9",9.4,false,"INFERNO 0",0.0,],
+                    ["アゲナゲン","NORMAL 4",4.0,false,"HARD 10",10.5,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
                     ["花たちに希望を","NORMAL 3",3.0,true,"HARD 9+",9.8,true,"EXPERT 12",12.4,true,"INFERNO 0",0.0,],
                     ["NightTheater","NORMAL 3",3.0,true,"HARD 10",10.0,true,"EXPERT 13",13.0,true,"INFERNO 0",0.0,],
                     ["恋のMoonlight","NORMAL 2",2.0,true,"HARD 8",8.0,true,"EXPERT 11+",11.8,true,"INFERNO 0",0.0,],
@@ -1765,7 +1766,7 @@
 
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2022-01-12':
+                        case '2022-01-19':
                             break;
 
                         default:
@@ -1804,7 +1805,7 @@
                 <div class="d-flex">
                     <div class="d-flex border border-white">
                         <div class="badge bg-white text-dark">DATASET</div>
-                        <div class="badge text-white">2022-01-12</div>
+                        <div class="badge text-white">2022-01-19</div>
                     </div>
                     <div class="d-flex border border-white ms-2">
                         <div class="badge bg-white text-dark">VERSION</div>
@@ -1813,7 +1814,7 @@
                 </div>
                 <hr class="text-white my-2">
                 <div class="btn-toolbar mt-2" role="toolbar">
-                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead('2022-01-12'); document.querySelector('#btn-news-modal').click();" id="news-button">
+                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead('2022-01-19'); document.querySelector('#btn-news-modal').click();" id="news-button">
                         <span class="me-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
@@ -3020,27 +3021,11 @@
                                 </div>
                                 <div class="mx-2 my-0">
                                     <div>
-                                        <div>メルト</div>
+                                        <div>アゲナゲン</div>
                                         <div>
-                                            <span class="badge border normal">NORMAL 3</span>
-                                            <span class="badge border hard">HARD 8+</span>
-                                            <span class="badge border expert">EXPERT 12</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2">
-                                        <div>天樂</div>
-                                        <div>
-                                            <span class="badge border normal">NORMAL 3</span>
-                                            <span class="badge border hard">HARD 8</span>
-                                            <span class="badge border expert">EXPERT 12+</span>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2">
-                                        <div>吉原ラメント</div>
-                                        <div>
-                                            <span class="badge border normal">NORMAL 3</span>
-                                            <span class="badge border hard">HARD 8</span>
-                                            <span class="badge border expert">EXPERT 12</span>
+                                            <span class="badge border normal">NORMAL 4</span>
+                                            <span class="badge border hard">HARD 10</span>
+                                            <span class="badge border expert">EXPERT 13</span>
                                         </div>
                                     </div>
                                 </div>
