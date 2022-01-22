@@ -51,7 +51,6 @@
             }
             .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
                 font-weight: 700;
-                color: #ffffff;
                 margin: 0;
             }
             hr {
@@ -62,12 +61,6 @@
             .badge {
                 padding: .2rem .4rem;
                 font-size: .75rem;
-                border-radius: 0;
-                vertical-align: middle;
-            }
-            .badge-lg {
-                padding: .2rem .4rem;
-                font-size: 1rem;
                 border-radius: 0;
                 vertical-align: middle;
             }
@@ -981,7 +974,7 @@
 
                         // グラフ用の配列
                         // [0: <950k, 1: 950k, 2: 960k, 3: 970k, 4: 980k, 5: 990k]
-                        let totalRatings = [0, 0, 0, 0, 0, 0];
+                        let stats = [0, 0, 0, 0, 0, 0];
 
                         // 譜面ごとに・・・
                         chartsList.forEach((chart, index) => {
@@ -1058,6 +1051,32 @@
                                 tableRow.classList.add('table-custom-magenta');
                             }
 
+                            if (tableRow.classList.contains('table-primary') || tableRow.classList.contains('table-custom-magenta')) {
+                                if (chart[5] < 3.00) {
+                                    stats[0] += 1
+                                }
+
+                                if (chart[5] == 3.00) {
+                                    stats[1] += 1
+                                }
+                                    
+                                if (chart[5] == 3.25) {
+                                    stats[2] += 1
+                                }
+
+                                if (chart[5] == 3.50) {
+                                    stats[3] += 1
+                                }
+
+                                if (chart[5] == 3.75) {
+                                    stats[4] += 1
+                                }
+
+                                if (chart[5] == 4.00) {
+                                    stats[5] += 1
+                                }
+                            }
+
                             tableRow.classList.add('border-3', 'border-top-0', 'border-end-0', 'border-start-0');
 
                             const maxDataClass = (chart[7].match(/[0-9]{1,2}\.[0-9]{3}/) != null) ? '' : ' class="pt-half"';
@@ -1077,13 +1096,6 @@
                                 `<td>${increases[2]}</td>`,
                                 `<td>${increases[3]}</td>`,
                                 `<td>${increases[4]}</td>`].join('\n');
-
-                            if (chart[5] < 3.00) totalRatings[0] += 1;
-                            if (chart[5] == 3.00) totalRatings[1] += 1;
-                            if (chart[5] == 3.25) totalRatings[2] += 1;
-                            if (chart[5] == 3.50) totalRatings[3] += 1;
-                            if (chart[5] == 3.75) totalRatings[4] += 1;
-                            if (chart[5] == 4.00) totalRatings[5] += 1;
 
                             // コードを挿入
                             tableRow.innerHTML = code;
@@ -1105,19 +1117,19 @@
                         document.querySelector(`#${summarySubtotals[listIndex]}-ratio`).innerHTML = `${Number(varSummedRateCurrents[listIndex] / varSummedRateUppers[listIndex] * 100).toFixed(1)}%`;
 
                         // 譜面数の合計を計算
-                        const chartsCount = totalRatings.reduce((sum, e) => sum + e, 0);
+                        const chartsCount =  stats.reduce((sum, e) => sum + e, 0);
                         
                         // 枠ごとにグラフの棒を書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-bar-stats').forEach((div, index) => {
-                            const style = `width: ${totalRatings[index] / chartsCount * 100}%;`;
+                            const style = `width: ${ stats[index] / chartsCount * 100}%;`;
                             div.setAttribute('style', style);
-                            div.setAttribute('aria-valuenow', totalRatings[index]);
+                            div.setAttribute('aria-valuenow',  stats[index]);
                             div.setAttribute('aria-valuemax', chartsCount);
                         });
 
                         // 枠ごとにグラフのデータを書き出し
                         statsGraphs[listIndex].querySelectorAll('.graph-ratio-stats').forEach((div, index) => {
-                            div.innerHTML = `${(totalRatings[index] / chartsCount * 100).toFixed(2)}%`;
+                            div.innerHTML = stats[index];
                         });
                     });
                     
@@ -1702,6 +1714,7 @@
                             break;
                     
                         default:
+                            switchToJapanese();
                             break;
                     }
 
@@ -1801,7 +1814,7 @@
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div class="container p-0">
             <div id="box-title" class="bg-gray-800 p-2">
-                <div class="h3 text-heading">WACCA RATING ANALYZER</div>
+                <div class="h3 text-heading text-white">WACCA RATING ANALYZER</div>
                 <div class="d-flex">
                     <div class="d-flex border border-white">
                         <div class="badge bg-white text-dark">DATASET</div>
@@ -2016,14 +2029,14 @@
             <div id="box-summary" class="bg-gray-800 my-2">
                 <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="h3 text-heading">
+                        <div class="h3 text-heading text-white">
                             <span class="lang-jpn">概要</span>
                             <span class="lang-eng d-none">Summary</span>
                         </div>
                         <div class="d-flex bg-white border border-white">
-                            <div class="badge-lg text-dark fw-bold py-1">
-                                <span class="lang-jpn">合計</span>
-                                <span class="lang-eng d-none">Total</span>
+                            <div class="d-flex align-items-center badge">
+                                <span class="h6 text-dark lang-jpn">合計</span>
+                                <span class="h6 text-dark lang-eng d-none">Total</span>
                             </div>
                             <div id="total-rate-class" class="vstack bg-plain border-start border-white text-shadow-white">
                                 <div id="total-rate-current" class="badge fw-bold text-black border-bottom border-white">0.000</div>
@@ -2101,14 +2114,14 @@
             <div id="box-newer" class="bg-gray-800 my-2">
                 <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="h3 text-heading">
+                        <div class="h3 text-heading text-white">
                             <span class="lang-jpn">新曲枠</span>
                             <span class="lang-eng d-none">Newer Charts</span>
                         </div>
                         <div class="d-flex bg-white border border-white">
-                            <div class="badge-lg text-dark fw-bold py-1">
-                                <span class="lang-jpn align-middle">小計</span>
-                                <span class="lang-eng align-middle d-none">Subtotal</span>
+                            <div class="d-flex align-items-center badge">
+                                <span class="h6 text-dark lang-jpn">小計</span>
+                                <span class="h6 text-dark lang-eng d-none">Subtotal</span>
                             </div>
                             <div id="total-rate-class" class="vstack bg-plain border-start border-white text-shadow-white">
                                 <div id="newer-subtotal" class="badge fw-bold text-black border-bottom border-white summedRateCurrent">0.000</div>
@@ -2119,7 +2132,7 @@
                     <div id="multi-rate-alert-new" class="border border-white mt-2 p-2 d-none">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <div class="alert-heading h6 m-0">
+                                <div class="alert-heading text-white h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </div>
@@ -2135,6 +2148,14 @@
                                 </div>
                             </div>
                             <div>
+                                <button type="button" class="text-nowrap btn btn-white me-1" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                    </svg>
+                                    <span class="lang-jpn">ヘルプ</span>
+                                    <span class="lang-eng d-none">Help</span>
+                                </button>
                                 <button type="button" class="text-nowrap btn btn-magenta" onclick="quitMultiRateMode('new'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
@@ -2150,8 +2171,20 @@
                 <div class="p-2">
                     <div class="stats-graph my-2">
                         <div class="h6 border-bottom text-white m-2 px-1 pb-1">
-                            <span class="lang-jpn">スコア帯別の割合</span>
-                            <span class="lang-eng d-none">Ratio by Score Range</span>
+                            <span class="lang-jpn">統計</span>
+                            <span class="lang-eng d-none">Statistics</span>
+                        </div>
+                        <div class="mx-2 p-2">
+                            <div class="small text-white">
+                                <span class="lang-jpn">
+                                    レーティング対象とレーティング候補の内訳です。
+                                    レーティングが高くなるほど、上位のスコア帯の占める割合が高くなります。
+                                </span>
+                                <span class="lang-eng d-none">
+                                    The following is a summary of the rating targets and rating candidates.
+                                    The higher your rating, the higher the ratio of the higher score range.
+                                </span>
+                            </div>
                         </div>
                         <div class="progress border rounded-0 mx-2 my-3">
                             <div class="progress-bar graph-bar-stats bg-lt-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2164,32 +2197,32 @@
                         <div class="d-flex bg-gray-900 text-center mx-2">
                             <div class="vstack text-lt-950">
                                 <div class="small">&lt;950k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-950">
                                 <div class="small">950k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-960">
                                 <div class="small">960k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-970">
                                 <div class="small">970k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-980">
                                 <div class="small">980k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-ge-990">
                                 <div class="small">&ge;990k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                         </div>
                     </div>
@@ -2198,8 +2231,17 @@
                             <span class="lang-jpn">譜面一覧</span>
                             <span class="lang-eng d-none">Chart List</span>
                         </div>
-                        <div class="rounded-top mx-2 p-2">
-                            <div class="h6 small m-0">
+                        <div class="mx-2 p-2">
+                            <div class="small text-white m-0 py-1">
+                                <span class="lang-jpn">
+                                    複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                </span>
+                                <span class="lang-eng d-none">
+                                    If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                            </div>
+                        </div>
+                        <div class="mx-2 p-2">
+                            <div class="h6 small text-white m-0">
                                 <span class="lang-jpn">種類</span>
                                 <span class="lang-eng d-none">Type</span>
                             </div>
@@ -2226,7 +2268,7 @@
                             </span>
                         </div>
                         <div class="rounded-bottom mx-2 p-2">
-                            <div class="h6 small m-0">
+                            <div class="h6 small text-white m-0">
                                 <span class="lang-jpn">難易度</span>
                                 <span class="lang-eng d-none">Difficulty</span>
                             </div>
@@ -2247,20 +2289,7 @@
                                 <label class="form-check-label" for="difficulty-inferno-toggle-newer">INFERNO</label>
                             </span>
                         </div>
-                        <div class="mx-2 p-2">
-                            <div class="h6 small m-0 py-1">
-                                <span class="lang-jpn">
-                                    複数選択モードを有効にするには、「スコア別上昇値」の
-                                    <div class="badge bg-white align-bottom text-black">任意の値</div>
-                                    をクリックします。
-                                </span>
-                                <span class="lang-eng d-none">
-                                    To activate the Multi Select Mode, click any
-                                    <div class="badge bg-white align-bottom text-black">value</div>
-                                    in the "Rate Increase by Score".</span>
-                            </div>
-                        </div>
-                        <div class="border mb-3 mx-2 p-2">
+                        <div class="border my-3 mx-2 p-2">
                             <div class="table-responsive">
                                 <table class="table table-dark table-sm">
                                     <thead>
@@ -2332,14 +2361,14 @@
             <div id="box-older" class="bg-gray-800 my-2">
                 <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
                     <div class="d-flex justify-content-between align-items-center">
-                        <div class="h3 text-heading">
+                        <div class="h3 text-heading text-white">
                             <span class="lang-jpn">旧曲枠</span>
                             <span class="lang-eng d-none">Older Charts</span>
                         </div>
                         <div class="d-flex bg-white border border-white">
-                            <div class="badge-lg text-dark fw-bold py-1">
-                                <span class="lang-jpn align-middle">小計</span>
-                                <span class="lang-eng align-middle d-none">Subtotal</span>
+                            <div class="d-flex align-items-center badge">
+                                <span class="h6 text-dark lang-jpn">小計</span>
+                                <span class="h6 text-dark lang-eng d-none">Subtotal</span>
                             </div>
                             <div id="total-rate-class" class="vstack bg-plain border-start border-white text-shadow-white">
                                 <div id="older-subtotal" class="badge fw-bold text-black border-bottom border-white summedRateCurrent">0.000</div>
@@ -2350,7 +2379,7 @@
                     <div id="multi-rate-alert-old" class="border border-white mt-2 p-2 d-none">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <div class="alert-heading h6 m-0">
+                                <div class="alert-heading text-white h6 m-0">
                                     <span class="lang-jpn">複数選択モード</span>
                                     <span class="lang-eng d-none">Multi Select Mode</span>
                                 </div>
@@ -2366,6 +2395,14 @@
                                 </div>
                             </div>
                             <div>
+                                <button type="button" class="text-nowrap btn btn-white me-1" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                    </svg>
+                                    <span class="lang-jpn">ヘルプ</span>
+                                    <span class="lang-eng d-none">Help</span>
+                                </button>
                                 <button type="button" class="text-nowrap btn btn-magenta" onclick="quitMultiRateMode('old'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
@@ -2381,8 +2418,20 @@
                 <div class="p-2">
                     <div class="stats-graph my-2">
                         <div class="h6 border-bottom text-white m-2 px-1 pb-1">
-                            <span class="lang-jpn">スコア帯別の割合</span>
-                            <span class="lang-eng d-none">Ratio by Score Range</span>
+                            <span class="lang-jpn">統計</span>
+                            <span class="lang-eng d-none">Statistics</span>
+                        </div>
+                        <div class="mx-2 p-2">
+                            <div class="small text-white m-0 py-1">
+                                <span class="lang-jpn">
+                                    レーティング対象とレーティング候補の内訳です。
+                                    レーティングが高くなるほど、上位のスコア帯の占める割合が高くなります。
+                                </span>
+                                <span class="lang-eng d-none">
+                                    The following is a summary of the rating targets and rating candidates.
+                                    The higher your rating, the higher the ratio of the higher score range.
+                                </span>
+                            </div>
                         </div>
                         <div class="progress border rounded-0 mx-2 my-3">
                             <div class="progress-bar graph-bar-stats bg-lt-950" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -2395,32 +2444,32 @@
                         <div class="d-flex bg-gray-900 text-center mx-2">
                             <div class="vstack text-lt-950">
                                 <div class="small">&lt;950k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-950">
                                 <div class="small">950k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-960">
                                 <div class="small">960k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-970">
                                 <div class="small">970k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-is-980">
                                 <div class="small">980k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                             <div class="vr text-white"></div>
                             <div class="vstack text-ge-990">
                                 <div class="small">&ge;990k</div>
-                                <div class="graph-ratio-stats small">0.00%</div>
+                                <div class="graph-ratio-stats">0</div>
                             </div>
                         </div>
                     </div>
@@ -2429,8 +2478,17 @@
                             <span class="lang-jpn">譜面一覧</span>
                             <span class="lang-eng d-none">Chart List</span>
                         </div>
-                        <div class="rounded-top mx-2 p-2">
-                            <div class="h6 small m-0">
+                        <div class="mx-2 p-2">
+                            <div class="small text-white m-0 py-1">
+                                <span class="lang-jpn">
+                                    複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                </span>
+                                <span class="lang-eng d-none">
+                                    If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                            </div>
+                        </div>
+                        <div class="mx-2 p-2">
+                            <div class="h6 small text-white m-0">
                                 <span class="lang-jpn">種類</span>
                                 <span class="lang-eng d-none">Type</span>
                             </div>
@@ -2457,7 +2515,7 @@
                             </span>
                         </div>
                         <div class="rounded-bottom mx-2 p-2">
-                            <div class="h6 small m-0">
+                            <div class="h6 small text-white m-0">
                                 <span class="lang-jpn">難易度</span>
                                 <span class="lang-eng d-none">Difficulty</span>
                             </div>
@@ -2478,20 +2536,7 @@
                                 <label class="form-check-label" for="difficulty-inferno-toggle-older">INFERNO</label>
                             </span>
                         </div>
-                        <div class="mx-2 p-2">
-                            <div class="h6 small m-0 py-1">
-                                <span class="lang-jpn">
-                                    複数選択モードを有効にするには、「スコア別上昇値」の
-                                    <div class="badge bg-white align-bottom text-black">任意の値</div>
-                                    をクリックします。
-                                </span>
-                                <span class="lang-eng d-none">
-                                    To activate the Multi Select Mode, click any
-                                    <div class="badge bg-white align-bottom text-black">value</div>
-                                    in the "Rate Increase by Score".</span>
-                            </div>
-                        </div>
-                        <div class="border mb-3 mx-2 p-2">
+                        <div class="border my-3 mx-2 p-2">
                             <div class="table-responsive">
                                 <table class="table table-dark table-sm">
                                     <thead>
@@ -2566,7 +2611,7 @@
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
                         <div class="modal-header d-flex">
                             <div class="modal-title h3" id="helpModalLabel">
-                                <div class="modal-title h3 text-heading">
+                                <div class="modal-title h3 text-heading text-white">
                                     <div class="">
                                         <span class="lang-jpn">ヘルプ</span>
                                         <span class="lang-eng d-none">Help</span>
@@ -2913,7 +2958,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-magenta">
                         <div class="modal-header">
-                            <div class="modal-title h3 text-heading">
+                            <div class="modal-title h3 text-heading text-white">
                                 <span class="lang-jpn">復元不可</span>
                                 <span class="lang-eng d-none">Unable to Restore</span>
                             </div>
@@ -2943,7 +2988,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
                         <div class="modal-header">
-                            <div class="modal-title h3 text-heading">
+                            <div class="modal-title h3 text-heading text-white">
                                 <span class="lang-jpn">復元完了</span>
                                 <span class="lang-eng d-none">Restore Complete</span>
                             </div>
@@ -2974,7 +3019,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
                         <div class="modal-header">
-                            <div class="modal-title h3 text-heading">
+                            <div class="modal-title h3 text-heading text-white">
                                 <span class="lang-jpn">ヘルプ</span>
                                 <span class="lang-eng d-none">Help</span>
                             </div>
@@ -2997,12 +3042,91 @@
                     </div>
                 </div>
             </div>
+            <button id="btn-multi-select-mode-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#multi-select-mode-modal"></button>
+            <div class="modal fade" id="multi-select-mode-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
+                        <div class="modal-header">
+                            <div class="modal-title h3" id="helpModalLabel">
+                                <div class="modal-title h3 text-heading text-white">
+                                    <span class="lang-jpn">ヘルプ</span>
+                                    <span class="lang-eng d-none">Help</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="modal-body text-white">
+                            <div class="mt-2">
+                                <div class="justify-content-between py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h5 mb-0 ps-2">
+                                            <span class="lang-jpn">複数選択モード</span>
+                                            <span class="lang-eng d-none">Multi Select Mode</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1 text-center">
+                                        <img src="https://user-images.githubusercontent.com/58391224/150641182-80b5138e-4c9d-4371-955f-35a87f816285.gif" class="img-fluid" style="max-height: 20rem;" alt="...">
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">
+                                            <span class="text-magenta fw-bold">複数の譜面</span>のスコアを上昇させてレーティングの上昇を目指す場合、実際のレーティングの上昇量は、「スコア別上昇量」を<span class="text-magenta fw-bold">合計した値よりも少なく</span>なります。この機能は、その上昇量を<span class="text-magenta fw-bold">正確に計算</span>するものです。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            When you are trying to increase your rating by increasing the score of <span class="text-magenta fw-bold">multiple charts</span>, the actual amount of increase in your rating will be <span class="text-magenta fw-bold">less than the sum</span> of the "increase by score". This feature calculates the amount of <span class="text-magenta fw-bold">that increase accurately</span>.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <div class="justify-content-between py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h5 mb-0 ps-2">
+                                            <span class="lang-jpn">使い方</span>
+                                            <span class="lang-eng d-none">How to Use</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">
+                                            <div class="badge bg-white align-bottom text-black">+0.000</div> : その譜面を計算に追加します
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            <div class="badge bg-white align-bottom text-black">+0.000</div> : Add the chart to the calculation.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">
+                                            <div class="badge bg-magenta align-bottom text-black">REMOVE</div> : その譜面を計算から除外します
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            <div class="badge bg-magenta align-bottom text-black">REMOVE</div> : Remove the chart from the calculation.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white rounded-0 m-1" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button id="btn-news-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#news-modal"></button>
             <div class="modal fade" id="news-modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
                         <div class="modal-header">
-                            <div class="modal-title h3 text-heading">
+                            <div class="modal-title h3 text-heading text-white">
                                 <span class="lang-jpn">お知らせ</span>
                                 <span class="lang-eng d-none">News</span>
                             </div>
