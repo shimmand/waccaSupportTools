@@ -1779,7 +1779,7 @@
 
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2022-01-19':
+                        case '2022-01-23':
                             break;
 
                         default:
@@ -1822,12 +1822,12 @@
                     </div>
                     <div class="d-flex border border-white ms-2">
                         <div class="badge bg-white text-dark">VERSION</div>
-                        <div class="badge text-white">1.50.02</div>
+                        <div class="badge text-white">1.50.03</div>
                     </div>
                 </div>
                 <hr class="text-white my-2">
                 <div class="btn-toolbar mt-2" role="toolbar">
-                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead('2022-01-19'); document.querySelector('#btn-news-modal').click();" id="news-button">
+                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead('2022-01-23'); document.querySelector('#btn-news-modal').click();" id="news-button">
                         <span class="me-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
@@ -3136,6 +3136,25 @@
                             <div class="mt-2 p-2">
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">NEW</div>
+                                    <span class="lang-jpn">
+                                        グラフの表示内容を変更
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        Change the contents of the graph
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        今まで新曲枠および旧曲枠で表示されていたグラフはすべての譜面が対象でしたが、レーティング対象またはレーティング候補に属する譜面のみとなるよう変更しました。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        The graphs displayed in the Newer Charts and Older Charts used to include all charts, but have been changed to include only charts that belong to the Rating Targets or Rating Candidates.
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-2 p-2">
+                                <div class="d-flex h6 px-1 pb-1 border-bottom">
+                                    <div class="badge bg-white align-bottom text-black me-2 d-none">NEW</div>
                                     <span class="lang-jpn">
                                         新しい譜面へ対応
                                     </span>
