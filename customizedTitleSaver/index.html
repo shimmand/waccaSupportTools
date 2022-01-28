@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <title>WACCA CUSTOM TITLE SAVER</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="theme-color" content="#000000">
+        <meta http-equiv="pragma" content="no-cache"/>
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta http-equiv="expires" content="0"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <style id="style-general">
+            body {
+                -webkit-text-size-adjust: 100%;
+            }
+            .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+                font-weight: 700;
+                color: #ffffff;
+                margin: 0;
+            }
+            hr {
+                opacity: 1;
+            }
+        </style>
+        <style id="style-form">
+            .form-control:focus {
+                box-shadow: 0 0 0 .25rem #ffffff;
+            }
+            .btn-white {
+                color: #000;
+                background-color: #ffffff;
+            }
+            .btn-white:hover {
+                box-shadow: 0 0 1rem #ffffff7f;
+            }
+            .btn-cyan {
+                color: #000;
+                background-color: #0dcaf0;
+            }
+            .btn-cyan:hover {
+                box-shadow: 0 0 1rem #0dcaf07f;
+            }
+            .btn-magenta {
+                color: #000;
+                background-color: #d63384;
+            }
+            .btn-magenta:hover {
+                box-shadow: 0 0 1rem #d633847f;
+            }
+            .btn-close {
+                background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+            }
+            .btn-check:not(:checked):not(:hover) + .btn-dim {
+                color: #0000007f;
+            }
+            .form-select:focus {
+                box-shadow: 0 0 1rem #ffffff7f;
+            }
+        </style>
+        <style id="style-box">
+            .badge {
+                border-radius: 0;
+            }
+            .bg-gray-100 {
+                background-color:#f8f9fa
+            }
+            .bg-gray-200 {
+                background-color:#e9ecef
+            }
+            .bg-gray-300 {
+                background-color:#dee2e6
+            }
+            .bg-gray-400 {
+                background-color:#ced4da
+            }
+            .bg-gray-500 {
+                background-color:#adb5bd
+            }
+            .bg-gray-600 {
+                background-color:#6c757d
+            }
+            .bg-gray-700 {
+                background-color:#495057
+            }
+            .bg-gray-800 {
+                background-color:#343a40
+            }
+            .bg-gray-900 {
+                background-color:#212529
+            }
+            .bg-cyan {
+                background-color: #0dcaf0!important;
+            }
+            .border-cyan {
+                border-color: #0dcaf0!important;
+            }
+            .bg-magenta {
+                background-color: #d63384!important;
+            }
+            .border-magenta {
+                border-color: #d63384!important;
+            }
+            .border-black {
+                border-color: #000000!important;
+            }
+            .box-shadow-black {
+                box-shadow: 0.1rem 0.1rem #000000;
+            }
+            .box-shadow-white {
+                box-shadow: 0.1rem 0.1rem #ffffff;
+            }
+            .skew-10 {
+                transform: skew(-10deg);
+            }
+        </style>
+        <style id="style-text">
+            .text-heading {
+                font-weight: 300;
+            }
+            .text-heading::first-letter {
+                font-weight: 700;
+            }
+            .text-cyan {
+                --bs-text-opacity: 1;
+                color: rgba(var(--bs-info-rgb),var(--bs-text-opacity))!important;
+            }
+            .text-magenta {
+                --bs-text-opacity: 1;
+                color: rgba(214,51,132,var(--bs-text-opacity))!important;
+            }
+            .text-chromatic {
+                text-shadow: #0dcaf0 -0.1rem -0.1rem, #d63384 +0.2rem +0.0rem;
+            }
+            .text-shadow-black {
+                text-shadow: #000000 0 0.1rem, #000000 0 0.1rem 0.15rem;
+            }
+            .text-shadow-white {
+                text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
+            }
+        </style>
+        <style id="style-bootstrap-util">
+            .btn {
+                border-radius: 0;
+            }
+            .accordion-button::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            }
+            .accordion-button:not(.collapsed)::after {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000000'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            }
+            .modal-shadow-white {
+                box-shadow: 0 0 2rem #ffffff;
+            }
+            .modal-shadow-magenta {
+                box-shadow: 0 0 2rem #d63384;
+            }
+        </style>
+        <script defer>
+            // ブックマークレットをコピー()
+            function copyBookmarkletSave() {
+                const copyTarget = document.querySelector('#copy-target-save');
+                const writeString = copyTarget.value;
+
+                if (navigator.clipboard == undefined) {
+                    window.clipboardData.setData('Text', writeString);
+                } else {
+                    navigator.clipboard.writeText(writeString);
+                };
+
+                document.title = 'カスタマイズ称号を保存';
+
+                alert("コピーしました！");
+            };
+
+            function copyBookmarkletLoad() {
+                const copyTarget = document.querySelector('#copy-target-load');
+                const writeString = copyTarget.value;
+
+                if (navigator.clipboard == undefined) {
+                    window.clipboardData.setData('Text', writeString);
+                } else {
+                    navigator.clipboard.writeText(writeString);
+                };
+
+                document.title = 'カスタマイズ称号を読込';
+
+                alert("コピーしました！");
+            };
+
+            // Twitterを開く()
+            function openDevsTwitter() {
+                window.open('https://twitter.com/shimmand');
+            }
+        </script>
+    </head>
+    <body class="bg-gray-900">
+        <div class="container p-0">
+            <div id="box-title" class="bg-gray-800 p-2">
+                <div class="h3 text-heading">WACCA CUSTOMIZED TITLE SAVER</div>
+                <div class="d-flex">
+                    <div class="d-flex border border-white ms-0">
+                        <div class="badge bg-white text-dark">VERSION</div>
+                        <div class="badge text-white">0.50.00</div>
+                    </div>
+                </div>
+                <hr class="text-white my-2">
+                <div class="btn-toolbar mt-2" role="toolbar">
+                    <button type="button" class="position-relative btn btn-white ms-0" id="twitter" onclick="openDevsTwitter(); return false;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                        </svg>
+                        @shimmand
+                        <div class="position-absolute top-0 start-50 translate-middle badge bg-white box-shadow-black text-black">DEV. BY</div>
+                    </button>
+                </div>
+            </div>
+            <div id="box-summary" class="bg-gray-800 my-2">
+                <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 text-heading">
+                            <span class="lang-jpn">概要</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="h6 fw-normal mt-0">
+                        ゲームセンターにて稼働中のリズムゲーム「WACCA」のマイページで、お気に入りのカスタマイズ称号を保存したり、読み込んだりできるツールです。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        カスタマイズ称号はいくつも保存することができ、一度保存したお気に入りの称号は簡単に読み込むことができます。
+                    </div>
+                    <div class="text-center mt-2">
+                        <img src="https://user-images.githubusercontent.com/58391224/149660885-bc8ab67b-5303-4f61-a5f2-2e7955594319.gif" class="img-fluid" style="max-height: 20rem;" alt="...">
+                    </div>
+                </div>
+            </div>
+            <div id="box-caution" class="bg-gray-800 my-2">
+                <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 text-heading">
+                            <span class="lang-jpn">注意</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="h6 fw-normal mt-0">
+                        本ツールは非公式です。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        マイページの仕様変更等の理由により、将来的に本ツールは正常に動作しなくなる可能性があります。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        今後マイページに本ツールの機能と同等またはそれ以上のものが実装された場合、公開を停止します。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        カスタマイズ称号の選択内容を他のプレイヤーと共有することも可能ですが、未所持の称号パーツを設定することはできません。
+                    </div>
+                </div>
+            </div>
+            <div id="box-get-started" class="bg-gray-800 my-2">
+                <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 text-heading">
+                            <span class="lang-jpn">準備</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="h6 fw-normal mt-0">
+                        準備としては、以下の手順に従って2つのブックマークを作成するだけです。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        この手順で作成されたブックマークは
+                        <span class="h6 text-magenta">ブックマークレット</span>
+                        と呼びます。
+                    </div>
+                    <div class="h6 border-bottom border-white mt-4">
+                        保存用のブックマークレットを作成する
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        1. 以下の「コピー」を押します。
+                    </div>
+                    <div class="input-group mt-2">
+                        <input type="text" class="form-control rounded-0 border-black bg-gray-900 text-white" id="copy-target-save" placeholder="" aria-label="" aria-describedby="button-copy" value="javascript:(function(){const%20path%20=%20'https://shimmand.github.io/waccaSupportTools/customizedTitleSaver/saver.js';%20const%20element%20=%20document.createElement('script');%20element.src%20=%20path;%20document.body.appendChild(element);})();">
+                        <button class="btn btn-white border-black" type="button" id="button-copy" onclick="copyBookmarkletSave();">コピー</button>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        2. このページをブックマークします。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        3. ブックマークの名前を変更します。（任意）
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            名前を変更する場合は、このブックマークレットが「保存」用のものであると分かる名前を設定してください。
+                        </div>
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            Androidデバイスをご利用の方は、ツールを使用する際にブックマークの名前を入力する必要がありますので、
+                            <span class="h6 text-magenta">入力が容易な名前に変更</span>
+                            することをオススメします。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        4. ブックマークのアドレスを消去し、手順1でコピーしたものを貼り付けて保存します。
+                    </div>
+                    <div class="h6 border-bottom border-white mt-4">
+                        読込用のブックマークレットを作成する
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        1. 以下の「コピー」を押します。
+                    </div>
+                    <div class="input-group mt-2">
+                        <input type="text" class="form-control rounded-0 border-black bg-gray-900 text-white" id="copy-target-load" placeholder="" aria-label="" aria-describedby="button-copy" value="javascript:(function(){const%20path%20=%20'https://shimmand.github.io/waccaSupportTools/customizedTitleSaver/loader.js';%20const%20element%20=%20document.createElement('script');%20element.src%20=%20path;%20document.body.appendChild(element);})();">
+                        <button class="btn btn-white border-black" type="button" id="button-copy" onclick="copyBookmarkletLoad();">コピー</button>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        2. このページをブックマークします。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        3. ブックマークの名前を変更します。（任意）
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            名前を変更する場合は、このブックマークレットが「読込」用のものであると分かる名前を設定してください。
+                        </div>
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            Androidデバイスをご利用の方は、ツールを使用する際にブックマークの名前を入力する必要がありますので、
+                            <span class="h6 text-magenta">入力が容易な名前に変更</span>
+                            することをオススメします。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        4. ブックマークのアドレスを消去し、手順1でコピーしたものを貼り付けて保存します。
+                    </div>
+                </div>
+            </div>
+            <div id="box-how-to-use" class="bg-gray-800 my-2">
+                <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 text-heading">
+                            <span class="lang-jpn">使い方</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="h6 border-bottom border-white mt-0">
+                        共通の手順
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        このツールは称号のカスタマイズページで使用するものですので、まずはそのページを開きましょう。
+                    </div>
+                    <div class="h6 fw-normal mt-4">
+                        1. WACCAのマイページへログインします。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        2. 「コレクション」をクリックします。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        3. タブが「称号」であることを確認し、「カスタマイズ」をクリックします。
+                    </div>
+                    <div class="h6 border-bottom border-white mt-4">
+                        カスタマイズ称号の保存
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        1. お好みの称号を選択します。センスの良いカスタマイズ称号を生み出しましょう。
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        2. カスタマイズ称号の保存用のブックマークレットを実行します。
+                        <div class="h6 fw-normal ms-2 mt-2">
+                            <span class="badge bg-white text-dark me-2">iPhone/iPad/パソコン</span>ブックマークの一覧を開き、ブックマークレットを選択します。
+                        </div>
+                        <div class="h6 fw-normal ms-2 mt-2">
+                            <span class="badge bg-white text-dark me-2">Androidデバイス</span>アドレスバーにブックマークレットの名前を入力し、候補から該当するものを選択します。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        3. 処理が完了したことを示すアラートが表示されたら、そのアラートを閉じ、現在のページをブックマークレットに追加します。
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            ブックマークの名前には、称号の名前が自動的に入力されます。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal border border-white mt-2 p-2">
+                        <div class="h6">完了</div>
+                        <div class="ms-4">他にも保存したいカスタマイズ称号がある場合は、手順1から3を繰り返しましょう。</div>
+                    </div>
+                    <div class="h6 border-bottom border-white mt-4">
+                        カスタマイズ称号の読込
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        1. 保存したカスタマイズ称号のブックマークを開きます。
+                        <div class="h6 fw-normal ms-4 mt-2">
+                            注意: これはブックマークレットではありません。Androidデバイスの方でも通常の手順でブックマークを開いてください。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal mt-2">
+                        2. カスタマイズ称号の読込用のブックマークレットを実行します。
+                        <div class="h6 fw-normal ms-2 mt-2">
+                            <span class="badge bg-white text-dark me-2">iPhone/iPad/パソコン</span>ブックマークの一覧を開き、ブックマークレットを選択します。
+                        </div>
+                        <div class="h6 fw-normal ms-2 mt-2">
+                            <span class="badge bg-white text-dark me-2">Androidデバイス</span>アドレスバーにブックマークレットの名前を入力し、候補から該当するものを選択します。
+                        </div>
+                    </div>
+                    <div class="h6 fw-normal border border-white mt-2 p-2">
+                        <div class="h6">完了</div>
+                        <div class="ms-4">読み込んだ称号を適用するには「変更する」をクリックしてください。</div>
+                        <div class="ms-4">読み込む称号を誤った場合は、手順1からやり直してください。</div>
+                    </div>
+                </div>
+            </div>
+            <div id="box-terminate" class="bg-gray-800 mt-2 mb-4">
+                <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="h3 text-heading">
+                            <span class="lang-jpn">利用停止</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="h6 fw-normal mt-0">
+                        本ツールの利用を停止したい場合、作成したブックマークレットを削除してください。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
