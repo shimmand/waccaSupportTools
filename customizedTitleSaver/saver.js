@@ -40,3 +40,5 @@ function main() {
         `.replaceAll(/(^ {8}|^\n)/gm, '')
     );
 }
+
+main();
