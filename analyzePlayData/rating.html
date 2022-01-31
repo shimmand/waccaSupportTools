@@ -381,7 +381,12 @@
                 box-shadow: 0 0 2rem #d63384;
             }
         </style>
-        <script defer>
+        <script id="script-dataset" defer>
+            // 最終更新日
+            function getLastUpdate() {
+                return '2022-01-26';
+            }
+
             // 譜面定数一覧表() => Array[[]]
             // [0: 曲名, 1: NORMALレベル, 2: NORMAL定数, 3: NORMALは新曲枠?, 4: HARDレベル, 5: HARD定数, 6: HARDは新曲枠?, 7: EXPERTレベル, 8: EXPERT定数, 9: EXPERTは新曲枠?, 10: INFERNOレベル, 11: INFERNO定数, 12: INFERNOは新曲枠?]
             function getChartTable() {
@@ -738,7 +743,8 @@
                     ["Shining Harmony","NORMAL 4",4.0,false,"HARD 9",9.6,false,"EXPERT 12",12.2,false,"INFERNO 0",0.0,]
                 ];
             }
-
+        </script>
+        <script id="script-main" defer>
             // 貼り付け()
             function paste() {
                 const playdata = document.querySelector('#playdata');
@@ -1083,20 +1089,21 @@
                             const maxDataClass = (chart[7].match(/[0-9]{1,2}\.[0-9]{3}/) != null) ? '' : ' class="pt-half"';
 
                             // 挿入するHTMLのコードを生成
-                            const code = [
-                                `<${headerElm}>${index + 1}</td>`,
-                                `<td class="sticky-column">${chart[0]}</td>`,
-                                `<td class="pt-half"><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>`,
-                                `<td>${chart[3]}</td>`,
-                                `<td>${chart[4]}</td>`,
-                                `<td>${chart[5].toFixed(2)}</td>`,
-                                `<${rateDataElm}>${chart[6]}</td>`,
-                                `<td${maxDataClass}>${chart[7]}</td>`,
-                                `<td>${increases[0]}</td>`,
-                                `<td>${increases[1]}</td>`,
-                                `<td>${increases[2]}</td>`,
-                                `<td>${increases[3]}</td>`,
-                                `<td>${increases[4]}</td>`].join('\n');
+                            const code = `
+                                <${headerElm}>${index + 1}</td>
+                                <td class="sticky-column">${chart[0]}</td>
+                                <td class="pt-half"><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>
+                                <td>${chart[3]}</td>
+                                <td>${chart[4]}</td>
+                                <td>${chart[5].toFixed(2)}</td>
+                                <${rateDataElm}>${chart[6]}</td>
+                                <td${maxDataClass}>${chart[7]}</td>
+                                <td>${increases[0]}</td>
+                                <td>${increases[1]}</td>
+                                <td>${increases[2]}</td>
+                                <td>${increases[3]}</td>
+                                <td>${increases[4]}</td>`
+                            .replaceAll(/(^ {28}|^\n)/gm, '');
 
                             // コードを挿入
                             tableRow.innerHTML = code;
@@ -1142,13 +1149,13 @@
                     const extraRate = totalRateUpper - (scaleDotsVolume * 100);
                     const equalRange = (100 - (extraRate / totalRateUpper * 100)) / scaleDotsVolume;
 
-                    const scaleDotCode = [
-                        `<div class="scale-dot position-absolute translate-middle text-white" style="left: 0%!important; top: 45%!important;">`,
-                        `    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">`,
-                        `        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>`,
-                        `    </svg>`,
-                        `</div>`
-                    ].join('\n');
+                    const scaleDotCode = `
+                        <div class="scale-dot position-absolute translate-middle text-white" style="left: 0%!important; top: 45%!important;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                            </svg>
+                        </div>`
+                    .replaceAll(/(^ {24}|^\n)/gm, '');
 
                     // 虹レートの上限値を設定
                     varClassRanges[(varClassRanges.length - 1)] = (totalRateUpper - 2500);
@@ -1348,19 +1355,6 @@
                 })
             }
 
-            function convertRemToPixels(rem) {    
-                return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
-            }
-
-            function scrollToListTop(list) {
-                const header = document.querySelector(`#header-${list}`);
-                const headerHeight = header.getBoundingClientRect().height;
-                const listarea = document.querySelector(`#list-${list}`);
-                const listareaTop = listarea.getBoundingClientRect().top;
-
-                window.scrollTo(0, (window.scrollY + listareaTop - headerHeight - convertRemToPixels(0.5)));
-            }
-
             // 列の固定表示の切り替え
             function toggleColumnFixed(checked) {
                 const checkboxes = document.querySelectorAll('#column-sticky-toggle');
@@ -1550,7 +1544,7 @@
                 }
             }
 
-            // 複数譜面のレーティング上昇値を計算するモードを終了
+            // 複数譜面のレーティング上昇量を計算するモードを終了
             function quitMultiRateMode(listtype) {
                 if (listtype.match(/new|old/) == null) {
                     return false;
@@ -1564,7 +1558,7 @@
                 tables[tableIndex].querySelectorAll('.table-custom-dethrone').forEach(td => td.classList.remove('table-custom-dethrone'));
             }
 
-            // 複数譜面のレーティング上昇値を計算するモードを開始
+            // 複数譜面のレーティング上昇量を計算するモードを開始
             function startMultiRateMode(element, listtype) {
                 if (element.tagName != 'A') {
                     return false;
@@ -1780,7 +1774,7 @@
 
                     // ニュースの既読状態を確認
                     switch (localStorage.getItem('rating-analyzer-last-visited')) {
-                        case '2022-01-26':
+                        case getLastUpdate():
                             break;
 
                         default:
@@ -1806,8 +1800,8 @@
             }
 
             // ニュースを既読にする
-            function markAsRead(date) {
-                localStorage.setItem('rating-analyzer-last-visited', date);
+            function markAsRead() {
+                localStorage.setItem('rating-analyzer-last-visited', getLastUpdate());
                 document.querySelector('#news-badge').classList.add('d-none');
             }
         </script>
@@ -1828,7 +1822,7 @@
                 </div>
                 <hr class="text-white my-2">
                 <div class="btn-toolbar mt-2" role="toolbar">
-                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead('2022-01-26'); document.querySelector('#btn-news-modal').click();" id="news-button">
+                    <button type="button" class="position-relative btn btn-white" id="news" onclick="markAsRead(); document.querySelector('#btn-news-modal').click();" id="news-button">
                         <span class="me-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
@@ -2149,14 +2143,6 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="text-nowrap btn btn-white me-1" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                    </svg>
-                                    <span class="lang-jpn">ヘルプ</span>
-                                    <span class="lang-eng d-none">Help</span>
-                                </button>
                                 <button type="button" class="text-nowrap btn btn-magenta" onclick="quitMultiRateMode('new'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
@@ -2233,12 +2219,24 @@
                             <span class="lang-eng d-none">Chart List</span>
                         </div>
                         <div class="mx-2 p-2">
-                            <div class="small text-white m-0 py-1">
-                                <span class="lang-jpn">
-                                    複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
-                                </span>
-                                <span class="lang-eng d-none">
-                                    If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                            <div class="d-flex">
+                                <div class="small text-white me-1 py-1">
+                                    <span class="lang-jpn">
+                                        複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                                </div>
+                                <div class="ms-auto">
+                                    <button type="button" class="text-nowrap btn btn-white" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                        <span class="lang-jpn">ヘルプ</span>
+                                        <span class="lang-eng d-none">Help</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="mx-2 p-2">
@@ -2303,7 +2301,7 @@
                                                 <span class="lang-eng d-none">Single Rate</span>
                                             </th>
                                             <th class="small" scope="col" colspan="5">
-                                                <span class="lang-jpn">スコア別上昇値</span>
+                                                <span class="lang-jpn">スコア別上昇量</span>
                                                 <span class="lang-eng d-none">Rate Increase by Score</span>
                                             </th>
                                         </tr>
@@ -2396,14 +2394,6 @@
                                 </div>
                             </div>
                             <div>
-                                <button type="button" class="text-nowrap btn btn-white me-1" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                                    </svg>
-                                    <span class="lang-jpn">ヘルプ</span>
-                                    <span class="lang-eng d-none">Help</span>
-                                </button>
                                 <button type="button" class="text-nowrap btn btn-magenta" onclick="quitMultiRateMode('old'); return false;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
@@ -2480,12 +2470,24 @@
                             <span class="lang-eng d-none">Chart List</span>
                         </div>
                         <div class="mx-2 p-2">
-                            <div class="small text-white m-0 py-1">
-                                <span class="lang-jpn">
-                                    複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
-                                </span>
-                                <span class="lang-eng d-none">
-                                    If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                            <div class="d-flex">
+                                <div class="small text-white me-1 py-1">
+                                    <span class="lang-jpn">
+                                        複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                                </div>
+                                <div class="ms-auto">
+                                    <button type="button" class="text-nowrap btn btn-white" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                        <span class="lang-jpn">ヘルプ</span>
+                                        <span class="lang-eng d-none">Help</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="mx-2 p-2">
@@ -2550,7 +2552,7 @@
                                                 <span class="lang-eng d-none">Single Rate</span>
                                             </th>
                                             <th class="small" scope="col" colspan="5">
-                                                <span class="lang-jpn">スコア別上昇値</span>
+                                                <span class="lang-jpn">スコア別上昇量</span>
                                                 <span class="lang-eng d-none">Rate Increase by Score</span>
                                             </th>
                                         </tr>
