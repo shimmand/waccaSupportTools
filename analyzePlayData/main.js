@@ -81,7 +81,7 @@ export function main(){
             <p>The web program is now ready to run.</p>
             <p>To continue, press the button below.</p>
             <div style="padding: 10px 0 10px;">
-                <button onclick="${openMainPage}">ツールを開く / Open the Web Program</button>
+                <button onclick="${openMainPage}">プログラムを開く / Open the Web Program</button>
             </div>
             <p>ブラウザーが取得したデータ:</p>
             <p>Data collected by the browser:</p>
