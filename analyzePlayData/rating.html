@@ -363,6 +363,33 @@
             .text-shadow-white {
                 text-shadow: #ffffff 0 0.1rem, #ffffff 0 0.1rem 0.15rem;
             }
+            .text-gray-100 {
+                color: #f8f9fa;
+            }
+            .text-gray-200 {
+                color: #e9ecef;
+            }
+            .text-gray-300 {
+                color: #dee2e6;
+            }
+            .text-gray-400 {
+                color: #ced4da;
+            }
+            .text-gray-500 {
+                color: #adb5bd;
+            }
+            .text-gray-600 {
+                color: #6c757d;
+            }
+            .text-gray-700 {
+                color: #495057;
+            }
+            .text-gray-800 {
+                color: #343a40;
+            }
+            .text-gray-900 {
+                color: #212529;
+            }
         </style>
         <style id="style-bootstrap-util">
             .btn {
@@ -772,6 +799,14 @@
                 }, reason => {
                     showDeniedWarning();
                 });
+
+                if (playdata.value === '') {
+                    const helpBtn = document.querySelector('#btn-does-not-work-modal');
+                    
+                    if (helpBtn.classList.contains('d-none')) {
+                        helpBtn.classList.remove('d-none');
+                    }
+                }
             }
 
             // クリップボードへのアクセスが拒否された場合のメッセージを表示
@@ -1713,7 +1748,7 @@
             // LocalStorageの内容を消去()
             function clearLocalStorageContent() {
                 localStorage.clear();
-                location.reload();
+                document.querySelector('#btn-modal-data-erase-done').click();
             }
         
             // ユーザー設定を復元
@@ -1800,6 +1835,7 @@
                             break;
 
                         default:
+                            document.querySelector('#news').classList.remove('border-start-0');
                             document.querySelector('#news-badge').classList.remove('d-none');
                             break;
                     }
@@ -1824,6 +1860,7 @@
             // ニュースを既読にする
             function markAsRead() {
                 localStorage.setItem('rating-analyzer-last-visited', getLastUpdate());
+                document.querySelector('#news').classList.add('border-start-0');
                 document.querySelector('#news-badge').classList.add('d-none');
             }
         </script>
@@ -1852,7 +1889,7 @@
                             <span class="lang-jpn">はじめに</span>
                             <span class="lang-eng d-none">Introduction</span>
                         </button>
-                        <button type="button" class="position-relative btn btn-white me-2" id="news" onclick="markAsRead(); document.querySelector('#btn-news-modal').click();" id="news-button">
+                        <button type="button" class="position-relative btn btn-white border-5 border-0 border-start border-cyan border-start-0 me-2" id="news" onclick="markAsRead(); document.querySelector('#btn-news-modal').click();" id="news-button">
                             <span class="me-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
@@ -1864,7 +1901,7 @@
                             <span class="lang-eng d-none">
                                 News
                             </span>
-                            <span class="position-absolute top-0 start-50 translate-middle badge bg-magenta box-shadow-black text-black d-none" id="news-badge">
+                            <span class="position-absolute top-0 start-50 translate-middle badge bg-cyan box-shadow-black text-black d-none" id="news-badge">
                                 <span class="lang-jpn">
                                     未読
                                 </span>
@@ -2045,21 +2082,31 @@
                             </div>
                         </button>
                     </div>
+                    <div class="btn-group mt-2 me-2" role="group">
+                        <button type="button" class="btn btn-white border-5 border-0 border-start border-cyan me-2" data-bs-toggle="modal" data-bs-target="#help-input-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                            </svg>
+                            <span class="lang-jpn">ヘルプ</span>
+                            <span class="lang-eng d-none">Help</span>
+                        </button>
+                        <button id="btn-does-not-work-modal" type="button" class="btn btn-white border-5 border-0 border-start border-magenta me-0 d-none" data-bs-toggle="modal" data-bs-target="#does-not-work-modal">
+                            <span class="me-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </span>
+                            <span class="lang-jpn">
+                                <span class="badge border border-dark text-black align-bottom">データを読込</span> が動作しない場合
+                            </span>
+                            <span class="lang-eng d-none">
+                                If <span class="badge border border-dark text-black align-bottom">Load Your Data</span> does not work
+                            </span>
+                        </button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-white mt-2 me-2" id="news" onclick="document.querySelector('#btn-does-not-work-modal').click();" id="does-not-work-button">
-                    <span class="me-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
-                        </svg>
-                    </span>
-                    <span class="lang-jpn">
-                        <span class="badge border border-dark text-black align-bottom">データを読込</span> が動作しない場合
-                    </span>
-                    <span class="lang-eng d-none">
-                        If <span class="badge border border-dark text-black align-bottom">Load Your Data</span> does not work
-                    </span>
-                </button>
             </div>
             <div id="box-summary" class="bg-gray-800 my-2">
                 <div class="justify-content-between bg-gray-700 sticky-top p-2 shadow">
@@ -2268,7 +2315,7 @@
                                         If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
                                 </div>
                                 <div class="ms-auto">
-                                    <button type="button" class="text-nowrap btn btn-white" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                    <button type="button" class="btn btn-white border-5 border-0 border-start border-cyan text-nowrap" data-bs-toggle="modal" data-bs-target="#help-chart-list-modal">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
@@ -2519,7 +2566,7 @@
                                         If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
                                 </div>
                                 <div class="ms-auto">
-                                    <button type="button" class="text-nowrap btn btn-white" onclick="document.querySelector('#btn-multi-select-mode-modal').click(); return false;">
+                                    <button type="button" class="btn btn-white border-5 border-0 border-start border-cyan text-nowrap" data-bs-toggle="modal" data-bs-target="#help-chart-list-modal">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
@@ -2845,7 +2892,7 @@
                                                 <div id="collapse-what-is-bookmarklet-1" class="accordion-collapse collapse" aria-labelledby="accordion-what-is-bookmarklet-1" data-bs-parent="#accordion-what-is-bookmarklet">
                                                     <div class="accordion-body bg-dark p-2">
                                                         <span class="lang-jpn">ブックマークレットとは、任意のタイミングでブックマークを開くことで実行できるJavaScriptで書かれたスクリプトのことです。ここで保存したブックマークレットをマイページで実行すると、ブラウザーがあなたのプレイ成績を収集します。</span>
-                                                        <span class="lang-eng d-none">A bookmarklet is a JavaScript script that you can run by opening your bookmarks. If you run the bookmarklet you saved here on My Page, the browser will collect your play scores.</span>
+                                                        <span class="lang-eng d-none">A bookmarklet is a script written in JavaScript that you can run by opening a bookmark at any time. If you run the bookmarklet you saved here on My Page, the browser will collect your play scores.</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3057,7 +3104,6 @@
                     </div>
                 </div>
             </div>
-            <button id="btn-does-not-work-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#does-not-work-modal"></button>
             <div class="modal fade" id="does-not-work-modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
@@ -3214,8 +3260,32 @@
                     </div>
                 </div>
             </div>
-            <button id="btn-multi-select-mode-modal" type="button" class="btn btn-outline-primary d-none" data-bs-toggle="modal" data-bs-target="#multi-select-mode-modal"></button>
-            <div class="modal fade" id="multi-select-mode-modal" tabindex="-1">
+            <button type="button" class="btn btn-white me-2" id="btn-modal-data-erase-done" data-bs-toggle="modal" data-bs-target="#modal-data-erase-done"></button>
+            <div class="modal fade" id="modal-data-erase-done" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-magenta">
+                        <div class="modal-header">
+                            <div class="modal-title h3 text-heading text-white">
+                                <span class="lang-jpn">データ消去完了</span>
+                                <span class="lang-eng d-none">Erase Complete</span>
+                            </div>
+                        </div>
+                        <div class="modal-body text-white">
+                            <div class="mt-2">
+                                <div class="m-2 px-1">
+                                    <span class="lang-jpn">データを消去しました。</span>
+                                    <span class="lang-eng d-none">Data has been erased.</span>
+                                </div>
+                                <div class="m-2 px-1">
+                                    <span class="lang-jpn">このタブを閉じてください。</span>
+                                    <span class="lang-eng d-none">Please close this tab.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="help-input-modal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
                         <div class="modal-header">
@@ -3234,15 +3304,255 @@
                                 <div class="justify-content-between py-1">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="h5 mb-0 ps-2">
-                                            <span class="lang-jpn">フィルター</span>
-                                            <span class="lang-eng d-none">Filter</span>
+                                            <span class="lang-jpn">入力エリア</span>
+                                            <span class="lang-eng d-none">Input Area</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-2">
                                     <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
-                                        <span class="lang-jpn">種類</span>
-                                        <span class="lang-eng d-none">Type</span>
+                                        <span class="lang-jpn">入力</span>
+                                        <span class="lang-eng d-none">Input</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 px-2">
+                                    <table class="table table-dark table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark border-5 border-0 border-start border-magenta">
+                                                        <span class="lang-jpn">クリア</span>
+                                                        <span class="lang-eng d-none">Clear</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">入力を初期化します。</span>
+                                                        <span class="lang-eng d-none">This will initialize the input.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        <span class="lang-jpn">データを読込</span>
+                                                        <span class="lang-eng d-none">Load Your Data</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">マイページで収集したプレイ成績を読み込みます。</span>
+                                                        <span class="lang-eng d-none">This will load your play results collected in My Page.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        <span class="lang-jpn">分析を実行</span>
+                                                        <span class="lang-eng d-none">Start Analysis</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">読み込まれたプレイ成績を元に分析を開始します。</span>
+                                                        <span class="lang-eng d-none">This will start the analysis based on your play results that are loaded.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark border-5 border-0 border-start border-magenta">
+                                                        <span class="lang-jpn">復元</span>
+                                                        <span class="lang-eng d-none">Restore</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">前回のデータを復元します。</span>
+                                                        <span class="lang-eng d-none">This will restore the previous analysis data.</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">前回の分析以降にWACCAでスコアを更新していない場合、このページを開いて「復元」をクリックするだけで分析結果を確認できます。</span>
+                                                        <span class="lang-eng d-none">If you have not updated any chart scores in WACCA since the last analysis, just open this page and click this button to see the results of the analysis.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                        <span class="lang-jpn">内部データ</span>
+                                        <span class="lang-eng d-none">Internal Data</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 px-2">
+                                    <table class="table table-dark table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        <span class="lang-jpn">CSVで保存</span>
+                                                        <span class="lang-eng d-none">Save as CSV</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">分析結果をCSVファイルで保存します。</span>
+                                                        <span class="lang-eng d-none">This will output the analysis results in a CSV file.</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">ファイルの内容は譜面一覧と同一です。</span>
+                                                        <span class="lang-eng d-none">The contents of the file are the same as the chart list.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        <span class="lang-jpn">定数データ</span>
+                                                        <span class="lang-eng d-none">Chart Dataset</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">譜面と譜面定数の対応表を開きます。</span>
+                                                        <span class="lang-eng d-none">This will open a chart and chart constant correspondence table.</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">曲名、譜面レベル、定数、配置枠が記録されています。</span>
+                                                        <span class="lang-eng d-none">The table records the song title, level, chart constants, and list type.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        <span class="lang-jpn">設定</span>
+                                                        <span class="lang-eng d-none">Settings</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">ブラウザーに保存されているデータを管理できます。</span>
+                                                        <span class="lang-eng d-none">This will open a dialog where you can manage the data stored in your browser.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                        <span class="lang-jpn">表示</span>
+                                        <span class="lang-eng d-none">Display</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 px-2">
+                                    <table class="table table-dark table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        Japanese
+                                                    </div>
+                                                    <div class="badge bg-white text-dark">
+                                                        English
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">言語を変更します。</span>
+                                                        <span class="lang-eng d-none">This will change the language.</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">ページ上だけでなく、「CSVで保存」の一部も変更されます。</span>
+                                                        <span class="lang-eng d-none">Not only on the page, but also part of the "Save as CSV" will be changed.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark">
+                                                        100%
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">文字や表示物の大きさを変更します。</span>
+                                                        <span class="lang-eng d-none">This will change the size of the text and display objects.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                        <span class="lang-jpn">その他</span>
+                                        <span class="lang-eng d-none">Others</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2 px-2">
+                                    <table class="table table-dark table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="badge bg-white text-dark border-5 border-0 border-start border-cyan">
+                                                        <span class="lang-jpn">ヘルプ</span>
+                                                        <span class="lang-eng d-none">Help</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">この「ヘルプ」画面を開きます。</span>
+                                                        <span class="lang-eng d-none">This will open this "Help" dialog.</span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white rounded-0 m-1" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="help-chart-list-modal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
+                        <div class="modal-header">
+                            <div class="modal-title h3" id="">
+                                <div class="modal-title h3 text-heading text-white">
+                                    <span class="lang-jpn">ヘルプ</span>
+                                    <span class="lang-eng d-none">Help</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="modal-body text-white">
+                            <div class="mt-2">
+                                <div class="justify-content-between py-1">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="h5 mb-0 ps-2">
+                                            <span class="lang-jpn">譜面一覧</span>
+                                            <span class="lang-eng d-none">Chart List</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                        <span class="lang-jpn">種類フィルター</span>
+                                        <span class="lang-eng d-none">Type Filter</span>
                                     </div>
                                     <div class="mt-2 px-3">
                                         <span class="lang-jpn">ラベルの色と、譜面一覧における行の色は対応しています。</span>
@@ -3299,8 +3609,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
-                                        <span class="lang-jpn">難易度</span>
-                                        <span class="lang-eng d-none">Difficulty</span>
+                                        <span class="lang-jpn">難易度フィルター</span>
+                                        <span class="lang-eng d-none">Difficulty Filter</span>
                                     </div>
                                 </div>
                                 <div class="mt-2 px-2">
@@ -3323,14 +3633,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            <div class="mt-2">
-                                <div class="justify-content-between py-1">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="h5 mb-0 ps-2">
-                                            <span class="lang-jpn">複数選択モード</span>
-                                            <span class="lang-eng d-none">Multi Select Mode</span>
-                                        </div>
+                                <div class="mt-2">
+                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                        <span class="lang-jpn">複数選択モード</span>
+                                        <span class="lang-eng d-none">Multi Select Mode</span>
                                     </div>
                                 </div>
                                 <div class="mt-2">
@@ -3345,12 +3651,6 @@
                                     <div class="m-2 px-1 text-center">
                                         <img src="https://user-images.githubusercontent.com/58391224/150641182-80b5138e-4c9d-4371-955f-35a87f816285.gif" class="img-fluid" style="max-height: 20rem;" alt="...">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
-                                    <span class="lang-jpn">使い方</span>
-                                    <span class="lang-eng d-none">How to Use</span>
                                 </div>
                                 <div class="mt-2 px-2">
                                     <table class="table table-dark table-sm">
