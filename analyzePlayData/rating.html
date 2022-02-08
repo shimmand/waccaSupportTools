@@ -507,7 +507,7 @@
                     ["KING","NORMAL 2",2.0,true,"HARD 8",8.0,true,"EXPERT 11",11.6,true,"INFERNO 0",0.0,],
                     ["ダーリンダンス","NORMAL 2",2.0,true,"HARD 8+",8.7,true,"EXPERT 12+",12.8,true,"INFERNO 0",0.0,],
                     ["トリノコシティ","NORMAL 3",3.0,true,"HARD 7+",7.7,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,],
-                    ["サマータイムレコード","NORMAL 3",3.0,,"HARD 7+",7.8,,"EXPERT 11+",11.9,,"INFERNO 0",0.0,],
+                    ["サマータイムレコード","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 11+",11.9,true,"INFERNO 0",0.0,],
                     ["テレキャスタービーボーイ","NORMAL 3",3.0,false,"HARD 8+",8.9,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,],
                     ["フィクサー","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
                     ["バレリーコ","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
@@ -1646,6 +1646,68 @@
                 });
             }
 
+            function showChartDataset() {
+                const tbody = document.querySelector('#chart-dataset');
+                tbody.innerHTML = '';
+
+                const charts = getChartTable();
+                const tableContent = charts.map((chart, index) => {
+                    return `
+                        <tr 
+                            class="text-nowrap"
+                            data-fulltext="${chart[0]} ${chart[0].toLowerCase()} ${chart[0].toUpperCase()} 
+                            level:${chart[1].match(/[0-9+]+/g)} level:${chart[4].match(/[0-9+]+/g)} level:${chart[7].match(/[0-9+]+/g)} level:${chart[10].match(/[0-9+]+/g)} 
+                            const:${chart[2].toFixed(1)} const:${chart[5].toFixed(1)} const:${chart[8].toFixed(1)} const:${chart[11].toFixed(1)} 
+                            newer:${chart[3]} newer:${chart[6]} newer:${chart[9]} newer:${chart[12]} "
+                        >
+                            <td>${index + 1}</td>
+                            <td class="text-wrap">${chart[0]}</td>
+                            <td>${chart[1]}</td>
+                            <td>${chart[2].toFixed(1)}</td>
+                            <td>${chart[3]}</td>
+                            <td>${chart[4]}</td>
+                            <td>${chart[5].toFixed(1)}</td>
+                            <td>${chart[6]}</td>
+                            <td>${chart[7]}</td>
+                            <td>${chart[8].toFixed(1)}</td>
+                            <td>${chart[9]}</td>
+                            <td>${chart[10]}</td>
+                            <td>${chart[11].toFixed(1)}</td>
+                            <td>${chart[12]}</td>
+                        </tr>`
+                    .replaceAll(/(^ {24}|^\n)/gm, '');
+                }).join('\n');
+
+                tbody.innerHTML = tableContent;
+            }
+
+            function filterDatasetTable(value) {
+                const trows = document.querySelectorAll('#chart-dataset > tr');
+                trows.forEach(row => {
+                    if (row.classList.contains('d-none')) {
+                        row.classList.remove('d-none');
+                    }
+                });
+
+                if (value === '') {
+                    return false;
+                }
+
+                trows.forEach(row => {
+                    value.split(' ').forEach(key => {
+                        if (key.indexOf(':') === -1) {
+                            if (row.dataset.fulltext.indexOf(key) === -1) {
+                                row.classList.add('d-none');
+                            }
+                        } else {
+                            if (row.dataset.fulltext.indexOf(`${key} `) === -1) {
+                                row.classList.add('d-none');
+                            }
+                        }
+                    })
+                });
+            }
+
             // CSVで保存()
             function saveTableData() {
                 const dataTableRow = document.querySelectorAll('tr[data-index]');
@@ -1754,6 +1816,8 @@
             // ユーザー設定を復元
             function loadUserPreference() {
                 try {
+
+                    showChartDataset();
 
                     // 言語設定を復元
                     switch (localStorage.getItem('rating-analyzer-lang')) {
@@ -1876,7 +1940,7 @@
                     </div>
                     <div class="d-flex border border-white ms-2">
                         <div class="badge bg-white text-dark">VERSION</div>
-                        <div class="badge text-white">1.50.04</div>
+                        <div class="badge text-white">1.50.05</div>
                     </div>
                 </div>
                 <hr class="text-white my-2">
@@ -2026,12 +2090,12 @@
                             <span class="lang-jpn">CSVで保存</span>
                             <span class="lang-eng d-none">Save as CSV</span>
                         </button>
-                        <button type="button" class="btn btn-white me-2" id="btn-dataset" onclick="openChartsData()">
+                        <button type="button" class="btn btn-white me-2" id="btn-dataset" data-bs-toggle="modal" data-bs-target="#chart-dataset-modal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-table" viewBox="0 0 16 16">
                                 <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
                             </svg>
-                            <span class="lang-jpn">定数データ</span>
-                            <span class="lang-eng d-none">Chart Dataset</span>
+                            <span class="lang-jpn">定数テーブル</span>
+                            <span class="lang-eng d-none">Constants Table</span>
                         </button>
                         <button type="button" class="btn btn-white me-0" id="btn-settings" data-bs-toggle="modal" data-bs-target="#modal-settings">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -3411,8 +3475,8 @@
                                             <tr>
                                                 <td>
                                                     <div class="badge bg-white text-dark">
-                                                        <span class="lang-jpn">定数データ</span>
-                                                        <span class="lang-eng d-none">Chart Dataset</span>
+                                                        <span class="lang-jpn">定数テーブル</span>
+                                                        <span class="lang-eng d-none">Constants Table</span>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -3683,6 +3747,261 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-white rounded-0 m-1" data-bs-dismiss="modal">
+                                <span class="lang-jpn">閉じる</span>
+                                <span class="lang-eng d-none">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="chart-dataset-modal" tabindex="-1">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content rounded-0 border-0 bg-dark modal-shadow-white">
+                        <div class="modal-header">
+                            <div class="modal-title h3" id="">
+                                <div class="modal-title h3 text-heading text-white">
+                                    <span class="lang-jpn">定数テーブル</span>
+                                    <span class="lang-eng d-none">Constants Table</span>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="modal-body text-white">
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="px-2 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="ms-2 flex-grow-1">
+                                    <input type="text" class="form-control bg-dark border-white text-white rounded-0" placeholder="Search this table..." value="" oninput="filterDatasetTable(this.value)">
+                                </div>
+                                <div class="ms-2">
+                                    <button class="btn btn-white border-5 border-0 border-start border-cyan" type="button" data-bs-toggle="collapse" data-bs-target="#help-chartdata-search" aria-expanded="false" aria-controls="help-chartdata-search">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                        </svg>
+                                        <span class="lang-jpn">ヘルプ</span>
+                                        <span class="lang-eng d-none">Help</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mt-2 px-2">
+                                <div class="collapse table-responsive" id="help-chartdata-search">
+                                    <table class="table table-dark table-sm">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">キーワード</span>
+                                                        <span class="lang-eng d-none">keywords</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <div class="lang-jpn">
+                                                            曲名の一部を指定できます。
+                                                        </span>
+                                                        <div class="lang-eng d-none">
+                                                            You can set a part of the song title.
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">let</span> は、曲名に「let」を含む曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">let</span> will search for songs that contain "let" in the song title.
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">big bang</span> は、曲名に「big」および「bang」を含む曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">big bang</span> will search for songs that contain "big" and "bang" in the song title.
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div>level:</div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            レベルの値を指定できます。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            You can set the value of the level.
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">level:12</span> は、レベル「12」の譜面を含む曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">level:12</span> will search for songs that contain a chart of level "12".
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div>const:</div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            譜面定数の値を指定できます。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            You can set the value of the chart constants.
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">const:13.4</span> は、譜面定数「13.4」の譜面を含む曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">const:13.4</span> will search for songs that contain a chart of constant "13.4".
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div>newer:</div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            新曲枠であるか否かを検索します。trueまたはfalseを指定できます。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            Searches for "newer charts", can be true or false.
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">newer:true</span> は、新曲枠である曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">newer:true</span> will search for songs that are in the newer charts.
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div></div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            複数のオプションを組み合わせることもできます。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            You can also combine multiple options.
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            <span class="badge border border-white">level:14 stronger</span> は、レベル「14」かつ曲名に「stronger」を含む曲を検索します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            <span class="badge border border-white">level:14 stronger</span> will search for songs that have a level of "14" and contain "stronger" in the song title.
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <div class="mt-2 px-2 border table-responsive">
+                                    <table class="table table-dark table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"></th>
+                                                <th colspan="3">NORMAL</th>
+                                                <th colspan="3">HARD</th>
+                                                <th colspan="3">EXPERT</th>
+                                                <th colspan="3">INFERNO</th>
+                                            </tr>
+                                            <tr class="text-nowrap">
+                                                <th>#</th>
+                                                <th>
+                                                    <span class="lang-jpn">曲名</span>
+                                                    <span class="lang-eng d-none">Song</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">レベル</span>
+                                                    <span class="lang-eng d-none">Level</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">定数</span>
+                                                    <span class="lang-eng d-none">Const</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">新曲枠？</span>
+                                                    <span class="lang-eng d-none">Newer?</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">レベル</span>
+                                                    <span class="lang-eng d-none">Level</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">定数</span>
+                                                    <span class="lang-eng d-none">Const</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">新曲枠？</span>
+                                                    <span class="lang-eng d-none">Newer?</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">レベル</span>
+                                                    <span class="lang-eng d-none">Level</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">定数</span>
+                                                    <span class="lang-eng d-none">Const</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">新曲枠？</span>
+                                                    <span class="lang-eng d-none">Newer?</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">レベル</span>
+                                                    <span class="lang-eng d-none">Level</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">定数</span>
+                                                    <span class="lang-eng d-none">Const</span>
+                                                </th>
+                                                <th>
+                                                    <span class="lang-jpn">新曲枠？</span>
+                                                    <span class="lang-eng d-none">Newer?</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="chart-dataset">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white rounded-0 m-1" onclick="openChartsData(); return false;">
+                                <span class="lang-jpn">ダウンロード</span>
+                                <span class="lang-eng d-none">Download</span>
+                            </button>
                             <button type="button" class="btn btn-white rounded-0 m-1" data-bs-dismiss="modal">
                                 <span class="lang-jpn">閉じる</span>
                                 <span class="lang-eng d-none">Close</span>
