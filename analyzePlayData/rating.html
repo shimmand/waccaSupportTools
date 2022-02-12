@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-02-09" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-02-13" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-02-09"></script>
-        <script defer src="rating-script.js?date=2022-02-09"></script>
+        <script defer src="rating-dataset.js?date=2022-02-13"></script>
+        <script defer src="rating-script.js?date=2022-02-13"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div class="container p-0">
@@ -30,6 +30,41 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-white">
+                            <div class="mt-2 p-2">
+                                <div class="d-flex h6 px-1 pb-1 border-bottom">
+                                    <div class="badge bg-white align-bottom text-black me-2">2022-02-13</div>
+                                    <span class="lang-jpn">
+                                        v1.50.05: 譜面定数表を一新
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        v1.50.05: Chart constant table is renewed
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        このプログラムが使用している譜面定数表を、ページ上で視覚的に表示できるようになりました。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        The music notation constant table used by this program can now be visually displayed on the page.
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        データベースのようにご利用ください。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        You may use it as a database.
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        「定数テーブル」から試せます。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        It is available from the "Constants Table" button.
+                                    </span>
+                                </div>
+                            </div>
                             <div class="mt-2 p-2">
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-09</div>
@@ -55,10 +90,10 @@
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-03</div>
                                     <span class="lang-jpn">
-                                        データ管理機能を追加（と一部デザイン変更）
+                                        v1.50.04: データ管理機能を追加（と一部デザイン変更）
                                     </span>
                                     <span class="lang-eng d-none">
-                                        Added data control feature (+ some design changes)
+                                        v1.50.04: Added data control feature (+ some design changes)
                                     </span>
                                 </div>
                                 <div class="mx-2 my-0">
@@ -74,7 +109,7 @@
                                         「設定」パネルから試せます。
                                     </span>
                                     <span class="lang-eng d-none">
-                                        It is available from the "Settings" panel.
+                                        It is available from the "Settings" button.
                                     </span>
                                 </div>
                                 <div class="mx-2 my-0">
@@ -225,42 +260,50 @@
                         </span>
                     </div>
                     <div class="invalid-feedback error-feedback-1 mt-2 d-none" id="warning-denied">
-                        <span class="lang-jpn">
-                            クリップボードへアクセスできません。
-                            <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">ペースト</span>
-                            または
-                            <span class="badge border border-magenta text-magenta align-bottom ms-1 me-1">許可</span>
-                            を押してください。
-                        </span>
-                        <span class="lang-eng d-none">
-                            Allow your browser to access the clipboard.
-                            After pressing
-                            <span class="badge border border-magenta text-magenta align-bottom">Load Your Data</span>
-                            , please press
-                            <span class="badge border border-magenta text-magenta align-bottom">Paste</span>
-                            or
-                            <span class="badge border border-magenta text-magenta align-bottom">Allow</span>
-                            .
+                        <span class="bg-magenta text-white px-1">
+                            <span class="lang-jpn">
+                                クリップボードへアクセスできません。
+                                <span class="badge border border-white align-bottom ms-1 me-1">データを読込</span>
+                                を押したあと、
+                                <span class="badge border border-white align-bottom ms-1 me-1">ペースト</span>
+                                または
+                                <span class="badge border border-white align-bottom ms-1 me-1">許可</span>
+                                を押してください。
+                            </span>
+                            <span class="lang-eng d-none">
+                                Allow your browser to access the clipboard.
+                                After pressing
+                                <span class="badge border border-white align-bottom">Load Your Data</span>
+                                , please press
+                                <span class="badge border border-white align-bottom">Paste</span>
+                                or
+                                <span class="badge border border-white align-bottom">Allow</span>
+                                .
+                            </span>
                         </span>
                     </div>
                     <div class="invalid-feedback error-feedback-1 mt-2 d-none" id="warning-empty">
-                        <span class="lang-jpn">
-                            データが空です。
-                            マイページへ戻り、ブックマークレットを再度実行してください。
-                        </span>
-                        <span class="lang-eng d-none">
-                            Text field is empty.
-                            Please go back to My Page and run the bookmarklet again.
+                        <span class="bg-magenta text-white px-1">
+                            <span class="lang-jpn">
+                                データが空です。
+                                マイページへ戻り、ブックマークレットを再度実行してください。
+                            </span>
+                            <span class="lang-eng d-none">
+                                Text field is empty.
+                                Please go back to My Page and run the bookmarklet again.
+                            </span>
                         </span>
                     </div>
                     <div class="invalid-feedback error-feedback-1 mt-2 d-none" id="warning-invalid">
-                        <span class="lang-jpn">
-                            入力されたデータの書式が不正です。
-                            マイページへ戻り、ブックマークレットを再度実行してください。
-                        </span>
-                        <span class="lang-eng d-none">
-                            The format of the data you input is invalid.
-                            Please go back to My Page and run the bookmarklet again.
+                        <span class="bg-magenta text-white px-1">
+                            <span class="lang-jpn">
+                                入力されたデータの書式が不正です。
+                                マイページへ戻り、ブックマークレットを再度実行してください。
+                            </span>
+                            <span class="lang-eng d-none">
+                                The format of the data you input is invalid.
+                                Please go back to My Page and run the bookmarklet again.
+                            </span>
                         </span>
                     </div>
                 </div>
@@ -1018,8 +1061,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn"><span class="text-magenta"><strong>WACCA RATING ANALYZER</strong></span> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるプログラムです。</span>
-                                        <span class="lang-eng d-none">The <span class="text-magenta"><strong>WACCA RATING ANALYZER</strong></span> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
+                                        <span class="lang-jpn"><span class="bg-magenta text-white px-1">WACCA RATING ANALYZER</span> は、WACCAのマイページで確認できる情報を元に、レーティングを上昇させる上で便利なデータを確認できるプログラムです。</span>
+                                        <span class="lang-eng d-none">The <span class="bg-magenta text-white px-1">WACCA RATING ANALYZER</span> provides you useful data for increasing your rating based on the data available on your WACCA My Page.</span>
                                     </div>
                                 </div>
                             </div>
@@ -1105,8 +1148,10 @@
                                         <span class="lang-jpn">1. このページをブックマークする</span>
                                         <span class="lang-eng d-none">1. Bookmark this page.</span>
                                         <div class="text-magenta">
-                                            <span class="lang-jpn">ブックマークの名前の変更は任意です。</span>
-                                            <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
+                                            <span class="bg-magenta text-white px-1">
+                                                <span class="lang-jpn">ブックマークの名前の変更は任意です｡</span>
+                                                <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
+                                            </span>
                                         </div>
                                         <div class="accordion border border-magenta m-2" id="accordion-android-user">
                                             <div class="accordion-item border-0">
@@ -1217,8 +1262,10 @@
                                             2. Press <span class="badge border border-white text-white align-bottom">プレイデータ (Play Data)</span>
                                         </span>
                                         <div class="text-magenta">
-                                            <span class="lang-jpn"></span>
-                                            <span class="lang-eng d-none">*Of the six buttons at the top, press the top left button.</span>
+                                            <span class="bg-magenta text-white px-1">
+                                                <span class="lang-jpn"></span>
+                                                <span class="lang-eng d-none">*Of the six buttons at the top, press the top left button.</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1269,8 +1316,10 @@
                                             </div>
                                         </div>
                                         <div class="text-magenta">
-                                            <span class="lang-jpn">ブックマークレットを実行する手順は、端末の環境により異なる場合があります。</span>
-                                            <span class="lang-eng d-none">*The steps for executing the bookmarklet may vary depending on the device environment.</span>
+                                            <span class="bg-magenta text-white px-1">
+                                                <span class="lang-jpn">ブックマークレットを実行する手順は、端末の環境により異なる場合があります。</span>
+                                                <span class="lang-eng d-none">*The steps for executing the bookmarklet may vary depending on the device environment.</span>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -1333,14 +1382,24 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-white">
-                            <p class="m-0">
-                                <span class="lang-jpn">プレイデータがブラウザーへ保存されていないため、復元できません。</span>
-                                <span class="lang-eng d-none">Your play data is not saved in the browser, cannot be restored.</span>
-                            </p>
-                            <p class="m-0">
-                                <span class="lang-jpn">分析を1回以上完了させてください。</span>
-                                <span class="lang-eng d-none">Please complete the analysis at least once.</span>
-                            </p>
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="mt-2 text-magenta">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                        <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                        <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                                    </svg>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">プレイデータがブラウザーへ保存されていないため、復元できません。</span>
+                                        <span class="lang-eng d-none">Your play data is not saved in the browser, cannot be restored.</span>
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">分析を1回以上完了させてください。</span>
+                                        <span class="lang-eng d-none">Please complete the analysis at least once.</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white rounded-0 m-1" data-bs-dismiss="modal">
@@ -1370,7 +1429,7 @@
                             <p class="m-0">
                                 <span class="lang-jpn">更新日時: </span>
                                 <span class="lang-eng d-none">Last Update: </span>
-                                <span class="text-magenta" id="last-update">0000-00-00 00:00</span>
+                                <span class="bg-magenta text-white px-1" id="last-update">0000-00-00 00:00</span>
                             </p>
                         </div>
                         <div class="modal-footer">
@@ -1434,8 +1493,8 @@
                                     <span class="lang-eng d-none">Cookie</span>
                                 </div>
                                 <div class="m-2 px-1">
-                                    <span class="lang-jpn">今のところは使用していません。</span>
-                                    <span class="lang-eng d-none">I don't use it at the moment.</span>
+                                    <span class="lang-jpn">使用していません。</span>
+                                    <span class="lang-eng d-none">Not used.</span>
                                 </div>
                             </div>
                             <div class="mt-2">
@@ -1466,8 +1525,8 @@
                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                             </svg>
-                                            <span class="lang-jpn">消去</span>
-                                            <span class="lang-eng d-none">Erase<span>
+                                            <span class="lang-jpn">データ消去</span>
+                                            <span class="lang-eng d-none">Data Erase<span>
                                         </button>
                                     </div>
                                 </div>
@@ -1512,14 +1571,22 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-white">
-                            <div class="mt-2">
-                                <div class="m-2 px-1">
-                                    <span class="lang-jpn">このプログラムが保存したデータは、ブラウザーからすべて消去されます。</span>
-                                    <span class="lang-eng d-none">This will erase all data saved by this program from your browser.</span>
+                            <div class="d-flex align-items-center mt-2">
+                                <div class="mt-2 text-magenta">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                                        <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z"/>
+                                        <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
+                                    </svg>
                                 </div>
-                                <div class="m-2 px-1">
-                                    <span class="lang-jpn">よろしいですか？</span>
-                                    <span class="lang-eng d-none">Are you sure?</span>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">このプログラムが保存したデータは、ブラウザーからすべて消去されます。</span>
+                                        <span class="lang-eng d-none">This will erase all data saved by this program from your browser.</span>
+                                    </div>
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">よろしいですか？</span>
+                                        <span class="lang-eng d-none">Are you sure?</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2130,6 +2197,31 @@
                                                         </span>
                                                         <span class="lang-eng d-none">
                                                             <span class="badge border border-white">level:14 stronger</span> will search for songs that have a level of "14" and contain "stronger" in the song title.
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div></div>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <span class="bg-magenta text-white px-1">
+                                                            <span class="lang-jpn">
+                                                                全文検索にも対応しています｡
+                                                            </span>
+                                                            <span class="lang-eng d-none">
+                                                                Full-text search is also supported.
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="lang-jpn">
+                                                            例えば、 <span class="badge border border-white">14.1</span>（「const:」オプションなし） は、いずれかの項目に「14.1」を含む曲を検索します。つまり譜面定数「14.1」の譜面を含む曲を検索するのと <span class="bg-magenta text-white px-1">ほぼ</span> 同じです。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            For example, <span class="badge border border-white">14.1</span> (without "const:" option) will search for songs that contain "14.1" in one of the fields. That means it is <span class="bg-magenta text-white px-1">almost</span> the same as searching for songs that contain the chart constant "14.1".
                                                         </span>
                                                     </div>
                                                 </td>

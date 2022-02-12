@@ -88,7 +88,7 @@
 "KING","NORMAL 2",2.0,true,"HARD 8",8.0,true,"EXPERT 11",11.6,true,"INFERNO 0",0.0,
 "ダーリンダンス","NORMAL 2",2.0,true,"HARD 8+",8.7,true,"EXPERT 12+",12.8,true,"INFERNO 0",0.0,
 "トリノコシティ","NORMAL 3",3.0,true,"HARD 7+",7.7,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,
-"サマータイムレコード","NORMAL 3",3.0,,"HARD 7+",7.8,,"EXPERT 11+",11.9,,"INFERNO 0",0.0,
+"サマータイムレコード","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 11+",11.9,true,"INFERNO 0",0.0,
 "テレキャスタービーボーイ","NORMAL 3",3.0,false,"HARD 8+",8.9,false,"EXPERT 11+",11.9,false,"INFERNO 0",0.0,
 "フィクサー","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,
 "バレリーコ","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,
@@ -231,6 +231,7 @@
 "ぼくの夢、メチャクソ無限湧き","NORMAL 4",4.0,false,"HARD 9",9.6,false,"EXPERT 12",12.6,false,"INFERNO 13+",13.8,false
 "ゲームオーバー (feat. TORIENA)","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,
 "ルーンファクトリー４スペシャルより「この想いを乗せて」","NORMAL 1",1.0,false,"HARD 5",5.6,false,"EXPERT 9",9.0,false,"INFERNO 0",0.0,
+"cloud IX","NORMAL 4",4.0,true,"HARD 10",10.5,true,"EXPERT 13",13.6,true,"INFERNO 0",0.0,
 "Ouvertüre","NORMAL 3",3.0,true,"HARD 9",9.6,true,"EXPERT 13",13.3,true,"INFERNO 0",0.0,
 "Love Kills U","NORMAL 4",4.0,true,"HARD 8",8.4,true,"EXPERT 12",12.5,true,"INFERNO 0",0.0,
 "Kira☆Kira☆Night","NORMAL 5",5.0,true,"HARD 9",9.6,true,"EXPERT 12+",12.9,true,"INFERNO 0",0.0,
