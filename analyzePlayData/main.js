@@ -1,24 +1,20 @@
 export function main(){
     try {
-        // ホスト名がマイページのものであることの確認
         const hostname = 'wacca.marv-games.jp';
         if (location.hostname != hostname){
             throw new Error('invalid-hostname');
         }
 
-        // 非ログイン状態のパスでないことの確認
         const loginPagePath = '/web/login';
         if (location.pathname.indexOf(loginPagePath) == 0) {
             throw new Error('not-logged-in');
         }
         
-        // 楽曲スコアのページであることの確認
         const playResultsPath = '/web/music';
         if (location.pathname.indexOf(playResultsPath) != 0) {
             throw new Error('invalid-directory');
         }
 
-        // #pushobj > section > div.contents-wrap > div.playdata__score-list > ul > li:nth-child(any)
         const songs = document.querySelectorAll('li.item');
         let scoresList = [];
 
@@ -29,7 +25,7 @@ export function main(){
             const scores = e.querySelectorAll('.playdata__score-list__song-info__score');
             const pattern = /(NORMAL|HARD|EXPERT|INFERNO) [0-9]{1,2}\+*/;
 
-            // [0: 曲名, 1: NORMALの譜面レベル, 2: NORMALのスコア]
+            // NORMAL
             scoresList.push(
                 [
                     escapedTitle,
@@ -38,7 +34,7 @@ export function main(){
                 ]
             );
 
-            // [0: 曲名, 1: HARDの譜面レベル, 2: HARDのスコア]
+            // HARD
             scoresList.push(
                 [
                     escapedTitle,
@@ -47,7 +43,7 @@ export function main(){
                 ]
             );
 
-            // [0: 曲名, 1: EXPERTの譜面レベル, 2: EXPERTのスコア]
+            // EXPERT
             scoresList.push(
                 [
                     escapedTitle,
@@ -56,7 +52,7 @@ export function main(){
                 ]
             );
 
-            // [0: 曲名, 1: INFERNOの譜面レベル, 2: INFERNOのスコア]
+            // INFERNO
             scoresList.push(
                 [
                     escapedTitle,
