@@ -20,10 +20,6 @@ hr {
     font-weight: 300;
 }
 
-.text-heading::first-letter {
-    font-weight: 700;
-}
-
 .text-cyan {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-info-rgb),var(--bs-text-opacity))!important;
@@ -364,6 +360,36 @@ html.fs-50 {
 }
 
 
+/* Genre */
+.bg-anime {
+    background-color: #3a82ce;
+}
+
+.bg-vocaloid {
+    background-color: #0195a9;
+}
+
+.bg-touhou {
+    background-color: #fe002e;
+}
+
+.bg-musical {
+    background-color: #ff7f1e;
+}
+
+.bg-variety {
+    background-color: #21c763;
+}
+
+.bg-original {
+    background-color: #fa0073;
+}
+
+.bg-tanoc {
+    background-color: #262522;
+}
+
+
 /* Table */
 
 .table-responsive {
@@ -497,6 +523,14 @@ a.multi-rate-selected::before {
 
 .skew-10 {
     transform: skew(-10deg);
+}
+
+.w-hrem {
+    width: .5rem;
+}
+
+.h-hrem {
+    height: .5rem;
 }
 
 

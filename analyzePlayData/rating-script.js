@@ -274,16 +274,25 @@ function analyze(){
 
                 tableRow.classList.add('border-3', 'border-top-0', 'border-end-0', 'border-start-0');
 
-                const maxDataClass = (chart[7].match(/[0-9]{1,2}\.[0-9]{3}/) != null) ? '' : ' class="pt-half"';
+                const genreColClass = document.querySelector('#column-genre-toggle').checked ? 'genre-column' : 'genre-column d-none';
                 const code = `
                     <${headerElm}>${index + 1}</td>
-                    <td class="sticky-column">${chart[0]}</td>
-                    <td class="pt-half"><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>
+                    <td class="${genreColClass}"><div class="badge border ${getGenreClass(getGenre(chart[0]))} text-shadow-black w-100"><span>${getGenreElement(getGenre(chart[0]))}</span></div></td>
+                    <td class="sticky-column">
+                        <div class="d-flex">
+                            <div class="vstack my-1 me-1">
+                                <div class="badge border ${getGenreClass(getGenre(chart[0]))} m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                <div class="badge border ${chart[1]} m-0 p-0 w-hrem h-hrem"><span></span></div>
+                            </div>
+                            <div class="w-100">${chart[0]}</div>
+                        </div>
+                    </td>
+                    <td><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>
                     <td>${chart[3]}</td>
                     <td>${chart[4]}</td>
                     <td>${chart[5].toFixed(2)}</td>
                     <${rateDataElm}>${chart[6]}</td>
-                    <td${maxDataClass}>${chart[7]}</td>
+                    <td>${chart[7]}</td>
                     <td>${increases[0]}</td>
                     <td>${increases[1]}</td>
                     <td>${increases[2]}</td>
@@ -424,6 +433,20 @@ function analyze(){
         updateChartVisibilityByDifficulty();
         refreshChartVisibility();
 
+        switch (localStorage.getItem('rating-analyzer-lang')) {
+            case 'japanese':
+                switchToJapanese();
+                break;
+
+            case 'english':
+                switchToEnglish();
+                break;
+        
+            default:
+                switchToJapanese();
+                break;
+        }
+
         const pasteBtn = document.querySelector('#btn-paste');
         const analyzeBtn = document.querySelector('#btn-analyze');
         pasteBtn.disabled = true;
@@ -536,6 +559,22 @@ function refreshChartVisibility() {
             row.classList.add('d-none');
         } else {
             row.classList.remove('d-none');
+        }
+    });
+}
+
+// Toggle the display status of any column.
+function toggleColumnVisibility(columnName, checked) {
+    const checkboxes = document.querySelectorAll(`#column-${columnName}-toggle`);
+    checkboxes.forEach(input => input.checked = checked);
+    localStorage.setItem(`rating-analyzer-column-${columnName}`, checked);
+
+    const stickyData = document.querySelectorAll(`.${columnName}-column`);
+    stickyData.forEach(data => {
+        if (checked) {
+            data.classList.remove('d-none');
+        } else {
+            data.classList.add('d-none');
         }
     });
 }
@@ -658,28 +697,42 @@ function getMultiplierTable() {
 
 // Get chart constants.
 function getChartConstants(songTitle, diffValue) {
-    const rating = getChartTable();
+    const songs = getChartTable();
+    const indexes = {
+        'title'             : songs[0].indexOf('@song-title'),
+        'genre'             : songs[0].indexOf('@genre-name'),
+        'normal-level'      : songs[0].indexOf('@normal-level'),
+        'normal-constant'   : songs[0].indexOf('@normal-constant'),
+        'normal-newer'      : songs[0].indexOf('@normal-included-newer'),
+        'hard-level'        : songs[0].indexOf('@hard-level'),
+        'hard-constant'     : songs[0].indexOf('@hard-constant'),
+        'hard-newer'        : songs[0].indexOf('@hard-included-newer'),
+        'expert-level'      : songs[0].indexOf('@expert-level'),
+        'expert-constant'   : songs[0].indexOf('@expert-constant'),
+        'expert-newer'      : songs[0].indexOf('@expert-included-newer'),
+        'inferno-level'     : songs[0].indexOf('@inferno-level'),
+        'inferno-constant'  : songs[0].indexOf('@inferno-constant'),
+        'inferno-newer'     : songs[0].indexOf('@inferno-included-newer')
+    };
     
-    for (let i = 0; i < rating.length; i++) {
-        if (rating[i][0] == songTitle) {
-            // NORMAL
-            if (rating[i][1] == diffValue) {
-                return rating[i][2].toFixed(1);
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+
+        if (song[indexes['title']] == songTitle) {
+            if (song[indexes['normal-level']] == diffValue) {
+                return Number(song[indexes['normal-constant']]).toFixed(1);
             }
 
-            // HARD
-            if (rating[i][4] == diffValue) {
-                return rating[i][5].toFixed(1);
+            if (song[indexes['hard-level']] == diffValue) {
+                return Number(song[indexes['hard-constant']]).toFixed(1);
             }
 
-            // EXPERT
-            if (rating[i][7] == diffValue) {
-                return rating[i][8].toFixed(1);
+            if (song[indexes['expert-level']] == diffValue) {
+                return Number(song[indexes['expert-constant']]).toFixed(1);
             }
 
-            // INFERNO
-            if (rating[i][10] == diffValue) {
-                return rating[i][11].toFixed(1);
+            if (song[indexes['inferno-level']] == diffValue) {
+                return Number(song[indexes['inferno-constant']]).toFixed(1);
             }
         }
     }
@@ -687,31 +740,135 @@ function getChartConstants(songTitle, diffValue) {
 
 // Check if the chart is a newer.
 function isThisChartNewer(songTitle, diffValue) {
-    const rating = getChartTable();
+    const songs = getChartTable();
+    const indexes = {
+        'title'             : songs[0].indexOf('@song-title'),
+        'genre'             : songs[0].indexOf('@genre-name'),
+        'normal-level'      : songs[0].indexOf('@normal-level'),
+        'normal-constant'   : songs[0].indexOf('@normal-constant'),
+        'normal-newer'      : songs[0].indexOf('@normal-included-newer'),
+        'hard-level'        : songs[0].indexOf('@hard-level'),
+        'hard-constant'     : songs[0].indexOf('@hard-constant'),
+        'hard-newer'        : songs[0].indexOf('@hard-included-newer'),
+        'expert-level'      : songs[0].indexOf('@expert-level'),
+        'expert-constant'   : songs[0].indexOf('@expert-constant'),
+        'expert-newer'      : songs[0].indexOf('@expert-included-newer'),
+        'inferno-level'     : songs[0].indexOf('@inferno-level'),
+        'inferno-constant'  : songs[0].indexOf('@inferno-constant'),
+        'inferno-newer'     : songs[0].indexOf('@inferno-included-newer')
+    };
     
-    for (let i = 0; i < rating.length; i++) {
-        if (rating[i][0] == songTitle) {
-            // NORMAL
-            if (rating[i][1] == diffValue) {
-                return rating[i][3];
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+
+        if (song[indexes['title']] == songTitle) {
+            if (song[indexes['normal-level']] == diffValue) {
+                return song[indexes['normal-newer']];
             }
 
-            // HARD
-            if (rating[i][4] == diffValue) {
-                return rating[i][6];
+            if (song[indexes['hard-level']] == diffValue) {
+                return song[indexes['hard-newer']];
             }
 
-            // EXPERT
-            if (rating[i][7] == diffValue) {
-                return rating[i][9];
+            if (song[indexes['expert-level']] == diffValue) {
+                return song[indexes['expert-newer']];
             }
 
-            // INFERNO
-            if (rating[i][10] == diffValue) {
-                return rating[i][12];
+            if (song[indexes['inferno-level']] == diffValue) {
+                return song[indexes['inferno-newer']];
             }
         }
     }
+}
+
+// Get chart constants.
+function getChartConstants(songTitle, diffValue) {
+    const songs = getChartTable();
+    const indexes = {
+        'title'             : songs[0].indexOf('@song-title'),
+        'genre'             : songs[0].indexOf('@genre-name'),
+        'normal-level'      : songs[0].indexOf('@normal-level'),
+        'normal-constant'   : songs[0].indexOf('@normal-constant'),
+        'normal-newer'      : songs[0].indexOf('@normal-included-newer'),
+        'hard-level'        : songs[0].indexOf('@hard-level'),
+        'hard-constant'     : songs[0].indexOf('@hard-constant'),
+        'hard-newer'        : songs[0].indexOf('@hard-included-newer'),
+        'expert-level'      : songs[0].indexOf('@expert-level'),
+        'expert-constant'   : songs[0].indexOf('@expert-constant'),
+        'expert-newer'      : songs[0].indexOf('@expert-included-newer'),
+        'inferno-level'     : songs[0].indexOf('@inferno-level'),
+        'inferno-constant'  : songs[0].indexOf('@inferno-constant'),
+        'inferno-newer'     : songs[0].indexOf('@inferno-included-newer')
+    };
+    
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+
+        if (song[indexes['title']] == songTitle) {
+            if (song[indexes['normal-level']] == diffValue) {
+                return Number(song[indexes['normal-constant']]).toFixed(1);
+            }
+
+            if (song[indexes['hard-level']] == diffValue) {
+                return Number(song[indexes['hard-constant']]).toFixed(1);
+            }
+
+            if (song[indexes['expert-level']] == diffValue) {
+                return Number(song[indexes['expert-constant']]).toFixed(1);
+            }
+
+            if (song[indexes['inferno-level']] == diffValue) {
+                return Number(song[indexes['inferno-constant']]).toFixed(1);
+            }
+        }
+    }
+}
+
+// Get the genre from the song title.
+function getGenre(songTitle) {
+    const songs = getChartTable();
+    const indexes = {
+        'title' : songs[0].indexOf('@song-title'),
+        'genre' : songs[0].indexOf('@genre-name')
+    };
+    
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+
+        if (song[indexes['title']] == songTitle) {
+            return song[indexes['genre']];
+        }
+    }
+}
+
+// Get the class based on the genre.
+function getGenreClass(genre) {
+    const classes = {
+        'ANIME/POP'         : 'bg-anime',
+        'VOCALOID'          : 'bg-vocaloid',
+        'TOUHOU ARRANGE'    : 'bg-touhou',
+        'ANIME MUSICAL'     : 'bg-musical',
+        'VARIETY'           : 'bg-variety',
+        'ORIGINAL'          : 'bg-original',
+        'HARDCORE TANO*C'   : 'bg-tanoc'
+    };
+
+    return classes[genre];
+}
+
+// Get the element based on the genre.
+function getGenreElement(genre) {
+    const classes = {
+        'ANIME/POP'         : '<span class="lang-jpn">アニメ/POP</span><span class="lang-eng d-none">ANIME/POP</span>',
+        'VOCALOID'          : '<span class="lang-jpn">ボーカロイド</span><span class="lang-eng d-none">VOCALOID</span>',
+        'TOUHOU ARRANGE'    : '<span class="lang-jpn">東方アレンジ</span><span class="lang-eng d-none">TOUHOU ARRANGE</span>',
+        'ANIME MUSICAL'     : '<span class="lang-jpn">2.5次元</span><span class="lang-eng d-none">ANIME MUSICAL</span>',
+        'VARIETY'           : '<span class="lang-jpn">バラエティ</span><span class="lang-eng d-none">VARIETY</span>',
+        'ORIGINAL'          : '<span class="lang-jpn">オリジナル</span><span class="lang-eng d-none">ORIGINAL</span>',
+        'HARDCORE TANO*C'   : '<span class="lang-jpn">HARDCORE TANO*C</span><span class="lang-eng d-none">HARDCORE TANO*C</span>'
+    };
+
+    return classes[genre];
 }
 
 // Quit the Multi Select Mode.
@@ -789,32 +946,52 @@ function generateDatasetTable() {
     const tbody = document.querySelector('#chart-dataset');
     tbody.innerHTML = '';
 
-    const charts = getChartTable();
-    const tableContent = charts.map((chart, index) => {
+    const songs = getChartTable();
+    const indexes = {
+        'title'             : songs[0].indexOf('@song-title'),
+        'genre'             : songs[0].indexOf('@genre-name'),
+        'normal-level'      : songs[0].indexOf('@normal-level'),
+        'normal-constant'   : songs[0].indexOf('@normal-constant'),
+        'normal-newer'      : songs[0].indexOf('@normal-included-newer'),
+        'hard-level'        : songs[0].indexOf('@hard-level'),
+        'hard-constant'     : songs[0].indexOf('@hard-constant'),
+        'hard-newer'        : songs[0].indexOf('@hard-included-newer'),
+        'expert-level'      : songs[0].indexOf('@expert-level'),
+        'expert-constant'   : songs[0].indexOf('@expert-constant'),
+        'expert-newer'      : songs[0].indexOf('@expert-included-newer'),
+        'inferno-level'     : songs[0].indexOf('@inferno-level'),
+        'inferno-constant'  : songs[0].indexOf('@inferno-constant'),
+        'inferno-newer'     : songs[0].indexOf('@inferno-included-newer')
+    };
+    const tableContent = songs.map((song, index) => {
+        if (index === 0) {
+            return '';
+        }
+
         return `
             <tr 
                 class="text-nowrap"
-                data-fulltext="${chart[0]} ${chart[0].toLowerCase()} ${chart[0].toUpperCase()} 
-                level:${chart[1].match(/[0-9+]+/g)} level:${chart[4].match(/[0-9+]+/g)} level:${chart[7].match(/[0-9+]+/g)} level:${chart[10].match(/[0-9+]+/g)} 
-                const:${chart[2].toFixed(1)} const:${chart[5].toFixed(1)} const:${chart[8].toFixed(1)} const:${chart[11].toFixed(1)} 
-                newer:${chart[3]} newer:${chart[6]} newer:${chart[9]} newer:${chart[12]} "
+                data-fulltext="${song[indexes['title']]} ${song[indexes['title']].toLowerCase()} ${song[indexes['title']].toUpperCase()} 
+                level:${song[indexes['normal-level']].match(/[0-9+]+/g)} level:${song[indexes['hard-level']].match(/[0-9+]+/g)} level:${song[indexes['expert-level']].match(/[0-9+]+/g)} level:${song[indexes['inferno-level']].match(/[0-9+]+/g)} 
+                const:${Number(song[indexes['normal-constant']]).toFixed(1)} const:${Number(song[indexes['hard-constant']]).toFixed(1)} const:${Number(song[indexes['expert-constant']]).toFixed(1)} const:${Number(song[indexes['inferno-constant']]).toFixed(1)} 
+                newer:${song[indexes['normal-newer']]} newer:${song[indexes['hard-newer']]} newer:${song[indexes['expert-newer']]} newer:${song[indexes['inferno-newer']]} "
             >
-                <td>${index + 1}</td>
-                <td class="text-wrap">${chart[0]}</td>
-                <td>${chart[1]}</td>
-                <td>${chart[2].toFixed(1)}</td>
-                <td>${chart[3]}</td>
-                <td>${chart[4]}</td>
-                <td>${chart[5].toFixed(1)}</td>
-                <td>${chart[6]}</td>
-                <td>${chart[7]}</td>
-                <td>${chart[8].toFixed(1)}</td>
-                <td>${chart[9]}</td>
-                <td>${chart[10]}</td>
-                <td>${chart[11].toFixed(1)}</td>
-                <td>${chart[12]}</td>
+                <td>${index}</td>
+                <td class="text-wrap">${song[indexes['title']]}</td>
+                <td>${song[indexes['normal-level']]}</td>
+                <td>${Number(song[indexes['normal-constant']]).toFixed(1)}</td>
+                <td>${song[indexes['normal-newer']]}</td>
+                <td>${song[indexes['hard-level']]}</td>
+                <td>${Number(song[indexes['hard-constant']]).toFixed(1)}</td>
+                <td>${song[indexes['hard-newer']]}</td>
+                <td>${song[indexes['expert-level']]}</td>
+                <td>${Number(song[indexes['expert-constant']]).toFixed(1)}</td>
+                <td>${song[indexes['expert-newer']]}</td>
+                <td>${song[indexes['inferno-level']]}</td>
+                <td>${Number(song[indexes['inferno-constant']]).toFixed(1)}</td>
+                <td>${song[indexes['inferno-newer']]}</td>
             </tr>`
-        .replaceAll(/(^ {12}|^\n)/gm, '');
+        .replaceAll('undefined', '').replaceAll(/(^ {12}|^\n)/gm, '');
     }).join('\n');
 
     tbody.innerHTML = tableContent;
@@ -984,6 +1161,23 @@ function loadUserPreference() {
 
             case 'false':
                 stickyCheckboxes.forEach(input => input.checked = false);
+                break;
+        
+            default:
+                break;
+        }
+
+        // Restore the display state of "genre" columns.
+        const genreCheckboxes = document.querySelectorAll('#column-genre-toggle');
+        switch (localStorage.getItem('rating-analyzer-column-genre')) {
+            case 'true':
+                genreCheckboxes.forEach(input => input.checked = true);
+                toggleColumnVisibility('genre', true);
+                break;
+
+            case 'false':
+                genreCheckboxes.forEach(input => input.checked = false);
+                toggleColumnVisibility('genre', false);
                 break;
         
             default:
