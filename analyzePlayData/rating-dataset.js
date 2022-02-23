@@ -1,6 +1,6 @@
 // Last update
 function getLastUpdate() {
-    return '2022-02-20';
+    return '2022-02-23';
 }
 
 // Chart constants table
@@ -139,6 +139,8 @@ function getChartTable() {
         ["ウミユリ海底譚","VOCALOID","NORMAL 1",1.0,false,"HARD 7",7.1,false,"EXPERT 10",10.2,false,"INFERNO 0",0.0,],
         ["スクランブル交際","VOCALOID","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 11",11.0,false,"INFERNO 0",0.0,],
         ["乙女解剖","VOCALOID","NORMAL 3",3.0,false,"HARD 7",7.3,false,"EXPERT 9",9.2,false,"INFERNO 0",0.0,],
+        ["Grip & Break down !!","TOUHOU ARRANGE","NORMAL 3",3.0,true,"HARD 8",8.5,true,"EXPERT 12",12.0,true,"INFERNO 0",0.0,],
+        ["CENSORED!!","TOUHOU ARRANGE","NORMAL 4",4.0,true,"HARD 8+",8.7,true,"EXPERT 13",13.4,true,"INFERNO 0",0.0,],
         ["Crime Wave","TOUHOU ARRANGE","NORMAL 3",3.0,true,"HARD 8",8.1,true,"EXPERT 12+",12.7,true,"INFERNO 0",0.0,],
         ["チルノは覚醒サマーデイズ！","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
         ["エピクロスの虹はもう見えない","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 8",8.4,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
