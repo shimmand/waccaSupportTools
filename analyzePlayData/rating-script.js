@@ -22,12 +22,10 @@ function paste() {
         showDeniedWarning();
     });
 
-    if (playdata.value === '') {
-        const helpBtn = document.querySelector('#btn-does-not-work-modal');
-        
-        if (helpBtn.classList.contains('d-none')) {
-            helpBtn.classList.remove('d-none');
-        }
+    const helpBtn = document.querySelector('#btn-does-not-work-modal');
+    
+    if (helpBtn.classList.contains('d-none')) {
+        helpBtn.classList.remove('d-none');
     }
 }
 
@@ -451,6 +449,10 @@ function analyze(){
         const analyzeBtn = document.querySelector('#btn-analyze');
         pasteBtn.disabled = true;
         analyzeBtn.disabled = true;
+
+        const helpBtn = document.querySelector('#btn-does-not-work-modal');
+        helpBtn.classList.add('d-none');
+
     }
 }
 
@@ -604,6 +606,29 @@ function openDevsTwitter() {
 function clearPlaydata() {
     document.querySelectorAll('#playdata')[0].value = '';
     location.reload();
+}
+
+// Enable data analyze mode.
+function activateAnalyzeMode() {
+    const playdata = document.querySelector('#playdata');
+
+    localStorage.setItem('rating-analyzer-temp', playdata.value);
+    localStorage.setItem('rating-analyzer-analyze-mode', 'true');
+    playdata.value = '';
+
+    location.reload();
+}
+
+// Run the analyze.
+function startAnalyze() {
+    const temp = localStorage.getItem('rating-analyzer-temp');
+    const playdata = document.querySelector('#playdata');
+
+    localStorage.setItem('rating-analyzer-analyze-mode', 'false');
+    playdata.value = temp;
+    localStorage.removeItem('rating-analyzer-temp');
+
+    analyze();
 }
 
 // Enable data restore mode.
@@ -1238,6 +1263,19 @@ function loadUserPreference() {
                 break;
         }
 
+        // Run the analyze function if the program is in restore mode.
+        switch (localStorage.getItem('rating-analyzer-analyze-mode')) {
+            case 'true':
+                startAnalyze();
+                break;
+
+            case 'false':
+                break;
+        
+            default:
+                break;
+        }
+
         // Run the restore function if the program is in restore mode.
         switch (localStorage.getItem('rating-analyzer-restore-mode')) {
             case 'true':
@@ -1250,12 +1288,30 @@ function loadUserPreference() {
             default:
                 break;
         }
+
+        switchLoadingView(false);
+
     } catch (error) {
+        switchLoadingView(false);
         return false;
     }
 }
 
-// Set news as read
+// Switch Loading View.
+function switchLoadingView(isEnabled = true) {
+    const loadingContainer = document.querySelector('#container-loading');
+    const mainContainer = document.querySelector('#container-main');
+
+    if (isEnabled) {
+        loadingContainer.classList.remove('d-none');
+        mainContainer.classList.add('d-none');
+    } else {
+        loadingContainer.classList.add('d-none');
+        mainContainer.classList.remove('d-none');
+    }
+}
+
+// Set news as read.
 function markAsRead() {
     localStorage.setItem('rating-analyzer-last-visited', getLastUpdate());
     document.querySelector('#news').classList.add('border-start-0');

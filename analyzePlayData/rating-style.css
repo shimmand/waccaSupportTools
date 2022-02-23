@@ -17,7 +17,7 @@ hr {
 /* Text */
 
 .text-heading {
-    font-weight: 300;
+    font-weight: normal;
 }
 
 .text-cyan {
@@ -391,10 +391,6 @@ html.fs-50 {
 
 
 /* Table */
-
-.table-responsive {
-    max-height: 85vh;
-}
 
 tr {
     --bs-table-bg: #212529;
