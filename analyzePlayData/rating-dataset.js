@@ -1,6 +1,6 @@
 // Last update
 function getLastUpdate() {
-    return '2022-02-23';
+    return '2022-02-27';
 }
 
 // Chart constants table
@@ -242,6 +242,7 @@ function getChartTable() {
         ["ゲームオーバー (feat. TORIENA)","VARIETY","NORMAL 2",2.0,false,"HARD 7+",7.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
         ["ルーンファクトリー４スペシャルより「この想いを乗せて」","VARIETY","NORMAL 1",1.0,false,"HARD 5",5.6,false,"EXPERT 9",9.0,false,"INFERNO 0",0.0,],
         ["cloud IX","VARIETY","NORMAL 4",4.0,true,"HARD 10",10.5,true,"EXPERT 13",13.6,true,"INFERNO 0",0.0,],
+        ["神","ORIGINAL","NORMAL 6",6.0,true,"HARD 10+",10.9,true,"EXPERT 13+",13.7,true,"INFERNO 0",0.0,],
         ["Ouvertüre","ORIGINAL","NORMAL 3",3.0,true,"HARD 9",9.6,true,"EXPERT 13",13.3,true,"INFERNO 0",0.0,],
         ["Love Kills U","ORIGINAL","NORMAL 4",4.0,true,"HARD 8",8.4,true,"EXPERT 12",12.5,true,"INFERNO 0",0.0,],
         ["Kira☆Kira☆Night","ORIGINAL","NORMAL 5",5.0,true,"HARD 9",9.6,true,"EXPERT 12+",12.9,true,"INFERNO 0",0.0,],
