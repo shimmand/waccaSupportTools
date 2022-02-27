@@ -1015,6 +1015,7 @@ function generateDatasetTable() {
     const songs = getChartTable();
     const indexes = {
         'title'             : songs[0].indexOf('@song-title'),
+        'title-eng'         : songs[0].indexOf('@song-title-eng'),
         'genre'             : songs[0].indexOf('@genre-name'),
         'normal-level'      : songs[0].indexOf('@normal-level'),
         'normal-constant'   : songs[0].indexOf('@normal-constant'),
@@ -1036,8 +1037,8 @@ function generateDatasetTable() {
 
         return `
             <tr 
-                class="text-nowrap"
-                data-fulltext="${song[indexes['title']]} ${song[indexes['title']].toLowerCase()} ${song[indexes['title']].toUpperCase()} 
+                class="text-nowrap" 
+                data-fulltext="${song[indexes['title']].toLowerCase()} ${song[indexes['title-eng']].toLowerCase()}
                 level:${song[indexes['normal-level']].match(/[0-9+]+/g)} level:${song[indexes['hard-level']].match(/[0-9+]+/g)} level:${song[indexes['expert-level']].match(/[0-9+]+/g)} level:${song[indexes['inferno-level']].match(/[0-9+]+/g)} 
                 const:${Number(song[indexes['normal-constant']]).toFixed(1)} const:${Number(song[indexes['hard-constant']]).toFixed(1)} const:${Number(song[indexes['expert-constant']]).toFixed(1)} const:${Number(song[indexes['inferno-constant']]).toFixed(1)} 
                 newer:${song[indexes['normal-newer']]} newer:${song[indexes['hard-newer']]} newer:${song[indexes['expert-newer']]} newer:${song[indexes['inferno-newer']]} "
@@ -1065,6 +1066,7 @@ function generateDatasetTable() {
 
 // Apply a filter to the dataset table.
 function filterDatasetTable(value) {
+    const searchValue = String(value).toLowerCase();
     const trows = document.querySelectorAll('#chart-dataset > tr');
     trows.forEach(row => {
         if (row.classList.contains('d-none')) {
@@ -1072,12 +1074,12 @@ function filterDatasetTable(value) {
         }
     });
 
-    if (value === '') {
+    if (searchValue === '') {
         return false;
     }
 
     trows.forEach(row => {
-        value.split(' ').forEach(key => {
+        searchValue.split(' ').forEach(key => {
             if (key.indexOf(':') === -1) {
                 if (row.dataset.fulltext.indexOf(key) === -1) {
                     row.classList.add('d-none');

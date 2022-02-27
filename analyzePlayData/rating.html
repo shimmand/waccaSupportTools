@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-02-28" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-02-28-v2" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-02-28"></script>
-        <script defer src="rating-script.js?date=2022-02-28"></script>
+        <script defer src="rating-dataset.js?date=2022-02-28-v2"></script>
+        <script defer src="rating-script.js?date=2022-02-28-v2"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div id="container-loading" class="container p-0">
@@ -39,38 +39,138 @@
                         </div>
                         <div class="modal-body text-white">
                             <div class="mt-2 p-2">
-                                <div class="d-flex h6 px-1 pb-1 border-bottom">
-                                    <div class="badge bg-white align-bottom text-black me-2">2022-02-28</div>
-                                    <span class="lang-jpn">
-                                        v1.5.8 - 曲名の英訳表示に対応
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        v1.5.8 - English song title is here
-                                    </span>
+                                <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                    <div class="vstack">
+                                        <div class="badge bg-white align-bottom text-black me-2">
+                                            <span class="lang-jpn">修正</span>
+                                            <span class="lang-eng d-none">IMPROVE</span>
+                                        </div>
+                                        <div class="badge border border-white align-bottom text-white me-2">2022-02-28</div>
+                                    </div>
+                                    <div class="w-100">
+                                        <span class="lang-jpn">
+                                            定数テーブルでの検索機能が強化されました
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Improved search in chart constants tables
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="mx-2 my-0">
-                                    <span class="lang-jpn">
-                                        曲名の英訳を表示できる機能を追加しました。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        Added the feature to display English translations of song titles.
-                                    </span>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            検索機能が以下のように強化されました：
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            The search feature has been improved as follows:
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            - 日本語の曲名をアルファベットで検索できるようになりました。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            - Japanese song titles can now be searched by alphabet.
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="d-flex bg-gray-800 p-2">
+                                            <span class="lang-jpn">
+                                                例: <span class="border px-1">叩ケ 叩ケ 手ェ叩ケ</span> は <span class="border px-1">Tatake Tatake Te-tatake</span> とも入力できます
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                ex: <span class="border px-1">叩ケ 叩ケ 手ェ叩ケ</span> can be input as <span class="border px-1">Tatake Tatake Te-tatake</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            - LEET表記の曲名を、元のスペルで検索できるようになりました。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            - Song titles in LEET spelling can now be searched by their original spelling.
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="d-flex bg-gray-800 p-2">
+                                            <span class="lang-jpn">
+                                                例: <span class="border px-1">RAV#GIRL</span> は <span class="border px-1">RAVEGIRL</span> とも入力できます
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                ex: <span class="border px-1">RAV#GIRL</span> can be input as <span class="border px-1">RAVEGIRL</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2 p-2">
+                                <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                    <div class="vstack">
+                                        <div class="badge bg-white align-bottom text-black me-2">
+                                            <span class="lang-jpn">新機能</span>
+                                            <span class="lang-eng d-none">NEW FEATURE</span>
+                                        </div>
+                                        <div class="badge border border-white align-bottom text-white me-2">2022-02-28</div>
+                                    </div>
+                                    <div class="w-100">
+                                        <span class="lang-jpn">
+                                            曲名の英訳表示に対応
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            English song titles are supported
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="mx-2 my-0">
-                                    <span class="lang-jpn">
-                                        この機能では、全ての曲名が英語に切り替わるのではなく、あくまで併記される形になります。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        This feature does not switch all the song titles to English, but will be shown together.
-                                    </span>
-                                </div>
-                                <div class="mx-2 my-0">
-                                    <span class="lang-jpn">
-                                        表示オプションの <span class="border px-1">曲名の英訳を表示する</span> をオンにすると表示されます。
-                                    </span>
-                                    <span class="lang-eng d-none">
-                                        You can enable it by check <span class="border px-1">Show English song title</span> in the Display Options.
-                                    </span>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            曲名の英訳を表示できる機能を追加しました。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Added the feature to display English translations of song titles.
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            この機能では、全ての曲名が英語に切り替わるのではなく、あくまで併記される形になります。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            This feature does not switch all the song titles to English, but will be shown together.
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="d-flex bg-gray-800 p-2">
+                                            <div class="me-2">
+                                                <span class="lang-jpn">例:</span>
+                                                <span class="lang-eng d-none">ex:</span>
+                                            </div>
+                                            <div class="m-0">
+                                                <div class="d-flex">
+                                                    <div class="vstack my-1 me-1">
+                                                        <div class="badge border bg-anime m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                        <div class="badge border inferno m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                    </div>
+                                                    <div class="w-100">回レ！雪月花</div>
+                                                </div>
+                                                <div class="d-flex alt-title">
+                                                    <div class="vstack my-1 me-1">
+                                                        <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                        <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                    </div>
+                                                    <div class="text-gray-500 small w-100">Maware! Setsugetsuka</div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            表示オプションの <span class="border px-1">曲名の英訳を表示する</span> をオンにすると表示されます。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            You can enable it by check <span class="border px-1">Show English song title</span> in the Display Options.
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="mt-2 p-2">
@@ -95,10 +195,6 @@
                                             <span class="badge border hard">HARD 10+</span>
                                             <span class="badge border expert">EXPERT 13+</span>
                                             <span class="badge border inferno">INFERNO 14</span>
-                                        </div>
-                                        <div>
-                                            <span class="lang-jpn">更新: INFERNOにも対応しました。</span>
-                                            <span class="lang-eng d-none">UPDATE: INFERNO is also supported.</span>
                                         </div>
                                     </div>
                                 </div>
