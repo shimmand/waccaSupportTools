@@ -273,6 +273,8 @@ function analyze(){
                 tableRow.classList.add('border-3', 'border-top-0', 'border-end-0', 'border-start-0');
 
                 const genreColClass = document.querySelector('#column-genre-toggle').checked ? 'genre-column' : 'genre-column d-none';
+                const altTitleClass = document.querySelector('#alt-title-toggle').checked ? 'd-flex alt-title' : 'd-flex alt-title d-none';
+
                 const code = `
                     <${headerElm}>${index + 1}</td>
                     <td class="${genreColClass}"><div class="badge border ${getGenreClass(getGenre(chart[0]))} text-shadow-black w-100"><span>${getGenreElement(getGenre(chart[0]))}</span></div></td>
@@ -283,6 +285,13 @@ function analyze(){
                                 <div class="badge border ${chart[1]} m-0 p-0 w-hrem h-hrem"><span></span></div>
                             </div>
                             <div class="w-100">${chart[0]}</div>
+                        </div>
+                        <div class="${altTitleClass}">
+                            <div class="vstack my-1 me-1">
+                                <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                            </div>
+                            <div class="text-gray-500 small w-100">${getEnglishTitle(chart[0])}</div>
                         </div>
                     </td>
                     <td><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>
@@ -452,7 +461,6 @@ function analyze(){
 
         const helpBtn = document.querySelector('#btn-does-not-work-modal');
         helpBtn.classList.add('d-none');
-
     }
 }
 
@@ -593,6 +601,22 @@ function toggleColumnFixed(checked) {
             data.classList.remove('sticky-disabled');
         } else {
             data.classList.add('sticky-disabled');
+        }
+    });
+}
+
+// Toggle display state of any elements.
+function toggleDisplayState(className, checked) {
+    const checkboxes = document.querySelectorAll(`#${className}-toggle`);
+    checkboxes.forEach(input => input.checked = checked);
+    localStorage.setItem(`rating-analyzer-${className}`, checked);
+
+    const targets = document.querySelectorAll(`.${className}`);
+    targets.forEach(data => {
+        if (checked) {
+            data.classList.remove('d-none');
+        } else {
+            data.classList.add('d-none');
         }
     });
 }
@@ -862,6 +886,23 @@ function getGenre(songTitle) {
 
         if (song[indexes['title']] == songTitle) {
             return song[indexes['genre']];
+        }
+    }
+}
+
+// Get the song title in English from the original song title.
+function getEnglishTitle(songTitle) {
+    const songs = getChartTable();
+    const indexes = {
+        'title' : songs[0].indexOf('@song-title'),
+        'title-eng' : songs[0].indexOf('@song-title-eng')
+    };
+    
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
+
+        if (song[indexes['title']] == songTitle) {
+            return song[indexes['title-eng']];
         }
     }
 }
@@ -1140,11 +1181,25 @@ function showLocalStorageContent() {
         const row = document.createElement('tr');
         const key = storage.key(index);
         const value = storage.getItem(key).replaceAll(/\n/gm, '<br>');
-        row.innerHTML = `
-            <td>${index}</td>
-            <td>${key}</td>
-            <td>${value}</td>`
-        .replaceAll(/(^ {12}|^\n)/gm, '');
+
+        if (key !== 'rating-analyzer-prev') {
+            row.innerHTML = `
+                <td>${index}</td>
+                <td>${key}</td>
+                <td>${value}</td>`
+            .replaceAll(/(^ {12}|^\n)/gm, '');
+        } else {
+            row.innerHTML = `
+                <td>${index}</td>
+                <td>${key}</td>
+                <td>
+                    <div class="table-responsive border m-1 p-1" style="max-height: 50vh;">
+                        ${value}
+                    </div>
+                </td>`
+            .replaceAll(/(^ {12}|^\n)/gm, '');
+        }
+        
         output.appendChild(row);
     }
 }
@@ -1203,6 +1258,23 @@ function loadUserPreference() {
             case 'false':
                 genreCheckboxes.forEach(input => input.checked = false);
                 toggleColumnVisibility('genre', false);
+                break;
+        
+            default:
+                break;
+        }
+
+        // Restore the display state of English song titles.
+        const altTitleCheckboxes = document.querySelectorAll('#alt-title-toggle');
+        switch (localStorage.getItem('rating-analyzer-alt-title')) {
+            case 'true':
+                altTitleCheckboxes.forEach(input => input.checked = true);
+                toggleDisplayState('alt-title', true);
+                break;
+
+            case 'false':
+                altTitleCheckboxes.forEach(input => input.checked = false);
+                toggleDisplayState('alt-title', false);
                 break;
         
             default:

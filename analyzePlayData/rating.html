@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-02-27-v2" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-02-28" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-02-27-v2"></script>
-        <script defer src="rating-script.js?date=2022-02-27-v2"></script>
+        <script defer src="rating-dataset.js?date=2022-02-28"></script>
+        <script defer src="rating-script.js?date=2022-02-28"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div id="container-loading" class="container p-0">
@@ -38,6 +38,41 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-white">
+                            <div class="mt-2 p-2">
+                                <div class="d-flex h6 px-1 pb-1 border-bottom">
+                                    <div class="badge bg-white align-bottom text-black me-2">2022-02-28</div>
+                                    <span class="lang-jpn">
+                                        v1.5.8 - 曲名の英訳表示に対応
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        v1.5.8 - English song title is here
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        曲名の英訳を表示できるようになりました。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        You can now show English translations for song titles.
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        この機能では、全ての曲名が英語に切り替わるのではなく、あくまで併記される形になります。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        This feature does not switch all the song titles to English, but will be shown together.
+                                    </span>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <span class="lang-jpn">
+                                        表示オプションの <span class="border px-1">曲名の英訳を表示する</span> をオンにすると表示されます。
+                                    </span>
+                                    <span class="lang-eng d-none">
+                                        You can enable it by check <span class="border px-1">Show English song title</span> in the Display Options.
+                                    </span>
+                                </div>
+                            </div>
                             <div class="mt-2 p-2">
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-27</div>
@@ -269,7 +304,7 @@
                     </div>
                     <div class="d-flex border border-white ms-2">
                         <div class="badge bg-white text-dark">VERSION</div>
-                        <div class="badge text-white">1.5.7</div>
+                        <div class="badge text-white">1.5.8</div>
                     </div>
                 </div>
                 <!-- version area ends -->
@@ -813,6 +848,13 @@
                                     <span class="lang-eng d-none">Fix "Song Title" column left</span>
                                 </label>
                             </span>
+                            <span class="badge border">
+                                <input class="form-check-input m-0" type="checkbox" value="" id="alt-title-toggle" onchange="toggleDisplayState('alt-title', this.checked)">
+                                <label class="form-check-label" for="alt-title-toggle">
+                                    <span class="lang-jpn">曲名の英訳を表示する</span>
+                                    <span class="lang-eng d-none">Show English song title</span>
+                                </label>
+                            </span>
                         </div>
                         <div class="border my-3 mx-2 p-2">
                             <div class="table-responsive" style="max-height: 85vh;">
@@ -1094,6 +1136,13 @@
                                     <span class="lang-eng d-none">Fix "Song Title" column left</span>
                                 </label>
                             </span>
+                            <span class="badge border">
+                                <input class="form-check-input m-0" type="checkbox" value="" id="alt-title-toggle" onchange="toggleDisplayState('alt-title', this.checked)">
+                                <label class="form-check-label" for="alt-title-toggle">
+                                    <span class="lang-jpn">曲名の英訳を表示する</span>
+                                    <span class="lang-eng d-none">Show English song title</span>
+                                </label>
+                            </span>
                         </div>
                         <div class="border my-3 mx-2 p-2">
                             <div class="table-responsive" style="max-height: 85vh;">
@@ -1292,13 +1341,13 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">1. このページをブックマークする</span>
-                                        <span class="lang-eng d-none">1. Bookmark this page.</span>
-                                        <div class="text-magenta">
-                                            <span class="bg-magenta text-white px-1">
-                                                <span class="lang-jpn">ブックマークの名前の変更は任意です｡</span>
-                                                <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
-                                            </span>
+                                        <div>
+                                            <span class="lang-jpn">1. このページをブックマークします。</span>
+                                            <span class="lang-eng d-none">1. Bookmark this page.</span>
+                                        </div>
+                                        <div>
+                                            <span class="lang-jpn">*ブックマークの名前の変更は任意です。</span>
+                                            <span class="lang-eng d-none">*Renaming your bookmarks is optional.</span>
                                         </div>
                                         <div class="accordion border border-magenta m-2" id="accordion-android-user">
                                             <div class="accordion-item border-0">
@@ -1332,7 +1381,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">2. ブックマークレットをコピーする</span>
+                                        <span class="lang-jpn">2. ブックマークレットをコピーします。</span>
                                         <span class="lang-eng d-none">2. Copy the bookmarklet.</span>
                                         <div class="input-group m-2">
                                             <input type="text" class="form-control bg-dark text-white rounded-0" id="copyTarget" placeholder="code" aria-label="code" aria-describedby="button-addon" value="javascript:(function(){let%20path='https://shimmand.github.io/waccaSupportTools/analyzePlayData/main.js';import(path).then((obj)=>obj.main())})();" readonly="">
@@ -1371,7 +1420,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">3. ステップ1で作成したブックマークのアドレスを、ステップ2でコピーした文字列に書き換えて保存する</span>
+                                        <span class="lang-jpn">3. ステップ1で作成したブックマークのアドレスを、ステップ2でコピーした文字列に書き換えて保存します。</span>
                                         <span class="lang-eng d-none">3. Rewrite the address of the bookmark created in step 1 to the string copied in step 2 and save it.</span>
                                     </div>
                                 </div>
@@ -1387,7 +1436,7 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">1. WACCAのマイページへログインする</span>
+                                        <span class="lang-jpn">1. WACCAのマイページへログインします。</span>
                                         <span class="lang-eng d-none">1. Login to WACCA My Page.</span>
                                         <div class="m-2">
                                             <button type="button" class="btn btn-white rounded-0 m-1"  id="help" onclick="openMyPage(); return false;">
@@ -1402,25 +1451,25 @@
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">
-                                            2. <span class="badge border border-white text-white align-bottom">プレイデータ</span> を押す
-                                        </span>
-                                        <span class="lang-eng d-none">
-                                            2. Press <span class="badge border border-white text-white align-bottom">プレイデータ (Play Data)</span>
-                                        </span>
-                                        <div class="text-magenta">
+                                        <div>
+                                            <span class="lang-jpn">
+                                                2. <span class="badge border border-white text-white align-bottom">プレイデータ</span> を押します。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                2. Press <span class="badge border border-white text-white align-bottom">プレイデータ (Play Data)</span> .
+                                            </span>
+                                        </div>
+                                        <div>
                                             <span class="lang-jpn"></span>
                                             <span class="lang-eng d-none">
-                                                <span class="bg-magenta text-white px-1">
-                                                    *Of the six buttons at the top, press the top left button.
-                                                </span>
+                                                *Of the six buttons at the top, press the top left button.
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
-                                        <span class="lang-jpn">3. ブックマークレットを実行する</span>
+                                        <span class="lang-jpn">3. ブックマークレットを実行します。</span>
                                         <span class="lang-eng d-none">3. Run the bookmarklet.</span>
                                         <div class="accordion border border-white m-2" id="accordion-how-to-run">
                                             <div class="accordion-item border-0">
@@ -1475,30 +1524,38 @@
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            4. ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-white text-white align-bottom">プログラムを開く</span> を押す
+                                            4. ブックマークレットの処理が完了した旨がページ上に表示されたら、 <span class="badge border border-white text-white align-bottom">プログラムを開く</span> を押します。
                                         </span>
                                         <span class="lang-eng d-none">
                                             4. When you see the message on the page that the bookmarklet has been processed, press <span class="badge border border-white text-white align-bottom">Open the Web Program</span>.
                                         </span>
                                     </div>
-                                </div>
-                                <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            5. <span class="badge border border-white text-white align-bottom">データを読込</span> を押す
+                                            すると、いま見ているこのページに戻ってきます。
                                         </span>
                                         <span class="lang-eng d-none">
-                                            5. Press <span class="badge border border-white text-white align-bottom">Load Your Data</span>.
+                                            Then, you will come back to this page that you are looking at now.
                                         </span>
                                     </div>
                                 </div>
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            6. <span class="badge border border-white text-white align-bottom">分析を実行</span> を押す
+                                            5. <span class="badge border border-white text-white align-bottom">データを読込 (STEP 1)</span> を押します。
                                         </span>
                                         <span class="lang-eng d-none">
-                                            6. Press <span class="badge border border-white text-white align-bottom">Start Analysis</span>.
+                                            5. Press <span class="badge border border-white text-white align-bottom">Load Your Data (STEP 1)</span>.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="m-2 px-1">
+                                        <span class="lang-jpn">
+                                            6. <span class="badge border border-white text-white align-bottom">分析を実行 (STEP 2)</span> を押します。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            6. Press <span class="badge border border-white text-white align-bottom">Start Analysis (STEP 2)</span>.
                                         </span>
                                     </div>
                                 </div>
