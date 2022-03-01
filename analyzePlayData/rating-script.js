@@ -299,13 +299,13 @@ function analyze(){
                     <td>
                         <div class="d-flex justify-content-between">
                             <div>${chart[4]}</div>
-                            <div class="text-gray-500">&times;</div>
+                            <div class="ms-1 text-gray-500">&times;</div>
                         </div>
                     </td>
                     <td>
                         <div class="d-flex justify-content-between">
                             <div>${chart[5].toFixed(2)}</div>
-                            <div class="text-gray-500">=</div>
+                            <div class="ms-1 text-gray-500">=</div>
                         </div>
                     </td>
                     <${rateDataElm}>${chart[6]}</td>
