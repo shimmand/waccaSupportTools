@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-02-28-v3" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-03-02" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-02-28-v3"></script>
-        <script defer src="rating-script.js?date=2022-02-28-v3"></script>
+        <script defer src="rating-dataset.js?date=2022-03-02"></script>
+        <script defer src="rating-script.js?date=2022-03-02"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div id="container-loading" class="container p-0">
@@ -42,7 +42,7 @@
                                 <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
                                     <div class="vstack">
                                         <div class="badge bg-white align-bottom text-black me-2">
-                                            <span class="lang-jpn">修正</span>
+                                            <span class="lang-jpn">改善</span>
                                             <span class="lang-eng d-none">IMPROVE</span>
                                         </div>
                                         <div class="badge border border-white align-bottom text-white me-2">2022-02-28</div>
@@ -124,7 +124,7 @@
                                 <div class="mx-2 my-0">
                                     <div class="mt-2">
                                         <span class="lang-jpn">
-                                            曲名の英訳を表示できる機能を追加しました。
+                                            曲名の英語表記を表示できる機能を追加しました。
                                         </span>
                                         <span class="lang-eng d-none">
                                             Added the feature to display English translations of song titles.
@@ -160,12 +160,11 @@
                                                     <div class="text-gray-500 small w-100">Maware! Setsugetsuka</div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                     <div class="mt-2">
                                         <span class="lang-jpn">
-                                            表示オプションの <span class="border px-1">曲名の英訳を表示する</span> をオンにすると表示されます。
+                                            表示オプションの <span class="border px-1">英語の曲名も表示する</span> をオンにすると表示されます。
                                         </span>
                                         <span class="lang-eng d-none">
                                             You can enable it by check <span class="border px-1">Show English song title</span> in the Display Options.
@@ -242,10 +241,10 @@
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-20</div>
                                     <span class="lang-jpn">
-                                        v1.5.6 - ジャンルの表示に対応
+                                        ジャンルの表示に対応
                                     </span>
                                     <span class="lang-eng d-none">
-                                        v1.5.6 - Song genres are now displayed
+                                        Song genres are now displayed
                                     </span>
                                 </div>
                                 <div class="mx-2 my-0">
@@ -269,10 +268,10 @@
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-13</div>
                                     <span class="lang-jpn">
-                                        v1.5.5 - 譜面定数表を一新
+                                        譜面定数表を一新
                                     </span>
                                     <span class="lang-eng d-none">
-                                        v1.5.5 - Chart constant table is renewed
+                                        Chart constant table is renewed
                                     </span>
                                 </div>
                                 <div class="mx-2 my-0">
@@ -325,10 +324,10 @@
                                 <div class="d-flex h6 px-1 pb-1 border-bottom">
                                     <div class="badge bg-white align-bottom text-black me-2">2022-02-03</div>
                                     <span class="lang-jpn">
-                                        v1.5.4 - データ管理機能を追加（と一部デザイン変更）
+                                        データ管理機能を追加（と一部デザイン変更）
                                     </span>
                                     <span class="lang-eng d-none">
-                                        v1.5.4 - Added data control feature (+ some design changes)
+                                        Added data control feature (+ some design changes)
                                     </span>
                                 </div>
                                 <div class="mx-2 my-0">
@@ -397,10 +396,6 @@
                     <div class="d-flex border border-white">
                         <div class="badge bg-white text-dark">DATASET</div>
                         <div class="badge text-white">2022-02-27</div>
-                    </div>
-                    <div class="d-flex border border-white ms-2">
-                        <div class="badge bg-white text-dark">VERSION</div>
-                        <div class="badge text-white">1.5.8</div>
                     </div>
                 </div>
                 <!-- version area ends -->
@@ -698,8 +693,8 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="d-flex bg-gray-900 text-center mx-2">
-                            <div class="vstack text-magenta">
+                        <div class="d-flex flex-wrap justify-content-around text-center mx-2">
+                            <div class="flex-fill bg-gray-900 text-magenta ms-0">
                                 <div class="small">
                                     <span class="lang-jpn">旧曲枠</span>
                                     <span class="lang-eng d-none">Older</span>
@@ -707,8 +702,7 @@
                                 <div id="summary-subtotal-older">0.000</div>
                                 <div id="summary-subtotal-older-ratio" class="small">0.0%</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-cyan">
+                            <div class="flex-fill bg-gray-900 text-cyan ms-1">
                                 <div class="small">
                                     <span class="lang-jpn">新曲枠</span>
                                     <span class="lang-eng d-none">Newer</span>
@@ -716,8 +710,7 @@
                                 <div id="summary-subtotal-newer">0.000</div>
                                 <div id="summary-subtotal-newer-ratio" class="small">0.0%</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-white">
+                            <div class="flex-fill bg-gray-900 text-white ms-1">
                                 <div class="small">
                                     <span class="lang-jpn">合計</span>
                                     <span class="lang-eng d-none">Total</span>
@@ -788,7 +781,7 @@
                                     新曲枠では、譜面別レーティングの上位15譜面がレーティングの対象となります。
                                 </span>
                                 <span class="lang-eng d-none">
-                                    At this "Newer Charts" entries, the top 15 charts in the ratings by score are counted for the your rating.
+                                    At this "Newer Charts" entries, the top 15 Rating-by-Chart are counted for the your rating.
                                 </span>
                             </div>
                         </div>
@@ -801,11 +794,11 @@
                         <div class="mx-2 p-2">
                             <div class="small text-white">
                                 <span class="lang-jpn">
-                                    レーティング対象とレーティング候補の内訳です。
+                                    新曲枠におけるレーティング対象とレーティング候補の内訳です。
                                     レーティングが高くなるほど、上位のスコア帯の占める割合が高くなります。
                                 </span>
                                 <span class="lang-eng d-none">
-                                    The following is a summary of the rating targets and rating candidates.
+                                    This is a summary of Rating-Targets and Rating-Candidates in "Newer Charts".
                                     The higher your rating, the higher the ratio of the higher score range.
                                 </span>
                             </div>
@@ -818,33 +811,28 @@
                             <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="d-flex bg-gray-900 text-center mx-2">
-                            <div class="vstack text-lt-950">
+                        <div class="d-flex flex-wrap justify-content-around text-center mx-2">
+                            <div class="flex-fill bg-gray-900 text-lt-950 ms-0">
                                 <div class="small">&lt;950k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-950">
+                            <div class="flex-fill bg-gray-900 text-is-950 ms-1">
                                 <div class="small">950k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-960">
+                            <div class="flex-fill bg-gray-900 text-is-960 ms-1">
                                 <div class="small">960k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-970">
+                            <div class="flex-fill bg-gray-900 text-is-970 ms-1">
                                 <div class="small">970k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-980">
+                            <div class="flex-fill bg-gray-900 text-is-980 ms-1">
                                 <div class="small">980k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-ge-990">
+                            <div class="flex-fill bg-gray-900 text-ge-990 ms-1">
                                 <div class="small">&ge;990k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
@@ -859,10 +847,13 @@
                             <div class="d-flex align-items-center">
                                 <div class="small text-white me-1 py-1">
                                     <span class="lang-jpn">
-                                        複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                        新曲枠に分類される譜面の一覧です。
+                                        譜面別レーティングの高い順に並び替えて譜面を表示しています。
                                     </span>
                                     <span class="lang-eng d-none">
-                                        If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                                        This is a list of charts included in the "Newer Charts".
+                                        The charts are sorted in order of the highest Rating-by-Chart.
+                                    </span>
                                 </div>
                                 <div class="ms-auto">
                                     <button type="button" class="btn btn-white border-5 border-0 border-start border-cyan text-nowrap" data-bs-toggle="modal" data-bs-target="#help-chart-list-modal">
@@ -947,7 +938,7 @@
                             <span class="badge border">
                                 <input class="form-check-input m-0" type="checkbox" value="" id="alt-title-toggle" onchange="toggleDisplayState('alt-title', this.checked)">
                                 <label class="form-check-label" for="alt-title-toggle">
-                                    <span class="lang-jpn">曲名の英訳を表示する</span>
+                                    <span class="lang-jpn">英語の曲名も表示する</span>
                                     <span class="lang-eng d-none">Show English song title</span>
                                 </label>
                             </span>
@@ -962,12 +953,12 @@
                                             <th class="sticky-column small" scope="col" colspan="1"></th>
                                             <th class="small" scope="col" colspan="2"></th>
                                             <th class="small" scope="col" colspan="4">
-                                                <span class="lang-jpn">譜面別Rate</span>
-                                                <span class="lang-eng d-none">Single Rate</span>
+                                                <span class="lang-jpn">譜面別レーティング</span>
+                                                <span class="lang-eng d-none">Rating by Chart</span>
                                             </th>
                                             <th class="small" scope="col" colspan="5">
                                                 <span class="lang-jpn">スコア別上昇量</span>
-                                                <span class="lang-eng d-none">Rate Increase by Score</span>
+                                                <span class="lang-eng d-none">Rating Increase by Score</span>
                                             </th>
                                         </tr>
                                         <tr class="sticky-row">
@@ -990,7 +981,7 @@
                                             </th>
                                             <th scope="col">
                                                 <span class="lang-jpn">定数</span>
-                                                <span class="lang-eng d-none">Const</span>
+                                                <span class="lang-eng d-none">Constant</span>
                                             </th>
                                             <th scope="col">
                                                 <span class="lang-jpn">倍数</span>
@@ -1076,7 +1067,7 @@
                                     新曲枠では、譜面別レーティングの上位35譜面がレーティングの対象となります。
                                 </span>
                                 <span class="lang-eng d-none">
-                                    At this "Older Charts" entries, the top 35 charts in the ratings by score are counted for the your rating.
+                                    At this "Older Charts" entries, the top 35 Rating-by-Chart are counted for the your rating.
                                 </span>
                             </div>
                         </div>
@@ -1089,11 +1080,11 @@
                         <div class="mx-2 p-2">
                             <div class="small text-white m-0 py-1">
                                 <span class="lang-jpn">
-                                    レーティング対象とレーティング候補の内訳です。
+                                    旧曲枠におけるレーティング対象とレーティング候補の内訳です。
                                     レーティングが高くなるほど、上位のスコア帯の占める割合が高くなります。
                                 </span>
                                 <span class="lang-eng d-none">
-                                    The following is a summary of the rating targets and rating candidates.
+                                    This is a summary of Rating-Targets and Rating-Candidates in "Older Charts".
                                     The higher your rating, the higher the ratio of the higher score range.
                                 </span>
                             </div>
@@ -1106,33 +1097,28 @@
                             <div class="progress-bar graph-bar-stats bg-is-980" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             <div class="progress-bar graph-bar-stats bg-ge-990" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="d-flex bg-gray-900 text-center mx-2">
-                            <div class="vstack text-lt-950">
+                        <div class="d-flex flex-wrap justify-content-around text-center mx-2">
+                            <div class="flex-fill bg-gray-900 text-lt-950 ms-0">
                                 <div class="small">&lt;950k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-950">
+                            <div class="flex-fill bg-gray-900 text-is-950 ms-1">
                                 <div class="small">950k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-960">
+                            <div class="flex-fill bg-gray-900 text-is-960 ms-1">
                                 <div class="small">960k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-970">
+                            <div class="flex-fill bg-gray-900 text-is-970 ms-1">
                                 <div class="small">970k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-is-980">
+                            <div class="flex-fill bg-gray-900 text-is-980 ms-1">
                                 <div class="small">980k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
-                            <div class="vr text-white"></div>
-                            <div class="vstack text-ge-990">
+                            <div class="flex-fill bg-gray-900 text-ge-990 ms-1">
                                 <div class="small">&ge;990k</div>
                                 <div class="graph-ratio-stats">0</div>
                             </div>
@@ -1147,10 +1133,13 @@
                             <div class="d-flex align-items-center">
                                 <div class="small text-white me-1 py-1">
                                     <span class="lang-jpn">
-                                        複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合は、プレイする譜面に表示されている「スコア別上昇量」の <div class="badge bg-white align-bottom text-black">値</div> をクリックしてください。
+                                        旧曲枠に分類される譜面の一覧です。
+                                        譜面別レーティングの高い順に並び替えて譜面を表示しています。
                                     </span>
                                     <span class="lang-eng d-none">
-                                        If you want to increase your rating by increasing your score on more than one chart, click on the "Increase by Score" <div class="badge bg-white align-bottom text-black">value</div> shown on the chart you want to play.
+                                        This is a list of charts included in the "Older Charts".
+                                        The charts are sorted in order of the highest Rating-by-Chart.
+                                    </span>
                                 </div>
                                 <div class="ms-auto">
                                     <button type="button" class="btn btn-white border-5 border-0 border-start border-cyan text-nowrap" data-bs-toggle="modal" data-bs-target="#help-chart-list-modal">
@@ -1235,7 +1224,7 @@
                             <span class="badge border">
                                 <input class="form-check-input m-0" type="checkbox" value="" id="alt-title-toggle" onchange="toggleDisplayState('alt-title', this.checked)">
                                 <label class="form-check-label" for="alt-title-toggle">
-                                    <span class="lang-jpn">曲名の英訳を表示する</span>
+                                    <span class="lang-jpn">英語の曲名も表示する</span>
                                     <span class="lang-eng d-none">Show English song title</span>
                                 </label>
                             </span>
@@ -1250,12 +1239,12 @@
                                             <th class="sticky-column small" scope="col" colspan="1"></th>
                                             <th class="small" scope="col" colspan="2"></th>
                                             <th class="small" scope="col" colspan="4">
-                                                <span class="lang-jpn">譜面別Rate</span>
-                                                <span class="lang-eng d-none">Single Rate</span>
+                                                <span class="lang-jpn">譜面別レーティング</span>
+                                                <span class="lang-eng d-none">Rating by Chart</span>
                                             </th>
                                             <th class="small" scope="col" colspan="5">
-                                                <span class="lang-jpn">スコア別上昇量</span>
-                                                <span class="lang-eng d-none">Rate Increase by Score</span>
+                                                <span class="lang-jpn">目標スコア別上昇量</span>
+                                                <span class="lang-eng d-none">Rating Increase by Score</span>
                                             </th>
                                         </tr>
                                         <tr class="sticky-row">
@@ -1278,7 +1267,7 @@
                                             </th>
                                             <th scope="col">
                                                 <span class="lang-jpn">定数</span>
-                                                <span class="lang-eng d-none">Const</span>
+                                                <span class="lang-eng d-none">Constant</span>
                                             </th>
                                             <th scope="col">
                                                 <span class="lang-jpn">倍数</span>
@@ -2246,133 +2235,247 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-2">
-                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
-                                        <span class="lang-jpn">種類フィルター</span>
-                                        <span class="lang-eng d-none">Type Filter</span>
-                                    </div>
-                                    <div class="mt-2 px-3">
-                                        <span class="lang-jpn">ラベルの色と、譜面一覧における行の色は対応しています。</span>
-                                        <span class="lang-eng d-none">The color of the label matches the color of the row in the chart list.</span>
-                                    </div>
-                                </div>
-                                <div class="mt-2 px-2">
-                                    <table class="table table-dark table-sm">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="badge border filter-targets text-shadow-black">
-                                                        <span class="lang-jpn">レーティング対象</span>
-                                                        <span class="lang-eng d-none">Rating Targets</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">現在のレーティングに使用されている譜面です。これらは、スコアを上昇させてもレーティングが上昇しません。</span>
-                                                        <span class="lang-eng d-none">The chart that used for the current rating. These will not increase your rating even if the score is increased.</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="badge border filter-candidates text-shadow-black">
-                                                        <span class="lang-jpn">レーティング候補</span>
-                                                        <span class="lang-eng d-none">Rating Candidates</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">スコアを上昇させることでレーティングが上昇する譜面です。</span>
-                                                        <span class="lang-eng d-none">The chart that increases your rating by increasing your score.</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="badge border filter-others text-shadow-black">
-                                                        <span class="lang-jpn">その他</span>
-                                                        <span class="lang-eng d-none">Others</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">スコアを上昇させてもレーティングが上昇しない譜面です。</span>
-                                                        <span class="lang-eng d-none">The chart that your rating does not increase even if the score is increased.</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
-                                        <span class="lang-jpn">難易度フィルター</span>
-                                        <span class="lang-eng d-none">Difficulty Filter</span>
-                                    </div>
-                                </div>
-                                <div class="mt-2 px-2">
-                                    <table class="table table-dark table-sm">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="badge border normal">NORMAL</div>
-                                                    <div class="badge border hard">HARD</div>
-                                                    <div class="badge border expert">EXPERT</div>
-                                                    <div class="badge border inferno">INFERNO</div>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">表示の通りです。</span>
-                                                        <span class="lang-eng d-none">As shown.</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
+                                <div class="mt-2 p-2">
+                                    <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
                                         <span class="lang-jpn">表示オプション</span>
                                         <span class="lang-eng d-none">Display Options</span>
                                     </div>
+                                    <div class="mx-2 my-0">
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">ジャンルを表示する</span>
+                                                <span class="lang-eng d-none">Show "Genre" column</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">オンにすると、「ジャンル」列を表示します。</span>
+                                            <span class="lang-eng d-none">When checked, the "Genre" column will be displayed.</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">曲名を左に固定する</span>
+                                                <span class="lang-eng d-none">Fix "Song Title" column left</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">
+                                                オンにすると、譜面一覧を横にスクロールする際に「曲名」列が左側に固定表示されます。
+                                                このオプションは、スマートフォンのような画面の小さな端末でのみ機能します。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                When checked, the "Song Title" column will be fixed to the left of the list when you scroll the Chart List horizontally.
+                                                This option only works on devices with small screens, such as smartphones.
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">英語の曲名も表示する</span>
+                                                <span class="lang-eng d-none">Show English song title</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">オンにすると、曲名の下に英語表記の曲名が表示されます。</span>
+                                            <span class="lang-eng d-none">When checked, the English song title will be displayed below the original song title.</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="d-flex bg-gray-800 p-2">
+                                                <div class="me-2">
+                                                    <span class="lang-jpn">例:</span>
+                                                    <span class="lang-eng d-none">ex:</span>
+                                                </div>
+                                                <div class="m-0">
+                                                    <div class="d-flex">
+                                                        <div class="vstack my-1 me-1">
+                                                            <div class="badge border bg-anime m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                            <div class="badge border inferno m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                        </div>
+                                                        <div class="w-100">回レ！雪月花</div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div class="vstack my-1 me-1">
+                                                            <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                            <div class="m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                        </div>
+                                                        <div class="text-gray-500 small w-100">Maware! Setsugetsuka</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mt-2 px-2">
-                                    <table class="table table-dark table-sm">
-                                        <tbody>
-                                            <tr>
-                                                <td class="w-25">
-                                                    <div class="badge border">
-                                                        <span class="lang-jpn">ジャンルを表示する</span>
-                                                        <span class="lang-eng d-none">Show "Genre" column</span>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">オンにすると、「ジャンル」列を表示します。</span>
-                                                        <span class="lang-eng d-none">When checked, the "Genre" column will be displayed.</span>
+                                <div class="mt-2 p-2">
+                                    <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                        <span class="lang-jpn">譜面の種類</span>
+                                        <span class="lang-eng d-none">Chart Type</span>
+                                    </div>
+                                    <div class="mx-2 my-0">
+                                        <div class="mt-2">
+                                            <div class="badge border filter-targets text-shadow-black">
+                                                <span class="lang-jpn">レーティング対象</span>
+                                                <span class="lang-eng d-none">Rating Targets</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">現在のレーティングに使用されている譜面です。これらは、スコアを上昇させてもレーティングが上昇しません。</span>
+                                            <span class="lang-eng d-none">The chart that used for the current rating. These will not increase your rating even if the score is increased.</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border filter-candidates text-shadow-black">
+                                                <span class="lang-jpn">レーティング候補</span>
+                                                <span class="lang-eng d-none">Rating Candidates</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">スコアを上昇させることでレーティングが上昇する譜面です。レーティング対象を上書きします。</span>
+                                            <span class="lang-eng d-none">The chart that increases your rating by increasing your score. This overrides "Rating Targets".</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border filter-others text-shadow-black">
+                                                <span class="lang-jpn">その他</span>
+                                                <span class="lang-eng d-none">Others</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">スコアを上昇させてもレーティングが上昇しない譜面です。</span>
+                                            <span class="lang-eng d-none">The chart that your rating does not increase even if the score is increased.</span>
+                                        </div>
+                                        <div class="mt-2 border p-2">
+                                            <div class="mt-0">
+                                                <div class="badge border bg-gray-600 text-shadow-black">
+                                                    <span class="lang-jpn">脱落</span>
+                                                    <span class="lang-eng d-none">Dethrones</span>
+                                                </div>
+                                            </div>
+                                            <div class="mt-2">
+                                                <span class="lang-jpn">注意: 複数選択モードが有効の間に限り表示されます。</span>
+                                                <span class="lang-eng d-none">Note: Displayed only while "Multi Select Mode" is on.</span>
+                                            </div>
+                                            <div class="mt-2">
+                                                <span class="lang-jpn">複数選択モードにて選択された譜面により、レーティング対象の上位から追い出されてしまう譜面です。</span>
+                                                <span class="lang-eng d-none">The chart that will be kicked out from the top of the list due to some chart with a higher rating selected in "Multi Select Mode".</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 p-2">
+                                    <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                        <span class="lang-jpn">インジケーター</span>
+                                        <span class="lang-eng d-none">Indicator</span>
+                                    </div>
+                                    <div class="mx-2 my-0">
+                                        <div class="mt-2">
+                                            <div class="badge border bg-anime m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-vocaloid m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-touhou m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-musical m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-variety m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-original m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border bg-tanoc m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">上に表示されているこのインジケーターは、曲のジャンルを示します。</span>
+                                            <span class="lang-eng d-none">This indicator shown at the top, indicates the genre of the song.</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border normal m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border hard m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border expert m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                            <div class="badge border inferno m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">下に表示されているこのインジケーターは、譜面の難易度を示します。</span>
+                                            <span class="lang-eng d-none">This indicator shown at the bottom, indicates the difficulty of the chart.</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="d-flex bg-gray-800 p-2">
+                                                <div class="me-2">
+                                                    <span class="lang-jpn">例:</span>
+                                                    <span class="lang-eng d-none">ex:</span>
+                                                </div>
+                                                <div class="m-0">
+                                                    <div class="d-flex">
+                                                        <div class="vstack my-1 me-1">
+                                                            <div class="badge border bg-anime m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                            <div class="badge border inferno m-0 p-0 w-hrem h-hrem"><span></span></div>
+                                                        </div>
+                                                        <div class="w-100">回レ！雪月花</div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="badge border">
-                                                        <span class="lang-jpn">曲名を左に固定する</span>
-                                                        <span class="lang-eng d-none">Fix "Song Title" column left</span>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <span class="lang-jpn">オンにすると、譜面一覧を横にスクロールする際に「曲名」列が左側に固定表示されます。</span>
-                                                        <span class="lang-eng d-none">When checked, the "Song Title" column will be fixed to the left of the list when you scroll the Chart List horizontally.</span>
+                                                    <div class="d-flex">
+                                                        <span class="lang-jpn">
+                                                            これは、 <span class="badge border bg-anime text-shadow-black">アニメ/POP</span> <span class="badge border inferno">INFERNO</span> であることを示します。
+                                                        </span>
+                                                        <span class="lang-eng d-none">
+                                                            This indicates that the chart is <span class="badge border bg-anime text-shadow-black">ANIME/POP</span> <span class="badge border inferno">INFERNO</span> .
+                                                        </span>
                                                     </div>
-                                                    <div>
-                                                        <span class="lang-jpn">このオプションは、スマートフォンのような画面の小さな端末でのみ機能します。</span>
-                                                        <span class="lang-eng d-none">This option only works on devices with small screens, such as smartphones.</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 p-2">
+                                    <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                        <span class="lang-jpn">譜面別レーティング</span>
+                                        <span class="lang-eng d-none">Rating by Chart</span>
+                                    </div>
+                                    <div class="mx-2 my-0">
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">定数</span>
+                                                <span class="lang-eng d-none">Constant</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">
+                                                譜面ごとに内部的に設定されている、詳細なレベル値です。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                This is the detailed level value that is assigned internally to each chart.
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">倍数</span>
+                                                <span class="lang-eng d-none">Modifier</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">
+                                                譜面のハイスコアに応じて定数に乗算される補正値です。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                This is the modified value that is multiplied with a constant based on the high score of each chart.
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">現在 (現在の譜面別レーティング)</span>
+                                                <span class="lang-eng d-none">Now (Current Rating-by-Chart)</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">
+                                                定数を現在の補正値で乗じた値です。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                This is the value of multiplied by the constant and the current modified value.
+                                            </span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="badge border">
+                                                <span class="lang-jpn">上限 (最大の譜面別レーティング)</span>
+                                                <span class="lang-eng d-none">Max (Max Rating-by-Chart)</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <span class="lang-jpn">
+                                                定数を補正値の上限である「4.00」で乗じた値です。既に譜面別レーティングがこの値に到達している場合は、 <span class="badge badge-max border bg-secondary">MAX</span> と表示されます。
+                                            </span>
+                                            <span class="lang-eng d-none">
+                                                This is the value of multiplying the constant by "4.00", the upper limit of the modified value. If rating-by-chart has already reached this value, <span class="badge badge-max border bg-secondary">MAX</span> will be displayed.
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mt-2">
                                     <div class="h6 border-bottom border-white m-2 px-1 pb-1 text-white">
@@ -2383,10 +2486,10 @@
                                 <div class="mt-2">
                                     <div class="m-2 px-1">
                                         <span class="lang-jpn">
-                                            複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合、実際のレーティングの上昇量は、「スコア別上昇量」を合計した値よりも少なくなります。この機能は、その上昇量を正確に計算するものです。
+                                            複数の譜面のスコアを上昇させてレーティングの上昇を目指す場合、実際のレーティングの上昇量は、「目標スコア別上昇量」を合計した値よりも少なくなります。この機能は、その上昇量を正確に計算するものです。
                                         </span>
                                         <span class="lang-eng d-none">
-                                            When you are trying to increase your rating by increasing the score of multiple charts, the actual amount of increase in your rating will be less than the sum of the "increase by score". This feature calculates the amount of that increase accurately.
+                                            When you are trying to increase your rating by increasing the score of multiple charts, the actual amount of increase in your rating will be less than the sum of the "Rating Increase by Score". This feature calculates the amount of that increase accurately.
                                         </span>
                                     </div>
                                     <div class="m-2 px-1 text-center">

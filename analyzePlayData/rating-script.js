@@ -296,8 +296,18 @@ function analyze(){
                     </td>
                     <td><div class="badge border difficulty ${chart[1]}">${chart[2]}</div></td>
                     <td>${chart[3]}</td>
-                    <td>${chart[4]}</td>
-                    <td>${chart[5].toFixed(2)}</td>
+                    <td>
+                        <div class="d-flex justify-content-between">
+                            <div>${chart[4]}</div>
+                            <div class="text-gray-500">&times;</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-between">
+                            <div>${chart[5].toFixed(2)}</div>
+                            <div class="text-gray-500">=</div>
+                        </div>
+                    </td>
                     <${rateDataElm}>${chart[6]}</td>
                     <td>${chart[7]}</td>
                     <td>${increases[0]}</td>
