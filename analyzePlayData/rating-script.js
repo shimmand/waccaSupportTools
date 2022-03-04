@@ -1106,8 +1106,8 @@ function filterDatasetTable(value) {
 // Save analysis results as CSV.
 function saveTableData() {
     const dataTableRow = document.querySelectorAll('tr[data-index]');
-    const headerTextJpn = '"種別","#","曲名","レベル","スコア","定数","倍数","現在","上限","950k","960k","970k","980k","990k"\n';
-    const headerTextEng = '"Type","#","Song","Level","Score","Const","Modifier","Now","Max","950k","960k","970k","980k","990k"\n';
+    const headerTextJpn = '"種別","#","曲名","レベル","スコア","定数","補正","現在","上限","950k","960k","970k","980k","990k"\n';
+    const headerTextEng = '"Type","#","Song Title","Level","Score","Constant","Modifier","Now","Max","950k","960k","970k","980k","990k"\n';
     let dataTableText = (document.querySelectorAll('.lang-jpn.d-none').length == 0) ? headerTextJpn : headerTextEng;
 
     dataTableRow.forEach((tr, index) => {

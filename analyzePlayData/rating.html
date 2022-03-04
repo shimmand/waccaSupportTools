@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-03-02" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-03-04" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-03-02"></script>
-        <script defer src="rating-script.js?date=2022-03-02"></script>
+        <script defer src="rating-dataset.js?date=2022-03-04"></script>
+        <script defer src="rating-script.js?date=2022-03-04"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div id="container-loading" class="container p-0">
@@ -389,6 +389,15 @@
             <!-- news modal ends -->
 
             <div id="box-title" class="bg-gray-800 p-2">
+                <div class="d-flex" onclick="window.open('https:\/\/shimmand.github.io/waccaSupportTools/index.html')">
+                    <span class="btn badge btn-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi-badge bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                        WACCA SUPPORT TOOLS
+                    </span>
+                </div>
+                <hr class="text-white my-2">
                 <div class="h3 text-heading text-white">WACCA RATING ANALYZER</div>
 
                 <!-- version area begins -->
@@ -984,7 +993,7 @@
                                                 <span class="lang-eng d-none">Constant</span>
                                             </th>
                                             <th scope="col">
-                                                <span class="lang-jpn">倍数</span>
+                                                <span class="lang-jpn">補正</span>
                                                 <span class="lang-eng d-none">Modifier</span>
                                             </th>
                                             <th scope="col">
@@ -1270,7 +1279,7 @@
                                                 <span class="lang-eng d-none">Constant</span>
                                             </th>
                                             <th scope="col">
-                                                <span class="lang-jpn">倍数</span>
+                                                <span class="lang-jpn">補正</span>
                                                 <span class="lang-eng d-none">Modifier</span>
                                             </th>
                                             <th scope="col">
@@ -2735,16 +2744,24 @@
                                         <thead>
                                             <tr>
                                                 <th colspan="2"></th>
-                                                <th colspan="3">NORMAL</th>
-                                                <th colspan="3">HARD</th>
-                                                <th colspan="3">EXPERT</th>
-                                                <th colspan="3">INFERNO</th>
+                                                <th colspan="3">
+                                                    <span class="badge border normal">NORMAL</span>
+                                                </th>
+                                                <th colspan="3">
+                                                    <span class="badge border hard">HARD</span>
+                                                </th>
+                                                <th colspan="3">
+                                                    <span class="badge border expert">EXPERT</span>
+                                                </th>
+                                                <th colspan="3">
+                                                    <span class="badge border inferno">INFERNO</span>
+                                                </th>
                                             </tr>
                                             <tr class="text-nowrap">
                                                 <th>#</th>
                                                 <th>
                                                     <span class="lang-jpn">曲名</span>
-                                                    <span class="lang-eng d-none">Song</span>
+                                                    <span class="lang-eng d-none">Song Title</span>
                                                 </th>
                                                 <th>
                                                     <span class="lang-jpn">レベル</span>
