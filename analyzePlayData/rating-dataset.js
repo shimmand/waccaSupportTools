@@ -7,7 +7,7 @@ function getLastUpdate() {
 function getChartTable() {
     return [
         ["@song-title","@song-title-eng","@genre-name","@normal-level","@normal-constant","@normal-included-newer","@hard-level","@hard-constant","@hard-included-newer","@expert-level","@expert-constant","@expert-included-newer","@inferno-level","@inferno-constant","@inferno-included-newer"],
-        ["ヒトガタ","Hito-gata","ANIME/POP","NORMAL 3",3.0,true,"HARD 9+",9.7,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
+        ["ヒトガタ","Hitogata","ANIME/POP","NORMAL 3",3.0,true,"HARD 9+",9.7,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,],
         ["メニメニマニマニ","Many Many Money Money","ANIME/POP","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 12",12.3,true,"INFERNO 0",0.0,],
         ["叩ケ 叩ケ 手ェ叩ケ","Tatake Tatake Te-tatake","ANIME/POP","NORMAL 2",2.0,true,"HARD 7",7.3,true,"EXPERT 12",12.3,true,"INFERNO 13+",13.8,true],
         ["Fly to NEW WORLD","","ANIME/POP","NORMAL 3",3.0,true,"HARD 8",8.3,true,"EXPERT 12",12.2,true,"INFERNO 0",0.0,],
