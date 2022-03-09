@@ -338,7 +338,7 @@ function getChartTable() {
         ["Blaze","","HARDCORE TANO*C","NORMAL 3",3.0,false,"HARD 8+",8.7,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
         ["GRiDGALAXY","","HARDCORE TANO*C","NORMAL 4",4.0,false,"HARD 8",8.3,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
         ["Jingle","","HARDCORE TANO*C","NORMAL 4",4.0,false,"HARD 9+",9.7,false,"EXPERT 11",11.3,false,"INFERNO 0",0.0,],
-        ["BATTLE NO.1","","HARDCORE TANO*C","NORMAL 6",6.0,false,"HARD 10",10.5,false,"EXPERT 13+",13.7,false,"INFERNO 14",14.2,false],
+        ["BATTLE NO.1","","HARDCORE TANO*C","NORMAL 6",6.0,false,"HARD 10",10.5,false,"EXPERT 13+",13.7,false,"INFERNO 14",14.1,false],
         ["LEVATEiN feat. 野宮あゆみ","LEVATEiN feat. Nomiya Ayumi","HARDCORE TANO*C","NORMAL 4",4.0,false,"HARD 9",9.1,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
         ["BIG HEAD BANGING","","HARDCORE TANO*C","NORMAL 6",6.0,false,"HARD 11",11.0,false,"EXPERT 13+",13.8,false,"INFERNO 0",0.0,],
         ["Knight Rider","","HARDCORE TANO*C","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13",13.3,false,"INFERNO 0",0.0,],
