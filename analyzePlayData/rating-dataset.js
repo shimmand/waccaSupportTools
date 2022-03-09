@@ -1,6 +1,6 @@
 // Last update
 function getLastUpdate() {
-    return '2022-03-02';
+    return '2022-03-09';
 }
 
 // Chart constants table
