@@ -213,7 +213,7 @@ function getChartTable() {
         ["THERAPY","","VARIETY","NORMAL 4",4.0,false,"HARD 9",9.1,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
         ["グルーヴ・ザ・ハート","Groove the Heart","VARIETY","NORMAL 4",4.0,false,"HARD 8",8.5,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
         ["Got more raves?","","VARIETY","NORMAL 6",6.0,false,"HARD 10+",10.9,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
-        ["Good Night, Bad Luck.","","VARIETY","NORMAL 5",5.0,"13.7","HARD 10+",10.7,"13.7","EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
+        ["Good Night, Bad Luck.","","VARIETY","NORMAL 5",5.0,false,"HARD 10+",10.7, false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
         ["Grayed Out-Antifront-","","VARIETY","NORMAL 3",3.0,false,"HARD 9",9.6,false,"EXPERT 13",13.2,false,"INFERNO 0",0.0,],
         ["インドア系ならトラックメイカー","Indoor-kei nara Trackmaker","VARIETY","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 12+",12.9,false,"INFERNO 0",0.0,],
         ["ダンシング☆サムライ","Dancing Samurai","VARIETY","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
