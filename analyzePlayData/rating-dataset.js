@@ -163,7 +163,7 @@ function getChartTable() {
         ["天狗の落とし文 feat. ytr","Tengu no Otoshi-bumi feat. ytr","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 8",8.2,false,"EXPERT 12",12.1,false,"INFERNO 0",0.0,],
         ["神寂","Shinjaku","TOUHOU ARRANGE","NORMAL 4",4.0,false,"HARD 10+",10.8,false,"EXPERT 13",13.5,false,"INFERNO 0",0.0,],
         ["悪戯センセーション","Itazura Sensation","TOUHOU ARRANGE","NORMAL 2",2.0,false,"HARD 8",8.6,false,"EXPERT 12",12.3,false,"INFERNO 0",0.0,],
-        ["ナイト・オブ・ナイツ (かめりあ’sワンス・アポン・ア・ナイトRemix)","Night/Knight of Nights/Knights (Kameria's Once-Upon-A-Night Remix)","TOUHOU ARRANGE","NORMAL 5",5.0,false,"HARD 10",10.5,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
+        ["ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)","Night/Knight of Nights/Knights (Camellia's Once-Upon-A-Night Remix)","TOUHOU ARRANGE","NORMAL 5",5.0,false,"HARD 10",10.5,false,"EXPERT 13",13.1,false,"INFERNO 0",0.0,],
         ["Mami Mami Zone","","TOUHOU ARRANGE","NORMAL 4",4.0,false,"HARD 9",9.2,false,"EXPERT 11",11.4,false,"INFERNO 0",0.0,],
         ["チルノのパーフェクトさんすう教室","Cirno no Perfect Sansuu Kyoshitsu","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 11",11.5,false,"INFERNO 0",0.0,],
         ["待チ人ハ来ズ。","Machi-bito wa Kozu.","TOUHOU ARRANGE","NORMAL 2",2.0,false,"HARD 6",6.4,false,"EXPERT 10",10.5,false,"INFERNO 0",0.0,],
