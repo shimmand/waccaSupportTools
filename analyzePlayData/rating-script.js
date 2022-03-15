@@ -1,3 +1,188 @@
+// Initialize with user settings.
+function initialize() {
+    try {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('get', 'dataset.csv', true);
+        xhr.send(null);
+        xhr.onload = () => {
+            const response = xhr.responseText;
+            const datasetArr = response.split('\n').map(line => {
+                return `[${line}]`;
+            });
+            const scriptCode = `
+                function getChartTable() {
+                    return [
+                        ${String(datasetArr).replaceAll('],[', '],\n[')}
+                    ];
+                }`;
+            const scriptElm = document.createElement('script');
+            
+            scriptElm.innerHTML = scriptCode;
+            document.body.appendChild(scriptElm);
+
+            // Generate a dataset table.
+            generateDatasetTable();
+
+            // Restore the language settings.
+            switch (localStorage.getItem('rating-analyzer-lang')) {
+                case 'japanese':
+                    switchToJapanese();
+                    break;
+
+                case 'english':
+                    switchToEnglish();
+                    break;
+            
+                default:
+                    switchToJapanese();
+                    break;
+            }
+
+            // Restore the fixed display state of columns.
+            const stickyCheckboxes = document.querySelectorAll('#column-sticky-toggle');
+            switch (localStorage.getItem('rating-analyzer-table-fixed')) {
+                case 'true':
+                    stickyCheckboxes.forEach(input => input.checked = true);
+                    break;
+
+                case 'false':
+                    stickyCheckboxes.forEach(input => input.checked = false);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            // Restore the display state of "genre" columns.
+            const genreCheckboxes = document.querySelectorAll('#column-genre-toggle');
+            switch (localStorage.getItem('rating-analyzer-column-genre')) {
+                case 'true':
+                    genreCheckboxes.forEach(input => input.checked = true);
+                    toggleColumnVisibility('genre', true);
+                    break;
+
+                case 'false':
+                    genreCheckboxes.forEach(input => input.checked = false);
+                    toggleColumnVisibility('genre', false);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            // Restore the display state of English song titles.
+            const altTitleCheckboxes = document.querySelectorAll('#alt-title-toggle');
+            switch (localStorage.getItem('rating-analyzer-alt-title')) {
+                case 'true':
+                    altTitleCheckboxes.forEach(input => input.checked = true);
+                    toggleDisplayState('alt-title', true);
+                    break;
+
+                case 'false':
+                    altTitleCheckboxes.forEach(input => input.checked = false);
+                    toggleDisplayState('alt-title', false);
+                    break;
+            
+                default:
+                    break;
+            }
+
+            // Restore the selected state of the type filter.
+            const types = ['targets', 'candidates', 'others'];
+            types.forEach(type => {
+                const checkboxes = document.querySelectorAll(`.rating-${type}-toggle`);
+
+                switch (localStorage.getItem(`rating-analyzer-filter-type-${type}`)) {
+                case 'true':
+                    checkboxes.forEach(input => input.checked = true);
+                    break;
+
+                case 'false':
+                    checkboxes.forEach(input => input.checked = false);
+                    break;
+            
+                default:
+                    break;
+                }
+            })
+            
+            // Restore the selected state of the difficulty filter.
+            const difficulties = ['normal', 'hard', 'expert', 'inferno'];
+            difficulties.forEach(difficulty => {
+                const checkboxes = document.querySelectorAll(`.difficulty-${difficulty}-toggle`);
+
+                switch (localStorage.getItem(`rating-analyzer-filter-difficulty-${difficulty}`)) {
+                case 'true':
+                    checkboxes.forEach(input => input.checked = true);
+                    break;
+
+                case 'false':
+                    checkboxes.forEach(input => input.checked = false);
+                    break;
+            
+                default:
+                    break;
+                }
+            })
+
+            // Restore the page display scale.
+            const scale = document.querySelector('#select-disp-scale');
+            scale.value = localStorage.getItem('rating-analyzer-display-scale') || '100';
+            changeDisplayScale();
+
+            // Remove the badge if the latest news has been read.
+            switch (localStorage.getItem('rating-analyzer-last-visited')) {
+                case getLastUpdate():
+                    break;
+
+                default:
+                    document.querySelector('#news').classList.remove('border-start-0');
+                    document.querySelector('#news-badge').classList.remove('d-none');
+                    break;
+            }
+
+            // Run the analyze function if the program is in restore mode.
+            switch (localStorage.getItem('rating-analyzer-analyze-mode')) {
+                case 'true':
+                    startAnalyze();
+                    break;
+
+                case 'false':
+                    break;
+            
+                default:
+                    break;
+            }
+
+            // Run the restore function if the program is in restore mode.
+            switch (localStorage.getItem('rating-analyzer-restore-mode')) {
+                case 'true':
+                    restorePrevData();
+                    break;
+
+                case 'false':
+                    break;
+            
+                default:
+                    break;
+            }
+
+            switchLoadingView(false);
+        };
+
+    } catch (error) {
+        switchLoadingView(false);
+        return false;
+    }
+}
+
+
+function getLastUpdate() {
+    return document.querySelector('html').dataset.version;
+}
+
+
 // Paste the clipboard contents into the textarea.
 function paste() {
     const playdata = document.querySelector('#playdata');
@@ -1222,164 +1407,6 @@ function clearLocalStorageContent() {
     document.querySelector('#btn-modal-data-erase-done').click();
 }
 
-// Initialize with user settings.
-function loadUserPreference() {
-    try {
-
-        // Generate a dataset table.
-        generateDatasetTable();
-
-        // Restore the language settings.
-        switch (localStorage.getItem('rating-analyzer-lang')) {
-            case 'japanese':
-                switchToJapanese();
-                break;
-
-            case 'english':
-                switchToEnglish();
-                break;
-        
-            default:
-                switchToJapanese();
-                break;
-        }
-
-        // Restore the fixed display state of columns.
-        const stickyCheckboxes = document.querySelectorAll('#column-sticky-toggle');
-        switch (localStorage.getItem('rating-analyzer-table-fixed')) {
-            case 'true':
-                stickyCheckboxes.forEach(input => input.checked = true);
-                break;
-
-            case 'false':
-                stickyCheckboxes.forEach(input => input.checked = false);
-                break;
-        
-            default:
-                break;
-        }
-
-        // Restore the display state of "genre" columns.
-        const genreCheckboxes = document.querySelectorAll('#column-genre-toggle');
-        switch (localStorage.getItem('rating-analyzer-column-genre')) {
-            case 'true':
-                genreCheckboxes.forEach(input => input.checked = true);
-                toggleColumnVisibility('genre', true);
-                break;
-
-            case 'false':
-                genreCheckboxes.forEach(input => input.checked = false);
-                toggleColumnVisibility('genre', false);
-                break;
-        
-            default:
-                break;
-        }
-
-        // Restore the display state of English song titles.
-        const altTitleCheckboxes = document.querySelectorAll('#alt-title-toggle');
-        switch (localStorage.getItem('rating-analyzer-alt-title')) {
-            case 'true':
-                altTitleCheckboxes.forEach(input => input.checked = true);
-                toggleDisplayState('alt-title', true);
-                break;
-
-            case 'false':
-                altTitleCheckboxes.forEach(input => input.checked = false);
-                toggleDisplayState('alt-title', false);
-                break;
-        
-            default:
-                break;
-        }
-
-        // Restore the selected state of the type filter.
-        const types = ['targets', 'candidates', 'others'];
-        types.forEach(type => {
-            const checkboxes = document.querySelectorAll(`.rating-${type}-toggle`);
-
-            switch (localStorage.getItem(`rating-analyzer-filter-type-${type}`)) {
-            case 'true':
-                checkboxes.forEach(input => input.checked = true);
-                break;
-
-            case 'false':
-                checkboxes.forEach(input => input.checked = false);
-                break;
-        
-            default:
-                break;
-            }
-        })
-        
-        // Restore the selected state of the difficulty filter.
-        const difficulties = ['normal', 'hard', 'expert', 'inferno'];
-        difficulties.forEach(difficulty => {
-            const checkboxes = document.querySelectorAll(`.difficulty-${difficulty}-toggle`);
-
-            switch (localStorage.getItem(`rating-analyzer-filter-difficulty-${difficulty}`)) {
-            case 'true':
-                checkboxes.forEach(input => input.checked = true);
-                break;
-
-            case 'false':
-                checkboxes.forEach(input => input.checked = false);
-                break;
-        
-            default:
-                break;
-            }
-        })
-
-        // Restore the page display scale.
-        const scale = document.querySelector('#select-disp-scale');
-        scale.value = localStorage.getItem('rating-analyzer-display-scale') || '100';
-        changeDisplayScale();
-
-        // Remove the badge if the latest news has been read.
-        switch (localStorage.getItem('rating-analyzer-last-visited')) {
-            case getLastUpdate():
-                break;
-
-            default:
-                document.querySelector('#news').classList.remove('border-start-0');
-                document.querySelector('#news-badge').classList.remove('d-none');
-                break;
-        }
-
-        // Run the analyze function if the program is in restore mode.
-        switch (localStorage.getItem('rating-analyzer-analyze-mode')) {
-            case 'true':
-                startAnalyze();
-                break;
-
-            case 'false':
-                break;
-        
-            default:
-                break;
-        }
-
-        // Run the restore function if the program is in restore mode.
-        switch (localStorage.getItem('rating-analyzer-restore-mode')) {
-            case 'true':
-                restorePrevData();
-                break;
-
-            case 'false':
-                break;
-        
-            default:
-                break;
-        }
-
-        switchLoadingView(false);
-
-    } catch (error) {
-        switchLoadingView(false);
-        return false;
-    }
-}
 
 // Switch Loading View.
 function switchLoadingView(isEnabled = true) {
