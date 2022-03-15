@@ -3,7 +3,7 @@ function initialize() {
     try {
         const xhr = new XMLHttpRequest();
 
-        xhr.open('get', 'dataset.csv', true);
+        xhr.open('get', 'https://shimmand.github.io/waccaSupportTools/analyzePlayData/dataset.csv', true);
         xhr.send(null);
         xhr.onload = () => {
             const response = xhr.responseText;
@@ -15,7 +15,7 @@ function initialize() {
                     return [
                         ${String(datasetArr).replaceAll('],[', '],\n[')}
                     ];
-                }`;
+                }`.replaceAll(/(^ {16}|^\n)/gm, '');
             const scriptElm = document.createElement('script');
             
             scriptElm.innerHTML = scriptCode;
@@ -912,7 +912,7 @@ function copyBookmarklet() {
 
 // Show dataset table.
 function openChartsData(){
-    window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/chartsTable.csv');
+    window.open('https://shimmand.github.io/waccaSupportTools/analyzePlayData/dataset.csv');
 }
 
 // Get score and modifier mapping table.
