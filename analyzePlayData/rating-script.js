@@ -1253,7 +1253,11 @@ function generateDatasetTable() {
                 <td>${Number(song[indexes['inferno-constant']]).toFixed(1)}</td>
                 <td>${song[indexes['inferno-newer']]}</td>
             </tr>`
-        .replaceAll('undefined', '').replaceAll(/(^ {12}|^\n)/gm, '');
+        .replaceAll('const:undefined ', '')
+        .replaceAll('<td>INFERNO 0</td>', '<td></td>')
+        .replaceAll('<td>0.0</td>', '<td></td>')
+        .replaceAll('<td>undefined</td>', '<td></td>')
+        .replaceAll(/(^ {12}|^\n)/gm, '');
     }).join('\n');
 
     tbody.innerHTML = tableContent;
