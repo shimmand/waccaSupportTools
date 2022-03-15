@@ -1,4 +1,4 @@
-"0-song-title","1-normal-level","2-normal-const","3-normal-is-newer","4-hard-level","5-hard-const","6-hard-is-newer","7-expert-level","8-expert-const","9-expert-is-newer","10-inferno-level","11-inferno-const","12-inferno-is-newer"
+"@song-title","@song-title-eng","@genre-name","@normal-level","@normal-constant","@normal-included-newer","@hard-level","@hard-constant","@hard-included-newer","@expert-level","@expert-constant","@expert-included-newer","@inferno-level","@inferno-constant","@inferno-included-newer"
 "ヒトガタ","Hitogata","ANIME/POP","NORMAL 3",3.0,true,"HARD 9+",9.7,true,"EXPERT 12",12.6,true,"INFERNO 0",0.0,
 "メニメニマニマニ","Many Many Money Money","ANIME/POP","NORMAL 3",3.0,true,"HARD 7+",7.8,true,"EXPERT 12",12.3,true,"INFERNO 0",0.0,
 "叩ケ 叩ケ 手ェ叩ケ","Tatake Tatake Te-tatake","ANIME/POP","NORMAL 2",2.0,true,"HARD 7",7.3,true,"EXPERT 12",12.3,true,"INFERNO 13+",13.8,true
