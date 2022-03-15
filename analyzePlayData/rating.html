@@ -9,10 +9,10 @@
         <meta http-equiv="cache-control" content="no-cache"/>
         <meta http-equiv="expires" content="0"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
-        <link href="rating-style.css?date=2022-03-09-1800" rel="stylesheet"/>
+        <link href="rating-style.css?date=2022-03-15-1200" rel="stylesheet"/>
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script defer src="rating-dataset.js?date=2022-03-09-1800"></script>
-        <script defer src="rating-script.js?date=2022-03-09-1800"></script>
+        <script defer src="rating-dataset.js?date=2022-03-15-1200"></script>
+        <script defer src="rating-script.js?date=2022-03-15-1200"></script>
     </head>
     <body class="bg-gray-900" onload="loadUserPreference(); return false;">
         <div id="container-loading" class="container p-0">
@@ -38,6 +38,68 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-white">
+                            <div class="mt-2 p-2">
+                                <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
+                                    <div class="vstack">
+                                        <div class="badge bg-white align-bottom text-black me-2">#32</div>
+                                        <div class="badge border border-white align-bottom text-white me-2">2022-03-15</div>
+                                    </div>
+                                    <div class="w-100">
+                                        <span class="text-magenta">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                            </svg>
+                                        </span>
+                                        <span class="lang-jpn">
+                                            一部譜面が計算されない問題の修正
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Fixed issue that some charts were not calculated
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mx-2 my-0">
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            以下のチャートにおいて、プレイ成績が計算されない不具合がありました:
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            In the following charts, there was an issue with play results not calculated:
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div>Good Night, Bad Luck.</div>
+                                        <div>
+                                            <span class="badge border normal">NORMAL 5</span>
+                                            <span class="badge border hard">HARD 10+</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div>ナイト・オブ・ナイツ (かめりあ’s“ワンス・アポン・ア・ナイト”Remix)</div>
+                                        <div>
+                                            <span class="badge border normal">NORMAL 5</span>
+                                            <span class="badge border hard">HARD 10</span>
+                                            <span class="badge border expert">EXPERT 13</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            不具合の原因はデータセットの誤りで、現在では修正されています。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            The cause of this issue was an error in the dataset, which has now been fixed.
+                                        </span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <span class="lang-jpn">
+                                            この誤りを報告および修正していただいた<em>cg505</em>さんへ感謝をいたします。
+                                        </span>
+                                        <span class="lang-eng d-none">
+                                            Many thanks to <em>cg505</em> for reporting and correcting this error.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mt-2 p-2">
                                 <div class="d-flex align-items-center h6 px-1 pb-1 border-bottom">
                                     <div class="vstack">

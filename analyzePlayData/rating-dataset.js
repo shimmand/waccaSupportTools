@@ -1,6 +1,6 @@
 // Last update
 function getLastUpdate() {
-    return '2022-03-09';
+    return '2022-03-15';
 }
 
 // Chart constants table
@@ -154,7 +154,7 @@ function getChartTable() {
         ["Help me, ERINNNNNN!!","","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 7+",7.7,false,"EXPERT 11",11.6,false,"INFERNO 0",0.0,],
         ["進捗どうですか？","Shinchoku Doudesu-ka?","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 8",8.6,false,"EXPERT 12",12.5,false,"INFERNO 0",0.0,],
         ["Sweet Requiem","","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 9",9.2,false,"EXPERT 12+",12.7,false,"INFERNO 0",0.0,],
-        ["明星ロケット","Myoujyou Rocket","TOUHOU ARRANGE","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
+        ["明星ロケット","Akeboshi Rocket","TOUHOU ARRANGE","NORMAL 2",2.0,false,"HARD 7",7.5,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
         ["ゆけむり魂温泉 II","Yukemuri Tama-onsen II","TOUHOU ARRANGE","NORMAL 3",3.0,false,"HARD 7",7.5,false,"EXPERT 12",12.0,false,"INFERNO 0",0.0,],
         ["Calamity Fortune","","TOUHOU ARRANGE","NORMAL 4",4.0,false,"HARD 10",10.0,false,"EXPERT 13+",13.7,false,"INFERNO 0",0.0,],
         ["ケロ⑨Destiny","Kero 9 Destiny","TOUHOU ARRANGE","NORMAL 2",2.0,false,"HARD 6",6.2,false,"EXPERT 11+",11.7,false,"INFERNO 0",0.0,],
