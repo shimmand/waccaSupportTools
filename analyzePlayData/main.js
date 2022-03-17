@@ -1,3 +1,4 @@
+// WARNING: DO NOT DELETE THIS FILE //
 export function main(){
     try {
         const hostname = 'wacca.marv-games.jp';
